@@ -21,9 +21,7 @@ document.querySelector(".btn-danger").addEventListener("click", function() {
       }
 })
 
-nextNote();
 started = true;
-
 
 document.addEventListener("keydown", function(event) {
   function playSound(key) {
