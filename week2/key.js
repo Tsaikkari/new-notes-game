@@ -1,6 +1,12 @@
 module.exports = class Key {
     constructor(name) {
       this.name = name
-      this.userChosenKeys = []
     }
+
+    showKeysUserClicks () {
+      this.userChosenKeys.forEach(showKey)
+      userChosenKeys.push(userChosenKey)
+    }
+
+    showKey = key => console.log(key.name)
   }

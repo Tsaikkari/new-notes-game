@@ -1,12 +1,11 @@
 module.exports = class Note {
-    constructor(name, startPoint, staffPosition, staffs) {
+    constructor(name, startPoint, staffPosition) {
         this.name = name
         this.startPoint = startPoint
         this.staffPosition = staffPosition
-        this.staffs = []
     }
 
-    belongTo(staff) {
+    goTo(staff) {
         this.staffs.push(staff)
         staff.gameNotes.push(this)
     }
@@ -17,7 +16,7 @@ module.exports = class Note {
         gameNotes.push(randomNote)
         
         if (gameNotes === userChosenKeys) {
-          belongTo();
+          goTo();
           nextNote();
         } else {
           playSound("wrong")

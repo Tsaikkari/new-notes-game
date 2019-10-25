@@ -1,0 +1,15 @@
+{
+  "name": "week2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kirsi Trospe",
+  "license": "MIT",
+  "dependencies": {
+    "note-staff-position": "1.0.0",
+    "scientific-notation": "1.0.2"
+  }
+}

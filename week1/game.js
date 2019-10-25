@@ -65,11 +65,6 @@ document.addEventListener("keydown", function(event) {
   playSound(event.key);
 })
 
-/*var userChosenKey = document.querySelector(this).setAttribute("id");
-userChosenKeys.push(userChosenKey);*/
-
-
-
   /*playSound(name){
     var audio = new Audio("sounds/" + name + ".mp3");
     audio.play();
