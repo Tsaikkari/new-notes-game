@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="HandheldFriendly" content="true">
+    <title>Notes Game</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Lora&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <![endif]-->
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" role="navigation">
+      <h2>NOTES GAME</h2>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#notes-route">Level 1</a>
+          </li>
+          <li>
+            <button type="button" class="btn btn-danger">START</button>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container" id="intro">
+      <h3 class="intro-header"><i class="fas fa-music"></i>Learn names of the keyboard keys<br> & their corresponding notes on the staff</h3>
+      <h5 class="how">How to play</h5>
+      <p class="instructions"><strong>Level 1:</strong> Click the key on your keyboard (not the piano keyboard key on the screen) corresponding
+        to the name of the key that the note is approaching. If you hit the right key the note will go to its
+        place on the staff. Put the sound on (loud)!<i class="fas fa-volume-up"></i></p>
+      <p class="starting">Choose your level and start the game</p>
+    </div>
+    <div class="container-fluid" id="notes-route">
+     <!--<i class="far fa-circle"></i>-->
+    </div>
+
+    <div class="container-content">
+      <div id="keyboard">
+        <button type="button" class="btn btn-light c key" id="c"></button>
+        <button type="button" class="btn btn-dark black key"></button>
+        <button type="button" class="btn btn-light d key" id="d"></button>
+        <button type="button" class="btn btn-dark black key"></button>
+        <button type="button" class="btn btn-light e key" id="e"></button>
+        <button type="button" class="btn btn-light f key" id="f"></button>
+        <button type="button" class="btn btn-dark black key" id=></button>
+        <button type="button" class="btn btn-light g key" id="g"></button>
+        <button type="button" class="btn btn-dark black key" id=></button>
+        <button type="button" class="btn btn-light a key" id="a"></button>
+        <button type="button" class="btn btn-dark black key"></button>
+        <button type="button" class="btn btn-light b key" id="b"></button>
+      </div>
+    </div>
+
+    <div class="container-content" id="staff">
+      <hr>
+      <hr>
+      <hr>
+      <hr>
+      <hr>
+    </div>
+
+    <script src="game.js"></script>
+  </body>
+  <footer><p>Copyright &copy; Kirsi Trospe 2019</p></footer>
+</html>

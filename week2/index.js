@@ -1,0 +1,21 @@
+const Note = require('./note.js')
+const Staff = require('./staff.js')
+const Key = require('./key.js')
+
+c = new Key("c")
+d = new Key("d")
+e = new Key("e")
+f = new Key("f")
+g = new Key("g")
+a = new Key("a")
+b = new Key("b")
+
+c1 = new Note("c", "", "")
+d1 = new Note("d", "", "")
+e1 = new Note("e", "", "")
+f1 = new Note("f", "left = '595px'", "top = '520px'")
+g1 = new Note("g", "", "")
+a1 = new Note("a", "", "")
+b1 = new Note("b", "", "")
+
+staff = new Staff("gClef", [c1, d1, e1, f1, g1, a1, b1])
