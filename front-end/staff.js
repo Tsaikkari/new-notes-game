@@ -1,4 +1,4 @@
-module.exports = class Staff {
+Staff = class {
     constructor(clef) {
         this.clef = clef
     }

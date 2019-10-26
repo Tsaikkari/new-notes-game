@@ -1,25 +1,23 @@
-var notes = ["c", "d", "e", "f", "g", "a", "b"];
-var gameNotes = [];
-var userChosenKeys = [];
-var started = false;
 
-// game start when user clicks start button
-document.querySelector(".btn-danger").addEventListener("click", function() {
-    window.onload = function noteFalls() {
-    var elem = document.getElementById("notes-route")
+ 
+window.onload = function noteFalls() {
+    var elem = document.getElementById("note")
     var pos = 0;
-    var startPoint = this.startPoint; // above the corresponding key
-    };
+    var id = this.setInterval(frame, 1)
+    var repetition = setTimeout(noteFalls, 80);
+      if (repetition == 198) {
+          clearTimeout(repetition);
+      }
 
       function frame() {
-          if (pos === staffPosition) {
+          if (pos === 200) {
               clearInterval(id);
           } else {
               pos++;
               elem.style.top = pos + 'px';
           }
       }
-})
+}
 
 started = true;
 

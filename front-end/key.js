@@ -1,4 +1,4 @@
-module.exports = class Key {
+Key = class {
     constructor(name) {
       this.name = name
     }

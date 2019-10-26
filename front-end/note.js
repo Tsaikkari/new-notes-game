@@ -1,4 +1,4 @@
-module.exports = class Note {
+Note = class {
     constructor(name, startPoint, staffPosition) {
         this.name = name
         this.startPoint = startPoint

@@ -59,6 +59,8 @@ h2 {
 
 /* note */
 .fa-circle {
+  text-align: center;
+  padding-top: 10%
   font-size: 1.6em;
   position: absolute;
   /* f-key padding-top: 520px;
