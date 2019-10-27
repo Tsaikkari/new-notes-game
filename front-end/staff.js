@@ -2,21 +2,21 @@ class Staff {
   constructor(clef, level) {
     this.clef = clef
     this.level = level
+    this.staffPositions = []
   }
 
-  providePlaces(staffPosition) {
-    this.staffPosition = staffPosition
-    staffPosition.note.push(this)
-    staffPosition.clef.push(this)
+  providePlaceFor(note) {
+    this.note = note.name
+    staffPosition.notes.push(this)
   }
 
   representGameLevel() {
     if (clef === trebleClef) {
-      level = Level1
+      level = 1
     }
 
     if (clef === bassClef) {
-        level = Level2
+        level = 2
     }
   }
 }

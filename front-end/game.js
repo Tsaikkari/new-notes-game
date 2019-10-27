@@ -38,7 +38,7 @@ function nextNote(randomNote) {
   var randomNote = notes[randomNumber]
   gameNotes.push(randomNote)
       
-    if (gameNotes === userChosenKeys) {
+    if (gameNotes === userClickedKeys) {
       goTo();
       nextNote();
     } else {
