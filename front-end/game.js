@@ -1,5 +1,4 @@
 let startPoint = [];// find out
-let staffPosition = {c1: '', d1: '', e1: '', f1: '520', g1: '', a1: '', b1: ''};//find out
 let userClickedKeys = [];
 let started = false;
 
@@ -16,7 +15,7 @@ if (started = true) {
     var id = setInterval(frame, 10);
     
     function frame() {
-      if (pos === staffPosition) {
+      if (pos === 500) { //500 is at a moment a placeholder for staffPositions
         clearInterval(id);
       } else {
         pos++;
