@@ -1,31 +1,22 @@
-Note = class {
-    constructor(name, startPoint, staffPosition) {
-        this.name = name
-        this.startPoint = startPoint
-        this.staffPosition = staffPosition
-    }
+let notes = ["c", "d", "e", "f", "g", "a", "b"];
+let gameNotes = [];
 
-    goTo(staff) {
-        this.staffs.push(staff)
-        staff.gameNotes.push(this)
-    }
+class Note {
+  constructor(name) {
+    this.name = name
+  }
 
-    nextNote(randomNote) {
-        var randomNumber = Math.floor(Math.random() * 7);
-        var randomNote = notes[randomNumber]
-        gameNotes.push(randomNote)
-        
-        if (gameNotes === userChosenKeys) {
-          goTo();
-          nextNote();
-        } else {
-          playSound("wrong")
-        }
-    }
-
-    startOver() {
-        level = 0
-        gameNotes = []
-        started = false
-    }
+  goTo(staff) {
+    this.staffs.push(staff)
+    staff.gameNotes.push(this)
+  }
 }
+
+c1 = new Note("c")
+d1 = new Note("d")
+e1 = new Note("e")
+f1 = new Note("f")
+g1 = new Note("g")
+a1 = new Note("a")
+b1 = new Note("b")
+

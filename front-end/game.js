@@ -1,28 +1,63 @@
+let startPoint = [];// find out
+let staffPosition = {c1: '', d1: '', e1: '', f1: '520', g1: '', a1: '', b1: ''};//find out
+let userClickedKeys = [];
+let started = false;
 
- 
-window.onload = function noteFalls() {
-    var elem = document.getElementById("note")
+document.querySelector(".btn-danger").addEventListener("click", function() {
+  nextNote();
+  started = true;
+})
+// how to get this working inside the event listener function?
+if (started = true) {
+  window.onload = function noteFall() {
+    var elem = document.getElementById("note");
     var pos = 0;
-    var id = this.setInterval(frame, 1)
-    var repetition = setTimeout(noteFalls, 80);
-      if (repetition == 198) {
-          clearTimeout(repetition);
+    startPoint = this.startPoint; // note's starting point at the screen above corresponding keyboard key (button)
+    var id = setInterval(frame, 10);
+    
+    function frame() {
+      if (pos === staffPosition) {
+        clearInterval(id);
+      } else {
+        pos++;
+        elem.style.top = pos + 'px';
       }
+    }
+  }
+}
+ 
+/*write a (function() {
+  let userChosenKey = 
+  userClickedKeys.push(userChosenKey);
+  playSound(userChosenKey);
+})*/
 
-      function frame() {
-          if (pos === 200) {
-              clearInterval(id);
-          } else {
-              pos++;
-              elem.style.top = pos + 'px';
-          }
-      }
+function nextNote(randomNote) {
+  userClickedKeys = [];
+  var randomNumber = Math.floor(Math.random() * 7);
+  var randomNote = notes[randomNumber]
+  gameNotes.push(randomNote)
+      
+    if (gameNotes === userChosenKeys) {
+      goTo();
+      nextNote();
+    } else {
+      playSound("wrong")
+    }
 }
 
-started = true;
+ function playSound(name){
+  var audio = new Audio("sounds/" + name + ".mp3");
+  audio.play();
+}
 
-document.addEventListener("keydown", function(event) {
-  function playSound(key) {
+function startOver() {
+  level = 0
+  gameNotes = []
+  started = false
+}
+
+  /*function playSound(key) {
     switch(key) {
       case "c":
         var c = new Audio("sounds/c.mp3")
@@ -58,14 +93,10 @@ document.addEventListener("keydown", function(event) {
       break;
       default: console.log(key);
     }
-  }
-
-  playSound(event.key);
-})
-
-  /*playSound(name){
-    var audio = new Audio("sounds/" + name + ".mp3");
-    audio.play();
   }*/
+
+
+
+  
 
   

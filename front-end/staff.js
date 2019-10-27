@@ -1,23 +1,28 @@
-Staff = class {
-    constructor(clef) {
-        this.clef = clef
+class Staff {
+  constructor(clef, level) {
+    this.clef = clef
+    this.level = level
+  }
+
+  providePlaces(staffPosition) {
+    this.staffPosition = staffPosition
+    staffPosition.note.push(this)
+    staffPosition.clef.push(this)
+  }
+
+  representGameLevel() {
+    if (clef === trebleClef) {
+      level = Level1
     }
 
-    getStaffPosition = function getStaffPosition(coord, clef) {
-        if (typeof coord === 'number') {
-          clef = coord;
-          return function(coord) {
-            return getStaffPosition(coord, clef);
-          }
-        } else if (coord && coord.coord) {
-          coord = coord.coord;
-        } else if (!coord || !coord.length || (coord && !clef)) {
-          return null;
-        }
-        var pos = coord[0] * 7 + coord[1] * 4 + 29; 
-        return (pos - clef) / 2 + 2.5;
-    };
+    if (clef === bassClef) {
+        level = Level2
+    }
+  }
 }
+
+staff = new Staff("treble-clef", [c1, d1, e1, f1, g1, a1, b1])
+
 
  
  
