@@ -1,6 +1,7 @@
 module.exports = class User {
-  constructor(userName) {
+  constructor(userName, level) {
     this.userName = userName
+    this.level = level
   }
 
   play(game) {
@@ -8,8 +9,8 @@ module.exports = class User {
     game.users.push(this)
   }
 
-  skill(level) {
+  choose(level) {
     this.level = level.name
-    level.users.push(this)
+    user.levels.push(this)
   }
 }
