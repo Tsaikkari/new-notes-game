@@ -5,7 +5,7 @@ const Database = require('./database')
 
 const notesGame = new Game('notes-game')
 
-const kirsi = new User('Kirsi', 8)
+const kirsi = new User('Kirsi', 'level8')
 const omur = new User('Omur', '')
 const armagan = new User('Armagan', '')
 const mert = new User('Mert', '')
