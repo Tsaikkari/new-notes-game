@@ -1,22 +1,9 @@
-let notes = ["c", "d", "e", "f", "g", "a", "b"];
-
 class Note {
-  constructor(name) {
+  constructor(name, staffPosition) {
     this.name = name
-    this.gameNotes = [];
-  }
-
-  goTo(staff) {
-    this.staffs.push(staff)
-    staff.gameNotes.push(this)
+    this.staffPosition = staffPosition
   }
 }
 
-c1 = new Note("c")
-d1 = new Note("d")
-e1 = new Note("e")
-f1 = new Note("f")
-g1 = new Note("g")
-a1 = new Note("a")
-b1 = new Note("b")
+
 

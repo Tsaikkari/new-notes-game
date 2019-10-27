@@ -1,27 +1,26 @@
-class Staff {
-  constructor(clef, level) {
-    this.clef = clef
-    this.level = level
-    this.staffPositions = []
-  }
+let notes = [];
+let levels = [];
 
-  providePlaceFor(note) {
-    this.note = note.name
-    staffPosition.notes.push(this)
+class Staff {
+  constructor(clef) {
+    this.clef = clef
+    this.staffPositions = []
   }
 
   representGameLevel() {
     if (clef === trebleClef) {
       level = 1
+      notes = ["c", "d", "e", "f", "g", "a", "b"];
     }
 
     if (clef === bassClef) {
         level = 2
+        notes = ["c0", "d0", "e0", "f0", "g0", "a0", "b0"];
     }
   }
 }
 
-staff = new Staff("treble-clef", [c1, d1, e1, f1, g1, a1, b1])
+level1 = new Staff("treble-clef")
 
 
  
