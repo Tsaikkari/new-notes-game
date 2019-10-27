@@ -1,9 +1,9 @@
 let notes = ["c", "d", "e", "f", "g", "a", "b"];
-let gameNotes = [];
 
 class Note {
   constructor(name) {
     this.name = name
+    this.gameNotes = [];
   }
 
   goTo(staff) {

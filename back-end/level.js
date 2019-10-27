@@ -5,7 +5,7 @@ module.exports = class Level {
     }
 
     levelUp(game) {
-        this.game = game
-        game.levels.push(this)
+        this.game = game.name
+        users.level.push(this)
     }
 }
