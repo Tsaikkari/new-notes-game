@@ -1,15 +1,11 @@
 let startPoint = [];// find out
+let gameNotes = [];
 let userClickedKeys = [];
+let level = 0;
 let started = false;
 
 document.querySelector(".btn-danger").addEventListener("click", function() {
-  nextNote();
-  started = true;
-})
-// how to get this working inside the event listener function?
-if (started = true) {
-  window.onload = function noteFall() {
-    var elem = document.getElementById("note");
+  var elem = document.getElementById("note");
     var pos = 0;
     startPoint = this.startPoint; // note's starting point at the screen above corresponding keyboard key (button)
     var id = setInterval(frame, 10);
@@ -22,9 +18,8 @@ if (started = true) {
         elem.style.top = pos + 'px';
       }
     }
-  }
-}
- 
+  })
+
 /*write a (function() {
   let userChosenKey = 
   userClickedKeys.push(userChosenKey);
@@ -45,7 +40,7 @@ function nextNote(randomNote) {
     }
 }
 
- function playSound(name){
+function playSound(name){
   var audio = new Audio("sounds/" + name + ".mp3");
   audio.play();
 }

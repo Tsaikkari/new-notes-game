@@ -1,1 +1,26 @@
-{"name":"notes-game","levels":[],"users":[{"userName":"Kirsi","level":"level8","game":"notes-game"},{"userName":"Omur","level":"","game":"notes-game"},{"userName":"Armagan","level":"","game":"notes-game"},{"userName":"Mert","level":"","game":"notes-game"}]}
+{
+  "name": "notes-game",
+  "levels": [],
+  "users": [
+    {
+      "userName": "Kirsi",
+      "level": "level8",
+      "game": "notes-game"
+    },
+    {
+      "userName": "Omur",
+      "level": "",
+      "game": "notes-game"
+    },
+    {
+      "userName": "Armagan",
+      "level": "",
+      "game": "notes-game"
+    },
+    {
+      "userName": "Mert",
+      "level": "",
+      "game": "notes-game"
+    }
+  ]
+}

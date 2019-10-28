@@ -9,13 +9,13 @@ class Staff {
 
   representGameLevel() {
     if (clef === trebleClef) {
-      level = level1
+      level = level1;
       notes = [c, d, e, f, g, a, b];
       staffPositions = {}; //find out
     }
 
     if (clef === bassClef) {
-      level = level2
+      level = level2;
       notes = [c0, d0, e0, f0, g0, a0, b0];
       staffPositions = {}; //find out
     }

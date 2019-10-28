@@ -3,17 +3,16 @@ class Note {
     this.name = name
     this.staffPosition = staffPosition + 'px'
   }
-
   belongTo(staff) {
     this.staff = staff.name
-    staff.staffPositions.push(this)
+    //staff.staffPositions.push(this)
   }
 }
 
-const c = new Note("c", '');
+const c = new Note("c", ''); //calculate the stuffPositions
 const d = new Note("d", '');
 const e = new Note("e", '');
-const f = new Note("f", '');
+const f = new Note("f", 520);
 const g = new Note("g", '');
 const a = new Note("a", '');
 const b = new Note("b", '');
@@ -27,7 +26,7 @@ const a0 = new Note("a", '');
 const b0 = new Note("b", '');
 
 
-c.belongTo(level1)
+//f.belongTo(level1)
 
 
 
