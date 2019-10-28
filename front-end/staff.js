@@ -1,5 +1,6 @@
 let notes = [];
 let levels = [];
+let staffPositions = []
 
 class Staff {
   constructor(name, clef) {
@@ -22,8 +23,8 @@ class Staff {
   }
 }
 
-const level1 = new Staff("level1", "treble-clef")
-const level2 = new Staff("level2", "treble-clef")
+const level1 = new Staff("level1", "trebleClef")
+const level2 = new Staff("level2", "bassClef")
 
 
  

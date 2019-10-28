@@ -1,18 +1,19 @@
 class Note {
-  constructor(name, staffPosition) {
+  constructor(name, startPoint, staffPosition) {
     this.name = name
+    this.startPoint = startPoint + 'px'
     this.staffPosition = staffPosition + 'px'
   }
   belongTo(staff) {
     this.staff = staff.name
-    //staff.staffPositions.push(this)
+    staff.staffPositions.push(this)
   }
 }
 
 const c = new Note("c", ''); //calculate the stuffPositions
 const d = new Note("d", '');
 const e = new Note("e", '');
-const f = new Note("f", 520);
+const f = new Note("f", '1077');
 const g = new Note("g", '');
 const a = new Note("a", '');
 const b = new Note("b", '');

@@ -1,30 +1,38 @@
-let startPoint = [];// find out
+let startPoints = [];
 let gameNotes = [];
 let userClickedKeys = [];
+let keysAvailable = {'99': 'c', '100': 'd', '101': 'e', '102': 'f','103': 'g', '97': 'a', '98': 'b'};
 let level = 0;
 let started = false;
 
-document.querySelector(".btn-danger").addEventListener("click", function() {
-  var elem = document.getElementById("note");
+$(document).keydown(function() {
+  if (!started) {
+    var elem = document.getElementById("note");
     var pos = 0;
     startPoint = this.startPoint; // note's starting point at the screen above corresponding keyboard key (button)
     var id = setInterval(frame, 10);
-    
+      
     function frame() {
-      if (pos === 500) { //500 is at a moment a placeholder for staffPositions
+      if (pos === 1077) { //1177 is at a moment a placeholder for staffPositions
         clearInterval(id);
       } else {
         pos++;
         elem.style.top = pos + 'px';
       }
     }
-  })
+  nextNote();
+  started = true;
+  }
+})
 
-/*write a (function() {
-  let userChosenKey = 
-  userClickedKeys.push(userChosenKey);
+userClickedKeys = (function(event) {
+  let keycode = event.which || event.keyCode
+  let userChosenKey = keysAvailable[keycode]
   playSound(userChosenKey);
-})*/
+  userClickedKeys.push(userChosenKey);
+})
+
+$(document).on('keydown', userClickedKeys);
 
 function nextNote(randomNote) {
   userClickedKeys = [];
@@ -33,7 +41,7 @@ function nextNote(randomNote) {
   gameNotes.push(randomNote)
       
     if (gameNotes === userClickedKeys) {
-      goTo();
+      //goTo();
       nextNote();
     } else {
       playSound("wrong")
@@ -51,45 +59,7 @@ function startOver() {
   started = false
 }
 
-  /*function playSound(key) {
-    switch(key) {
-      case "c":
-        var c = new Audio("sounds/c.mp3")
-        c.play();
-      break;
-      case "d":
-        var d = new Audio("sounds/d.mp3")
-        d.play();
-      break;
-      case "e":
-        var e = new Audio("sounds/e.mp3")
-        e.play();
-      break;
-      case "f":
-        var f = new Audio("sounds/f.mp3")
-        f.play();
-      break;
-      case "g":
-        var g = new Audio("sounds/g.mp3")
-        g.play();
-      break;
-      case "a":
-        var a = new Audio("sounds/a.mp3")
-        a.play();
-      break;
-      case "b":
-        var b = new Audio("sounds/b.mp3")
-        b.play();
-      break;
-      case "wrong":
-        var wrong = new Audio("sounds/wrong.mp3")
-        wrong.play();
-      break;
-      default: console.log(key);
-    }
-  }*/
-
-
+  
 
   
 
