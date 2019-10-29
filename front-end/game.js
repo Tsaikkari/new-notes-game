@@ -6,23 +6,23 @@ let started = false;
 
 $(document).keydown(function() {
   if (!started) {
-    var elem = document.getElementById("note");
-    var pos = 0;
-    startPoint = this.startPoint; // note's starting point at the screen above corresponding keyboard key (button)
-    var id = setInterval(frame, 10);
+      var elem = document.getElementById("note");
+      var pos = 0;
+      startPoint = this.startPoint; // note's starting point at the screen above corresponding keyboard key (button)
+      var id = setInterval(frame, 10);
 
-    function frame() {
-      if (pos === 1077) { //1177 is at the moment a placeholder for staffPositions
-        clearInterval(id);
-      } else {
-        pos++;
-        elem.style.top = pos + 'px';
+      function frame() {
+        if (pos === 1077) { //1177 is at the moment a placeholder for staffPositions
+          clearInterval(id);
+        } else {
+          pos++;
+          elem.style.top = pos + 'px';
+        }
       }
+      
+      started = true;
     }
-    //nextNote();
-    started = true;
-  }
-})
+
 
 userClickedKeys = (function(event) {
   let keycode = event.which || event.keyCode
@@ -41,8 +41,9 @@ userClickedKeys = (function(event) {
   }
 })
 
-$(document).on('keydown', userClickedKeys);
 
+$(document).on('keydown', userClickedKeys);
+})
 function playSound(name){
   var audio = new Audio("sounds/" + name + ".mp3");
   audio.play();

@@ -27,27 +27,62 @@ h2 {
   padding-right: 43px;
 }
 
+/*piano-keyboard*/
+section {
+  width: 250px;
+  height: 120px;
+  display: flex;
+  margin-left: 40%;
+  margin-top: 100px;
+}
+
+#piano-kb {
+  height: 100%;
+  flex-flow: column;
+  display: flex;
+  flex: 4;  
+  padding: 1%;
+}
+/*keyboard keys*/
+#kbk {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex: 8;
+  justify-content: center;
+}
+/*key*/
+.k {
+  display: inline-flex;
+  flex: 1;
+  align-items: center;
+}
+/*black key*/
+.bk {
+  position: relative;
+  float: right;
+  height: 60%;
+  max-width: 9%;
+  justify-content: center;
+  background-color: #000;
+  margin: 0 -4%
+
+}
+/*white key*/
+.wk {
+  flex-flow: column;
+  justify-content: flex-end;
+  background-color: #fff;
+  color: #000;
+  outline: 2px solid #474747;;
+  padding-bottom: 2.5%;
+}
+
+/* instructions*/
 #intro {
-  margin-top: 11%;
-  padding: 10%;
+  margin-top: 2%;
+  padding: 3%;
   background-color: #f5ca99;
-}
-
-.fa-music {
-  padding-right: 1%;
-}
-
-.fa-volume-up {
-  padding-left: 1%;
-}
-
-/* note */
-.fa-circle {
-  padding-top: 10%;
-  font-size: 1.6em;
-  position: absolute;
-  /* f-key padding-top: 520px;
-  padding-left: 595px;*/
 }
 
 .intro-header {
@@ -66,6 +101,24 @@ h2 {
 .starting {
   font-size: 1.5em;
   color: #d8412f;
+}
+
+/*icons*/
+.fa-music {
+  padding-right: 1%;
+}
+
+.fa-volume-up {
+  padding-left: 1%;
+}
+
+/* note */
+.fa-circle {
+  padding-top: 10%;
+  font-size: 1.6em;
+  position: absolute;
+  /* f-key 
+  padding-left: 595px;*/
 }
 
 #notes-route {
@@ -87,6 +140,7 @@ h2 {
   height: 59%;
   width: 4%;
 }
+
 
 .btn-light {
   padding-left: 5.5%;

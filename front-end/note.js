@@ -10,7 +10,7 @@ class Note {
   }
 }
 
-const c = new Note("c", ''); //calculate the stuffPositions
+const c = new Note("c", ''); //TODO: calculate the stuffPositions
 const d = new Note("d", '');
 const e = new Note("e", '');
 const f = new Note("f", '1077');
