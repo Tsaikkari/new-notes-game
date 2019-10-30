@@ -47,66 +47,73 @@
           <li class="nav-item">
             <a class="nav-link" id="level8" href="#notes-route">Level 8</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" id="menu" href="#intro">MENU</a>
+          </li>
         </ul>
       </div>
     </nav>
-    <section>
-    <div id="piano-kb">
-      <div id="kbk"> 
-        <div class="k c wk">C</div>
-          <div class="k c_sharp bk"></div>
-          <div class="k d wk">D</div>
-          <div class="k d_sharp bk"></div>
-          <div class="k e wk">E</div>
-          <div class="k f wk">F</div>
-          <div class="k f_sharp bk"></div>
-          <div class="k g wk">G</div>
-          <div class="k g_sharp bk"></div>
-          <div class="k a wk">A</div>
-          <div class="k a_sharp bk"></div>
-          <div class="k b wk">B</div>
-        </div>
-      </div>
-      </section>
-      <div class="container" id="intro">
-        <h3 class="intro-header"><i class="fas fa-music"></i>Learn names of the keyboard keys<br> & their corresponding notes on the staff</h3>
+
+    <div class="container" id="intro">
+        <h3 class="intro-header"><i class="fas fa-music"></i>Learn names of the keyboard keys<br> & their corresponding notes on the staff</h3> 
         <h5 class="how">How to play</h5>
         <p class="instructions"><strong>Level 1:</strong> Click the key on your keyboard (not the piano keyboard key on the screen) 
           corresponding to the name of the key that the note is approaching. If you hit the right key the note will go to its place on the staff. 
           Put the sound on (loud)!<i class="fas fa-volume-up"></i></p>
         <p class="starting">Choose a level and press any key to start</p>
-      </div>
-      <div class="container-fluid" id="notes-route">
-        <i class="far fa-circle" id="note"></i>
-      </div>
-
-      <div class="keys-and-staff">
-        <div class="container-content">
-          <div id="keyboard">
-            <button type="button" class="btn btn-light c key" id="c"></button>
-            <button type="button" class="btn btn-dark black key"></button>
-            <button type="button" class="btn btn-light d key" id="d"></button>
-            <button type="button" class="btn btn-dark black key"></button>
-            <button type="button" class="btn btn-light e key" id="e"></button>
-            <button type="button" class="btn btn-light f key" id="f"></button>
-            <button type="button" class="btn btn-dark black key" id=></button>
-            <button type="button" class="btn btn-light g key" id="g"></button>
-            <button type="button" class="btn btn-dark black key" id=></button>
-            <button type="button" class="btn btn-light a key" id="a"></button>
-            <button type="button" class="btn btn-dark black key"></button>
-            <button type="button" class="btn btn-light b key" id="b"></button>
+    </div>
+      <section>
+        <div id="piano-kb">
+          <div id="kbk"> 
+            <div class="k c wk">C</div>
+              <div class="k c_sharp bk"></div>
+              <div class="k d wk">D</div>
+              <div class="k d_sharp bk"></div>
+              <div class="k e wk">E</div>
+              <div class="k f wk">F</div>
+              <div class="k f_sharp bk"></div>
+              <div class="k g wk">G</div>
+              <div class="k g_sharp bk"></div>
+              <div class="k a wk">A</div>
+              <div class="k a_sharp bk"></div>
+              <div class="k b wk">B</div>
+            </div>
           </div>
-        </div>
+        </section>
+      
+      
 
-        <div class="container-content" id="staff">
-          <!--<i class="fas fa-broom"></i>-->
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
+    <div class="container-fluid" id="notes-route">
+      <i class="far fa-circle" id="note"></i>
+    </div>
+
+    <div class="keys-and-staff">
+      <div class="container-content">
+        <div id="keyboard">
+          <button type="button" class="btn btn-light c key" id="c"></button>
+          <button type="button" class="btn btn-dark black key"></button>
+          <button type="button" class="btn btn-light d key" id="d"></button>
+          <button type="button" class="btn btn-dark black key"></button>
+          <button type="button" class="btn btn-light e key" id="e"></button>
+          <button type="button" class="btn btn-light f key" id="f"></button>
+          <button type="button" class="btn btn-dark black key" id=></button>
+          <button type="button" class="btn btn-light g key" id="g"></button>
+          <button type="button" class="btn btn-dark black key" id=></button>
+          <button type="button" class="btn btn-light a key" id="a"></button>
+          <button type="button" class="btn btn-dark black key"></button>
+          <button type="button" class="btn btn-light b key" id="b"></button>
         </div>
       </div>
+
+      <div class="container-content" id="staff">
+        <!--<i class="fas fa-broom"></i>-->
+        <hr>
+        <hr>
+        <hr>
+        <hr>
+        <hr>
+      </div>
+    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="game.js"></script>

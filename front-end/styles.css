@@ -21,8 +21,12 @@ h2 {
   color: #fe7a47;
 }
 
+body {
+  background-color: #f5ca99;
+}
+
 .navbar-light .navbar-nav .nav-link {
-  color: #fe7a47;
+  color: #d8412f;
   text-transform: uppercase;
   padding-right: 43px;
 }
@@ -31,9 +35,9 @@ h2 {
 section {
   width: 250px;
   height: 120px;
-  display: flex;
-  margin-left: 40%;
-  margin-top: 100px;
+  text-align: center;
+  margin-left: 10%;
+  border: solid 1px #000;
 }
 
 #piano-kb {
@@ -80,8 +84,8 @@ section {
 
 /* instructions*/
 #intro {
-  margin-top: 2%;
-  padding: 3%;
+  margin-top: 11%;
+  padding: 1%;
   background-color: #f5ca99;
 }
 
@@ -101,6 +105,7 @@ section {
 .starting {
   font-size: 1.5em;
   color: #d8412f;
+  text-align: center;
 }
 
 /*icons*/
@@ -130,9 +135,9 @@ section {
   left: 25%;
 }
 
-.container-content {
+/*.container-content {
   background-color: #f1f3ce;
-}
+}*/
 
 .black {
   position: absolute;
@@ -140,7 +145,6 @@ section {
   height: 59%;
   width: 4%;
 }
-
 
 .btn-light {
   padding-left: 5.5%;

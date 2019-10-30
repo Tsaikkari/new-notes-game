@@ -4,6 +4,15 @@ let keysAvailable = {'99': 'c', '100': 'd', '101': 'e', '102': 'f','103': 'g', '
 let level = 0;
 let started = false;
 
+// Hides the intro when a link is clicked
+$(".nav-link").on("click", function() {
+  $("#intro").hide();
+})
+// Makes the intro reappear
+$("#menu").on("click", function() {
+  $("#intro").show();
+})
+
 $(document).keydown(function() {
   if (!started) {
       var elem = document.getElementById("note");
