@@ -20,28 +20,25 @@ function swapElement(a, b) {
   // remove marker div
   aNext.remove();
 }
-
-$('.level').on('click', function () {
-  var a = $('#klavier' + $('#a').val());
-  var b =  $(!'#staff' + $(!'#b').val());
-    if (b = $(!'#klavier' + $('#b').val()) && (a = $('#staff' + $('#b').val()))) {
-    swapElement(a, b);
-  }
-})
-
+// switches the keyboard under the staff and back depending on user clicking either level or test link
+//TODO: Provide way back to level one. DRY
 $('.test').on('click', function () {
   var a = $('#klavier' + $('#a').val());
   var b = $('#staff' + $('#b').val());
   swapElement(a, b);
-})
-
-$('.test').on('click', function () {
-  var a = $('#staff' + $('#a').val());
-  var b = $('#klavier' + $('#b').val());
   $('.level').on('click', function () {
-    var a = $('#staff' + $('#a').val());
-    var b = $('#klavier' + $('#b').val());
+    a = $('#staff' + $('#a').val());
+    b = $('#klavier' + $('#b').val());
     swapElement(a, b);
+    $('.test').on('click', function () {
+      a = $('#klavier' + $('#a').val());
+      b = $('#staff' + $('#b').val());
+      $('.level').on('click', function () {
+        a = $('#staff' + $('#a').val());
+        b = $('#klavier' + $('#b').val());
+        swapElement(a, b);
+      })
+    })
   })
 })
 
