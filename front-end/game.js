@@ -12,6 +12,8 @@ $("#menu").on("click", function() {
   $("#intro").show();
 })
 
+// switches the keyboard under the staff and back depending on user clicking either level or test link
+//TODO: No swap when clicking a same type of link two times in the row. DRY
 function swapElement(a, b) {
   // create a temporary marker div
   var aNext = $('<div>').insertAfter(a);
@@ -20,25 +22,27 @@ function swapElement(a, b) {
   // remove marker div
   aNext.remove();
 }
-// switches the keyboard under the staff and back depending on user clicking either level or test link
-//TODO: Provide way back to level one. DRY
+
 $('.test').on('click', function () {
   var a = $('#klavier' + $('#a').val());
   var b = $('#staff' + $('#b').val());
   swapElement(a, b);
+
   $('.level').on('click', function () {
     a = $('#staff' + $('#a').val());
     b = $('#klavier' + $('#b').val());
     swapElement(a, b);
+  
     $('.test').on('click', function () {
       a = $('#klavier' + $('#a').val());
       b = $('#staff' + $('#b').val());
+    })
+  
       $('.level').on('click', function () {
         a = $('#staff' + $('#a').val());
         b = $('#klavier' + $('#b').val());
         swapElement(a, b);
       })
-    })
   })
 })
 
