@@ -24,30 +24,30 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" id="level1" href="#notes-route">Level 1</a>
+            <a class="nav-link level" id="level1" href="#notes-route">Level 1</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="level2" href="#notes-route">Level 2</a>
+            <a class="nav-link test" id="test1" href="#notes-route">Test 1</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="level3" href="#notes-route">Level 3</a>
+            <a class="nav-link level" id="level2" href="#notes-route">Level 2</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="level4" href="#notes-route">Level 4</a>
+            <a class="nav-link test" id="test2" href="#notes-route">Test 2</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="level5" href="#notes-route">Level 5</a>
+            <a class="nav-link level" id="level3" href="#notes-route">Level 3</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="level6" href="#notes-route">Level 6</a>
+            <a class="nav-link test" id="test3" href="#notes-route">Test 3</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="level7" href="#notes-route">Level 7</a>
+            <a class="nav-link level" id="level4" href="#notes-route">Level 4</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="level8" href="#notes-route">Level 8</a>
+            <a class="nav-link test" id="test4" href="#notes-route">Test 4</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item level">
             <a class="nav-link" id="menu" href="#intro">MENU</a>
           </li>
         </ul>
@@ -55,8 +55,8 @@
     </nav>
 
     <div class="container" id="intro">
-        <h3 class="intro-header"><i class="fas fa-music"></i>Learn names of the keyboard keys<br> & their corresponding notes on the staff</h3> 
-        <h5 class="how">How to play</h5>
+      <h3 class="intro-header"><i class="fas fa-music"></i>Learn names of the keyboard keys<br> & their corresponding notes on the staff</h3> 
+      <h5 class="how">How to play</h5>
         <p class="instructions"><strong>Level 1:</strong> Click the key on your keyboard (not the piano keyboard key on the screen) 
           corresponding to the name of the key that the note is approaching. If you hit the right key the note will go to its place on the staff. 
           Put the sound on (loud)!<i class="fas fa-volume-up"></i></p>
@@ -81,40 +81,36 @@
           </div>
         </section>
       
-      
-
     <div class="container-fluid" id="notes-route">
       <i class="far fa-circle" id="note"></i>
     </div>
 
-    <div class="keys-and-staff">
-      <div class="container-content">
-        <div id="keyboard">
-          <button type="button" class="btn btn-light c key" id="c"></button>
-          <button type="button" class="btn btn-dark black key"></button>
-          <button type="button" class="btn btn-light d key" id="d"></button>
-          <button type="button" class="btn btn-dark black key"></button>
-          <button type="button" class="btn btn-light e key" id="e"></button>
-          <button type="button" class="btn btn-light f key" id="f"></button>
-          <button type="button" class="btn btn-dark black key" id=></button>
-          <button type="button" class="btn btn-light g key" id="g"></button>
-          <button type="button" class="btn btn-dark black key" id=></button>
-          <button type="button" class="btn btn-light a key" id="a"></button>
-          <button type="button" class="btn btn-dark black key"></button>
-          <button type="button" class="btn btn-light b key" id="b"></button>
-        </div>
-      </div>
-
-      <div class="container-content" id="staff">
-        <!--<i class="fas fa-broom"></i>-->
-        <hr>
-        <hr>
-        <hr>
-        <hr>
-        <hr>
+    <div class="container-content" id="klavier">
+      <div id="keyboard">
+        <button type="button" class="btn btn-light c key" id="c"></button>
+        <button type="button" class="btn btn-dark black key"></button>
+        <button type="button" class="btn btn-light d key" id="d"></button>
+        <button type="button" class="btn btn-dark black key"></button>
+        <button type="button" class="btn btn-light e key" id="e"></button>
+        <button type="button" class="btn btn-light f key" id="f"></button>
+        <button type="button" class="btn btn-dark black key" id=></button>
+        <button type="button" class="btn btn-light g key" id="g"></button>
+        <button type="button" class="btn btn-dark black key" id=></button>
+        <button type="button" class="btn btn-light a key" id="a"></button>
+        <button type="button" class="btn btn-dark black key"></button>
+        <button type="button" class="btn btn-light b key" id="b"></button>
       </div>
     </div>
 
+    <div class="container-content" id="staff">
+      <!--<i class="fas fa-broom"></i>-->
+      <hr>
+      <hr>
+      <hr>
+      <hr>
+      <hr>
+    </div>
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="game.js"></script>
     <script src="note.js"></script>

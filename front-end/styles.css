@@ -122,8 +122,8 @@ section {
   padding-top: 10%;
   font-size: 1.6em;
   position: absolute;
-  /* f-key 
-  padding-left: 595px;*/
+  
+  padding-left: 595px;
 }
 
 #notes-route {
