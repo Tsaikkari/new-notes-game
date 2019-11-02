@@ -1,30 +1,32 @@
-let notes = [];
-let levels = [];
-let staffPositions = []
-
-class Staff {
+module.exports = class Staff {
   constructor(name, clef) {
     this.name = name
     this.clef = clef
+    this.notes = []
+    this.levels = []
+    this.testLevels = []
+    this.staffPositions = []
   }
 
   representGameLevel() {
     if (clef === trebleClef) {
       level = level1;
       notes = [c, d, e, f, g, a, b];
-      staffPositions = {}; //find out
+      staffPositions = {}; 
     }
 
     if (clef === bassClef) {
       level = level2;
       notes = [c0, d0, e0, f0, g0, a0, b0];
-      staffPositions = {}; //find out
+      staffPositions = {}; 
     }
+  }
+  static create({name, clef}) {
+    return new Staff(name, clef)
   }
 }
 
-const level1 = new Staff("level1", "trebleClef")
-const level2 = new Staff("level2", "bassClef")
+
 
 
  

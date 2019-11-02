@@ -13,7 +13,7 @@ class Note {
 const c = new Note("c", ''); //TODO: calculate the stuffPositions
 const d = new Note("d", '');
 const e = new Note("e", '');
-const f = new Note("f", '1077');
+const f = new Note("f", '');
 const g = new Note("g", '');
 const a = new Note("a", '');
 const b = new Note("b", '');
@@ -28,6 +28,8 @@ const b0 = new Note("b", '');
 
 
 //f.belongTo(level1)
+
+//TODO: Add staffPositions to test environments
 
 
 

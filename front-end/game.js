@@ -12,8 +12,8 @@ $("#menu").on("click", function() {
   $("#intro").show();
 })
 
-// switches the keyboard under the staff and back depending on user clicking either level or test link
-//TODO: No swap when clicking a same type of link two times in the row. DRY
+// switches the position of the keyboard with the position of the staff depending on user clicking either level or test link.
+//TODO: No swap when clicking a same type of link two times in the row. Make the code DRY
 function swapElement(a, b) {
   // create a temporary marker div
   var aNext = $('<div>').insertAfter(a);
@@ -31,13 +31,12 @@ $('.test').on('click', function () {
   $('.level').on('click', function () {
     a = $('#staff' + $('#a').val());
     b = $('#klavier' + $('#b').val());
-    swapElement(a, b);
-  
+
     $('.test').on('click', function () {
       a = $('#klavier' + $('#a').val());
       b = $('#staff' + $('#b').val());
     })
-  
+    
       $('.level').on('click', function () {
         a = $('#staff' + $('#a').val());
         b = $('#klavier' + $('#b').val());
@@ -46,41 +45,42 @@ $('.test').on('click', function () {
   })
 })
 
+//TODO: Add staffPositions to note.js file
 $(document).keydown(function() {
   if (!started) {
-      var elem = document.getElementById("note");
-      var pos = 0;
-      startPoint = this.startPoint; // note's starting point at the screen above corresponding keyboard key (button)
-      var id = setInterval(frame, 20);
+    var elem = document.getElementById("note");
+    var pos = 0;
+    startPoint = this.startPoint; // note's starting point at the screen above corresponding keyboard key (button)
+    var id = setInterval(frame, 20);
 
-      function frame() {
-        if (pos === 513) { //513 is a placeholder for staffPositions
-          clearInterval(id);
-        } else {
-          pos++;
-          elem.style.top = pos + 'px';
-        }
+    function frame() {
+      if (pos === 513) { //513 is a placeholder for staffPositions
+        clearInterval(id);
+      } else {
+        pos++;
+        elem.style.top = pos + 'px';
       }
-      started = true;
-      level != 0;
-     
-      let userClickedKeys = (function(event) {
-        let keycode = event.which || event.keyCode
-        let userChosenKey = keysAvailable[keycode]
-        let nextNote = function(randomNote) {
-          var randomNumber = Math.floor(Math.random() * 7);
-          var randomNote = keysAvailable[randomNumber]
-          gameNotes.push(randomNote)
+    }
+    nextNote();
+    started = true;
+      
+    let userClickedKeys = (function(event) {
+      let keycode = event.which || event.keyCode
+      let userChosenKey = keysAvailable[keycode]
+      let nextNote = function(randomNote) {
+        var randomNumber = Math.floor(Math.random() * 7);
+        var randomNote = keysAvailable[randomNumber]
+        gameNotes.push(randomNote)
               
-            if (randomNote === userChosenKey) {
-              playSound(userChosenKey);
-              nextNote();
-            } else {
-              playSound("wrong")
-            }
+          if (randomNote === userChosenKey) {
+            playSound(userChosenKey);
+            nextNote();
+          } else {
+            playSound("wrong")
+          }
         }
       })
-      $(document).on('keydown', userClickedKeys);
+    $(document).on('keydown', userClickedKeys);
   }
 })
 
