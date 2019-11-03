@@ -3,12 +3,20 @@ const User = require('./user')
 const Database = require('./database')
 const Game = require('./game')
 //const Staff = require('./staff')
-const loadedFile = Database.load('game.json')
-const notesGame = Game.create(loadedFile)
-console.log(notesGame.name)
+const StuffToDoAfterLoadingTheDatabase = (err, loadedFile) => {
+    if (err) {
+        console.log('Hey, an error occured', err)
+        return
+    }
+    console.log('hello', loadedFile)
+    const notesGame = Game.create({ name: 'notesGame' })
+    console.log(notesGame.name)
+    const kerstin = new User('Kerstin', '')
+    kerstin.play(notesGame)
+}
 
-const kerstin = new User('Kerstin', '')
-kerstin.play(notesGame)
+Database.load('game.json', StuffToDoAfterLoadingTheDatabase)
+
 //const kirsi = new User('Kirsi', 'level4')
 //const omur = new User('Omur', '')
 //const armagan = new User('Armagan', '')
