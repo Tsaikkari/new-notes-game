@@ -11,17 +11,21 @@ module.exports = class Staff {
   representGameLevel() {
     if (clef === trebleClef) {
       level = level1;
+      testLevel = testLevel1;
       notes = [c, d, e, f, g, a, b];
       staffPositions = {}; 
+      testStaffPositions = {};
     }
 
     if (clef === bassClef) {
       level = level2;
+      testLevel = testLevel2;
       notes = [c0, d0, e0, f0, g0, a0, b0];
       staffPositions = {}; 
+      testStaffPositions = {};
     }
   }
-  static create({name, clef}) {
+  static create({ name, clef }) {
     return new Staff(name, clef)
   }
 }
