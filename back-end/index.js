@@ -10,7 +10,7 @@ const StuffToDoAfterLoadingTheDatabase = (err, loadedFile) => {
     }
     console.log('hello there', loadedFile)
     const kerstin = new User('Kerstin', '')
-    const notesGame = Game.create({ name: 'notesGame', users: kerstin }) 
+    const notesGame = Game.create({ name: 'notesGame', users: [] }) 
     console.log(notesGame.name)
     kerstin.play(notesGame)
 }
