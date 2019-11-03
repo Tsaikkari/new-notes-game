@@ -8,10 +8,10 @@ const StuffToDoAfterLoadingTheDatabase = (err, loadedFile) => {
         console.log('Hey, an error occured', err)
         return
     }
-    console.log('hello', loadedFile)
-    const notesGame = Game.create({ name: 'notesGame' })
-    console.log(notesGame.name)
+    console.log('hello there', loadedFile)
     const kerstin = new User('Kerstin', '')
+    const notesGame = Game.create({ name: 'notesGame', users: kerstin }) 
+    console.log(notesGame.name)
     kerstin.play(notesGame)
 }
 
@@ -30,7 +30,7 @@ Database.load('game.json', StuffToDoAfterLoadingTheDatabase)
 //armagan.play(notesGame)
 //mert.play(notesGame)
 
-//notesGame.printUserNames()
+notesGame.printUserNames()
 
 //Database.save('game.json', notesGame)
 //Database.save('user.json', kirsi)

@@ -11,10 +11,10 @@ const load = function(filename, handler) {
       handler(err) //call handler with the error
       return //the execution ended
     }
-    else {
+   
     handler(null, JSON.parse(file));
     }
-  })
+  )
 }
 
 module.exports = { save, load }
