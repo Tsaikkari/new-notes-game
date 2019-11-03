@@ -23,26 +23,22 @@ function swapElement(a, b) {
   aNext.remove();
 }
 
-$('.test').on('click', function () {
+function swapElementBack(b, a) {
+  var bNext = $('<div>').insertAfter(b);
+  b.insertAfter(a);
+  a.insertBefore(bNext);
+  // remove marker div
+  bNext.remove();
+}
+
+$('.test').on('click', function() {
   var a = $('#klavier' + $('#a').val());
   var b = $('#staff' + $('#b').val());
   swapElement(a, b);
+})
 
-  $('.level').on('click', function () {
-    a = $('#staff' + $('#a').val());
-    b = $('#klavier' + $('#b').val());
-
-    $('.test').on('click', function () {
-      a = $('#klavier' + $('#a').val());
-      b = $('#staff' + $('#b').val());
-    })
-    
-      $('.level').on('click', function () {
-        a = $('#staff' + $('#a').val());
-        b = $('#klavier' + $('#b').val());
-        swapElement(a, b);
-      })
-  })
+$('.level').on('click', function() {
+  swapElementBack(b, a);
 })
 
 //TODO: Add staffPositions to note.js file
