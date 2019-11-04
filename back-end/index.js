@@ -40,7 +40,13 @@ async function main() {
   console.log(staffs[0].name)
 }
 
-main()
+(async () => {
+    try {
+        await main()
+    } catch (e) {
+        console.log(e)
+    }
+})()
 
 
 
