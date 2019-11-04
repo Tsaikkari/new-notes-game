@@ -9,6 +9,7 @@
   "author": "Kirsi Trospe",
   "license": "MIT",
   "dependencies": {
+    "flatted": "2.0.1",
     "planck-js": "0.3.10"
   }
 }

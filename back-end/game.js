@@ -9,6 +9,7 @@ module.exports = class Game {
     this.users.forEach(printName)
   }
   static create({ name, users }) {
+
     return new Game(name, users)
   }
 }

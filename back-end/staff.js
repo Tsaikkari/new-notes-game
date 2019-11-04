@@ -25,6 +25,11 @@ module.exports = class Staff {
       testStaffPositions = {};
     }
   }
+  belongTo(game) {
+    this.game = game.name
+    game.levels.push(this)
+  }
+  
   static create({ name, clef }) {
     return new Staff(name, clef)
   }
