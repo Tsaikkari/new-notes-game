@@ -11,4 +11,7 @@ module.exports = class User {
     this.level = level.name
     user.levels.push(this)
   }
+  static create({ name, level }) {
+    return new User(name, level)
+  }
 }

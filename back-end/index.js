@@ -2,6 +2,7 @@ const User = require('./user')
 //const PlanckJS = require('planck-js')
 const Database = require('./database')
 const Game = require('./game')
+const notesGame = new Game('notes-game', [])
 //const Staff = require('./staff')
 const StuffToDoAfterLoadingTheDatabase = (err, loadedFile) => {
     if (err) {
@@ -9,10 +10,8 @@ const StuffToDoAfterLoadingTheDatabase = (err, loadedFile) => {
         return
     }
     console.log('hello there', loadedFile)
-    const kerstin = new User('Kerstin', '')
     const notesGame = Game.create({ name: 'notesGame', users: [] }) 
     console.log(notesGame.name)
-    kerstin.play(notesGame)
 }
 
 Database.load('game.json', StuffToDoAfterLoadingTheDatabase)
@@ -21,6 +20,7 @@ Database.load('game.json', StuffToDoAfterLoadingTheDatabase)
 //const omur = new User('Omur', '')
 //const armagan = new User('Armagan', '')
 //const mert = new User('Mert', '')
+const kerstin = new User('Kerstin', '')
 
 //const level1 = new Staff("level1", "trebleClef")
 //const level2 = new Staff("level2", "bassClef")
@@ -29,6 +29,7 @@ Database.load('game.json', StuffToDoAfterLoadingTheDatabase)
 //omur.play(notesGame)
 //armagan.play(notesGame)
 //mert.play(notesGame)
+kerstin.play(notesGame)
 
 notesGame.printUserNames()
 
