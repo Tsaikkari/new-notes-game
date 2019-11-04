@@ -9,11 +9,7 @@ module.exports = class Game {
     this.users.forEach(printName)
   }
   static create({ name, users }) {
-    const game = new Game(name, users)
-
-    game.users = users.map(User.create)
-
-    return game
+    return new Game(name, users)
   }
 }
 const printName = user => console.log(user.name)
