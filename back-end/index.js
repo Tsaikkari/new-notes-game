@@ -1,6 +1,6 @@
-const Game = require('./game')
-const User = require('./user')
-const Staff = require('./staff')
+const Game = require('./models/game')
+const User = require('./models/user')
+const Staff = require('./models/staff')
 const GameService = require('./services/game-service')
 const UserService = require('./services/user-service')
 const StaffService = require('./services/staff-service')
@@ -8,20 +8,21 @@ const StaffService = require('./services/staff-service')
 
 async function main() {
   const kirsi = new User('Kirsi', 'level4')
-  const omur = new User('Omur', '')
-  const armagan = new User('Armagan', '')
-  const mert = new User('Mert', '')
+  const omur = new User('Omur', 'level')
+  const armagan = new User('Armagan', 'level')
+  const mert = new User('Mert', 'level')
 
-  const notesGame = new Game('Notes Game', '')
+  const notesGame = new Game('Notes Game', users = [])
   kirsi.play(notesGame)
   omur.play(notesGame)
   armagan.play(notesGame)
   mert.play(notesGame)
-
   await UserService.add(kirsi)
   await UserService.add(omur)
   await UserService.add(armagan)
   await UserService.add(mert)
+
+  await GameService.add(notesGame)
 
   const players = await UserService.findAll()
 
