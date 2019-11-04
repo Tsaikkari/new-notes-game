@@ -2,6 +2,7 @@ module.exports = class Staff {
   constructor(name, clef) {
     this.name = name
     this.clef = clef
+    this.position = position
     this.notes = []
     this.levels = []
     this.testLevels = []

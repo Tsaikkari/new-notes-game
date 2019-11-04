@@ -66,4 +66,3 @@ module.exports = class Service {
     })
   }
 }
-© 2019 GitHub, Inc.
