@@ -1,0 +1,7 @@
+extends layout
+
+block content
+    h1 The number of the games is #{games.length}
+    h4 The first and only game is called
+    each game in games 
+        h4 #{game.name}

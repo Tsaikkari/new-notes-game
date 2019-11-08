@@ -12,8 +12,7 @@ $("#menu").on("click", function() {
   $("#intro").show();
 })
 
-// switches the position of the keyboard with the position of the staff depending on user clicking either level or test link.
-//TODO: No swap when clicking a same type of link two times in the row. Make the code DRY
+// Switches the position of the keyboard with the position of the staff depending on user clicking either level or test link.
 function swapElement(a, b) {
   // create a temporary marker div
   var aNext = $('<div>').insertAfter(a);
@@ -23,23 +22,23 @@ function swapElement(a, b) {
   aNext.remove();
 }
 
-function swapElementBack(b, a) {
-  var bNext = $('<div>').insertAfter(b);
-  b.insertAfter(a);
-  a.insertBefore(bNext);
-  // remove marker div
-  bNext.remove();
-}
-
-$('.test').on('click', function() {
-  var a = $('#klavier' + $('#a').val());
-  var b = $('#staff' + $('#b').val());
-  swapElement(a, b);
-})
-
-$('.level').on('click', function() {
-  swapElementBack(b, a);
-})
+/*let levelsAndTests = {id: 'level1', id: 'test1', id: 'level2', id: 'test2', id: 'level3', id: 'test3', id: 'level4', id: 'test4'}
+for(let i = 0; i < levelsAndTests.length; ++i) {
+  let links = $("#navbarSupportedContent a");
+  if(i%2 === 0){
+    $(links[i]).$('.test').on('click', function() {
+      var a = $('#klavier' + $('#a').val());
+      var b = $('#staff' + $('#b').val());
+      swapElement(a, b);
+    })
+  } else {
+    $(links[i]).$('.level').on('click', function() {
+      var a = $('#staff' + $('#a').val());
+      var b = $('#klavier' + $('#b').val());
+      swapElement(a, b);
+    });
+  }
+}*/
 
 //TODO: Add staffPositions to note.js file
 $(document).keydown(function() {

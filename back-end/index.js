@@ -1,57 +1,59 @@
-const Game = require('./models/game')
-const User = require('./models/user')
-const Staff = require('./models/staff')
+const express = require('express')
+const bodyParser = require('body-parser')
+
 const GameService = require('./services/game-service')
 const UserService = require('./services/user-service')
-const StaffService = require('./services/staff-service')
-//const PlanckJS = require('planck-js')
 
-async function main() {
-  const kirsi = new User('Kirsi', 'level4')
-  const omur = new User('Omur', 'level')
-  const armagan = new User('Armagan', 'level')
-  const mert = new User('Mert', 'level')
+const app = express()
 
-  const notesGame = new Game('Notes Game', users = [])
-  kirsi.play(notesGame)
-  omur.play(notesGame)
-  armagan.play(notesGame)
-  mert.play(notesGame)
-  await UserService.add(kirsi)
-  await UserService.add(omur)
-  await UserService.add(armagan)
-  await UserService.add(mert)
+app.set('view engine', 'pug')
+app.use(bodyParser.json())
 
-  await GameService.add(notesGame)
+app.get('/', (req, res) => {
+  res.render('index')
+})
 
+app.get('/game/all', async (req, res) => {
+  const games = await GameService.findAll()
+  res.render('game', { games: games })
+})
+
+app.get('/game:id', async (req, res) => {
+  const id = req.params.id
+  const game = await GameService.find(id)
+  res.send(game)
+})
+
+app.post('/game', async (req, res) => {
+  const game = await GameService.add(req.body)
+  res.send(game)
+})
+
+app.delete('/game/:id', async (req, res) => {
+  await GameService.del(req.params.id)
+  res.send('ok')
+})
+
+app.get('/user/all', async (req, res) => {
   const players = await UserService.findAll()
+  res.render('user', { players })
+})
 
-  console.log(players[0].name)
+app.get('/user/:id', async (req, res) => {
+  const player = await UserService.find(req.params.id)
+  res.send(player)
+})
 
-  const level1 = new Staff("level1", "trebleClef")
-  const level2 = new Staff("level2", "bassClef")
-  level1.belongTo(notesGame)
-  level2.belongTo(notesGame)
+app.post('/user', async (req, res) => {
+  const player = await UserService.add(req.body)
+  res.send(player)
+})
 
-  await StaffService.add(level1)
-  await StaffService.add(level2)
+app.delete('/user/:id', async (req, res) => {
+  const player = await PersonService.del(req.params.id)
+  res.send(player)
+})
 
-  const staffs = await StaffService.findAll()
-
-  console.log(staffs[0].name)
-}
-
-(async () => {
-    try {
-        await main()
-    } catch (e) {
-        console.log(e)
-    }
-})()
-
-
-
-
-
-
-
+app.listen(3004, () => {
+  console.log('Server listening')
+})

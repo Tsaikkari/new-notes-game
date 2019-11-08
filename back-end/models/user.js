@@ -1,17 +1,21 @@
 module.exports = class User {
-  constructor(name, level) {
-    this.name = name
-    this.level = level
-  }
-  play(game) {
-    this.game = game.name
-    game.users.push(this)
-  }
-  choose(level) {
-    this.level = level.name
-    user.levels.push(this)
-  }
-  static create({ name, level }) {
-    return new User(name, level)
-  }
-}
+    constructor(name, levels, id) {
+        this.name = name
+        this.levels = levels
+        this.id = id
+    }
+
+    play(game) {
+        this.games.push(game)
+        game.players.push(this)
+    }
+
+    choose(level) {
+        this.levels.push(level)
+        game.levels.push(this)
+    }
+
+    static create({ name, levels, id }) {
+        return new User(name, levels, id)
+    }
+}   
