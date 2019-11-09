@@ -54,6 +54,12 @@ app.delete('/user/:id', async (req, res) => {
   res.send(player)
 })
 
+app.post('/user/:game', async (req, res) => {
+  const user = await UserService.game(req.params.user)
+
+  user.play(game)
+})
+
 app.listen(3004, () => {
   console.log('Server listening')
 })
