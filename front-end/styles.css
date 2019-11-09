@@ -163,6 +163,14 @@ hr {
   background-color: black;
 }
 
+#ledger-line {
+  display: block;
+  height: 1px;
+  border: 0;
+  margin-left: 26%;
+  margin-right: 70%;
+}
+
 footer {
   text-align: center;
 }
