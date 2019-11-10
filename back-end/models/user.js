@@ -1,6 +1,7 @@
 module.exports = class User {
-    constructor(name, levels, id) {
+    constructor(name, games = [], levels = [], id) {
         this.name = name
+        this.games = game
         this.levels = levels
         this.id = id
     }
