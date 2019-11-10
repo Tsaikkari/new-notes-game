@@ -1,7 +1,7 @@
 module.exports = class User {
     constructor(name, games = [], levels = [], id) {
         this.name = name
-        this.games = game
+        this.games = games
         this.levels = levels
         this.id = id
     }
