@@ -62,17 +62,16 @@ $(document).keydown(function() {
         var randomNumber = Math.floor(Math.random() * 7);
         var randomNote = keysAvailable[randomNumber]
         gameNotes.push(randomNote)
-              
-          if (randomNote === userChosenKey) {
-            playSound(userChosenKey);
-            nextNote();
-          } else {
-            playSound("wrong")
-          }
+        if (randomNote === userChosenKey) {
+          playSound(userChosenKey);
+          nextNote();
+        } else {
+          playSound("wrong")
         }
-        nextNote();
-        started = true;
-      })
+      }
+      nextNote();
+      started = true;
+    })
     $(document).on('keydown', userClickedKeys);
   }
 })
