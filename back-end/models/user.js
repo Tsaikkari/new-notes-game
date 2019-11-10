@@ -6,7 +6,7 @@ module.exports = class User {
         this.id = id
     }
 
-    game(game) {
+    play(game) {
         this.games.push(game)
         game.players.push(this)
     }
