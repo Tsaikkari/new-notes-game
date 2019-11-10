@@ -26,11 +26,11 @@ function swapElement(a, b) {
 for(let i = 0; i < levelsAndTests.length; ++i) {
   let links = $("#navbarSupportedContent a");
   if(i%2 === 0){
-    $(links[i]).$('.test').on('click', function() {
+    $(links[i]).*/$('.test').on('click', function() {
       var a = $('#klavier' + $('#a').val());
       var b = $('#staff' + $('#b').val());
       swapElement(a, b);
-    })
+    })/*
   } else {
     $(links[i]).$('.level').on('click', function() {
       var a = $('#staff' + $('#a').val());
@@ -39,8 +39,6 @@ for(let i = 0; i < levelsAndTests.length; ++i) {
     });
   }
 }*/
-
-//TODO: Add staffPositions to note.js file
 $(document).keydown(function() {
   if (!started) {
     var elem = document.getElementById("note");
@@ -56,8 +54,6 @@ $(document).keydown(function() {
         elem.style.top = pos + 'px';
       }
     }
-    nextNote();
-    started = true;
       
     let userClickedKeys = (function(event) {
       let keycode = event.which || event.keyCode
@@ -74,6 +70,8 @@ $(document).keydown(function() {
             playSound("wrong")
           }
         }
+        nextNote();
+        started = true;
       })
     $(document).on('keydown', userClickedKeys);
   }
