@@ -1,7 +1,6 @@
 module.exports = class User {
-    constructor(name, games = [], levels = [], id) {
+    constructor(name, levels = [], id) {
         this.name = name
-        this.games = games
         this.levels = levels
         this.id = id
     }
@@ -17,6 +16,7 @@ module.exports = class User {
     }
 
     static create({ name, levels, id }) {
+
         return new User(name, levels, id)
     }
 }   

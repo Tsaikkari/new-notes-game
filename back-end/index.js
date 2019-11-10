@@ -18,9 +18,8 @@ app.get('/game/all', async (req, res) => {
   res.render('game', { games: games })
 })
 
-app.get('/game:id', async (req, res) => {
-  const id = req.params.id
-  const game = await GameService.find(id)
+app.get('/game/:id', async (req, res) => {
+  const game = await GameService.find(req.params.id)
   res.send(game)
 })
 
@@ -50,15 +49,20 @@ app.post('/user', async (req, res) => {
 })
 
 app.delete('/user/:id', async (req, res) => {
-  const player = await PersonService.del(req.params.id)
-  res.send(player)
+  await PersonService.del(req.params.id)
+  res.send('ok')
 })
 
-app.post('/play/:user/:game', async (req, res) => {
-  const user = await UserService.play(req.params.user, req.params.game)
-  const games = await GameService.findAll()
-  user.play(req.params.user)
-  res.render('play', { games, user })
+//user plays game
+app.post('/user/:id/play/:game/:id', async (req, res) => {
+  const games = await GameService.findAll(req.body.name)
+  const players = await UserService.findAll()
+  const player = players.find(p => p.id == req.params.id)
+  const game = games.find(p => p.id == req.params.id)
+  player.play(game)
+  await GameService.saveAll(games)
+  await UserService.saveAll(players)
+  res.send('The player plays')
 })
 
 app.listen(3000, () => {
