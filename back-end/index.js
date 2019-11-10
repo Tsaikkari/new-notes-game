@@ -54,9 +54,9 @@ app.delete('/user/:id', async (req, res) => {
   res.send(player)
 })
 
-app.post('/game/:game/:user/', async (req, res) => {
-  const game = await GameService.find(req.params.game)
-  const user = await UserService.game(req.params.user)
+app.post('/game/:id/:players', async (req, res) => {
+  const game = await GameService.find(req.params.id, req.params.players)
+  const user = await UserService.game(req.params.id)
   user.game(game) // user is gaming
   res.send(game)
 })
