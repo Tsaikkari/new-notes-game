@@ -54,16 +54,22 @@ app.delete('/user/:id', async (req, res) => {
 })
 
 //user plays game
-app.post('/user/:id/play/:gameId', async (req, res) => {
-  const games = await GameService.findAll(req.params.game)
-  const players = await UserService.findAll(req.params.user)
-  const player = players.find(p => p.id == req.params.id)
-  const game = games.find(p => p.id == req.params.id)
-  game.id = gameId
+app.post('/user/:userId/play/:gameId', async (req, res) => {
+  const game = await GameService.find(req.params.gameId)
+  const player = await UserService.find(req.params.userId)
+
   player.play(game)
+<<<<<<< HEAD
   await GameService.saveAll(games)
   await UserService.saveAll(players)
   res.render('user', { games })
+=======
+
+  await GameService.update(game)
+  await UserService.update(player)
+
+  res.send(`The player ${player.name} plays ${game.name}`)
+>>>>>>> a3387be7bd7f8c45f626c7d53608da6ae83b3514
 })
 
 app.listen(3000, () => {
