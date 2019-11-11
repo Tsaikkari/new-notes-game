@@ -63,8 +63,7 @@ app.post('/user/:id/play/:gameId', async (req, res) => {
   player.play(game)
   await GameService.saveAll(games)
   await UserService.saveAll(players)
-  res.render('user', { game })
-  res.send('The player plays')
+  res.render('user', { games })
 })
 
 app.listen(3000, () => {
