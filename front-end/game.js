@@ -54,26 +54,26 @@ $(document).keydown(function() {
         elem.style.top = pos + 'px';
       }
     }
-      
+  }    
+  function nextNote() {
+    var randomNumber = Math.floor(Math.random() * 7);
+    var randomNote = keysAvailable[randomNumber]
+    gameNotes.push(randomNote)
+
     let userClickedKeys = (function(event) {
       let keycode = event.which || event.keyCode
       let userChosenKey = keysAvailable[keycode]
-      let nextNote = function(randomNote) {
-        var randomNumber = Math.floor(Math.random() * 7);
-        var randomNote = keysAvailable[randomNumber]
-        gameNotes.push(randomNote)
         if (randomNote === userChosenKey) {
           playSound(userChosenKey);
           nextNote();
         } else {
           playSound("wrong")
         }
-      }
-      nextNote();
-      started = true;
     })
-    $(document).on('keydown', userClickedKeys);
+    $(document).on('keydown', userClickedKeys); 
   }
+  nextNote();
+  started = true; 
 })
 
 function playSound(name){

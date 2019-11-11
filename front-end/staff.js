@@ -32,8 +32,8 @@ module.exports = class Staff {
     game.levels.push(this)
   }
   
-  static create({ name, clef }) {
-    return new Staff(name, clef)
+  static create({ name, clef, id }) {
+    return new Staff(name, clef, id)
   }
 }
 
