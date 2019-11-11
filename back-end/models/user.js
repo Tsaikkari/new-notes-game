@@ -3,6 +3,7 @@ module.exports = class User {
         this.name = name
         this.levels = levels
         this.id = id
+        this.games = []
     }
 
     play(game) {
@@ -19,4 +20,4 @@ module.exports = class User {
 
         return new User(name, levels, id)
     }
-}   
+}
