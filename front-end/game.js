@@ -54,27 +54,29 @@ $(document).keydown(function() {
         elem.style.top = pos + 'px';
       }
     }
-  }    
-  function nextNote() {
-    var randomNumber = Math.floor(Math.random() * 7);
-    var randomNote = keysAvailable[randomNumber]
-    gameNotes.push(randomNote)
 
-    let userClickedKeys = (function(event) {
-      let keycode = event.which || event.keyCode
-      let userChosenKey = keysAvailable[keycode]
-        if (randomNote === userChosenKey) {
-          playSound(userChosenKey);
-          nextNote();
-        } else {
-          playSound("wrong")
-        }
-    })
-    $(document).on('keydown', userClickedKeys); 
+    function nextNote() {
+      var randomNumber = Math.floor(Math.random() * 7);
+      var randomNote = keysAvailable[randomNumber]
+      gameNotes.push(randomNote)
+
+      let userClickedKeys = (function(event) {
+        let keycode = event.which || event.keyCode
+        let userChosenKey = keysAvailable[keycode]
+          if (randomNote === userChosenKey) {
+            playSound(userChosenKey);
+            nextNote();
+          } else {
+            playSound("wrong")
+          }
+      })
+      $(document).on('keydown', userClickedKeys); 
+    }
+    nextNote();
+    started = true; 
   }
-  nextNote();
-  started = true; 
 })
+
 
 function playSound(name){
   var audio = new Audio("sounds/" + name + ".mp3");
