@@ -22,23 +22,18 @@ function swapElement(a, b) {
   aNext.remove();
 }
 
-/*let levelsAndTests = {id: 'level1', id: 'test1', id: 'level2', id: 'test2', id: 'level3', id: 'test3', id: 'level4', id: 'test4'}
-for(let i = 0; i < levelsAndTests.length; ++i) {
-  let links = $("#navbarSupportedContent a");
-  if(i%2 === 0){
-    $(links[i]).*/$('.test').on('click', function() {
-      var a = $('#klavier' + $('#a').val());
-      var b = $('#staff' + $('#b').val());
-      swapElement(a, b);
-    })/*
-  } else {
-    $(links[i]).$('.level').on('click', function() {
-      var a = $('#staff' + $('#a').val());
-      var b = $('#klavier' + $('#b').val());
-      swapElement(a, b);
-    });
-  }
-}*/
+$('.test').on('click', function() {
+  var a = $('#klavier' + $('#a').val());
+  var b = $('#staff' + $('#b').val());
+  swapElement(a, b);
+})
+$('.level').on('click', function() {
+  var a = $('#staff' + $('#a').val());
+  var b = $('#klavier' + $('#b').val());
+  swapElement(a, b);
+});
+  
+// Random note starts falling down when user starts the game
 $(document).keydown(function() {
   if (!started) {
     var elem = document.getElementById("note");
@@ -76,7 +71,6 @@ $(document).keydown(function() {
     started = true; 
   }
 })
-
 
 function playSound(name){
   var audio = new Audio("sounds/" + name + ".mp3");
