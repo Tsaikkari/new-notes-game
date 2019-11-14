@@ -21,21 +21,25 @@ function swapElement(a, b) {
   // remove marker div
   aNext.remove();
 }
-
-$('.test').on('click', function() {
-  var a = $('#klavier' + $('#a').val());
-  var b = $('#staff' + $('#b').val());
-  swapElement(a, b);
-})
-$('.level').on('click', function() {
+// TODO: Choosing the level at the start of the game should not swap the elements. 
+//Clicking level links only swaps elements when there's a test-view on the screen and vice versa with test links.
+let testLink = $('.test').on('click', function() {
   var a = $('#staff' + $('#a').val());
   var b = $('#klavier' + $('#b').val());
   swapElement(a, b);
 });
-  
+
+let levelLink = $('.level').on('click', function() {
+  var a = $('#klavier' + $('#a').val());
+  var b = $('#staff' + $('#b').val());
+  swapElement(a, b);
+});
+
 // Random note starts falling down when user starts the game
 $(document).keydown(function() {
   if (!started) {
+    nextNote();
+    started = true; 
     var elem = document.getElementById("note");
     var pos = 0;
     startPoint = this.startPoint; // note's starting point at the screen above corresponding keyboard key (button)
@@ -49,29 +53,27 @@ $(document).keydown(function() {
         elem.style.top = pos + 'px';
       }
     }
-
-    function nextNote() {
-      var randomNumber = Math.floor(Math.random() * 7);
-      var randomNote = keysAvailable[randomNumber]
-      gameNotes.push(randomNote)
-
-      let userClickedKeys = (function(event) {
-        let keycode = event.which || event.keyCode
-        let userChosenKey = keysAvailable[keycode]
-          if (randomNote === userChosenKey) {
-            playSound(userChosenKey);
-            nextNote();
-          } else {
-            playSound("wrong")
-          }
-      })
-      $(document).on('keydown', userClickedKeys); 
-    }
-    nextNote();
-    started = true; 
   }
 })
 
+function nextNote() {
+  var randomNumber = Math.floor(Math.random() * 7);
+  var randomNote = keysAvailable[randomNumber]
+  gameNotes.push(randomNote)
+
+  let userClickedKeys = (function(event) {
+    let keycode = event.which || event.keyCode
+    let userChosenKey = keysAvailable[keycode]
+      if (randomNote === userChosenKey) {
+        playSound(userChosenKey);
+        nextNote();
+      } else {
+        playSound("wrong")
+      }
+  })
+  $(document).on('keydown', userClickedKeys); 
+}
+    
 function playSound(name){
   var audio = new Audio("sounds/" + name + ".mp3");
   audio.play();
