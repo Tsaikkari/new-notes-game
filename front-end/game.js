@@ -1,9 +1,10 @@
-let startPoints = [];
-let gameNotes = [];
 let keysAvailable = {'99': 'c', '100': 'd', '101': 'e', '102': 'f','103': 'g', '97': 'a', '98': 'b'};
+let randomNotes = [];
+let Staffpositions = [];
 let level = 0;
 let started = false;
 
+// Hides game introduction when level or test is clicked
 $(".nav-link").on("click", function() {
   $("#intro").hide();
 })
@@ -46,7 +47,7 @@ $(document).keydown(function() {
     var id = setInterval(frame, 20);
 
     function frame() {
-      if (pos === 513) { //513 is a placeholder for staffPositions
+      if (pos === this.staffPosition) { 
         clearInterval(id);
       } else {
         pos++;
@@ -56,20 +57,21 @@ $(document).keydown(function() {
   }
 })
 
+var randomFirstNote = startPoints[randomNumber];
 function nextNote() {
   var randomNumber = Math.floor(Math.random() * 7);
   var randomNote = keysAvailable[randomNumber]
-  gameNotes.push(randomNote)
+  randomNotes.push(randomNote)
 
   let userClickedKeys = (function(event) {
     let keycode = event.which || event.keyCode
     let userChosenKey = keysAvailable[keycode]
-      if (randomNote === userChosenKey) {
-        playSound(userChosenKey);
-        nextNote();
-      } else {
-        playSound("wrong")
-      }
+    if (randomNote === userChosenKey) {
+      playSound(userChosenKey);
+      nextNote();
+    } else {
+      playSound("wrong")
+    }
   })
   $(document).on('keydown', userClickedKeys); 
 }

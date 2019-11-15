@@ -1,29 +1,22 @@
-module.exports = class Staff {
-  constructor(name, clef, id) {
+class Staff {
+  constructor(name, clef, notes = []) {
     this.name = name
     this.clef = clef
-    this.id = id
-    this.position = []
-    this.notes = []
-    this.levels = []
-    this.testLevels = []
-    this.staffPositions = []
+    this.notes = notes
   }
 
   representGameLevel() {
     if (clef === trebleClef) {
       level = level1;
       testLevel = testLevel1;
-      notes = [c, d, e, f, g, a, b];
-      staffPositions = {}; 
-      testStaffPositions = {};
+      notes = [c, d, e, f, g, a, b]; 
+      testStaffPositions = [testC, testD, testE, testF, testG, testA, testB];
     }
 
     if (clef === bassClef) {
       level = level2;
       testLevel = testLevel2;
-      notes = [c0, d0, e0, f0, g0, a0, b0];
-      staffPositions = {}; 
+      notes = [c0, d0, e0, f0, g0, a0, b0]; 
       testStaffPositions = {};
     }
   }
