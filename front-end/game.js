@@ -22,17 +22,18 @@ function swapElement(a, b) {
   aNext.remove();
 }
 
-$('.test').on('click', function() {
-  var a = $('#klavier' + $('#a').val());
-  var b = $('#staff' + $('#b').val());
-  swapElement(a, b);
-})
 $('.level').on('click', function() {
   var a = $('#staff' + $('#a').val());
   var b = $('#klavier' + $('#b').val());
   swapElement(a, b);
 });
-  
+
+$('.test').on('click', function() {
+  var a = $('#klavier' + $('#a').val());
+  var b = $('#staff' + $('#b').val());
+  swapElement(a, b);
+})
+
 // Random note starts falling down when user starts the game
 $(document).keydown(function() {
   if (!started) {
@@ -65,10 +66,10 @@ $(document).keydown(function() {
             playSound("wrong")
           }
       })
-      $(document).on('keydown', userClickedKeys); 
+      $(document).on('keydown', userClickedKeys);
     }
     nextNote();
-    started = true; 
+    started = true;
   }
 })
 
@@ -82,9 +83,3 @@ function startOver() {
   gameNotes = []
   started = false
 }
-
-  
-
-  
-
-  

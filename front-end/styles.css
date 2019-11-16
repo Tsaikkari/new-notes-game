@@ -1,6 +1,8 @@
 * { box-sizing: border-box;
 }
 
+html, body {width: auto!important; overflow-x: hidden!important}
+
 /* Media Queries: Tablet Landscape */
 @media screen and (max-width: 1060px) {
     #primary { width:67%; }
