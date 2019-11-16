@@ -33,7 +33,7 @@ body {
   padding-right: 43px;
 }
 
-/*piano-keyboard*/
+/*little-keyboard*/
 section {
   width: 250px;
   height: 120px;
@@ -72,8 +72,8 @@ section {
   justify-content: center;
   background-color: #000;
   margin: 0 -4%
-
 }
+
 /*white key*/
 .wk {
   flex-flow: column;
@@ -142,7 +142,7 @@ section {
 
 .black {
   position: absolute;
-  margin: 0 -2%;
+  margin: 0 -2.2%;
   height: 59%;
   width: 4%;
 }
