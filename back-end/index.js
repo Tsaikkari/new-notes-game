@@ -1,3 +1,6 @@
+const userRouter = require('./routes/user')
+const gameRouter = require('/routes/game')
+
 const express = require('express')
 const bodyParser = require('body-parser')
 
@@ -6,8 +9,13 @@ const UserService = require('./services/user-service')
 
 const app = express()
 
+require('/mongo-connection')
+
 app.set('view engine', 'pug')
 app.use(bodyParser.json())
+
+app.use('/user', userRouter)
+app.use('/game', gameUser)
 
 app.get('/', (req, res) => {
   res.render('index')

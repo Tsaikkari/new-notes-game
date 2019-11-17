@@ -1,23 +1,36 @@
-module.exports = class User {
-    constructor(name, levels = [], id) {
-        this.name = name
-        this.levels = levels
-        this.id = id
-        this.games = []
-    }
+const mongoose = require('mongoose')
 
-    play(game) {
-        this.games.push(game)
-        game.players.push(this)
-    }
+const UserSchema = new mongoose.Schema({ 
+    name: {
+        type: String,
+        required: true,
+        minlength: 2
+    },
+    levels: [{
+        type: String,
+        required: true
+    }],
+    games: [{
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'Game',
+        autopopulate: {
+            maxDepth: 1
+        }
+    }]
+})
 
-    choose(level) {
-        this.levels.push(level)
-        game.levels.push(this)
-    }
-
-    static create({ name, levels, id }) {
-
-        return new User(name, levels, id)
-    }
+UserSchema.methods.play = async function(game) {
+    this.games.push(game)
+    game.players.push(this)
+    await this.save
+    await game.save
+    console.log('hello!')
 }
+
+UserSchema.plugin.require('mongoose-autopopulate')
+
+const UserModel = mongoose.model('User', UserSchema)
+
+module.exports = UserModel
+
+
