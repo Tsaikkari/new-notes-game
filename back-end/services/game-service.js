@@ -2,9 +2,7 @@ const BaseService = require('./base-service')
 const GameModel = require('../models/game')
 
 class GameService extends BaseService {
-    constructor() {
-        super(GameModel, `${__dirname}/../game-database.json`)
-    }
+    model = GameModel
 }
 
 module.exports = new GameService()

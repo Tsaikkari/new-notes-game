@@ -7,8 +7,9 @@ const UserSchema = new mongoose.Schema({
         minlength: 2
     },
     levels: [{
-        type: String,
-        required: true
+        type: mongoose.SchemaTypes.ObjectId,
+        required: true,
+        autopopulate: true
     }],
     games: [{
         type: mongoose.SchemaTypes.ObjectId,
@@ -19,18 +20,22 @@ const UserSchema = new mongoose.Schema({
     }]
 })
 
-UserSchema.methods.play = async function(game) {
-    this.games.push(game)
-    game.players.push(this)
-    await this.save
-    await game.save
-    console.log('hello!')
-}
+UserSchema.methods.choose = function () {
+    return UserModel.find({
+        level: {
+            $gt: 1
+        }
+    });
+};
 
-UserSchema.plugin.require('mongoose-autopopulate')
+UserSchema.methods.play = function (cb) {
+    return UserModel.find ({
+        game: this.game }, cb
+    );
+};
+
+UserSchema.plugin(require('mongoose-autopopulate'))
 
 const UserModel = mongoose.model('User', UserSchema)
 
 module.exports = UserModel
-
-

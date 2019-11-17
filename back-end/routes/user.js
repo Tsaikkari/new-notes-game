@@ -1,4 +1,3 @@
-const mongoose = require('mongoose')
 const express = require('express')
 const router = express.Router()
 
@@ -7,12 +6,12 @@ const GameService = require('../services/game-service')
 
 router.get('/all', async (req, res) => {
   const people = await UserService.findAll()
-  res.render('list', { items: people })
+  res.render('user', { user: players })
 })
 
 router.get('/:id', async (req, res) => {
   const user = await UserService.find(req.params.id)
-  res.render('data', { data: user })
+  res.render('user', { user: user })
 })
 
 router.post('/', async (req, res) => {
@@ -27,16 +26,16 @@ router.delete('/:id', async (req, res) => {
 
 router.post('/:id/games', async (req, res) => {
   const user = await UserService.find(req.id)
-  const game = await GameService.find(req.body.meetup)
-  user.play(game)
-  res.send(game)
+  const game = await GameService.find(req.body.game)
+  await UserService.playGame(user, game)
+  res.send(user)
 })
 
 router.post('/:id/:level/game', async (req, res) => {
     const user = await UserService.find(req.id)
     const game = await GameService.find(req.level.game)
     user.choose(level)
-    res.send(level)
+    res.send(user, game)
 })
 
 module.exports = router

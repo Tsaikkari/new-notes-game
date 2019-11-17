@@ -1,18 +1,29 @@
-module.exports = class Game {
-    constructor(name, levels = [], tests = [], players = [], games = [], id) {
-        this.name = name
-        this.levels = levels
-        this.tests = tests
-        this.players = players
-        this.games = games
-        this.id = id
-    }
+const mongoose = require('mongoose')
 
-    report() {
-        console.log((this.name), 'number of players', this.players.length)
-    }
+const GameSchema = new mongoose.Schema({ 
+    name: {
+        type: String,
+        required: true,
+        minlength: 2
+    },
+    levels: [{
+        type: mongoose.SchemaTypes.ObjectId,
+        required: true
+    }],
+    tests: [{
+        type: mongoose.SchemaTypes.ObjectId,
+        required: true
+    }],
+    players: [{
+        type: mongoose.SchemaTypes.ObjectId,
+        required: true
+    }]
+})
 
-    static create({ name, levels, tests, players, games, id }) {
-        return new Game(name, levels, tests, players, games, id)
-    }
-}
+GameSchema.plugin(require('mongoose-autopopulate'))
+
+const GameModel = mongoose.model('Game', GameSchema)
+
+module.exports = GameModel
+
+
