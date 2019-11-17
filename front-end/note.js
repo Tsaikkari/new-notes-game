@@ -1,35 +1,48 @@
-class Note {
+module.exports = class Note {
   constructor(name, startPoint, staffPosition) {
     this.name = name
-    this.startPoint = startPoint + 'px'
-    this.staffPosition = staffPosition + 'px'
+    this.startPoint = startPoint 
+    this.staffPosition = staffPosition 
   }
   belongTo(staff) {
     this.staff = staff.name
     staff.staffPositions.push(this)
   }
+  startFromHigh(staff) {
+    this.staff = staff.name
+    staff.startPoints.push(this)
+  }
 }
 
-const c = new Note("c", ''); //TODO: calculate the staffPositions
-const d = new Note("d", '');
-const e = new Note("e", '');
-const f = new Note("f", '');
-const g = new Note("g", '');
-const a = new Note("a", '');
-const b = new Note("b", '');
+const c = new Note("c", "left: 333", "top: 552"); //TODO: calculate the staffPositions
+const d = new Note("d", "left: 420", "top: 539");
+const e = new Note("e", "left: 511", "top: 526");
+const f = new Note("f", "left: 601", "top: 513");
+const g = new Note("g", "left: 692", "top: 500");
+const a = new Note("a", "left: 778", "top: 487");
+const b = new Note("b", "left: 867", "top: 474");
 
-const c0 = new Note("c", '');
+const testC = new Note("c", '333', '288')
+const testD = new Note("d", '420', '275')
+const testE = new Note("e", '511', '262')
+const testF = new Note("f", '601', '249')
+const testG = new Note("g", '692', '236')
+const testA = new Note("a", '778', '223')
+const testB = new Note("b", '867', '210')
+
+/*const c0 = new Note("c", '');
 const d0 = new Note("d", '');
 const e0 = new Note("e", '');
 const f0 = new Note("f", '');
 const g0 = new Note("g", '');
 const a0 = new Note("a", '');
-const b0 = new Note("b", '');
+const b0 = new Note("b", '');*/
+
 
 
 //f.belongTo(level1)
 
-//TODO: Add staffPositions to test environments
+
 
 
 

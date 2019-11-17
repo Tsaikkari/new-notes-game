@@ -1,9 +1,11 @@
-let startPoints = [];
-let gameNotes = [];
 let keysAvailable = {'99': 'c', '100': 'd', '101': 'e', '102': 'f','103': 'g', '97': 'a', '98': 'b'};
+let startPoints = {'1': 'c', '2': 'd', '3': 'e', '4': 'f', '5': 'g', '6': 'a', '7': 'b'};   
+let randomNotes = [];
+let Staffpositions = [];
 let level = 0;
 let started = false;
 
+// Hides game introduction when level or test is clicked
 $(".nav-link").on("click", function() {
   $("#intro").hide();
 })
@@ -21,7 +23,15 @@ function swapElement(a, b) {
   // remove marker div
   aNext.remove();
 }
+// TODO: Choosing the level at the start of the game should not swap the elements. 
+//Clicking level links only swaps elements when there's a test-view on the screen and vice versa with test links.
+let testLink = $('.test').on('click', function() {
+  var a = $('#staff' + $('#a').val());
+  var b = $('#klavier' + $('#b').val());
+  swapElement(a, b);
+});
 
+<<<<<<< HEAD
 $('.level').on('click', function() {
   var a = $('#staff' + $('#a').val());
   var b = $('#klavier' + $('#b').val());
@@ -34,22 +44,32 @@ $('.test').on('click', function() {
   swapElement(a, b);
 })
 
+=======
+let levelLink = $('.level').on('click', function() {
+  var a = $('#klavier' + $('#a').val());
+  var b = $('#staff' + $('#b').val());
+  swapElement(a, b);
+});
+
+>>>>>>> fixCallbackHell
 // Random note starts falling down when user starts the game
 $(document).keydown(function() {
   if (!started) {
+    nextNote();
+    started = true; 
     var elem = document.getElementById("note");
     var pos = 0;
-    startPoint = this.startPoint; // note's starting point at the screen above corresponding keyboard key (button)
     var id = setInterval(frame, 20);
 
     function frame() {
-      if (pos === 513) { //513 is a placeholder for staffPositions
+      if (pos === this.staffPosition) { 
         clearInterval(id);
       } else {
         pos++;
         elem.style.top = pos + 'px';
       }
     }
+<<<<<<< HEAD
 
     function nextNote() {
       var randomNumber = Math.floor(Math.random() * 7);
@@ -70,9 +90,31 @@ $(document).keydown(function() {
     }
     nextNote();
     started = true;
+=======
+>>>>>>> fixCallbackHell
   }
 })
+ 
+function nextNote() {
+  var randomNumber = Math.floor(Math.random() * 7);
+  var randomNote = keysAvailable[randomNumber]
+  randomNotes.push(randomNote)
 
+  startPoint = startPoints[randomNumber]
+  
+  let userClickedKeys = (function(event) {
+    let keycode = event.which || event.keyCode
+    let userChosenKey = keysAvailable[keycode]
+    if (randomNote === userChosenKey) {
+      playSound(userChosenKey);
+      nextNote();
+    } else {
+      playSound("wrong")
+    }
+  })
+  $(document).on('keydown', userClickedKeys); 
+}
+    
 function playSound(name){
   var audio = new Audio("sounds/" + name + ".mp3");
   audio.play();
@@ -80,6 +122,6 @@ function playSound(name){
 
 function startOver() {
   level = 0
-  gameNotes = []
+  randomNotes = []
   started = false
 }

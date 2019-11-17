@@ -124,7 +124,7 @@ section {
   padding-top: 10%;
   font-size: 1.6em;
   position: absolute;
-  padding-left: 595px;
+  /*padding-left: 333px;*/
 }
 
 #notes-route {
@@ -168,7 +168,7 @@ hr {
   display: block;
   height: 1px;
   border: 0;
-  margin-left: 26%;
+  margin-left: 26.4%;
   margin-right: 70%;
 }
 
