@@ -1,4 +1,5 @@
 let keysAvailable = {'99': 'c', '100': 'd', '101': 'e', '102': 'f','103': 'g', '97': 'a', '98': 'b'};
+let startPoints = {'1': 'c', '2': 'd', '3': 'e', '4': 'f', '5': 'g', '6': 'a', '7': 'b'};   
 let randomNotes = [];
 let Staffpositions = [];
 let level = 0;
@@ -43,7 +44,6 @@ $(document).keydown(function() {
     started = true; 
     var elem = document.getElementById("note");
     var pos = 0;
-    startPoint = this.startPoint; // note's starting point at the screen above corresponding keyboard key (button)
     var id = setInterval(frame, 20);
 
     function frame() {
@@ -56,13 +56,14 @@ $(document).keydown(function() {
     }
   }
 })
-
-var randomFirstNote = startPoints[randomNumber];
+ 
 function nextNote() {
   var randomNumber = Math.floor(Math.random() * 7);
   var randomNote = keysAvailable[randomNumber]
   randomNotes.push(randomNote)
 
+  startPoint = startPoints[randomNumber]
+  
   let userClickedKeys = (function(event) {
     let keycode = event.which || event.keyCode
     let userChosenKey = keysAvailable[keycode]
