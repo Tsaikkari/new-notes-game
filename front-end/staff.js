@@ -1,8 +1,11 @@
 class Staff {
-  constructor(name, clef, notes = []) {
+  constructor(name, clef, notes = [], startPoints = [], staffPositions = [], testStaffPositions = []) {
     this.name = name
     this.clef = clef
     this.notes = notes
+    this.startPoints = startPoints
+    this.staffPositions = staffPositions
+    this.testStaffPositions = testStaffPositions
   }
 
   representGameLevel() {
@@ -25,8 +28,8 @@ class Staff {
     game.levels.push(this)
   }
   
-  static create({ name, clef, id }) {
-    return new Staff(name, clef, id)
+  static create({ name, clef, notes, startPoints, staffPositions, testStaffPositions }) {
+    return new Staff(name, clef, notes, startPoints, staffPositions, testStaffPositions)
   }
 }
 

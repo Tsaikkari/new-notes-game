@@ -8,6 +8,10 @@ module.exports = class Note {
     this.staff = staff.name
     staff.staffPositions.push(this)
   }
+  startFromHigh(staff) {
+    this.staff = staff.name
+    staff.startPoints.push(this)
+  }
 }
 
 const c = new Note("c", "left: 333", "top: 552"); //TODO: calculate the staffPositions

@@ -84,7 +84,7 @@ function playSound(name){
 
 function startOver() {
   level = 0
-  gameNotes = []
+  randomNotes = []
   started = false
 }
 
