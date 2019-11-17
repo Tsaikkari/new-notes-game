@@ -5,8 +5,8 @@ const UserService = require('../services/user-service')
 const GameService = require('../services/game-service')
 
 router.get('/all', async (req, res) => {
-  const people = await UserService.findAll()
-  res.render('user', { user: players })
+  const players = await UserService.findAll()
+  res.render('user', { players: players })
 })
 
 router.get('/:id', async (req, res) => {
@@ -33,7 +33,7 @@ router.post('/:id/games', async (req, res) => {
 
 router.post('/:id/:level/game', async (req, res) => {
     const user = await UserService.find(req.id)
-    const game = await GameService.find(req.level.game)
+    const game = await GameService.find(req.body.game)
     user.choose(level)
     res.send(user, game)
 })

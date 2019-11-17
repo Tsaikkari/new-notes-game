@@ -10,7 +10,7 @@ router.get('/all', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   const game = await GameService.find(req.params.id)
-  res.render('data', { game: game })
+  res.render('game', { game: game })
 })
 
 router.post('/', async (req, res) => {

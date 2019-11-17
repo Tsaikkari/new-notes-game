@@ -2,7 +2,7 @@ const BaseService = require('./base-service')
 const UserModel = require('../models/user')
 
 class UserService extends BaseService {
-    model = PersonModel
+    model = UserModel
 
     async playGame(user, game) {
         user.games.push(game)
@@ -11,6 +11,5 @@ class UserService extends BaseService {
         await game.save()
     }
 }
-
 
 module.exports = new UserService()
