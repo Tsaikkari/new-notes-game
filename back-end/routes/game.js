@@ -18,10 +18,6 @@ router.post('/', async (req, res) => {
   res.send(game)
 })
 
-router.post('/game/:gameId/user/:userId', async (req, res) => {
-    const games = await GameService.find()
-})
-
 router.delete('/:id', async (req, res) => {
   const game = await GameService.del(req.params.id)
   res.send(game)
