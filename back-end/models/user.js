@@ -8,7 +8,7 @@ const UserSchema = new mongoose.Schema({
     },
     levels: [{
         type: mongoose.SchemaTypes.ObjectId,
-        required: true,
+        ref: 'Game',
         autopopulate: true
     }],
     games: [{
@@ -20,18 +20,12 @@ const UserSchema = new mongoose.Schema({
     }]
 })
 
-UserSchema.methods.choose = function () {
+UserSchema.methods.findPlayerLevelOver1 = async function (cb) {
     return UserModel.find({
         level: {
             $gt: 1
         }
     });
-};
-
-UserSchema.methods.play = function (cb) {
-    return UserModel.find ({
-        game: this.game }, cb
-    );
 };
 
 UserSchema.plugin(require('mongoose-autopopulate'))

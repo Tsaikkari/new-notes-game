@@ -25,17 +25,25 @@ router.delete('/:id', async (req, res) => {
 })
 
 router.post('/:id/games', async (req, res) => {
-  const user = await UserService.find(req.id)
+  const user = await UserService.find(req.params.id)
   const game = await GameService.find(req.body.game)
   await UserService.playGame(user, game)
   res.send(user)
+  res.send(game)
 })
 
 router.post('/:id/:level/game', async (req, res) => {
-    const user = await UserService.find(req.id)
+    const user = await UserService.find(req.params.id)
     const game = await GameService.find(req.body.game)
-    user.choose(level)
-    res.send(user, game)
+    user.chooseLevel(user, level, game)
+    res.send(user)
+    res.send(game)
+})
+
+router.get('/:id/player-over-level1', async (req, res) => {
+  const user = await UserService.find(req.params.id)
+  const player = await user.findPlayerLevelOver1()
+  res.send(player)
 })
 
 module.exports = router
