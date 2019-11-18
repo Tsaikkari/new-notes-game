@@ -11,10 +11,11 @@ class UserService extends BaseService {
         await game.save()
     }
 
-    async chooseLevel(user, level) {
-        this.levels.push(level)
-        game.levels.push(this)
+    async chooseLevel(user, game, level) {
+        user.levels.push(level)
+        game.levels.push(user)
         await user.save()
+        await game.save()
         await level.save()
     }
 }

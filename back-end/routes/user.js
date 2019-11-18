@@ -6,12 +6,12 @@ const GameService = require('../services/game-service')
 
 router.get('/all', async (req, res) => {
   const players = await UserService.findAll()
-  res.render('user', { players: players })
+  res.render('list', { items: players })
 })
 
 router.get('/:id', async (req, res) => {
   const user = await UserService.find(req.params.id)
-  res.render('user', { user: user })
+  res.render('data', { data: user })
 })
 
 router.post('/', async (req, res) => {

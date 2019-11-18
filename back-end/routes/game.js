@@ -5,12 +5,12 @@ const GameService = require('../services/game-service')
 
 router.get('/all', async (req, res) => {
   const games = await GameService.findAll()
-  res.render('game', { games: games })
+  res.render('list', { items: games })
 })
 
 router.get('/:id', async (req, res) => {
   const game = await GameService.find(req.params.id)
-  res.render('game', { game: game })
+  res.render('data', { data: game })
 })
 
 router.post('/', async (req, res) => {
