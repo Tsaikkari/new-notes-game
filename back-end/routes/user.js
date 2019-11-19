@@ -33,13 +33,23 @@ router.post('/:id/games', async (req, res) => {
 })
 
 router.post('/:id/:level/game', async (req, res) => {
-    const user = await UserService.find(req.params.id)
-    const game = await GameService.find(req.body.game)
-    const level = req.params.level
-    user.chooseLevel(user, level, game)
-    res.send(user)
-    res.send(game)
-})
+  const { id, level } = req.params;
+
+  try {
+    const user = await UserService.find(id);
+    const game = await GameService.find(req.body.game);
+
+    const result = UserService.chooseLevel(user, game, level);
+
+    res.send({
+      user: user,
+      game: game
+    });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send(`Server Error: ${err.message}`);
+  }
+});
 
 router.get('/:id/player-over-level1', async (req, res) => {
   const user = await UserService.find(req.params.id)

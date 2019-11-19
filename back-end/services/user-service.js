@@ -16,7 +16,6 @@ class UserService extends BaseService {
         game.levels.push(user)
         await user.save()
         await game.save()
-        await level.save()
     }
 }
 
