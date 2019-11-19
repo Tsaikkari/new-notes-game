@@ -35,6 +35,7 @@ router.post('/:id/games', async (req, res) => {
 router.post('/:id/:level/game', async (req, res) => {
     const user = await UserService.find(req.params.id)
     const game = await GameService.find(req.body.game)
+    const level = req.params.level
     user.chooseLevel(user, level, game)
     res.send(user)
     res.send(game)
