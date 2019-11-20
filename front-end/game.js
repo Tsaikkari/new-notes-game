@@ -1,6 +1,6 @@
 let keysAvailable = {'99': 'c', '100': 'd', '101': 'e', '102': 'f','103': 'g', '97': 'a', '98': 'b'};
-let startPoints = {'1': 'c', '2': 'd', '3': 'e', '4': 'f', '5': 'g', '6': 'a', '7': 'b'};   
-let randomNotes = [];
+let startPoints = {'1': 'c', '2': 'd', '3': 'e', '4': 'f', '5': 'g', '6': 'a', '7': 'b'}; 
+let gameNotes = [];
 let Staffpositions = [];
 let level = 0;
 let started = false;
@@ -31,7 +31,6 @@ let testLink = $('.test').on('click', function() {
   swapElement(a, b);
 });
 
-<<<<<<< HEAD
 $('.level').on('click', function() {
   var a = $('#staff' + $('#a').val());
   var b = $('#klavier' + $('#b').val());
@@ -44,14 +43,6 @@ $('.test').on('click', function() {
   swapElement(a, b);
 })
 
-=======
-let levelLink = $('.level').on('click', function() {
-  var a = $('#klavier' + $('#a').val());
-  var b = $('#staff' + $('#b').val());
-  swapElement(a, b);
-});
-
->>>>>>> fixCallbackHell
 // Random note starts falling down when user starts the game
 $(document).keydown(function() {
   if (!started) {
@@ -69,7 +60,6 @@ $(document).keydown(function() {
         elem.style.top = pos + 'px';
       }
     }
-<<<<<<< HEAD
 
     function nextNote() {
       var randomNumber = Math.floor(Math.random() * 7);
@@ -90,8 +80,6 @@ $(document).keydown(function() {
     }
     nextNote();
     started = true;
-=======
->>>>>>> fixCallbackHell
   }
 })
  
