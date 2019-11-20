@@ -24,7 +24,7 @@ test('Fetch a user', async t => {
       games: []
   }
 
-  const kirsiUserCreated = (await request(app)
+  const omurUserCreated = (await request(app)
   .post('/user')
   .send(userToCreate)).body
 
@@ -78,7 +78,7 @@ test('Get list of users', async t => {
 })
 
 test('User can play a game', async t => {
-    const mert = { nam: 'Mert', games: [] }
+    const mert = { name: 'Mert', games: [] }
     const game = { name: 'Notes Game', staffs: 'level1', tests: [], players: [] }
 
     // create user

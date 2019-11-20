@@ -21,6 +21,12 @@ const NoteSchema = new mongoose.Schema({
     ref: 'Staff'
   },
 })
+
+NoteSchema.plugin(require('mongoose-autopopulate'))
+
+const NoteModel = mongoose.model('Note', NoteSchema)
+
+module.exports = NoteModel
   
 /*const c = new Note("c", "left: 333", "top: 552"); //TODO: calculate the staffPositions
 const d = new Note("d", "left: 420", "top: 539");
