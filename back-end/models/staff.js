@@ -2,15 +2,15 @@ const mongoose = require('mongoose')
 
 const StaffSchema = new mongoose.Schema({
   name: {
-    type: String, 
+    type: String,
     required: true
   },
   clef: {
-    type: mongoose.SchemaTypes.ObjectId, 
+    type: mongoose.SchemaTypes.ObjectId,
     required: true
   },
   notes: [{
-    type: mongoose.SchemaTypes.ObjectId, 
+    type: mongoose.SchemaTypes.ObjectId,
     required: true
   }],
   startPoints: [{
@@ -18,7 +18,7 @@ const StaffSchema = new mongoose.Schema({
     required: true
   }],
   staffPositions: [{
-    type: mongoose.SchemaTypes.ObjectId, 
+    type: mongoose.SchemaTypes.ObjectId,
     required: true
   }],
   testStaffPositions: [{
@@ -27,12 +27,8 @@ const StaffSchema = new mongoose.Schema({
   }]
 })
 
+StaffSchema.plugin(require('mongoose-autopopulate'))
 
+const StaffModel = mongoose.model('Staff', StaffSchema)
 
-
-
-
- 
- 
-
-
+module.exports = StaffModel

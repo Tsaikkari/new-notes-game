@@ -5,10 +5,10 @@ class StaffService extends BaseService {
   model = StaffModel
 
 async belongTo(staff, game) {
-    staff.games.push(staff)
-    game.staffs.push(staff)
-    await staff.save()
-    await game.save()
+  staff.games.push(staff)
+  game.staffs.push(staff)
+  await staff.save()
+  await game.save()
   }
 }
 
