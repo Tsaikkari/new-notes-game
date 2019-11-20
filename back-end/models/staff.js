@@ -1,22 +1,33 @@
-class Staff {
-  constructor(name, clef, notes = [], startPoints = [], staffPositions = [], testStaffPositions = []) {
-    this.name = name
-    this.clef = clef
-    this.notes = notes
-    this.startPoints = startPoints
-    this.staffPositions = staffPositions
-    this.testStaffPositions = testStaffPositions
-  }
+const mongoose = require('mongoose')
 
-  belongTo(game) {
-    this.game = game.name
-    game.levels.push(this)
-  }
-  
-  static create({ name, clef, notes, startPoints, staffPositions, testStaffPositions }) {
-    return new Staff(name, clef, notes, startPoints, staffPositions, testStaffPositions)
-  }
-}
+const StaffSchema = new mongoose.Schema({
+  name: {
+    type: String, 
+    required: true
+  },
+  clef: {
+    type: mongoose.SchemaTypes.ObjectId, 
+    required: true
+  },
+  notes: [{
+    type: mongoose.SchemaTypes.ObjectId, 
+    required: true
+  }],
+  startPoints: [{
+    type: mongoose.SchemaTypes.ObjectId,
+    required: true
+  }],
+  staffPositions: [{
+    type: mongoose.SchemaTypes.ObjectId, 
+    required: true
+  }],
+  testStaffPositions: [{
+    type: mongoose.SchemaTypes.ObjectId,
+    required: true
+  }]
+})
+
+
 
 
 

@@ -10,13 +10,6 @@ class UserService extends BaseService {
         await user.save()
         await game.save()
     }
-
-    async chooseLevel(user, game, level) {
-        user.levels.push(level)
-        game.levels.push(user)
-        await user.save()
-        await game.save()
-    }
 }
 
 module.exports = new UserService()
