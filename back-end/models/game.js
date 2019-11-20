@@ -6,7 +6,7 @@ const GameSchema = new mongoose.Schema({
         required: true,
         minlength: 2
     },
-    levels: [{
+    staffs: [{
         type: mongoose.SchemaTypes.ObjectId,
         required: true
     }],
