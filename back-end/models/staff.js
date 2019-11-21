@@ -6,7 +6,7 @@ const StaffSchema = new mongoose.Schema({
     required: true
   },
   clef: {
-    type: mongoose.SchemaTypes.ObjectId,
+    name: String,
     required: true
   },
   notes: [{

@@ -1,3 +1,4 @@
+ 
 import test from 'ava'
 import request from 'supertest'
 import app from '..app'
@@ -111,4 +112,3 @@ test('Note can belong to a staff', async t => {
     t.is(alteredA.staffs[0]._id, createdStaff._id)
     console.log(createARes)
 })
-

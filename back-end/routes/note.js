@@ -28,9 +28,9 @@ router.post('/:id/staffs', async (req, res) => {
   const note = await NoteService.find(req.params.id)
   const staffs = await StaffService.find(req.body.game)
   
-  await NoteService.goTo(note, staff)
+  await NoteService.goTo(note, staffs)
   res.send(note)
-  res.send(staff)
+  res.send(staffs)
 })
 
 module.exports = router

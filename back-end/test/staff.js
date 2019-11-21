@@ -109,4 +109,3 @@ test('Staff can belong to a game', async t => {
     t.is(alteredLevel4.games[0]._id, createdGame._id)
     console.log(createALevel4Res)
 })
-

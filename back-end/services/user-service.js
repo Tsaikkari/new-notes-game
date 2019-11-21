@@ -6,7 +6,7 @@ class UserService extends BaseService {
 
     async playGame(user, game) {
         user.games.push(game)
-        game.players.push(user)
+        game.users.push(user)
         await user.save()
         await game.save()
     }
