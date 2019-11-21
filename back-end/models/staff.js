@@ -11,19 +11,31 @@ const StaffSchema = new mongoose.Schema({
   },
   notes: [{
     type: mongoose.SchemaTypes.ObjectId,
-    required: true
+    ref: 'Note',
+    autopopulate: {
+        maxDepth: 1
+    }
   }],
   startPoints: [{
     type: mongoose.SchemaTypes.ObjectId,
-    required: true
+    ref: 'Note',
+    autopopulate: {
+        maxDepth: 1
+    }
   }],
   staffPositions: [{
     type: mongoose.SchemaTypes.ObjectId,
-    required: true
+    ref: 'Note',
+    autopopulate: {
+        maxDepth: 1
+    }
   }],
   testStaffPositions: [{
     type: mongoose.SchemaTypes.ObjectId,
-    required: true
+    ref: 'Note',
+    autopopulate: {
+        maxDepth: 1
+    }
   }]
 })
 
