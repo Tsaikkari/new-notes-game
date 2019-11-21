@@ -1,6 +1,6 @@
 import test from 'ava'
 import request from 'supertest'
-import app from '..app'
+import app from '../app'
 
 test('Create new staff', async t => {
   t.plan(2)
@@ -49,7 +49,7 @@ test('Fetch a staff', async t => {
 test('Delete level5 staff', async t => {
   t.plan(3)
 
-  const staffToCreate = { name: 'Level4', clef: 'Bass Clef', notes: [], startPoints = [], staffPositions = [], testStaffPositions: [] }
+  const staffToCreate = { name: 'Level4', clef: 'Bass Clef', notes: [], startPoints: [], staffPositions: [], testStaffPositions: [] }
 
   const level5Created = (await request(app)
   .post('/staff')

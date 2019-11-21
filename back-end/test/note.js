@@ -1,7 +1,7 @@
  
 import test from 'ava'
 import request from 'supertest'
-import app from '..app'
+import app from '../app'
 
 test('Create new note', async t => {
   t.plan(4)
@@ -87,7 +87,7 @@ test('Get list of notes', async t => {
 
 test('Note can belong to a staff', async t => {
     const a = { name: 'a', startPoint: 778, staffPosition: 487, testStaffPosition: 223 }
-    const staff = { name: 'Level1', clef: 'Treble Cleff', notes: [], startPoints: [], staffPositions = [], testStartPositions = [] }
+    const staff = { name: 'Level1', clef: 'Treble Cleff', notes: [], startPoints: [], staffPositions: [], testStartPositions: [] }
 
     // create note
     const createARes = await request(app)

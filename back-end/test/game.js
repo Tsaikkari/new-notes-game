@@ -1,6 +1,6 @@
 import test from 'ava'
 import request from 'supertest'
-import app from '..app'
+import app from '../app'
 
 test('Create new game', async t => {
   t.plan(2)
@@ -42,7 +42,7 @@ test('Fetch a game', async t => {
 test('Delete Ping Pong 2 game', async t => {
   t.plan(3)
 
-  const gameToCreate = { name: 'Ping Pong 2', staffs: [], tests: [], players = [] }
+  const gameToCreate = { name: 'Ping Pong 2', staffs: [], tests: [], players: [] }
 
   const pingPong2Created = (await request(app)
   .post('/game')
@@ -60,7 +60,7 @@ test('Delete Ping Pong 2 game', async t => {
 
 test('Get list of games', async t => {
   t.plan(4)
-  const gameToCreate = { name: 'Tetris', staffs: [], tests: [], players = [] }
+  const gameToCreate = { name: 'Tetris', staffs: [], tests: [], players: [] }
 
   const _= await request(app)
   .post('/game')

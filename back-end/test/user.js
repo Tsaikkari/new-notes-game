@@ -1,6 +1,6 @@
 import test from 'ava'
 import request from 'supertest'
-import app from '..app'
+import app from '../app'
 
 test('Create new user', async t => {
   t.plan(2)
