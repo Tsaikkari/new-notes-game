@@ -1,5 +1,5 @@
-const BaseService = require(':/base-service')
-const NoteModel = require('../note-model')
+const BaseService = require('./base-service')
+const NoteModel = require('../models/note')
 
 class NoteService extends BaseService {
   model = NoteModel
