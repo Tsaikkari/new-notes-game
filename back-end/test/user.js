@@ -10,7 +10,7 @@ test('Create new user', async t => {
   }
 
   const res = await request(app)
-  .post('user')
+  .post('/user')
   .send(userToCreate)
 
   t.is(res.status, 200)
@@ -29,15 +29,13 @@ test('Fetch a user', async t => {
   .send(userToCreate)).body
 
   const fetchRes = await request(app).get(`/user/${omurUserCreated._id}`)
-
   t.is(fetchRes.status, 200)
 
   const fetchResJson = await request(app).get(`/user/${omurUserCreated._id}/json`)
 
-  t.is(fetchResJson.status, 200)
-
   const omurUserFetched = fetchResJson.body
 
+  t.is(fetchResJson.status, 200)
   t.deepEqual(omurUserFetched, omurUserCreated)
 })
 
@@ -55,37 +53,39 @@ test('Delete a user', async t => {
   t.is(deleteRes.status, 200)
   t.is(deleteRes.ok, true)
 
-  const fetch = await request(app).get(`/user/${kirsiUserCreated._id}/json`)
+  const fetchJson = await request(app).get(`/user/${kirsiUserCreated._id}/json`)
 
-  t.is(fetch.status, 404)
+  t.is(fetchJson.status, 404)
 })
 
 test('Get list of users', async t => {
   t.plan(4)
   const userToCreate = { name: 'Maria', games: [] }
 
-  const _= await request(app)
+  const _ = await request(app)
   .post('/user')
   .send(userToCreate)
 
   const res = await request(app).get('/user/all')
   t.is(res.status, 200)
 
-  const jsonRes = await request(app).get('user/all/json')
+  const jsonRes = await request(app).get('/user/all/json')
   t.is(jsonRes.status, 200)
+  // check the response whether it's an array
   t.true(Array.isArray(jsonRes.body), 'Body should be an array')
+  // check the response whether at least there's one element
   t.true(jsonRes.body.length > 0)
 })
 
 test('User can play a game', async t => {
     const mert = { name: 'Mert', games: [] }
-    const game = { name: 'Notes Game', staffs: 'level1', tests: [], players: [] }
+    const game = { name: 'Notes Game', staffs: [], tests: [], players: [] }
 
     // create user
     const createMertRes = await request(app)
     .post('/user')
     .send(mert)
-    const mertUser = createMerRes.body
+    const mertUser = createMertRes.body
     
     // create game
     const createGameRes = await request(app)

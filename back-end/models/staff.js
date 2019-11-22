@@ -16,6 +16,13 @@ const StaffSchema = new mongoose.Schema({
         maxDepth: 1
     }
   }],
+  games: [{
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: 'Game',
+    autopopulate: {
+        maxDepth: 1
+    }
+  }],
   startPoints: [{
     type: mongoose.SchemaTypes.ObjectId,
     ref: 'Note',

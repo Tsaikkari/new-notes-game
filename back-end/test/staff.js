@@ -3,30 +3,36 @@ import request from 'supertest'
 import app from '../app'
 
 test('Create new staff', async t => {
-  t.plan(2)
+  t.plan(3)
   const staffToCreate = {
     name: 'Level1',
     clef: 'Treble Clef',
     notes: [],
+    games: [],
     startPoints: [],
     staffPositions: [], 
     testStaffPositions: []
   }
 
   const res = await request(app)
-  .post('staff')
+  .post('/staff')
   .send(staffToCreate)
 
   t.is(res.status, 200)
   t.is(res.body.name, staffToCreate.name)
-  t.is(res.body.clef, staffToCreate.clef)
+  t.is(res.body.clef, staffToCreate.clef )
 })
 
 test('Fetch a staff', async t => {
   t.plan(3)
   const staffToCreate = {
       name: 'Level2',
-      clef: 'Bass Clef'
+      clef: 'Bass Clef',
+      notes: [],
+      games: [],
+      startPoints: [],
+      staffPositions: [], 
+      testStaffPositions: []
   }
 
   const level3Created = (await request(app)
@@ -49,7 +55,7 @@ test('Fetch a staff', async t => {
 test('Delete level5 staff', async t => {
   t.plan(3)
 
-  const staffToCreate = { name: 'Level4', clef: 'Bass Clef', notes: [], startPoints: [], staffPositions: [], testStaffPositions: [] }
+  const staffToCreate = { name: 'Level4', clef: 'Bass Clef', notes: [], games: [], startPoints: [], staffPositions: [], testStaffPositions: [] }
 
   const level5Created = (await request(app)
   .post('/staff')
@@ -60,14 +66,14 @@ test('Delete level5 staff', async t => {
   t.is(deleteRes.status, 200)
   t.is(deleteRes.ok, true)
 
-  const fetch = await request(app).get(`/staff/${level4Created._id}/json`)
+  const fetchJson = await request(app).get(`/staff/${level5Created._id}/json`)
 
-  t.is(fetch.status, 404)
+  t.is(fetchJson.status, 404)
 })
 
 test('Get list of staffs', async t => {
   t.plan(4)
-  const staffToCreate = { name: 'Level3', clef: 'Treble Clef', startPoints: [], staffPositions: [], testStaffPositions: [] }
+  const staffToCreate = { name: 'Level3', clef: 'Treble Clef', notes: [], games: [], startPoints: [], staffPositions: [], testStaffPositions: [] }
 
   const _= await request(app)
   .post('/staff')
@@ -83,29 +89,28 @@ test('Get list of staffs', async t => {
 })
 
 test('Staff can belong to a game', async t => {
-    const level4 = { name: 'Level4', clef: 'Bass Clef', startPoints: [], staffPosition: [], testStaffPositions: [] }
-    const game = { name: 'Notes Game', staffs: 'Treble Cleff', tests: [], players: [] }
+    const level4 = { name: 'Level4', clef: 'Bass Clef', notes: [], games: [], startPoints: [], staffPosition: [], testStaffPositions: [] }
+    const notesGame  = { name: 'Notes Game', staffs: 'Treble Cleff', tests: [], players: [] }
 
     // create staff
-    const createLevel4Res = await request(app)
+    const createdStaff = (await request(app)
     .post('/staff')
-    .send(level4)
-    const level4Staff = createLevel4Res.body
+    .send(level4)).body
+    
     
     // create game
-    const createGameRes = await request(app)
+    const createdGame = (await request(app)
     .post('/game')
-    .send(game)
-    const createdGame = createGameRes.body
+    .send(notesGame)).body
 
-    // level4 belongs to Notes Game
+    // Staff called level4 belongs to Notes Game
     const belongToRes = await request(app)
-    .post(`/staff/${level4Staff._id}/games`)
+    .post(`/staff/${createdStaff._id}/games`)
     .send({ game: createdGame._id })
 
     t.is(belongToRes.status, 200)
-    const alteredLevel4 = belongToRes.body
 
-    t.is(alteredLevel4.games[0]._id, createdGame._id)
-    console.log(createALevel4Res)
+    const staffAltered = belongToRes.body
+    // check that staff's game is the game that was created
+    t.deepEqual(staffAltered.games[0], createdGames)
 })
