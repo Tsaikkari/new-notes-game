@@ -26,11 +26,11 @@ router.delete('/:id', async (req, res) => {
 
 router.post('/:id/staffs', async (req, res) => {
   const note = await NoteService.find(req.params.id)
-  const staffs = await StaffService.find(req.body.game)
+  const staff = await StaffService.find(req.body.game)
   
-  await NoteService.goTo(note, staffs)
+  await NoteService.goTo(note, staff)
   res.send(note)
-  res.send(staffs)
+  res.send(staff)
 })
 
 module.exports = router

@@ -20,6 +20,13 @@ const NoteSchema = new mongoose.Schema({
     required: true, 
     ref: 'Staff'
   },
+  staffs: [{
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: 'Staff',
+    autopopulate: {
+        maxDepth: 1
+    }
+  }]
 })
 
 NoteSchema.plugin(require('mongoose-autopopulate'))
