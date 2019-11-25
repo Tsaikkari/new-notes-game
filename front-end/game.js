@@ -73,8 +73,6 @@ $(document).keydown(function() {
       })
       $(document).on('keydown', userClickedKeys);
     }
-    nextNote();
-    started = true;
   }
 })
     
