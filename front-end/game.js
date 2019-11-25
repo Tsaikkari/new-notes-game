@@ -25,11 +25,6 @@ function swapElement(a, b) {
 }
 // TODO: Choosing the level at the start of the game should not swap the elements. 
 //Clicking level links only swaps elements when there's a test-view on the screen and vice versa with test links.
-let testLink = $('.test').on('click', function() {
-  var a = $('#staff' + $('#a').val());
-  var b = $('#klavier' + $('#b').val());
-  swapElement(a, b);
-});
 
 $('.level').on('click', function() {
   var a = $('#staff' + $('#a').val());
@@ -43,7 +38,7 @@ $('.test').on('click', function() {
   swapElement(a, b);
 })
 
-// Random note starts falling down when user starts the game
+// Random note starts dropping down when user starts the game
 $(document).keydown(function() {
   if (!started) {
     nextNote();
@@ -82,26 +77,6 @@ $(document).keydown(function() {
     started = true;
   }
 })
- 
-function nextNote() {
-  var randomNumber = Math.floor(Math.random() * 7);
-  var randomNote = keysAvailable[randomNumber]
-  randomNotes.push(randomNote)
-
-  startPoint = startPoints[randomNumber]
-  
-  let userClickedKeys = (function(event) {
-    let keycode = event.which || event.keyCode
-    let userChosenKey = keysAvailable[keycode]
-    if (randomNote === userChosenKey) {
-      playSound(userChosenKey);
-      nextNote();
-    } else {
-      playSound("wrong")
-    }
-  })
-  $(document).on('keydown', userClickedKeys); 
-}
     
 function playSound(name){
   var audio = new Audio("sounds/" + name + ".mp3");

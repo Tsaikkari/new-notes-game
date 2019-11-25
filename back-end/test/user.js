@@ -101,6 +101,7 @@ test('User can play a game', async t => {
   .send({ game: createdGame._id })
 
   t.is(playGameRes.status, 200)
+  
   const alteredMert = playGameRes.body
 
   t.is(alteredMert.games[0]._id, createdGame._id)
