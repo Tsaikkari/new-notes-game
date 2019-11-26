@@ -15,28 +15,29 @@ $("#menu").on("click", function() {
 })
 
 // Switches the position of the keyboard with the position of the staff depending on user clicking either level or test link.
-function swapElement(a, b) {
-  // create a temporary marker div
-  var aNext = $('<div>').insertAfter(a);
-  a.insertAfter(b);
-  b.insertBefore(aNext);
-  // remove marker div
-  aNext.remove();
-}
-// TODO: Choosing the level at the start of the game should not swap the elements. 
-//Clicking level links only swaps elements when there's a test-view on the screen and vice versa with test links.
 
-$('.level').on('click', function() {
-  var a = $('#staff' + $('#a').val());
-  var b = $('#klavier' + $('#b').val());
-  swapElement(a, b);
-});
+  function swapElement(a, b) {
+    // create a temporary marker div
+    var aNext = $('<div>').insertAfter(a);
+    a.insertAfter(b);
+    b.insertBefore(aNext);
+    // remove marker div
+    aNext.remove();
+  }
+  
+  // TODO: Clicking level links only swaps elements when there's a test-view on the screen and vice versa with test links.
 
-$('.test').on('click', function() {
-  var a = $('#klavier' + $('#a').val());
-  var b = $('#staff' + $('#b').val());
-  swapElement(a, b);
-})
+  $('.test').on('click', function() {
+    var a = $('#klavier' + $('#a').val());
+    var b = $('#staff' + $('#b').val());
+    swapElement(a, b);
+  });
+
+  $('.level').on('click', function() {
+    var a = $('#staff' + $('#a').val());
+    var b = $('#klavier' + $('#b').val());
+      swapElement(a, b);
+  });
 
 // Random note starts dropping down when user starts the game
 $(document).keydown(function() {
