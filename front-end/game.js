@@ -15,7 +15,6 @@ $("#menu").on("click", function() {
 })
 
 // Switches the position of the keyboard with the position of the staff depending on user clicking either level or test link.
-
   function swapElement(a, b) {
     // create a temporary marker div
     var aNext = $('<div>').insertAfter(a);
@@ -26,7 +25,6 @@ $("#menu").on("click", function() {
   }
   
   // TODO: Clicking level links only swaps elements when there's a test-view on the screen and vice versa with test links.
-
   $('.test').on('click', function() {
     var a = $('#klavier' + $('#a').val());
     var b = $('#staff' + $('#b').val());
@@ -80,6 +78,15 @@ $(document).keydown(function() {
 function playSound(name){
   var audio = new Audio("sounds/" + name + ".mp3");
   audio.play();
+}
+
+// Add event listener to piano keyboard keys
+let numberOfKeys = document.querySelectorAll(".key").length;
+for (let i = 0; i < numberOfKeys; i++) {
+  document.querySelectorAll(".key")[i].addEventListener("click", function () {
+    let buttonInnerHTML = this.innerHTML;
+    playSound(buttonInnerHTML)
+  })
 }
 
 function startOver() {
