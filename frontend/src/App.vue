@@ -12,6 +12,9 @@
       <router-link to="/level1">Test4</router-link>
     </div>
     <router-view/>
+    <NotesGame msg="NOTES GAME"/>
+    <Note note="${}"/>
+    <Staff/>
   </div>
 </template>
 
@@ -21,7 +24,9 @@ import NotesGame from './components/NotesGame.vue'
 export default {
   name: 'app', 
   components: {
-    NotesGame
+    NotesGame,
+    Note,
+    Staff
   }
 }
 </script>
@@ -64,148 +69,7 @@ body {
   color: #42b983;
 }
 
-/*little-keyboard*/
-section {
-  width: 250px;
-  height: 120px;
-  text-align: center;
-  margin-left: 10%;
-  border: solid 1px #000;
-}
-
-#piano-kb {
-  height: 100%;
-  flex-flow: column;
-  display: flex;
-  flex: 4;  
-  padding: 1%;
-}
-/*keyboard keys*/
-#kbk {
-  position: relative;
-  height: 100%;
-  display: flex;
-  flex: 8;
-  justify-content: center;
-}
-/*key*/
-.k {
-  display: inline-flex;
-  flex: 1;
-  align-items: center;
-}
-/*black key*/
-.bk {
-  position: relative;
-  float: right;
-  height: 60%;
-  max-width: 9%;
-  justify-content: center;
-  background-color: #000;
-  margin: 0 -4%
-}
-
-/*white key*/
-.wk {
-  flex-flow: column;
-  justify-content: flex-end;
-  background-color: #fff;
-  color: #000;
-  outline: 2px solid #474747;;
-  padding-bottom: 2.5%;
-}
-
-/* instructions*/
-#intro {
-  margin-top: 11%;
-  padding: 1%;
-  background-color: #f5ca99;
-}
-
-.intro-header {
-  text-align: center;
-  padding-bottom: 2%;
-  padding-top: 2%;
-  border-bottom: double;
-  border-top: double;
-  background-color: #fe7a47;
-}
-
-.how {
-  color: #fcfdfe;
-}
-
-.starting {
-  font-size: 1.5em;
-  color: #d8412f;
-  text-align: center;
-}
-
-/*icons*/
-.fa-music {
-  padding-right: 1%;
-}
-
-.fa-volume-up {
-  padding-left: 1%;
-}
-
-/* note */
-.fa-circle {
-  padding-top: 10%;
-  font-size: 1.6em;
-  position: absolute;
-  /*padding-left: 333px;*/
-}
-
-#notes-route {
-  min-height: 150px;
-}
-
-#keyboard {
-  position: relative;
-  left: 25%;
-}
-
-/*.container-content {
-  background-color: #f1f3ce;
-}*/
-
-.black {
-  position: absolute;
-  margin: 0 -2.2%;
-  height: 59%;
-  width: 4%;
-}
-
-.btn-light {
-  padding-left: 5.5%;
-  padding-top: 20%;
-  border: solid black 1px;
-  background-color: white;
-}
-
-.btn-light:hover {
-  background-color: white;
-  border: solid black 1px;
-}
-
-hr {
-  margin: 2%;
-  background-color: black;
-}
-
-#ledger-line {
-  display: block;
-  height: 1px;
-  border: 0;
-  margin-left: 26.4%;
-  margin-right: 70%;
-}
-
 footer {
   text-align: center;
 }
-
-
 </style>

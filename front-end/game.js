@@ -85,8 +85,8 @@ let numberOfKeys = document.querySelectorAll(".key").length;
 for (let i = 0; i < numberOfKeys; i++) {
   document.querySelectorAll(".key")[i].addEventListener("click", function () {
     let buttonInnerHTML = this.innerHTML;
-    playSound(buttonInnerHTML)
-  })
+    playSound(buttonInnerHTML);
+  });
 }
 
 function startOver() {
