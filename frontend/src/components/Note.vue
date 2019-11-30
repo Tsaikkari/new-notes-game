@@ -12,7 +12,7 @@ export default {
     Note
   },
   props: {
-    note: String
+    note: ID
   }, 
   data() {
     return {
