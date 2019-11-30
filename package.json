@@ -17,6 +17,7 @@
     "pug": "2.0.4"
   },
   "devDependencies": {
+    "@vue/cli": "4.1.1",
     "ava": "2.4.0",
     "nodemon": "2.0.0",
     "nyc": "14.1.1",
