@@ -1,6 +1,5 @@
 <template>
-  <div class="container-fluid" id=notes-route>
-    <i class="far fa-circle" id="note"></i>
+  <div>
   </div>
 </template>
 
@@ -8,10 +7,8 @@
 
 export default {
   name: 'Note',
-  components: {
-    Note
-  },
-  props: {
+  
+  /*props: {
     note: ID
   }, 
   data() {
@@ -40,7 +37,7 @@ export default {
         }
       ]
     }
-  }
+  }*/
 }
 </script>
 

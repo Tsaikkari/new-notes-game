@@ -1,32 +1,87 @@
 <template>
   <div id="app">
+    <Levels v-bind:levels="levels"/>>
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/level1">Level1</router-link>
-      <router-link to="/level1">Test1</router-link>
-      <router-link to="/level1">Level2</router-link>
-      <router-link to="/level1">Test2</router-link>
-      <router-link to="/level1">Level3</router-link>
-      <router-link to="/level1">Test3</router-link>
-      <router-link to="/level1">Level4</router-link>  
-      <router-link to="/level1">Test4</router-link>
+      <router-link to="/">NOTES GAME</router-link> |
+      <router-link to="/level">Level1</router-link>
+      <router-link to="/level">Test1</router-link>
+      <router-link to="/level">Level2</router-link>
+      <router-link to="/level">Test2</router-link>
+      <router-link to="/level">Level3</router-link>
+      <router-link to="/level">Test3</router-link>
+      <router-link to="/level">Level4</router-link>  
+      <router-link to="/level">Test4</router-link>
     </div>
     <router-view/>
-    <NotesGame msg="NOTES GAME"/>
-    <Note note="${}"/>
+    <HelloWorld/>
     <Staff/>
+    <Note/>
   </div>
 </template>
 
 <script>
-import NotesGame from './components/NotesGame.vue'
+import HelloWorld from './components/HelloWorld.vue'
+import Staff from './components/Staff.vue'
+import Note from './components/Note.vue'
+import Levels from './views/Levels.vue'
+import Tests from './views/Tests.vue'
 
 export default {
   name: 'app', 
   components: {
-    NotesGame,
+    HelloWorld,
+    Staff,
     Note,
-    Staff
+    Levels,
+    Tests
+  },
+  data() {
+    return {
+      levels: [
+        {
+          id: 1, 
+          name: 'Level1', 
+          clicked: false
+        },
+        {
+          id: 2, 
+          name: 'Level2', 
+          clicked: false
+        },
+        {
+          id: 3, 
+          name: 'Level3', 
+          clicked: false
+        },
+        {
+          id: 4, 
+          name: 'Level4', 
+          clicked: false
+        },
+      ],
+      tests: [
+        {
+          id: 1, 
+          name: 'Test1', 
+          clicked: true
+        },
+        {
+          id: 2, 
+          name: 'Test2', 
+          clicked: true
+        },
+        {
+          id: 3, 
+          name: 'Test3', 
+          clicked: true
+        },
+        {
+          id: 4, 
+          name: 'Test4', 
+          clicked: true
+        }
+      ]
+    }
   }
 }
 </script>
@@ -57,16 +112,9 @@ body {
 }
 
 #nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+  color: #000;
+  text-transform: uppercase;
+  padding-right: 43px;
 }
 
 footer {
