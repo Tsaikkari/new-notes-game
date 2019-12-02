@@ -40,18 +40,21 @@
     </nav>
     <Home/>
     <Levels/>
+    <Users/>
   </div>
 </template>
 
 <script>
 import Home from './views/Home.vue'
 import Levels from './views/Levels.vue'
+import Users from './views/Users.vue'
 
 export default {
   name: 'app', 
   components: {
     Home,
-    Levels
+    Levels,
+    Users
   },
   data() {
     return {
