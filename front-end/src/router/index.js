@@ -12,7 +12,7 @@ const routes = [
   },
   {
     path: '/levels',
-    name: 'Levels',
+    name: 'levels',
     // route level code-splitting
     // this generates a separate chunk (levels.[hash].js) for this route
     // which is lazy-loaded when the route is visited.

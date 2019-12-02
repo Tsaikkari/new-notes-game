@@ -3,15 +3,7 @@
     <div class="container-fluid" id="notes-route">
       <i class="far fa-circle" id="note"></i>
     </div>
-    <div class="container-content" id="staff">
-      <hr>
-      <hr>
-      <hr>
-      <hr>
-      <hr>
-      <hr id="ledger-line">
-    </div>
-
+    
     <div class="container-content" id="klavier">
       <div id="keyboard">
         <button type="button" class="btn btn-light c key" id="c"></button>
@@ -28,6 +20,16 @@
         <button type="button" class="btn btn-light b key" id="b"></button>
       </div>
     </div>
+
+    <div class="container-content" id="staff">
+      <hr>
+      <hr>
+      <hr>
+      <hr>
+      <hr>
+      <hr id="ledger-line">
+    </div>
+
   </div>
 </template>
 
@@ -57,14 +59,8 @@ export default {
     
   }
 }
-// TODO: Clicking level links only swaps elements when there's a test-view on the screen and vice versa with test links.
-  /*$('.test').on('click', function() {
-    var a = $('#klavier' + $('#a').val());
-    var b = $('#staff' + $('#b').val());
-    swapElement(a, b);
-  });
 
-  $('.level').on('click', function() {
+/*$('.level').on('click', function() {
     var a = $('#staff' + $('#a').val());
     var b = $('#klavier' + $('#b').val());
       swapElement(a, b);

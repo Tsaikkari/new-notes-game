@@ -38,14 +38,14 @@
         </ul>
       </div>
     </nav>
-    <HelloWorld/>
+    <Home/>
     <Levels/>
   </div>
 </template>
 
 <script>
 import Home from './views/Home.vue'
-import Levels from './components/Levels.vue'
+import Levels from './views/Levels.vue'
 
 export default {
   name: 'app', 

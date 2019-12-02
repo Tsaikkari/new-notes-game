@@ -26,15 +26,16 @@
         </div>
       </div>
     </section>
+    <Levels/>
   </div>
 </template>
 
 <script>
+import Levels from '../components/Levels.vue'
 export default {
-  name: 'Home', 
+  name: 'Home',
   components: {
-    Home,
-    Levels
+  Levels
   }
 }
 </script>
@@ -114,5 +115,15 @@ section {
   justify-content: center;
   background-color: #000;
   margin: 0 -4%
+}
+
+/*white key*/
+.wk {
+  flex-flow: column;
+  justify-content: flex-end;
+  background-color: #fff;
+  color: #000;
+  outline: 2px solid #474747;;
+  padding-bottom: 2.5%;
 }
 </style>
