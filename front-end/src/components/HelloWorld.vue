@@ -26,48 +26,51 @@
         </div>
       </div>
     </section>
-
-    <div class="container-fluid" id=notes-route>
-      <i class="far fa-circle" id="note"></i>
-    </div>
-
-    <div class="container-content" id=staff>
-      <hr>
-      <hr>
-      <hr>
-      <hr>
-      <hr>
-      <hr id="ledger-line">
-    </div>
-
-    <div class="container-content" id="klavier">
-      <div id="keyboard">
-        <button type="button" class="btn btn-light c key" id="c"></button>
-        <button type="button" class="btn btn-dark black key"></button>
-        <button type="button" class="btn btn-light d key" id="d"></button>
-        <button type="button" class="btn btn-dark black key"></button>
-        <button type="button" class="btn btn-light e key" id="e"></button>
-        <button type="button" class="btn btn-light f key" id="f"></button>
-        <button type="button" class="btn btn-dark black key"></button>
-        <button type="button" class="btn btn-light g key" id="g"></button>
-        <button type="button" class="btn btn-dark black key"></button>
-        <button type="button" class="btn btn-light a key" id="a"></button>
-        <button type="button" class="btn btn-dark black key"></button>
-        <button type="button" class="btn btn-light b key" id="b"></button>
-      </div>
-    </div>
-    <footer><p>Copyright &copy; Kirsi Trospe 2019</p></footer>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: "HelloWorld"
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+/* instructions*/
+#intro {
+  margin-top: 4%;
+  padding: 1%;
+  background-color: #f5ca99;
+}
+
+.intro-header {
+  text-align: center;
+  padding-bottom: 2%;
+  padding-top: 2%;
+  border-bottom: double;
+  border-top: double;
+  background-color: #fe7a47;
+}
+
+.how {
+  color: #fcfdfe;
+}
+
+.starting {
+  font-size: 1.5em;
+  color: #d8412f;
+  text-align: center;
+}
+
+/*icons*/
+.fa-music {
+  padding-right: 1%;
+}
+
+.fa-volume-up {
+  padding-left: 1%;
+}
+
 /*little-keyboard*/
 section {
   width: 250px;
@@ -118,89 +121,5 @@ section {
   outline: 2px solid #474747;;
   padding-bottom: 2.5%;
 }
-
-/* instructions*/
-#intro {
-  margin-top: 11%;
-  padding: 1%;
-  background-color: #f5ca99;
-}
-
-.intro-header {
-  text-align: center;
-  padding-bottom: 2%;
-  padding-top: 2%;
-  border-bottom: double;
-  border-top: double;
-  background-color: #fe7a47;
-}
-
-.how {
-  color: #fcfdfe;
-}
-
-.starting {
-  font-size: 1.5em;
-  color: #d8412f;
-  text-align: center;
-}
-
-/*icons*/
-.fa-music {
-  padding-right: 1%;
-}
-
-.fa-volume-up {
-  padding-left: 1%;
-}
-
-/* note */
-.fa-circle {
-  padding-top: 10%;
-  font-size: 1.6em;
-  position: absolute;
-  /*padding-left: 333px;*/
-}
-
-#notes-route {
-  min-height: 150px;
-}
-
-hr {
-  margin: 2%;
-  background-color: black;
-}
-
-#ledger-line {
-  display: block;
-  height: 1px;
-  border: 0;
-  margin-left: 26.4%;
-  margin-right: 70%;
-}
-
-#keyboard {
-  position: relative;
-  left: 25%;
-}
-
-.black {
-  position: absolute;
-  margin: 0 -2.2%;
-  height: 59%;
-  width: 4%;
-}
-
-.btn-light {
-  padding-left: 5.5%;
-  padding-top: 20%;
-  border: solid black 1px;
-  background-color: white;
-}
-
-.btn-light:hover {
-  background-color: white;
-  border: solid black 1px;
-}
-
 </style>
+
