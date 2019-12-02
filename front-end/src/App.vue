@@ -1,17 +1,5 @@
 <template>
   <div id="app">
-    <!--<div id="nav">
-      <router-link to="/" class="menu">NOTES GAME</router-link> |
-      <router-link to="/level" class="level">Level1</router-link>
-      <router-link to="/test" class="test">Test1</router-link>
-      <router-link to="/level" class="level">Level2</router-link>
-      <router-link to="/test" class="test">Test2</router-link>
-      <router-link to="/level" class="level">Level3</router-link>
-      <router-link to="/test" class="test">Test3</router-link>
-      <router-link to="/level" class="level">Level4</router-link>  
-      <router-link to="/test" class="test">Test4</router-link>
-    </div>
-    <router-view/>-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" role="navigation">
       <h2>NOTES GAME</h2>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,103 +44,25 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Home from './views/Home.vue'
 import Levels from './components/Levels.vue'
 
 export default {
   name: 'app', 
   components: {
-    HelloWorld,
+    Home,
     Levels
   },
   data() {
     return {
-      levels: [
-        {
-          id: 1, 
-          name: 'Level1', 
-          clef: 'Treble Cleff',
-          keyboardOnBottom: true,
-          clicked: false
-        },
-        {
-          id: 2, 
-          name: 'Level2', 
-          clef: 'Bass Clef',
-          keyboardOnBottom: true,
-          clicked: false
-        },
-        {
-          id: 3, 
-          name: 'Level3', 
-          clef: 'Treble Cleff',
-          keyboardOnBottom: true,
-          clicked: false
-        },
-        {
-          id: 4, 
-          name: 'Level4', 
-          clef: 'Bass Clef',
-          keyboardOnBottom: true,
-          clicked: false
-        },
-      ],
-      tests: [
-        {
-          id: 1, 
-          name: 'Test1', 
-          clef: 'Treble Cleff',
-          keyboardOnTop: true,
-          clicked: true
-        },
-        {
-          id: 2, 
-          name: 'Test2', 
-          clef: 'Bass Clef',
-          kexboardOnTop: true,
-          clicked: true
-        },
-        {
-          id: 3, 
-          name: 'Test3', 
-          clef: 'Treble Cleff',
-          keyboardOnTop: true,
-          clicked: true
-        },
-        {
-          id: 4, 
-          name: 'Test4', 
-          clef: 'Bass Clef',
-          keyboardOnTop: true,
-          clicked: true
-        }
-      ]
+      staffs: [],
+      notes:[]
     }
   },
-  methods: {
-    swapMethod(a, b) {
-    // create a temporary marker div
-    var aNext = $('<div>').insertAfter(a);
-    a.insertAfter(b);
-    b.insertBefore(aNext);
-    // remove marker div
-    aNext.remove();
-      this.test.clicked = !this.test.clicked
-    }
+  created() {
+    
   }
 }
-// TODO: Clicking level links only swaps elements when there's a test-view on the screen and vice versa with test links.
-  /*$('.test').on('click', function() {
-    var a = $('#klavier' + $('#a').val());
-    var b = $('#staff' + $('#b').val());
-    swapElement(a, b);
-  });
-
-  $('.level').on('click', function() {
-    var a = $('#staff' + $('#a').val());
-    var b = $('#klavier' + $('#b').val());
-      swapElement(a, b);
-  });*/
 </script>
 
 <style>
