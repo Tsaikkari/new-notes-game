@@ -8,6 +8,11 @@ router.get('/all', async (req, res) => {
   res.render('list', { items: games })
 })
 
+router.get('/all/json', async (req, res) => {
+  const games = await GameService.findAll()
+  res.send(games)
+})
+
 router.get('/:id', async (req, res) => {
   const game = await GameService.find(req.params.id)
   res.render('data', { data: game })
