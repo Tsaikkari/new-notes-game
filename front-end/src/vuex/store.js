@@ -24,10 +24,6 @@ export default new Vuex.Store({
       commit('SET_COUNTER', newCount)
     }
   },
-  async fetchUsers({ commit }) {
-    const result = await axios.get('http://localhost:3000/user/all/json')
-    commit('SET_USERS', result.data)
-  },
   modules: {
   }
 })

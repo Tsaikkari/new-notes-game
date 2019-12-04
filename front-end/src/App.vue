@@ -3,7 +3,6 @@
     <Navbar/>
     <Home/>
     <Levels/>
-    <Users/>
   </div>
 </template>
 
@@ -11,7 +10,7 @@
 import Navbar from './views/Navbar.vue'
 import Home from './views/Home.vue'
 import Levels from './views/Levels.vue'
-import Users from './views/Users.vue'
+//import { event } from './unit/event.js'
 
 export default {
   name: 'app', 
@@ -19,7 +18,6 @@ export default {
     Navbar,
     Home,
     Levels,
-    Users
   },
   data() {
     return {
@@ -28,30 +26,6 @@ export default {
     }
   },
   methods: {
-    nextNote() {
-      let keysAvailable = {'99': 'c', '100': 'd', '101': 'e', '102': 'f','103': 'g', '97': 'a', '98': 'b'};
-      let gameNotes = [];
-      let level = 0;
-      var randomNumber = Math.floor(Math.random() * 7);
-      var randomNote = keysAvailable[randomNumber]
-      gameNotes.push(randomNote)
-
-      let userClickedKeys = (function(event) {
-        let keycode = event.which || event.keyCode
-        let userChosenKey = keysAvailable[keycode]
-          if (randomNote === userChosenKey) {
-            playSound(userChosenKey);
-            nextNote();
-          } else {
-            playSound("wrong")
-          }
-      })
-      $(document).on('keydown', userClickedKeys);
-    },
-    playSound(name) {
-      var audio = new Audio("sounds/" + name + ".mp3");
-    audio.play();
-    },
     startOver() {
       level = 0
       randomNotes = []
