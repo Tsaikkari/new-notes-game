@@ -1,3 +1,19 @@
+<script>
+export default {
+  name: "Levels",
+  data() {
+    return {
+      staffs: [],
+      notes:[]
+    }
+  },
+  created() {
+    
+  }
+}
+
+</script>
+
 <template>
   <div>
     <div class="container-fluid" id="notes-route">
@@ -32,40 +48,6 @@
 
   </div>
 </template>
-
-<script>
-export default {
-  name: "Levels",
-  props: 
-    ['levels'],
-  data() {
-    return {
-      staffs: [],
-      notes:[]
-    }
-  },
-  methods: {
-    swapElement(a, b) {
-    // create a temporary marker div
-    var aNext = $('<div>').insertAfter(a);
-    a.insertAfter(b);
-    b.insertBefore(aNext);
-    // remove marker div
-    aNext.remove();
-      this.test.clicked = !this.test.clicked
-    }
-  },
-  created() {
-    
-  }
-}
-
-/*$('.level').on('click', function() {
-    var a = $('#staff' + $('#a').val());
-    var b = $('#klavier' + $('#b').val());
-      swapElement(a, b);
-  });*/
-</script>
 
 <style scoped>
 /* note */

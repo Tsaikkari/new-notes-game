@@ -1,3 +1,13 @@
+<script>
+import Levels from '../components/Levels.vue'
+export default {
+  name: 'Home',
+  components: {
+  Levels
+  }
+}
+</script>
+
 <template>
   <div class="container-fluid" id=intro>
     <h3 class="intro-header"><i class="fas fa-music"></i>Learn names of the keyboard keys<br> & their corresponding notes on the staff</h3> 
@@ -29,16 +39,6 @@
     <Levels/>
   </div>
 </template>
-
-<script>
-import Levels from '../components/Levels.vue'
-export default {
-  name: 'Home',
-  components: {
-  Levels
-  }
-}
-</script>
 
 <style scoped>
 /* instructions*/

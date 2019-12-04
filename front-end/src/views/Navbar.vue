@@ -1,3 +1,9 @@
+<script>
+export default {
+  name: 'Navbar'
+}
+</script>
+
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" role="navigation">
     <h2>NOTES GAME</h2>
@@ -38,12 +44,6 @@
     </div>
   </nav>
 </template>
-
-<script>
-export default {
-  name: 'Navbar'
-}
-</script>
 
 <style scoped>
   .navbar-light .navbar-nav .nav-link {

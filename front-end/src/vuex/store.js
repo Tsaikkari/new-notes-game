@@ -6,16 +6,16 @@ import mutations from './mutations'
 // Load Vuex
 Vue.use(Vuex)
 
-const state = {
+/*const state = {
   sound: soundInitState,
   next: nextInitState,
   startPoints: startPointsInitState,
   drop: dropInitState
-}
+}*/
 
 // Create store
 export default new Vuex.Store({
-  state,
+  /*state,*/
   mutations,
   actions: {
     incrementCounter({ commit, state }) {
