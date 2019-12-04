@@ -1,43 +1,6 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" role="navigation">
-      <h2>NOTES GAME</h2>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link level" id="level1" href="#notes-route">Level 1</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link test" id="test1" href="#notes-route">Test 1</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link level" id="level2" href="#notes-route">Level 2</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link test" id="test2" href="#notes-route">Test 2</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link level" id="level3" href="#notes-route">Level 3</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link test" id="test3" href="#notes-route">Test 3</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link level" id="level4" href="#notes-route">Level 4</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link test" id="test4" href="#notes-route">Test 4</a>
-          </li>
-          <li class="nav-item level">
-            <a class="nav-link" id="menu" href="#intro">MENU</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+    <Navbar/>
     <Home/>
     <Levels/>
     <Users/>
@@ -45,6 +8,7 @@
 </template>
 
 <script>
+import Navbar from './views/Navbar.vue'
 import Home from './views/Home.vue'
 import Levels from './views/Levels.vue'
 import Users from './views/Users.vue'
@@ -52,6 +16,7 @@ import Users from './views/Users.vue'
 export default {
   name: 'app', 
   components: {
+    Navbar,
     Home,
     Levels,
     Users
@@ -60,6 +25,37 @@ export default {
     return {
       staffs: [],
       notes:[]
+    }
+  },
+  methods: {
+    nextNote() {
+      let keysAvailable = {'99': 'c', '100': 'd', '101': 'e', '102': 'f','103': 'g', '97': 'a', '98': 'b'};
+      let gameNotes = [];
+      let level = 0;
+      var randomNumber = Math.floor(Math.random() * 7);
+      var randomNote = keysAvailable[randomNumber]
+      gameNotes.push(randomNote)
+
+      let userClickedKeys = (function(event) {
+        let keycode = event.which || event.keyCode
+        let userChosenKey = keysAvailable[keycode]
+          if (randomNote === userChosenKey) {
+            playSound(userChosenKey);
+            nextNote();
+          } else {
+            playSound("wrong")
+          }
+      })
+      $(document).on('keydown', userClickedKeys);
+    },
+    playSound(name) {
+      var audio = new Audio("sounds/" + name + ".mp3");
+    audio.play();
+    },
+    startOver() {
+      level = 0
+      randomNotes = []
+      started = false
     }
   },
   created() {
@@ -91,12 +87,6 @@ h2 {
 
 body {
   background-color: #f5ca99;
-}
-
-.navbar-light .navbar-nav .nav-link {
-  color: #d8412f;
-  text-transform: uppercase;
-  padding-right: 43px;
 }
 
 footer {

@@ -3,13 +3,13 @@ import { mapState, mapActions } from 'vuex'
 export default {
   name: "Users",
   computed: { // to use the mapState and mapActions functions
-    ...mapState([ 'counter' ])
+    ...mapState([ 'users' ])
   },
   methods: {
-      ...mapActions([ 'incrementCounter' ]) // to map the action to the incrementCounter value
+      ...mapActions([ 'fetchUsers' ]) // to map the action to the incrementCounter value
   },
   created() {
-      this.incrementCounter() // calling the function the moment the component is created
+      this.fetchUsers() // calling the function the moment the component is created
   }
 }
 </script>
@@ -17,5 +17,5 @@ export default {
 <template lang="pug">
   main
     h1 Hello World
-    div {{ counter }}
+    div {{ users }}
 </template>
