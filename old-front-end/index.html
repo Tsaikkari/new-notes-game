@@ -15,47 +15,13 @@
     <![endif]-->
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" role="navigation">
-      <h2>NOTES GAME</h2>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link level" id="level1" href="#notes-route">Level 1</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link test" id="test1" href="#notes-route">Test 1</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link level" id="level2" href="#notes-route">Level 2</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link test" id="test2" href="#notes-route">Test 2</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link level" id="level3" href="#notes-route">Level 3</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link test" id="test3" href="#notes-route">Test 3</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link level" id="level4" href="#notes-route">Level 4</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link test" id="test4" href="#notes-route">Test 4</a>
-          </li>
-          <li class="nav-item level">
-            <a class="nav-link" id="menu" href="#intro">MENU</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
-    <div class="container-fluid" id="intro">
-      <h3 class="intro-header"><i class="fas fa-music"></i>Learn names of the keyboard keys<br> & their corresponding notes on the staff</h3> 
+  <section>
+   <div class="container-fluid" id="intro">
+      <h3 class="intro-header"><i class="fas fa-music"></i>Learn names of the keyboard keys<br> & their corresponding notes on the staff<br>
+        <button type="button" class="btn btn-success level">Level1</button>
+        <button type="button" class="btn btn-danger test">Test1</button>
+      </h3> 
       <h5 class="how">How to play</h5>
         <p class="instructions"><strong>Levels:</strong> Click the key on your keyboard (not the piano keyboard key on the screen) 
           corresponding to the name of the key that the note is approaching. If you hit the right key the note will go to its place on the staff. 
@@ -63,7 +29,7 @@
         <p class="test-instructions"><strong>Tests:</strong> Click the keyboard key on the screen corresponding to the note on the staff.</p>
         <p class="starting">Choose a level and press any key to start</p>
     </div>
-      <section id="mini-piano">
+      <div id="mini-piano">
         <div id="piano-kb">
           <div id="kbk"> 
             <div class="k c wk">C</div>
@@ -80,40 +46,47 @@
               <div class="k b wk">B</div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
       
     <div class="container-content" id="notes-route">
       <i class="far fa-circle" id="note"></i>
-
-    </div>
+  </div>
 
     <div class="container-content" id="staff">
-      <!--<i class="fas fa-broom"></i>-->
-      <hr>
-      <hr>
-      <hr>
-      <hr>
-      <hr>
-      <hr id="ledger-line">
-    </div>
+        <!--<i class="fas fa-broom"></i>-->
+        <hr>
+        <hr>
+        <hr>
+        <hr>
+        <hr>
+        <hr id="ledger-line">
+      </div>
 
     <div class="container-content" id="klavier">
       <div id="keyboard">
-        <button type="button" class="btn btn-light c key" id="c"></button>
-        <button type="button" class="btn btn-dark black key"></button>
-        <button type="button" class="btn btn-light d key" id="d"></button>
-        <button type="button" class="btn btn-dark black key"></button>
-        <button type="button" class="btn btn-light e key" id="e"></button>
-        <button type="button" class="btn btn-light f key" id="f"></button>
-        <button type="button" class="btn btn-dark black key"></button>
-        <button type="button" class="btn btn-light g key" id="g"></button>
-        <button type="button" class="btn btn-dark black key"></button>
-        <button type="button" class="btn btn-light a key" id="a"></button>
-        <button type="button" class="btn btn-dark black key"></button>
-        <button type="button" class="btn btn-light b key" id="b"></button>
+        <button type="button" data-key="65" class="btn btn-light c key" id="c"></button>
+        <button type="button" class="btn btn-dark black"></button>
+        <button type="button" data-key="83" class="btn btn-light d key" id="d"></button>
+        <button type="button" class="btn btn-dark black"></button>
+        <button type="button" data-key="68" class="btn btn-light e key" id="e"></button>
+        <button type="button" data-key = "70" class="btn btn-light f key" id="f"></button>
+        <button type="button" class="btn btn-dark black"></button>
+        <button type="button" data-key="71" class="btn btn-light g key" id="g"></button>
+        <button type="button" class="btn btn-dark black"></button>
+        <button type="button" data-key="72" class="btn btn-light a key" id="a"></button>
+        <button type="button" class="btn btn-dark black"></button>
+        <button type="button" data-key="74" class="btn btn-light b key" id="b"></button>
       </div>
+      <!--<audio data-key="65" src="sounds/c.mp3"></audio>
+      <audio data-key="83" src="sounds/d.mp3"></audio>
+      <audio data-key="68" src="sounds/e.mp3"></audio>
+      <audio data-key="70" src="sounds/f.mp3"></audio>
+      <audio data-key="71" src="sounds/g.mp3"></audio>
+      <audio data-key="72" src="sounds/a.mp3"></audio>
+      <audio data-key="74" src="sounds/b.mp3"></audio>-->
     </div>
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="game.js"></script>
   </body>

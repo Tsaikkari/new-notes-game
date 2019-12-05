@@ -4,13 +4,8 @@ let gameNotes = [];
 let level = 0;
 let started = false;
 
-// Hides game introduction when level or test is clicked
-$(".nav-link").on("click", function() {
-  $("#intro").hide();
-})
-
-$("#menu").on("click", function() {
-  $("#intro").show();
+$("button").click(function() {
+  $("section").hide();
 })
 
 // Switches the position of the keyboard with the position of the staff depending on user clicking either level or test link.
@@ -39,7 +34,7 @@ $("#menu").on("click", function() {
 // Random note starts dropping down when user starts the game
 $(document).keydown(function() {
   if (!started) {
-    startingUp();
+    //startingUp();
     started = true; 
     var elem = document.getElementById("note");
     var pos = 0;
@@ -81,12 +76,12 @@ function startingUp() {
   }
 }
   
-/*let userClickedKeys = (function(event) {
+let userClickedKeys = (function(event) {
   let keycode = event.which || event.keyCode
   let userChosenKey = keysAvailable[keycode]
   playSound(userChosenKey);
 })
-$(document).on('keydown', userClickedKeys);*/
+$(document).on('keydown', userClickedKeys);
 
 function nextNote() {
   var randomNumber = Math.floor(Math.random() * 7);
@@ -106,10 +101,10 @@ function nextNote() {
   $(document).on('keydown', userClickedKeys);
 }
 
-function playSound(name){
+/*function playSound(name){
   var audio = new Audio("sounds/" + name + ".mp3");
   audio.play();
-}
+}*/
 
 // Add event listener to piano keyboard keys
 let numberOfKeys = document.querySelectorAll(".key").length;
@@ -120,8 +115,12 @@ for (let i = 0; i < numberOfKeys; i++) {
   });
 }
 
-/*function playSound(button) {
-  switch(button) {
+document.addEventListener("keydown", function(event) {
+  playSound(event.key);
+})
+
+function playSound(key) {
+  switch(key) {
     case "c":
       let c = new Audio("sounds/c.mp3");
       c.play();
@@ -150,13 +149,13 @@ for (let i = 0; i < numberOfKeys; i++) {
         let b = new Audio("sounds/b.mp3");
         b.play();
       break;
-      case "*":
+      case "":
         let wrong = new Audio("sounds/wrong.mp3")
         wrong.play();
       break;
       default: console.log(key)
     }
-  }*/ 
+  }
 
 function startOver() {
   level = 0
