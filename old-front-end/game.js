@@ -39,7 +39,7 @@ $("#menu").on("click", function() {
 // Random note starts dropping down when user starts the game
 $(document).keydown(function() {
   if (!started) {
-    firstNote();
+    startingUp();
     started = true; 
     var elem = document.getElementById("note");
     var pos = 0;
@@ -56,11 +56,12 @@ $(document).keydown(function() {
   }
 })
 
-function firstNote() {
-  var randomNumber = Math.floor(Math.random() * 7);
-  var randomFirstNote = startPoints[randomNumber]
-  gameNotes.push(randomFirstNote)
-  let startPoint = document.elementFromPoint(x, y);
+nextNote();
+
+function startingUp() {
+for (let i = 0; i < startPoints.length; i++) {
+  let startPoint = startPoints[i].document.elementFromPoint(x, y);
+  gameNotes.push(startNote);
   if (startPoint === "c") {
     staffPosition = 550;
   } else if (startPoint === "d") {
@@ -77,29 +78,37 @@ function firstNote() {
     staffPosition = 473;
   }
 }
-
-nextNote();
+}
+  
+/*let userClickedKeys = (function(event) {
+  let keycode = event.which || event.keyCode
+  let userChosenKey = keysAvailable[keycode]
+  playSound(userChosenKey);
+})
+$(document).on('keydown', userClickedKeys);*/
 
 function nextNote() {
-  var randomNumber = Math.floor(Math.random() * 7); 
+  var randomNumber = Math.floor(Math.random() * 7);
   var randomNote = keysAvailable[randomNumber]
   gameNotes.push(randomNote)
+
   let userClickedKeys = (function(event) {
     let keycode = event.which || event.keyCode
     let userChosenKey = keysAvailable[keycode]
       if (randomNote === userChosenKey) {
         playSound(userChosenKey);
+        nextNote();
       } else {
         playSound("wrong")
       }
   })
   $(document).on('keydown', userClickedKeys);
 }
-    
-/*function playSound(name){
+
+function playSound(name){
   var audio = new Audio("sounds/" + name + ".mp3");
   audio.play();
-}*/
+}
 
 // Add event listener to piano keyboard keys
 let numberOfKeys = document.querySelectorAll(".key").length;
@@ -110,8 +119,8 @@ for (let i = 0; i < numberOfKeys; i++) {
   });
 }
 
-function playSound(key) {
-  switch(key) {
+/*function playSound(button) {
+  switch(button) {
     case "c":
       let c = new Audio("sounds/c.mp3");
       c.play();
@@ -140,10 +149,13 @@ function playSound(key) {
         let b = new Audio("sounds/b.mp3");
         b.play();
       break;
-      default: new Audio("sounds/wrong.mp3")
+      case "*":
+        let wrong = new Audio("sounds/wrong.mp3")
         wrong.play();
+      break;
+      default: console.log(key)
     }
-  }  
+  }*/ 
 
 function startOver() {
   level = 0
