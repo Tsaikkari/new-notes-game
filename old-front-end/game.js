@@ -59,25 +59,25 @@ $(document).keydown(function() {
 nextNote();
 
 function startingUp() {
-for (let i = 0; i < startPoints.length; i++) {
-  let startPoint = startPoints[i].document.elementFromPoint(x, y);
-  gameNotes.push(startNote);
-  if (startPoint === "c") {
-    staffPosition = 550;
-  } else if (startPoint === "d") {
-    staffPosition = 540;
-  } else if (startPoint === "e") {
-    staffPosition = 528;
-  } else if (startPoint === "f") {
-    staffPosition = 513;
-  } else if (startPoint === "g") {
-    staffPosition = 500;
-  } else if (startPoint === "a") {
-    staffPosition = 487;
-  } else if (startPoint === "b") {
-    staffPosition = 473;
+  for (let i = 0; i < startPoints.length; i++) {
+    let startPoint = startPoints[i].document.elementFromPoint(x, y);
+    gameNotes.push(startPoint);
+    if (startPoint === "c") {
+      staffPosition = 550;
+    } else if (startPoint === "d") {
+      staffPosition = 540;
+    } else if (startPoint === "e") {
+      staffPosition = 528;
+    } else if (startPoint === "f") {
+      staffPosition = 513;
+    } else if (startPoint === "g") {
+      staffPosition = 500;
+    } else if (startPoint === "a") {
+      staffPosition = 487;
+    } else if (startPoint === "b") {
+      staffPosition = 473;
+    }
   }
-}
 }
   
 /*let userClickedKeys = (function(event) {
