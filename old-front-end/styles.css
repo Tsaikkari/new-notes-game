@@ -34,7 +34,7 @@ body {
 }
 
 /*little-keyboard*/
-section {
+#mini-piano {
   width: 250px;
   height: 120px;
   text-align: center;
@@ -124,12 +124,21 @@ section {
   padding-top: 10%;
   font-size: 1.6em;
   position: absolute;
-  /*padding-left: 333px;*/
 }
 
 #notes-route {
   min-height: 150px;
 }
+
+/*#note {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 2px solid black;
+  padding-top: 20px;
+  margin-left: 530px;
+}*/
 
 #keyboard {
   position: relative;

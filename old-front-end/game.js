@@ -1,7 +1,6 @@
+let startPoints = { "c": (x = 349, y = 0), "d": (x = 440, y = 0),"e": (x = 525, y = 0), "f": (x = 615, y = 0), "g": (x = 707, y = 0), "a": (x= 794, y = 0), "b": (x = 880, y = 0) }
 let keysAvailable = {'99': 'c', '100': 'd', '101': 'e', '102': 'f','103': 'g', '97': 'a', '98': 'b'};
-let startPoints = {'1': 'c', '2': 'd', '3': 'e', '4': 'f', '5': 'g', '6': 'a', '7': 'b'}; 
 let gameNotes = [];
-let Staffpositions = [];
 let level = 0;
 let started = false;
 
@@ -40,7 +39,7 @@ $("#menu").on("click", function() {
 // Random note starts dropping down when user starts the game
 $(document).keydown(function() {
   if (!started) {
-    nextNote();
+    firstNote();
     started = true; 
     var elem = document.getElementById("note");
     var pos = 0;
@@ -54,31 +53,53 @@ $(document).keydown(function() {
         elem.style.top = pos + 'px';
       }
     }
-
-    function nextNote() {
-      var randomNumber = Math.floor(Math.random() * 7);
-      var randomNote = keysAvailable[randomNumber]
-      gameNotes.push(randomNote)
-
-      let userClickedKeys = (function(event) {
-        let keycode = event.which || event.keyCode
-        let userChosenKey = keysAvailable[keycode]
-          if (randomNote === userChosenKey) {
-            playSound(userChosenKey);
-            nextNote();
-          } else {
-            playSound("wrong")
-          }
-      })
-      $(document).on('keydown', userClickedKeys);
-    }
   }
 })
+
+function firstNote() {
+  var randomNumber = Math.floor(Math.random() * 7);
+  var randomFirstNote = startPoints[randomNumber]
+  gameNotes.push(randomFirstNote)
+  let startPoint = document.elementFromPoint(x, y);
+  if (startPoint === "c") {
+    staffPosition = 550;
+  } else if (startPoint === "d") {
+    staffPosition = 540;
+  } else if (startPoint === "e") {
+    staffPosition = 528;
+  } else if (startPoint === "f") {
+    staffPosition = 513;
+  } else if (startPoint === "g") {
+    staffPosition = 500;
+  } else if (startPoint === "a") {
+    staffPosition = 487;
+  } else if (startPoint === "b") {
+    staffPosition = 473;
+  }
+}
+
+nextNote();
+
+function nextNote() {
+  var randomNumber = Math.floor(Math.random() * 7); 
+  var randomNote = keysAvailable[randomNumber]
+  gameNotes.push(randomNote)
+  let userClickedKeys = (function(event) {
+    let keycode = event.which || event.keyCode
+    let userChosenKey = keysAvailable[keycode]
+      if (randomNote === userChosenKey) {
+        playSound(userChosenKey);
+      } else {
+        playSound("wrong")
+      }
+  })
+  $(document).on('keydown', userClickedKeys);
+}
     
-function playSound(name){
+/*function playSound(name){
   var audio = new Audio("sounds/" + name + ".mp3");
   audio.play();
-}
+}*/
 
 // Add event listener to piano keyboard keys
 let numberOfKeys = document.querySelectorAll(".key").length;
@@ -88,6 +109,41 @@ for (let i = 0; i < numberOfKeys; i++) {
     playSound(buttonInnerHTML);
   });
 }
+
+function playSound(key) {
+  switch(key) {
+    case "c":
+      let c = new Audio("sounds/c.mp3");
+      c.play();
+      break;
+      case "d":
+        let d = new Audio("sounds/d.mp3");
+        d.play();
+      break;
+      case "e":
+        let e = new Audio("sounds/e.mp3");
+        e.play();
+      break;
+      case "f":
+        let f = new Audio("sounds/f.mp3");
+        f.play();
+      break;
+      case "g":
+        let g = new Audio("sounds/g.mp3");
+        g.play();
+      break;
+      case "a":
+        let a = new Audio("sounds/a.mp3");
+        a.play();
+      break;
+      case "b":
+        let b = new Audio("sounds/b.mp3");
+        b.play();
+      break;
+      default: new Audio("sounds/wrong.mp3")
+        wrong.play();
+    }
+  }  
 
 function startOver() {
   level = 0
