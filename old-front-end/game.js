@@ -60,8 +60,9 @@ nextNote();
 
 function startingUp() {
   for (let i = 0; i < startPoints.length; i++) {
-    let startPoint = startPoints[i].document.elementFromPoint(x, y);
-    gameNotes.push(startPoint);
+    let startPoint = startPoints[i].document.elementFromPoint(x, y).Math.floor(Math.random() * 7);
+    let randomStartPoint = startPoints[startPoint];
+    gameNotes.push(randomStartPoint);
     if (startPoint === "c") {
       staffPosition = 550;
     } else if (startPoint === "d") {
