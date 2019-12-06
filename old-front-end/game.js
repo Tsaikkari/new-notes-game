@@ -32,7 +32,9 @@ $("button").click(function() {
       swapElement(a, b);
   });
 
-// Random note starts dropping down when user starts the game
+  let elem = document.getElementById("c");
+
+// Random note begins to drop down when user starts the game
 $(document).keydown(function() {
   if (!started) {
     nextNote();
@@ -51,13 +53,15 @@ $(document).keydown(function() {
     }
   }
   let userChosenKeys = (function(event) {
-  let keycode = event.which || event.keyCode;
-  let userChosenKey = keysAvailable[keycode];
-  userChosenKeys.push(userChosenKey);
-  playSound(userChosenKey);
-  check(userChosenKey);
+    let keycode = event.which || event.keyCode;
+    let userChosenKey = keysAvailable[keycode];
+    userChosenKeys.push(userChosenKey);
+    playSound(event.userChosenKey);
+    check(event.userChosenKey);
   })
 })
+
+
 
 function nextNote() {
   let randomNumber = Math.floor(Math.random() * 7);
@@ -84,7 +88,7 @@ function check() {
   if (startPoint === userChosenKey) {
     nextNote();
   } else {
-    playSound("wrong")
+    playSound("wrong");
     startOver();
   }
 }
@@ -98,7 +102,7 @@ function check() {
 let numberOfKeys = document.querySelectorAll(".key").length;
 for (let i = 0; i < numberOfKeys; i++) {
   document.querySelectorAll(".key")[i].addEventListener("click", function () {
-    let buttonInnerHTML = this.innerHTML;
+    var buttonInnerHTML = this.innerHTML;
     playSound(buttonInnerHTML);
   });
 }
@@ -139,15 +143,15 @@ function playSound(key) {
         b.play();
       break;
       case "":
-        let wrong = new Audio("sounds/wrong.mp3")
+        let wrong = new Audio("sounds/wrong.mp3");
         wrong.play();
       break;
-      default: console.log(key)
+      default: console.log(key);
     }
   }
 
 function startOver() {
-  level = 0
-  randomNotes = []
-  started = false
+  level = 0;
+  gameNotes = [];
+  started = false;
 }

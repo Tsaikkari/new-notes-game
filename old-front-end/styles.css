@@ -126,10 +126,6 @@ body {
   position: absolute;
 }
 
-.i {
-  display: block;
-}
-
 #notes-route {
   min-height: 150px;
 }
