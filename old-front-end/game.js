@@ -37,17 +37,12 @@ $(document).keydown(function() {
   if (!started) {
     nextNote();
     started = true; 
-    let posY = 0;
-    posX = event.clientX, posY = event.clientY;
-    
     let elem = document.getElementById("note")
-    elem.innerHTML = event.clientX + ", " + event.clientY;
-    
-    elem = document.elementFromPoint(posX, posY);
+    let pos = 0;
     var id = setInterval(frame, 20);
 
     function frame() {
-      if (posY === this.staffPosition) { 
+      if (pos === this.staffPosition) { 
         clearInterval(id);
       } else {
         pos++;
@@ -86,7 +81,7 @@ function nextNote() {
 }
 
 function check() {
-  if (startPoints === userChosenKeys) {
+  if (startPoint === userChosenKey) {
     nextNote();
   } else {
     playSound("wrong")
