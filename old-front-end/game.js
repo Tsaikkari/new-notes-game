@@ -1,4 +1,4 @@
-let startPoints = { "c": (x = 349, y = 0), "d": (x = 440, y = 0),"e": (x = 525, y = 0), "f": (x = 615, y = 0), "g": (x = 707, y = 0), "a": (x= 794, y = 0), "b": (x = 880, y = 0) }
+let startPoints = { "c": 349, "d": 440,"e": 525, "f": 615, "g": 707, "a": 794, "b": 880 }
 let keysAvailable = [65, 83, 68, 70, 71, 72, 74];
 let gameNotes = [];
 let userChosenKeys = [];
@@ -32,26 +32,62 @@ $("button").click(function() {
       swapElement(a, b);
   });
 
-let elem = document.getElementById("c");
+// keyboard key-buttons
+let keyboardKeys = [
+  { 
+    id: "c", 
+    left: 349, 
+    staffPosition: 550 
+  },
+  {
+    id: "d", 
+    left: 440, 
+    staffPosition: 540
+  },
+  {
+    id: "e", 
+    left: 525, 
+    staffPosition: 528
+  },
+  {
+    id: "f", 
+    left: 615, 
+    staffPosition: 513
+  },
+  {
+    id: "g", 
+    left: 707, 
+    staffPosition: 500
+  },
+  {
+    id: "a", 
+    left: 794, 
+    staffPosition: 487
+  },
+  {
+    id: "b", 
+    left: 880, 
+    staffPosition: 473
+  },
+  ]
 
-function createNoteAboveKey(elem, html) {
-  let note = document.createElement('h5');
-  note.setAttribute("id","note");
-  note.appendChild('<i class="far fa-circle"></i>');
-  note.style.cssText = "position:absolute; font-size:1.6em;";
+for (let i = 0; i < keyboardKeys.length; ++i) {
+  let elem = document.getElementById(keyboardKeys[i].id);
 
-  let coords = elem.getBoundingClientRect();
+  function createNoteAboveKey(elem, html) {
+    let note = document.createElement('h6');
+    note.setAttribute("id","note");
+    note.style.cssText = "position:absolute; font-size: 3em; font-family: 'Raleway', sans-serif;";
 
-  note.style.left = 349 + "px";
-  note.style.top = 5 + "px";
-
-  note.innerHTML = html;
-
-  return note;
+    let coords = elem.getBoundingClientRect();
+    note.style.left = keyboardKeys[i].left + "px";
+    note.style.top = 5 + "px";
+    note.innerHTML = html;
+    return note;
+  }
+  let note = createNoteAboveKey(elem, 'o');
+  document.body.append(note);
 }
-
-let note = createNoteAboveKey(elem);
-document.body.append(note);
 
 // Random note starts dropping down when user starts the game
 $(document).keydown(function() {
@@ -102,7 +138,7 @@ function nextNote() {
 }
 
 function check() {
-  if (startPoints === userChosenKeys) {
+  if (randomStartPoint === userChosenKey) {
     nextNote();
   } else {
     playSound("wrong")
@@ -110,7 +146,6 @@ function check() {
   }
 }
 
-  
 /*function playSound(name){
   var audio = new Audio("sounds/" + name + ".mp3");
   audio.play();
