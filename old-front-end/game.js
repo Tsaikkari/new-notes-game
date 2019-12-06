@@ -1,4 +1,4 @@
-let startPoints = { "c": (x = 349, y = 0), "d": (x = 440, y = 0),"e": (x = 525, y = 0), "f": (x = 615, y = 0), "g": (x = 707, y = 0), "a": (x= 794, y = 0), "b": (x = 880, y = 0) }
+let startPoints = { "c": 349, "d": 440,"e": 525, "f": 615, "g": 707, "a": 794, "b": 880 }
 let keysAvailable = [65, 83, 68, 70, 71, 72, 74];
 let gameNotes = [];
 let userChosenKeys = [];
@@ -32,13 +32,79 @@ $("button").click(function() {
       swapElement(a, b);
   });
 
+<<<<<<< HEAD
 // Random note begins to drop down when user starts the game
+=======
+// keyboard key-buttons
+let keyboardKeys = [
+  { 
+    id: "c", 
+    left: 349, 
+    staffPosition: 550 
+  },
+  {
+    id: "d", 
+    left: 440, 
+    staffPosition: 540
+  },
+  {
+    id: "e", 
+    left: 525, 
+    staffPosition: 528
+  },
+  {
+    id: "f", 
+    left: 615, 
+    staffPosition: 513
+  },
+  {
+    id: "g", 
+    left: 707, 
+    staffPosition: 500
+  },
+  {
+    id: "a", 
+    left: 794, 
+    staffPosition: 487
+  },
+  {
+    id: "b", 
+    left: 880, 
+    staffPosition: 473
+  },
+  ]
+
+for (let i = 0; i < keyboardKeys.length; ++i) {
+  let elem = document.getElementById(keyboardKeys[i].id);
+
+  function createNoteAboveKey(elem, html) {
+    let note = document.createElement('h6');
+    note.setAttribute("id","note");
+    note.style.cssText = "position:absolute; font-size: 3em; font-family: 'Raleway', sans-serif;";
+
+    let coords = elem.getBoundingClientRect();
+    note.style.left = keyboardKeys[i].left + "px";
+    note.style.top = 5 + "px";
+    note.innerHTML = html;
+    return note;
+  }
+  let note = createNoteAboveKey(elem, 'o');
+  document.body.append(note);
+}
+
+// Random note starts dropping down when user starts the game
+>>>>>>> game
 $(document).keydown(function() {
   if (!started) {
     nextNote();
     started = true; 
+<<<<<<< HEAD
     let elem = document.getElementById("note")
     let pos = 0;
+=======
+    var elem = document.getElementById('note');
+    var pos = 0;
+>>>>>>> game
     var id = setInterval(frame, 20);
 
     function frame() {
@@ -83,7 +149,11 @@ function nextNote() {
 }
 
 function check() {
+<<<<<<< HEAD
   if (startPoint === userChosenKey) {
+=======
+  if (randomStartPoint === userChosenKey) {
+>>>>>>> game
     nextNote();
   } else {
     playSound("wrong");
