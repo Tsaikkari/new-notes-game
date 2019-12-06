@@ -32,12 +32,33 @@ $("button").click(function() {
       swapElement(a, b);
   });
 
+let elem = document.getElementById("c");
+
+function createNoteAboveKey(elem, html) {
+  let note = document.createElement('h5');
+  note.setAttribute("id","note");
+  note.appendChild('<i class="far fa-circle"></i>');
+  note.style.cssText = "position:absolute; font-size:1.6em;";
+
+  let coords = elem.getBoundingClientRect();
+
+  note.style.left = 349 + "px";
+  note.style.top = 5 + "px";
+
+  note.innerHTML = html;
+
+  return note;
+}
+
+let note = createNoteAboveKey(elem);
+document.body.append(note);
+
 // Random note starts dropping down when user starts the game
 $(document).keydown(function() {
   if (!started) {
     nextNote();
     started = true; 
-    var elem = document.getElementById("note");
+    var elem = document.getElementById('note');
     var pos = 0;
     var id = setInterval(frame, 20);
 
