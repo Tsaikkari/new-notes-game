@@ -1,6 +1,7 @@
 let startPoints = { "c": (x = 349, y = 0), "d": (x = 440, y = 0),"e": (x = 525, y = 0), "f": (x = 615, y = 0), "g": (x = 707, y = 0), "a": (x= 794, y = 0), "b": (x = 880, y = 0) }
 let keysAvailable = [65, 83, 68, 70, 71, 72, 74];
 let gameNotes = [];
+let userChosenKeys = [];
 let level = 0;
 let started = false;
 
@@ -34,7 +35,7 @@ $("button").click(function() {
 // Random note starts dropping down when user starts the game
 $(document).keydown(function() {
   if (!started) {
-    start();
+    nextNote();
     started = true; 
     let posY = 0;
     posX = event.clientX, posY = event.clientY;
@@ -54,11 +55,16 @@ $(document).keydown(function() {
       }
     }
   }
+  let userChosenKeys = (function(event) {
+  let keycode = event.which || event.keyCode;
+  let userChosenKey = keysAvailable[keycode];
+  userChosenKeys.push(userChosenKey);
+  playSound(userChosenKey);
+  check(userChosenKey);
+  })
 })
 
-nextNote();
-
-function start() {
+function nextNote() {
   let randomNumber = Math.floor(Math.random() * 7);
   let randomStartPoint = startPoints[randomNumber];
   gameNotes.push(randomStartPoint);
@@ -79,25 +85,21 @@ function start() {
   }
 }
 
-function nextNote() {
-  var randomNumber = Math.floor(Math.random() * 7);
-  var randomNote = keysAvailable[randomNumber]
-  gameNotes.push(randomNote)
-
-  /*let userClickedKeys = (function(event) {
-    let keycode = event.which || event.keyCode
-    let userChosenKey = keysAvailable[keycode]
-      if (randomNote === userChosenKey) {
-        playSound(userChosenKey);
-        nextNote();
-      } else {
-        playSound("wrong")
-      }
-  })
-  $(document).on('keydown', userClickedKeys);*/
+function check() {
+  if (startPoints === userChosenKeys) {
+    nextNote();
+  } else {
+    playSound("wrong")
+    startOver();
+  }
 }
 
-// Add event listener to piano keyboard keys: for tests
+/*function playSound(name){
+  var audio = new Audio("sounds/" + name + ".mp3");
+  audio.play();
+}*/
+
+// Add event listener to piano keyboard keys
 let numberOfKeys = document.querySelectorAll(".key").length;
 for (let i = 0; i < numberOfKeys; i++) {
   document.querySelectorAll(".key")[i].addEventListener("click", function () {
