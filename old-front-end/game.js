@@ -32,8 +32,6 @@ $("button").click(function() {
       swapElement(a, b);
   });
 
-  let elem = document.getElementById("c");
-
 // Random note begins to drop down when user starts the game
 $(document).keydown(function() {
   if (!started) {
