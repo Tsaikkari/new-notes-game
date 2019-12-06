@@ -1,4 +1,6 @@
 let startPoints = { "c": (x = 349, y = 0), "d": (x = 440, y = 0),"e": (x = 525, y = 0), "f": (x = 615, y = 0), "g": (x = 707, y = 0), "a": (x= 794, y = 0), "b": (x = 880, y = 0) }
+let xPositions = [349, 440, 525, 615, 707, 794, 880];
+let yPositions = [0, 0, 0, 0, 0, 0, 0];
 let keysAvailable = [65, 83, 68, 70, 71, 72, 74];
 let gameNotes = [];
 let level = 0;
@@ -36,10 +38,14 @@ $(document).keydown(function(event) {
   if (!started) {
     start();
     started = true; 
-    let posX = event.clientX, posY = event.clientY;
+    let randomNumber = Math.floor(Math.random() * 7);
+    let randomPosX = xPositions[randomNumber];
+    let randomPosY = yPositions[randomNumber];
+    randomPosX = event.clientX, randomPosY = event.clientY;
+    
     let elem = document.getElementById("note")
     elem.innerHTML = event.clientX + ", " + event.clientY;
-    elem = document.elementFromPoint(posX, posY);
+    elem = document.elementFromPoint(randomPosX, randomPosY);
     var id = setInterval(frame, 20);
     
     function frame() {
@@ -59,23 +65,22 @@ function start() {
   let randomNumber = Math.floor(Math.random() * 7);
   let randomStartPoint = startPoints[randomNumber];
   gameNotes.push(randomStartPoint);
-    if (randomStartPoint === "c") {
-      staffPosition = 550;
-    } else if (randomStartPoint === "d") {
-      staffPosition = 540;
-    } else if (randomStartPoint === "e") {
-      staffPosition = 528;
-    } else if (randomStartPoint === "f") {
-      staffPosition = 513;
-    } else if (randomStartPoint === "g") {
-      staffPosition = 500;
-    } else if (randomStartPoint === "a") {
-      staffPosition = 487;
-    } else if (randomStartPoint === "b") {
-      staffPosition = 473;
-    }
+  if (randomStartPoint === "c") {
+    staffPosition = 550;
+  } else if (randomStartPoint === "d") {
+    staffPosition = 540;
+  } else if (randomStartPoint === "e") {
+    staffPosition = 528;
+  } else if (randomStartPoint === "f") {
+    staffPosition = 513;
+  } else if (randomStartPoint === "g") {
+    staffPosition = 500;
+  } else if (randomStartPoint === "a") {
+    staffPosition = 487;
+  } else if (randomStartPoint === "b") {
+    staffPosition = 473;
   }
-
+}
 
 function nextNote() {
   var randomNumber = Math.floor(Math.random() * 7);
@@ -95,7 +100,7 @@ function nextNote() {
   $(document).on('keydown', userClickedKeys);*/
 }
 
-// Add event listener to piano keyboard keys: tests
+// Add event listener to piano keyboard keys: for tests
 let numberOfKeys = document.querySelectorAll(".key").length;
 for (let i = 0; i < numberOfKeys; i++) {
   document.querySelectorAll(".key")[i].addEventListener("click", function () {
@@ -104,7 +109,7 @@ for (let i = 0; i < numberOfKeys; i++) {
   });
 }
 
-// Add event listener to keys: levels
+// Add event listener to keys: for levels
 document.addEventListener("keydown", function(event) {
   playSound(event.key);
 })
