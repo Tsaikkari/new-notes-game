@@ -32,48 +32,6 @@ $("button").click(function() {
       swapElement(a, b);
   });
 
-<<<<<<< HEAD
-// Random note begins to drop down when user starts the game
-=======
-// keyboard key-buttons
-let keyboardKeys = [
-  { 
-    id: "c", 
-    left: 349, 
-    staffPosition: 550 
-  },
-  {
-    id: "d", 
-    left: 440, 
-    staffPosition: 540
-  },
-  {
-    id: "e", 
-    left: 525, 
-    staffPosition: 528
-  },
-  {
-    id: "f", 
-    left: 615, 
-    staffPosition: 513
-  },
-  {
-    id: "g", 
-    left: 707, 
-    staffPosition: 500
-  },
-  {
-    id: "a", 
-    left: 794, 
-    staffPosition: 487
-  },
-  {
-    id: "b", 
-    left: 880, 
-    staffPosition: 473
-  },
-  ]
-
 for (let i = 0; i < keyboardKeys.length; ++i) {
   let elem = document.getElementById(keyboardKeys[i].id);
 
@@ -93,18 +51,12 @@ for (let i = 0; i < keyboardKeys.length; ++i) {
 }
 
 // Random note starts dropping down when user starts the game
->>>>>>> game
 $(document).keydown(function() {
   if (!started) {
     nextNote();
     started = true; 
-<<<<<<< HEAD
-    let elem = document.getElementById("note")
-    let pos = 0;
-=======
     var elem = document.getElementById('note');
     var pos = 0;
->>>>>>> game
     var id = setInterval(frame, 20);
 
     function frame() {
@@ -149,11 +101,7 @@ function nextNote() {
 }
 
 function check() {
-<<<<<<< HEAD
-  if (startPoint === userChosenKey) {
-=======
   if (randomStartPoint === userChosenKey) {
->>>>>>> game
     nextNote();
   } else {
     playSound("wrong");
