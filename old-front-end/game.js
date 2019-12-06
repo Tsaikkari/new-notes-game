@@ -1,6 +1,4 @@
 let startPoints = { "c": (x = 349, y = 0), "d": (x = 440, y = 0),"e": (x = 525, y = 0), "f": (x = 615, y = 0), "g": (x = 707, y = 0), "a": (x= 794, y = 0), "b": (x = 880, y = 0) }
-let xPositions = [349, 440, 525, 615, 707, 794, 880];
-let yPositions = [0, 0, 0, 0, 0, 0, 0];
 let keysAvailable = [65, 83, 68, 70, 71, 72, 74];
 let gameNotes = [];
 let level = 0;
@@ -34,20 +32,19 @@ $("button").click(function() {
   });
 
 // Random note starts dropping down when user starts the game
-$(document).keydown(function(event) {
+$(document).keydown(function() {
   if (!started) {
     start();
     started = true; 
-    let randomNumber = Math.floor(Math.random() * 7);
-    let randomPosX = xPositions[randomNumber];
-    let randomPosY = yPositions[randomNumber];
-    randomPosX = event.clientX, randomPosY = event.clientY;
+    let posY = 0;
+    posX = event.clientX, posY = event.clientY;
     
     let elem = document.getElementById("note")
     elem.innerHTML = event.clientX + ", " + event.clientY;
-    elem = document.elementFromPoint(randomPosX, randomPosY);
-    var id = setInterval(frame, 20);
     
+    elem = document.elementFromPoint(posX, posY);
+    var id = setInterval(frame, 20);
+
     function frame() {
       if (posY === this.staffPosition) { 
         clearInterval(id);

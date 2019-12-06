@@ -16,52 +16,53 @@
   </head>
   <body>
 
-  <section>
-   <div class="container-fluid" id="intro">
-      <h3 class="intro-header"><i class="fas fa-music"></i>Learn names of the keyboard keys<br> & their corresponding notes on the staff<br>
-        <button type="button" class="btn btn-success level">Level1</button>
-        <button type="button" class="btn btn-danger test">Test1</button>
-      </h3> 
-      <h5 class="how">How to play</h5>
-        <p class="instructions"><strong>Levels:</strong> Click the key on your keyboard (not the piano keyboard key on the screen) 
-          corresponding to the name of the key that the note is approaching. If you hit the right key the note will go to its place on the staff. 
-          Put the sound on (loud)!<i class="fas fa-volume-up"></i></p>
-        <p class="test-instructions"><strong>Tests:</strong> Click the keyboard key on the screen corresponding to the note on the staff.</p>
-        <p class="starting">Choose a level and press any key to start</p>
-    </div>
+    <section>
+      <div class="container-fluid" id="intro">
+        <h3 class="intro-header"><i class="fas fa-music"></i>Learn names of the keyboard keys<br> & their corresponding notes on the staff<br>
+          <button type="button" class="btn btn-success level">Level1</button>
+          <button type="button" class="btn btn-danger test">Test1</button>
+        </h3> 
+        <h5 class="how">How to play</h5>
+          <p class="instructions"><strong>Levels:</strong> Click the key on your keyboard (not the piano keyboard key on the screen) 
+            corresponding to the name of the key that the note is approaching. If you hit the right key the note will go to its place on the staff. 
+            Put the sound on (loud)!<i class="fas fa-volume-up"></i></p>
+          <p class="test-instructions"><strong>Tests:</strong> Click the keyboard key on the screen corresponding to the note on the staff.</p>
+          <p class="starting">Choose a level and press any key to start</p>
+      </div>
       <div id="mini-piano">
         <div id="piano-kb">
           <div id="kbk"> 
             <div class="k c wk">C</div>
-              <div class="k c_sharp bk"></div>
-              <div class="k d wk">D</div>
-              <div class="k d_sharp bk"></div>
-              <div class="k e wk">E</div>
-              <div class="k f wk">F</div>
-              <div class="k f_sharp bk"></div>
-              <div class="k g wk">G</div>
-              <div class="k g_sharp bk"></div>
-              <div class="k a wk">A</div>
-              <div class="k a_sharp bk"></div>
-              <div class="k b wk">B</div>
-            </div>
+            <div class="k c_sharp bk"></div>
+            <div class="k d wk">D</div>
+            <div class="k d_sharp bk"></div>
+            <div class="k e wk">E</div>
+            <div class="k f wk">F</div>
+            <div class="k f_sharp bk"></div>
+            <div class="k g wk">G</div>
+            <div class="k g_sharp bk"></div>
+            <div class="k a wk">A</div>
+            <div class="k a_sharp bk"></div>
+            <div class="k b wk">B</div>
           </div>
         </div>
-      </section>
-      
-    <div class="container-content" id="notes-route">
-      <i class="far fa-circle" id="note"></i>
-  </div>
-
-    <div class="container-content" id="staff">
-        <!--<i class="fas fa-broom"></i>-->
-        <hr>
-        <hr>
-        <hr>
-        <hr>
-        <hr>
-        <hr id="ledger-line">
       </div>
+    </section>
+        
+    <div class="container-content" id="notes-route">
+      <div class="row">
+        <i class="far fa-circle one" id="note"></i>
+      </div>
+    </div>
+   
+    <div class="container-content" id="staff">
+      <hr>
+      <hr>
+      <hr>
+      <hr>
+      <hr>
+      <hr id="ledger-line">
+    </div>
 
     <div class="container-content" id="klavier">
       <div id="keyboard">
@@ -78,13 +79,6 @@
         <button type="button" class="btn btn-dark black"></button>
         <button type="button" data-key="74" class="btn btn-light b key" id="b"></button>
       </div>
-      <!--<audio data-key="65" src="sounds/c.mp3"></audio>
-      <audio data-key="83" src="sounds/d.mp3"></audio>
-      <audio data-key="68" src="sounds/e.mp3"></audio>
-      <audio data-key="70" src="sounds/f.mp3"></audio>
-      <audio data-key="71" src="sounds/g.mp3"></audio>
-      <audio data-key="72" src="sounds/a.mp3"></audio>
-      <audio data-key="74" src="sounds/b.mp3"></audio>-->
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
