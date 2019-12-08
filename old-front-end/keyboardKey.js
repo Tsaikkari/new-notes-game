@@ -2,37 +2,30 @@
 let keyboardKeys = [
     { 
       id: "c", 
-      left: 349, 
-      staffPosition: 550 
+      left: 349 
     },
     {
       id: "d", 
-      left: 440, 
-      staffPosition: 540
+      left: 440 
     },
     {
       id: "e", 
-      left: 525, 
-      staffPosition: 528
+      left: 525 
     },
     {
       id: "f", 
-      left: 615, 
-      staffPosition: 513
+      left: 615
     },
     {
       id: "g", 
-      left: 707, 
-      staffPosition: 500
+      left: 707 
     },
     {
       id: "a", 
-      left: 794, 
-      staffPosition: 487
+      left: 794 
     },
     {
       id: "b", 
-      left: 880, 
-      staffPosition: 473
-    },
+      left: 880     
+    }
     ]

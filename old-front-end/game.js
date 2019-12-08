@@ -36,18 +36,18 @@ for (let i = 0; i < keyboardKeys.length; ++i) {
   let elem = document.getElementById(keyboardKeys[i].id);
 
   function createNoteAboveKey(elem, html) {
-    let note = document.createElement('h6');
-    note.setAttribute("id","note");
-    note.style.cssText = "position:absolute; font-size: 3em; font-family: 'Raleway', sans-serif;";
-
+    let randomNote = document.createElement('h6');
+    randomNote.setAttribute("id","random-note");
+    randomNote.setAttribute("class", "")
+    randomNote.style.cssText = "position:absolute; font-size: 3em; font-family: 'Raleway', sans-serif;"
     let coords = elem.getBoundingClientRect();
-    note.style.left = keyboardKeys[i].left + "px";
-    note.style.top = 5 + "px";
-    note.innerHTML = html;
-    return note;
+    randomNote.style.left = keyboardKeys[i].left + "px";
+    randomNote.style.top = 5 + "px";
+    randomNote.innerHTML = html;
+    return randomNote;
   }
-  let note = createNoteAboveKey(elem, 'o');
-  document.body.append(note);
+  let randomNote = createNoteAboveKey(elem, 'o');
+  document.body.append(randomNote);
 }
 
 // Random note starts dropping down when user starts the game
@@ -55,7 +55,7 @@ $(document).keydown(function() {
   if (!started) {
     nextNote();
     started = true; 
-    var elem = document.getElementById('note');
+    var elem = document.getElementById('random-note');
     var pos = 0;
     var id = setInterval(frame, 20);
 
@@ -77,42 +77,41 @@ $(document).keydown(function() {
   })
 })
 
-
-
 function nextNote() {
-  let randomNumber = Math.floor(Math.random() * 7);
-  let randomStartPoint = startPoints[randomNumber];
-  gameNotes.push(randomStartPoint);
-  if (randomStartPoint === "c") {
+  let randomNote = $("h6").attr("id");
+  randomNote = randomNotes[Math.floor(Math.random() * 7)];
+  
+  let startPoint = startPoints[randomNote];
+  gameNotes.push(randomNote);
+   
+  if (startPoint === "c") {
     staffPosition = 550;
-  } else if (randomStartPoint === "d") {
+  } else if (startPoint === "d") {
     staffPosition = 540;
-  } else if (randomStartPoint === "e") {
+  } else if (startPoint === "e") {
     staffPosition = 528;
-  } else if (randomStartPoint === "f") {
+  } else if (startPoint === "f") {
     staffPosition = 513;
-  } else if (randomStartPoint === "g") {
+  } else if (startPoint === "g") {
     staffPosition = 500;
-  } else if (randomStartPoint === "a") {
+  } else if (startPoint === "a") {
     staffPosition = 487;
-  } else if (randomStartPoint === "b") {
+  } else if (startPoint === "b") {
     staffPosition = 473;
-  }
+  } /*else {
+    staffPosition = 0;
+  }*/
+  playSound(randomNote);
 }
 
 function check() {
-  if (randomStartPoint === userChosenKey) {
+  if (randomNote === userChosenKey) {
     nextNote();
   } else {
     playSound("wrong");
     startOver();
   }
 }
-
-/*function playSound(name){
-  var audio = new Audio("sounds/" + name + ".mp3");
-  audio.play();
-}*/
 
 // Add event listener to piano keyboard keys
 let numberOfKeys = document.querySelectorAll(".key").length;
