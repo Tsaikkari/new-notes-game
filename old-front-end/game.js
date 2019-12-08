@@ -1,5 +1,6 @@
 let startPoints = { "c": 349, "d": 440,"e": 525, "f": 615, "g": 707, "a": 794, "b": 880 }
 let keysAvailable = [65, 83, 68, 70, 71, 72, 74];
+let notes = [];
 let gameNotes = [];
 let userChosenKeys = [];
 let userChosenButtons = [];
@@ -34,21 +35,23 @@ $("button").click(function() {
   });
 
 
-// Random note starts dropping down when user starts the game
+// Random note begins to drop down when user starts the game
 $(document).keydown(function() {
   if (!started) {
     nextNote();
     started = true; 
-    var elem = document.getElementById('random-note');
-    var pos = 0;
-    var id = setInterval(frame, 20);
+    for (var i = 0; i < notes.length; i++) {
+      var elem = document.getElementById(notes[i]);
+      var pos = 0;
+      var id = setInterval(frame, 20);
 
-    function frame() {
-      if (pos === this.staffPosition) { 
-        clearInterval(id);
-      } else {
-        pos++;
-        elem.style.top = pos + 'px';
+      function frame() {
+        if (pos === this.staffPosition) { 
+          clearInterval(id);
+        } else {
+          pos++;
+          elem.style.top = pos + 'px';
+        }
       }
     }
   }
@@ -62,46 +65,47 @@ $(document).keydown(function() {
 })
 
 function nextNote() {
-  let randomNote = randomNotes[Math.floor(Math.random() * 7)];
-  let startPoint = startPoints[randomNote];
-  gameNotes.push(randomNote);
-   
-  if (startPoint === "c") {
-    staffPosition = 550;
-  } else if (startPoint === "d") {
-    staffPosition = 540;
-  } else if (startPoint === "e") {
-    staffPosition = 528;
-  } else if (startPoint === "f") {
-    staffPosition = 513;
-  } else if (startPoint === "g") {
-    staffPosition = 500;
-  } else if (startPoint === "a") {
-    staffPosition = 487;
-  } else if (startPoint === "b") {
-    staffPosition = 473;
-  } /*else {
-    staffPosition = 0;
-  }*/
-  playSound(randomNote);
-
+  // Select keys
   for (let i = 0; i < keyboardKeys.length; ++i) {
     let elem = document.getElementById(keyboardKeys[i].id);
-  
+    // Create note above piano key
     function createNoteAboveKey(elem, html) {
-      let randomNote = document.createElement('h6');
-      randomNote.setAttribute("id","random-note");
-      randomNote.setAttribute("class", "")
-      randomNote.style.cssText = "position:absolute; font-size: 3em; font-family: 'Raleway', sans-serif;"
+      let note = document.createElement('h6');
+      note.setAttribute("id","random-note");
+      note.style.cssText = "position:absolute; font-size: 3em; font-family: 'Raleway', sans-serif;"
+      
       let coords = elem.getBoundingClientRect();
-      randomNote.style.left = keyboardKeys[i].left + "px";
-      randomNote.style.top = 5 + "px";
-      randomNote.innerHTML = html;
+      note.style.left = keyboardKeys[i].left + "px";
+      note.style.top = 5 + "px";
+      note.innerHTML = html;
+      notes.push(note)
+      let randomNote = notes[Math.floor(Math.random() * 7)];
       return randomNote;
     }
     let randomNote = createNoteAboveKey(elem, 'o');
     document.body.append(randomNote);
-  }
+    gameNotes.push(randomNote);
+
+    let startPoint = startPoints[randomNote];
+    if (startPoint === "c") {
+      staffPosition = 550;
+    } else if (startPoint === "d") {
+      staffPosition = 540;
+    } else if (startPoint === "e") {
+      staffPosition = 528;
+    } else if (startPoint === "f") {
+      staffPosition = 513;
+    } else if (startPoint === "g") {
+      staffPosition = 500;
+    } else if (startPoint === "a") {
+      staffPosition = 487;
+    } else if (startPoint === "b") {
+      staffPosition = 473;
+    } /*else {
+      staffPosition = 0;
+    }*/
+      playSound(randomNote);
+    }
 } 
 
 function check() {
@@ -113,9 +117,6 @@ function check() {
     startOver();
   }
 }
-
-  
-  
 
 // Add event listener to piano keyboard keys
 let numberOfKeys = document.querySelectorAll(".key").length;

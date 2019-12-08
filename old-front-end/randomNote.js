@@ -1,30 +1,30 @@
 let randomNotes = [
   { 
-    class: "c", 
+    name: "c", 
     left: 349 
   },
   {
-    class: "d", 
+    name: "d", 
     left: 440 
   },
   {
-    class: "e", 
+    name: "e", 
     left: 525 
   },
   {
-    class: "f", 
+    name: "f", 
     left: 615
   },
   {
-    class: "g", 
+    name: "g", 
     left: 707 
   },
   {
-    class: "a", 
+    name: "a", 
     left: 794 
   },
   {
-    class: "b", 
+    name: "b", 
     left: 880     
   }
 ]
