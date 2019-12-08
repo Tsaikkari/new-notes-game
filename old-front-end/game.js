@@ -2,6 +2,7 @@ let startPoints = { "c": 349, "d": 440,"e": 525, "f": 615, "g": 707, "a": 794, "
 let keysAvailable = [65, 83, 68, 70, 71, 72, 74];
 let gameNotes = [];
 let userChosenKeys = [];
+let userChosenButtons = [];
 let level = 0;
 let started = false;
 
@@ -32,23 +33,6 @@ $("button").click(function() {
       swapElement(a, b);
   });
 
-for (let i = 0; i < keyboardKeys.length; ++i) {
-  let elem = document.getElementById(keyboardKeys[i].id);
-
-  function createNoteAboveKey(elem, html) {
-    let randomNote = document.createElement('h6');
-    randomNote.setAttribute("id","random-note");
-    randomNote.setAttribute("class", "")
-    randomNote.style.cssText = "position:absolute; font-size: 3em; font-family: 'Raleway', sans-serif;"
-    let coords = elem.getBoundingClientRect();
-    randomNote.style.left = keyboardKeys[i].left + "px";
-    randomNote.style.top = 5 + "px";
-    randomNote.innerHTML = html;
-    return randomNote;
-  }
-  let randomNote = createNoteAboveKey(elem, 'o');
-  document.body.append(randomNote);
-}
 
 // Random note starts dropping down when user starts the game
 $(document).keydown(function() {
@@ -78,9 +62,7 @@ $(document).keydown(function() {
 })
 
 function nextNote() {
-  let randomNote = $("h6").attr("id");
-  randomNote = randomNotes[Math.floor(Math.random() * 7)];
-  
+  let randomNote = randomNotes[Math.floor(Math.random() * 7)];
   let startPoint = startPoints[randomNote];
   gameNotes.push(randomNote);
    
@@ -102,10 +84,29 @@ function nextNote() {
     staffPosition = 0;
   }*/
   playSound(randomNote);
-}
+
+  for (let i = 0; i < keyboardKeys.length; ++i) {
+    let elem = document.getElementById(keyboardKeys[i].id);
+  
+    function createNoteAboveKey(elem, html) {
+      let randomNote = document.createElement('h6');
+      randomNote.setAttribute("id","random-note");
+      randomNote.setAttribute("class", "")
+      randomNote.style.cssText = "position:absolute; font-size: 3em; font-family: 'Raleway', sans-serif;"
+      let coords = elem.getBoundingClientRect();
+      randomNote.style.left = keyboardKeys[i].left + "px";
+      randomNote.style.top = 5 + "px";
+      randomNote.innerHTML = html;
+      return randomNote;
+    }
+    let randomNote = createNoteAboveKey(elem, 'o');
+    document.body.append(randomNote);
+  }
+} 
 
 function check() {
-  if (randomNote === userChosenKey) {
+  let randomNote = $("h6").attr("id");
+  if (randomNote === userChosenKey || randomNote === userChosenButton) {
     nextNote();
   } else {
     playSound("wrong");
@@ -113,12 +114,18 @@ function check() {
   }
 }
 
+  
+  
+
 // Add event listener to piano keyboard keys
 let numberOfKeys = document.querySelectorAll(".key").length;
 for (let i = 0; i < numberOfKeys; i++) {
   document.querySelectorAll(".key")[i].addEventListener("click", function () {
-    var buttonInnerHTML = this.innerHTML;
+    let userChosenButton = $(this).attr("id");
+    userChosenButtons.push(userChosenButton);
+    let buttonInnerHTML = this.innerHTML;
     playSound(buttonInnerHTML);
+    check(userChosenButton);
   });
 }
 
