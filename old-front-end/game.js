@@ -55,6 +55,7 @@ $(document).keydown(function() {
       }
     }
   }
+  // Detect keys that are pressed
   let userChosenKeys = (function(event) {
     let keycode = event.which || event.keyCode;
     let userChosenKey = keysAvailable[keycode];
@@ -65,22 +66,25 @@ $(document).keydown(function() {
 })
 
 function nextNote() {
-  // Select keys
+  // Select piano keys
   for (let i = 0; i < keyboardKeys.length; ++i) {
     let elem = document.getElementById(keyboardKeys[i].id);
     // Create note above piano key
     function createNoteAboveKey(elem, html) {
       let note = document.createElement('h6');
-      note.setAttribute("id","random-note");
+      note.setAttribute("id", "random-note");
       note.style.cssText = "position:absolute; font-size: 3em; font-family: 'Raleway', sans-serif;"
       
       let coords = elem.getBoundingClientRect();
       note.style.left = keyboardKeys[i].left + "px";
       note.style.top = 5 + "px";
       note.innerHTML = html;
+      // Add note to notes array
       notes.push(note)
-      let randomNote = notes[Math.floor(Math.random() * 7)];
-      return randomNote;
+      // modify note to be a random note
+      let randomNote = notes[Math.floor(Math.random(0, notes.length-1))];
+      
+      return randomNote;  
     }
     let randomNote = createNoteAboveKey(elem, 'o');
     document.body.append(randomNote);
@@ -109,8 +113,7 @@ function nextNote() {
 } 
 
 function check() {
-  let randomNote = $("h6").attr("id");
-  if (randomNote === userChosenKey || randomNote === userChosenButton) {
+  if (this.randomNote === this.userChosenKey || this.randomNote === this.userChosenButton) {
     nextNote();
   } else {
     playSound("wrong");
