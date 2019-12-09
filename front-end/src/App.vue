@@ -35,6 +35,9 @@
           <li class="nav-item level">
             <a class="nav-link" id="menu" href="#intro">MENU</a>
           </li>
+          <li class="nav-item level">
+            <a class="nav-link" id="users" href="#users">Users</a>
+          </li>
         </ul>
       </div>
     </nav>
@@ -96,7 +99,7 @@ body {
 .navbar-light .navbar-nav .nav-link {
   color: #d8412f;
   text-transform: uppercase;
-  padding-right: 43px;
+  padding-right: 30px;
 }
 
 footer {

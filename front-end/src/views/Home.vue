@@ -31,11 +31,13 @@
 </template>
 
 <script>
-import Levels from '../components/Levels.vue'
+import Levels from '../components/levels.vue'
+import UserCard from '../components/user-card.vue'
 export default {
   name: 'Home',
   components: {
-  Levels
+  Levels,
+  UserCard
   }
 }
 </script>
