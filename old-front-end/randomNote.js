@@ -1,30 +1,30 @@
-let randomNotes = [
+let randomNote = [
   { 
-    name: "c", 
+    class: "c", 
     left: 349 
   },
   {
-    name: "d", 
+    class: "d", 
     left: 440 
   },
   {
-    name: "e", 
+    class: "e", 
     left: 525 
   },
   {
-    name: "f", 
+    class: "f", 
     left: 615
   },
   {
-    name: "g", 
+    class: "g", 
     left: 707 
   },
   {
-    name: "a", 
+    class: "a", 
     left: 794 
   },
   {
-    name: "b", 
+    class: "b", 
     left: 880     
   }
 ]
