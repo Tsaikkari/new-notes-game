@@ -66,7 +66,7 @@ export default {
 .starting {
   font-size: 1.5em;
   color: #d8412f;
-  text-align: center;
+  /*text-align: center;*/
 }
 
 /*icons*/
@@ -83,7 +83,7 @@ section {
   width: 250px;
   height: 120px;
   text-align: center;
-  margin-left: 10%;
+  margin-left: 39%;
   border: solid 1px #000;
 }
 

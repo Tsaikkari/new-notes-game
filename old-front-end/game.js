@@ -34,106 +34,97 @@ $("button").click(function() {
       swapElement(a, b);
   });
 
-
-// Random note begins to drop down when user starts the game
+// Random note starts dropping down when user starts the game
 $(document).keydown(function() {
   if (!started) {
     nextNote();
     started = true; 
-    for (var i = 0; i < notes.length; i++) {
-      var elem = document.getElementById(notes[i]);
-      var pos = 0;
-      var id = setInterval(frame, 20);
+    var elem = document.getElementById('note');
+    var pos = 0;
+    var id = setInterval(frame, 20);
 
-      function frame() {
-        if (pos === this.staffPosition) { 
-          clearInterval(id);
-        } else {
-          pos++;
-          elem.style.top = pos + 'px';
-        }
+    function frame() {
+      if (pos === this.staffPosition) { 
+        clearInterval(id);
+      } else {
+        pos++;
+        elem.style.top = pos + 'px';
       }
     }
   }
-  // Detect keys that are pressed
   let userChosenKeys = (function(event) {
-    let keycode = event.which || event.keyCode;
-    let userChosenKey = keysAvailable[keycode];
-    userChosenKeys.push(userChosenKey);
-    playSound(event.userChosenKey);
-    check(event.userChosenKey);
+  let keycode = event.which || event.keyCode;
+  let userChosenKey = keysAvailable[keycode];
+  userChosenKeys.push(userChosenKey);
+  playSound(userChosenKey);
+  check(userChosenKey);
   })
 })
 
 function nextNote() {
-  // Select piano keys
   for (let i = 0; i < keyboardKeys.length; ++i) {
     let elem = document.getElementById(keyboardKeys[i].id);
-    // Create note above piano key
+  
     function createNoteAboveKey(elem, html) {
       let note = document.createElement('h6');
-      note.setAttribute("id", "random-note");
-      note.style.cssText = "position:absolute; font-size: 3em; font-family: 'Raleway', sans-serif;"
-      
+      note.setAttribute("id","note");
+      note.style.cssText = "position:absolute; font-size: 3em; font-family: 'Raleway', sans-serif;";
+  
       let coords = elem.getBoundingClientRect();
       note.style.left = keyboardKeys[i].left + "px";
       note.style.top = 5 + "px";
       note.innerHTML = html;
-      // Add note to notes array
       notes.push(note)
-      // modify note to be a random note
-      let randomNote = notes[Math.floor(Math.random(0, notes.length-1))];
-      
-      return randomNote;  
+      let randomNote = notes[Math.floor(Math.random() * 7)]
+      return randomNote;
     }
     let randomNote = createNoteAboveKey(elem, 'o');
     document.body.append(randomNote);
     gameNotes.push(randomNote);
 
-    let startPoint = startPoints[randomNote];
-    if (startPoint === "c") {
+  let randomStartPoint = startPoints[randomNote];
+  
+    if (randomStartPoint === "c") {
       staffPosition = 550;
-    } else if (startPoint === "d") {
+    } else if (randomStartPoint === "d") {
       staffPosition = 540;
-    } else if (startPoint === "e") {
+    } else if (randomStartPoint === "e") {
       staffPosition = 528;
-    } else if (startPoint === "f") {
+    } else if (randomStartPoint === "f") {
       staffPosition = 513;
-    } else if (startPoint === "g") {
+    } else if (randomStartPoint === "g") {
       staffPosition = 500;
-    } else if (startPoint === "a") {
+    } else if (randomStartPoint === "a") {
       staffPosition = 487;
-    } else if (startPoint === "b") {
+    } else if (randomStartPoint === "b") {
       staffPosition = 473;
-    } /*else {
-      staffPosition = 0;
-    }*/
-      playSound(randomNote);
     }
-} 
+  }
+}
 
 function check() {
-  if (this.randomNote === this.userChosenKey || this.randomNote === this.userChosenButton) {
+  if (randomStartPoint === userChosenKey) {
     nextNote();
   } else {
-    playSound("wrong");
+    playSound("wrong")
     startOver();
   }
 }
+
+/*function playSound(name){
+  var audio = new Audio("sounds/" + name + ".mp3");
+  audio.play();
+}*/
 
 // Add event listener to piano keyboard keys
 let numberOfKeys = document.querySelectorAll(".key").length;
 for (let i = 0; i < numberOfKeys; i++) {
   document.querySelectorAll(".key")[i].addEventListener("click", function () {
-    let userChosenButton = $(this).attr("id");
-    userChosenButtons.push(userChosenButton);
     let buttonInnerHTML = this.innerHTML;
     playSound(buttonInnerHTML);
-    check(userChosenButton);
   });
 }
 
-// Add event listener to keys: for levels
 document.addEventListener("keydown", function(event) {
   playSound(event.key);
 })
@@ -169,15 +160,15 @@ function playSound(key) {
         b.play();
       break;
       case "":
-        let wrong = new Audio("sounds/wrong.mp3");
+        let wrong = new Audio("sounds/wrong.mp3")
         wrong.play();
       break;
-      default: console.log(key);
+      default: console.log(key)
     }
   }
 
 function startOver() {
-  level = 0;
-  gameNotes = [];
-  started = false;
+  level = 0
+  randomNotes = []
+  started = false
 }
