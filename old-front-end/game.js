@@ -1,5 +1,5 @@
 let keysAvailable = [65, 83, 68, 70, 71, 72, 74];
-staffPositions = [550, 540, 528, 513, 500, 487, 473];
+let staffPositions = [550, 540, 528, 513, 500, 487, 473];
 let notes = [];
 let gameNotes = [];
 let userChosenKeys = [];
@@ -58,6 +58,7 @@ $(document).keydown(function() {
   userChosenKeys.push(userChosenKey);
   playSound(userChosenKey);
   check(userChosenKey);
+  nextNote(note);
   })
 })
 
@@ -82,43 +83,34 @@ function randomNote() {
     document.body.append(randomNote);
     gameNotes.push(randomNote);
     playSound(randomNote);
-    //nextNote();
   }
 }
 
-/*function nextNote() {
-  let i = $('#note');
+function nextNote() {
+  if (notes === 0)
+  notes = [c, d, e, f, g, a, b];
+  let note = $("h6").attr("id");
   for (let i = 0; i < notes.length; i++) {
-    if (notes === 0)
-    notes = [c, d, e, f, g, a, b]
-    $("h6").click(function() {
-      if (note === c) { 
-        staffPosition === staffPosition[0];
-      } else if (note === d) {
-        staffPosition === staffPosition[1];
-      } else if (note === e) {
-        staffPosition === staffPosition[2];
-      } else if (note === f) {
-        staffPosition === staffPosition[3];
-      } else if (note === g) {
-        staffPosition === staffPosition[4];
-      } else if (note === a) {
-        staffPosition === staffPosition[5];
-      } else if (note === b) {
-        staffPosition === staffPosition[6];
-      } else {
-        staffPosition = 0;
-      }
-      let userClickedKey = document.addEventListener("keydown", function(event) {
-        for (let i = 0; i < keysAvailable.length; i++); {
-          
-        }
-      })
-  userClickedKey(event.key);
+    if (note === c) { 
+      staffPosition === staffPosition[0];
+    } else if (note === d) {
+      staffPosition === staffPosition[1];
+    } else if (note === e) {
+      staffPosition === staffPosition[2];
+    } else if (note === f) {
+      staffPosition === staffPosition[3];
+    } else if (note === g) {
+      staffPosition === staffPosition[4];
+    } else if (note === a) {
+      staffPosition === staffPosition[5];
+    } else if (note === b) {
+      staffPosition === staffPosition[6];
+    } else {
+      staffPosition = 0;
+    }
+  }
+  gameNotes.push(note);
 }
-  playSound(randomNote);
-  check();
-}*/
 
 function check() {
   if (randomNote === this.userChosenKey) {
