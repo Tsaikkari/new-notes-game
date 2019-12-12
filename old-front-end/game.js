@@ -39,7 +39,7 @@ $(document).keydown(function() {
   if (!started) {
     randomNote();
     started = true; 
-    var elem = document.getElementById('note');
+    var elem = document.getElementById('1');
     var pos = 0;
     var id = setInterval(frame, 20);
 
@@ -62,34 +62,10 @@ $(document).keydown(function() {
   })
 })
 
-function randomNote() {
-  for (let i = 0; i < keyboardKeys.length; ++i) {
-    let elem = document.getElementById(keyboardKeys[i].id);
-  
-    function createNoteAboveKey(elem, html) {
-      let note = document.createElement('h6');
-      note.setAttribute("id","note");
-      note.style.cssText = "position:absolute; font-size: 3em; font-family: 'Raleway', sans-serif;";
-  
-      let coords = elem.getBoundingClientRect();
-      note.style.left = keyboardKeys[i].left + "px";
-      note.style.top = 5 + "px";
-      note.innerHTML = html;
-      notes.push(note)
-      let randomNote = notes[Math.floor(Math.random() * 7)]
-      return randomNote;
-    }
-    let randomNote = createNoteAboveKey(elem, 'o');
-    document.body.append(randomNote);
-    gameNotes.push(randomNote);
-    playSound(randomNote);
-  }
-}
-
 function nextNote() {
+  let notes = $("h6").attr("id");
   if (notes === 0)
   notes = [c, d, e, f, g, a, b];
-  let note = $("h6").attr("id");
   for (let i = 0; i < notes.length; i++) {
     if (note === c) { 
       staffPosition === staffPosition[0];
@@ -110,6 +86,47 @@ function nextNote() {
     }
   }
   gameNotes.push(note);
+}
+
+
+function randomNote() {
+  for (let i = 0; i < keyboardKeys.length; ++i) {
+    let elem = document.getElementById(keyboardKeys[i].id);
+  
+    function createNoteAboveKey(elem, html) {
+      let note = document.createElement('h6');
+      note.setAttribute("id", "note"); 
+      note.style.cssText = "position:absolute; font-size: 3em; font-family: 'Raleway', sans-serif;";
+  
+      let coords = elem.getBoundingClientRect();
+      note.style.left = keyboardKeys[i].left + "px";
+      note.style.top = 5 + "px";
+      note.innerHTML = html;
+      notes.push(note)
+      let randomNote = notes[Math.floor(Math.random() * 7)]
+      if (randomNote === notes[0]) {
+        note.setAttribute("id", "1")
+      } else if (randomNote === notes[1]) {
+        note.setAttribute("id", "+1")
+      } else if (randomNote === notes[2]) {
+        note.setAttribute("id", "++1")
+      } else if (randomNote === notes[3]) {
+        note.setAttribute("id", "+++1")
+      } else if (randomNote === notes[4]) {
+        note.setAttribute("id", "++++1")
+      } else if (randomNote === notes[5]) {
+        note.setAttribute("id", "+++++1")
+      } else if (randomNote === notes[6]) {
+        note.setAttribute("id", "++++++1")
+      }
+      
+      return randomNote;
+    }
+    randomNote = createNoteAboveKey(elem, 'o');
+    document.body.append(randomNote);
+    gameNotes.push(randomNote);
+    playSound(randomNote);
+  }
 }
 
 function check() {
