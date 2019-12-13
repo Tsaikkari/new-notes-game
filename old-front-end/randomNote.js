@@ -5,26 +5,26 @@ let randomNotes = [
   },
   {
     name: "note", 
-    id: "+1" 
+    id: "2" 
   },
   {
     name: "note", 
-    id: "++1"
+    id: "3"
   },
   {
     name: "note", 
-    id: "-1"
+    id: "4"
   },
   {
     name: "note", 
-    id: "--1" 
+    id: "5" 
   },
   {
     name: "note", 
-    id: "---1"
+    id: "6"
   },
   {
     name: "note", 
-    left: "----1"     
+    left: "7"     
   }
 ]

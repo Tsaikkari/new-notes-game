@@ -1,5 +1,5 @@
 let keysAvailable = [65, 83, 68, 70, 71, 72, 74];
-let staffPositions = [550, 540, 528, 513, 500, 487, 473];
+let staffPositions = [550, 537, 524, 510, 497, 483, 470];
 let notes = [];
 let gameNotes = [];
 let userChosenKeys = [];
@@ -39,16 +39,19 @@ $(document).keydown(function() {
   if (!started) {
     randomNote();
     started = true; 
-    var elem = document.getElementById('1');
-    var pos = 0;
-    var id = setInterval(frame, 20);
+    for (let i = 0; i < notes.length; i++) {
+      var elem = document.getElementById([notes[i].id]);
+      var pos = 0;
+      var id = setInterval(frame, 37);
 
-    function frame() {
-      if (pos === this.staffPosition) { 
-        clearInterval(id);
-      } else {
-        pos++;
-        elem.style.top = pos + 'px';
+      function frame() {
+        let staffPosition = this.staffPosition;
+        if (pos === staffPosition) { 
+          clearInterval(id);
+        } else {
+          pos++;
+          elem.style.top = pos + 'px';
+        }
       }
     }
   }
@@ -58,36 +61,8 @@ $(document).keydown(function() {
   userChosenKeys.push(userChosenKey);
   playSound(userChosenKey);
   check(userChosenKey);
-  nextNote(note);
   })
 })
-
-function nextNote() {
-  let notes = $("h6").attr("id");
-  if (notes === 0)
-  notes = [c, d, e, f, g, a, b];
-  for (let i = 0; i < notes.length; i++) {
-    if (note === c) { 
-      staffPosition === staffPosition[0];
-    } else if (note === d) {
-      staffPosition === staffPosition[1];
-    } else if (note === e) {
-      staffPosition === staffPosition[2];
-    } else if (note === f) {
-      staffPosition === staffPosition[3];
-    } else if (note === g) {
-      staffPosition === staffPosition[4];
-    } else if (note === a) {
-      staffPosition === staffPosition[5];
-    } else if (note === b) {
-      staffPosition === staffPosition[6];
-    } else {
-      staffPosition = 0;
-    }
-  }
-  gameNotes.push(note);
-}
-
 
 function randomNote() {
   for (let i = 0; i < keyboardKeys.length; ++i) {
@@ -95,7 +70,7 @@ function randomNote() {
   
     function createNoteAboveKey(elem, html) {
       let note = document.createElement('h6');
-      note.setAttribute("id", "note"); 
+      note.setAttribute("id", ""); 
       note.style.cssText = "position:absolute; font-size: 3em; font-family: 'Raleway', sans-serif;";
   
       let coords = elem.getBoundingClientRect();
@@ -106,18 +81,32 @@ function randomNote() {
       let randomNote = notes[Math.floor(Math.random() * 7)]
       if (randomNote === notes[0]) {
         note.setAttribute("id", "1")
+        note = "c";
+        staffPosition = staffPositions[0];
       } else if (randomNote === notes[1]) {
-        note.setAttribute("id", "+1")
+        note.setAttribute("id", "2")
+        note = "d";
+        staffPosition = staffPositions[1];
       } else if (randomNote === notes[2]) {
-        note.setAttribute("id", "++1")
+        note.setAttribute("id", "3")
+        note = "e";
+        staffPosition = staffPositions[2];
       } else if (randomNote === notes[3]) {
-        note.setAttribute("id", "+++1")
+        note.setAttribute("id", "4")
+        note = "f";
+        staffPosition = staffPositions[3];
       } else if (randomNote === notes[4]) {
-        note.setAttribute("id", "++++1")
+        note.setAttribute("id", "5")
+        note = "g";
+        staffPosition = staffPositions[4];
       } else if (randomNote === notes[5]) {
-        note.setAttribute("id", "+++++1")
+        note.setAttribute("id", "6")
+        note = "a";
+        staffPosition = staffPositions[5];
       } else if (randomNote === notes[6]) {
-        note.setAttribute("id", "++++++1")
+        note.setAttribute("id", "7")
+        note = "b";
+        staffPosition = staffPositions[6];
       }
       
       return randomNote;
@@ -125,12 +114,14 @@ function randomNote() {
     randomNote = createNoteAboveKey(elem, 'o');
     document.body.append(randomNote);
     gameNotes.push(randomNote);
+    console.log(randomNote)
     playSound(randomNote);
   }
 }
 
 function check() {
-  if (randomNote === this.userChosenKey) {
+  let userChosenKey = this.userChosenKey;
+  if (randomNote === userChosenKey) {
     nextNote();
   } else {
     playSound("wrong")
