@@ -1,4 +1,5 @@
 let keysAvailable = [65, 83, 68, 70, 71, 72, 74];
+staffPositions = [550, 537, 524, 510, 497, 483, 470];
 notes = [];
 let gameNotes = [];
 let userChosenKeys = [];
@@ -40,7 +41,7 @@ $(document).keydown(function() {
     started = true; 
     var elem = document.getElementById("note");
     var pos = 0;
-    var id = setInterval(frame, 10);
+    var id = setInterval(frame, 1);
 
     function frame() {
       let staffPosition = this.staffPosition;
@@ -50,9 +51,9 @@ $(document).keydown(function() {
         pos++;
         elem.style.top = pos + 'px';
       }
+      nextNote();
     }
   }
-  nextNote();
 })
     
 function nextNote() {
@@ -84,25 +85,24 @@ function createRandomNote() {
       note.innerHTML = html;
       let startPoint = note.style.left;
       notes.push(note);
-      randomNote = notes[Math.floor(Math.random() * 7)]
-
-      // Define note's stopping position
-      if (startPoint === keyboardKeys[0].left + "px") {
-        staffPosition = keyboardKeys[0].top + "px";
-      } else if (startPoint === keyboardKeys[1].left + "px") {
-        staffPosition = keyboardKeys[1].top + "px";
-      } else if (startPoint === keyboardKeys[2].left + "px") {
-        staffPosition = keyboardKeys[2].top + "px";
-      } else if (startPoint === keyboardKeys[3].left + "px") {
-        staffPosition = keyboardKeys[3].top + "px";
-      } else if (startPoint === keyboardKeys[4].left + "px") {
-        staffPosition = keyboardKeys[4].top + "px";
-      } else if (startPoint === keyboardKeys[5].left + "px") {
-        staffPosition = keyboardKeys[5].top + "px";
-      } else if (startPoint === keyboardKeys[6].left + "px") {
-        staffPosition = keyboardKeys[6].top + "px";
-      }
       
+      // Define note's stopping point
+      if (startPoint === keyboardKeys[0].left + "px") {
+        staffPosition = staffPositions[0];
+      } else if (startPoint === keyboardKeys[1].left + "px") {
+        staffPosition = staffPositions[1];
+      } else if (startPoint === keyboardKeys[2].left + "px") {
+        staffPosition = staffPositions[2];
+      } else if (startPoint === keyboardKeys[3].left + "px") {
+        staffPosition = staffPositions[3];
+      } else if (startPoint === keyboardKeys[4].left + "px") {
+        staffPosition = staffPositions[4];
+      } else if (startPoint === keyboardKeys[5].left + "px") {
+        staffPosition = staffPositions[0];
+      } else if (startPoint === keyboardKeys[6].left + "px") {
+        staffPosition = staffPositions[0];
+      }
+      randomNote = notes[Math.floor(Math.random() * 7)]
       gameNotes.push(randomNote)
       return randomNote;
       
@@ -110,7 +110,6 @@ function createRandomNote() {
     randomNote = createNoteAboveKey(elem, 'o');
     document.body.append(randomNote);
     console.log(randomNote)
-    playSound();
     nextNote();   
   }
 }
