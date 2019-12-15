@@ -1,6 +1,6 @@
 let keysAvailable = [65, 83, 68, 70, 71, 72, 74];
-staffPositions = [550, 537, 524, 510, 497, 483, 470];
-notes = [];
+let staffPositions = [550, 537, 524, 510, 497, 483, 470];
+let notes = [];
 let gameNotes = [];
 let userChosenKeys = [];
 let userChosenButtons = [];
@@ -39,6 +39,7 @@ $(document).keydown(function() {
   if (!started) {
     createRandomNote();
     started = true; 
+    //for (let i = 0; i < notes.length; i++) {
     var elem = document.getElementById("note");
     var pos = 0;
     var id = setInterval(frame, 1);
@@ -54,6 +55,7 @@ $(document).keydown(function() {
       nextNote();
     }
   }
+//}
 })
     
 function nextNote() {
@@ -64,7 +66,7 @@ function nextNote() {
       userChosenKeys.push(userChosenKey);
       playSound(userChosenKey);
       check(userChosenKey);
-      randomNotes = [];
+      gameNotes = [];
     }
   })
 }
@@ -83,24 +85,33 @@ function createRandomNote() {
       note.style.left = keyboardKeys[i].left + "px";
       note.style.top = 5 + "px";
       note.innerHTML = html;
-      let startPoint = note.style.left;
       notes.push(note);
+      let startPoint = note.style.left;
       
       // Define note's stopping point
       if (startPoint === keyboardKeys[0].left + "px") {
+        //note.setAttribute("id", "1");
         staffPosition = staffPositions[0];
       } else if (startPoint === keyboardKeys[1].left + "px") {
+        //note.setAttribute("id", "2")
         staffPosition = staffPositions[1];
       } else if (startPoint === keyboardKeys[2].left + "px") {
+        //note.setAttribute("id", "3")
         staffPosition = staffPositions[2];
       } else if (startPoint === keyboardKeys[3].left + "px") {
+        //note.setAttribute("id", "4")
         staffPosition = staffPositions[3];
       } else if (startPoint === keyboardKeys[4].left + "px") {
+        //note.setAttribute("id", "5")
         staffPosition = staffPositions[4];
       } else if (startPoint === keyboardKeys[5].left + "px") {
-        staffPosition = staffPositions[0];
+        //note.setAttribute("id", "6")
+        staffPosition = staffPositions[5];
       } else if (startPoint === keyboardKeys[6].left + "px") {
-        staffPosition = staffPositions[0];
+        //note.setAttribute("id", "7")
+        staffPosition = staffPositions[6];
+      } else {
+        staffPosition = 0;
       }
       randomNote = notes[Math.floor(Math.random() * 7)]
       gameNotes.push(randomNote)
