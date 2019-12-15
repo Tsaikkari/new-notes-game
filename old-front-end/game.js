@@ -52,7 +52,7 @@ $(document).keydown(function() {
       }
     }
   }
-  check();
+  nextNote();
 })
     
 function nextNote() {
@@ -87,7 +87,7 @@ function createRandomNote() {
       randomNote = notes[Math.floor(Math.random() * 7)]
 
       // Define note's stopping position
-      /*if (startPoint === keyboardKeys[0].left + "px") {
+      if (startPoint === keyboardKeys[0].left + "px") {
         staffPosition = keyboardKeys[0].top + "px";
       } else if (startPoint === keyboardKeys[1].left + "px") {
         staffPosition = keyboardKeys[1].top + "px";
@@ -101,7 +101,7 @@ function createRandomNote() {
         staffPosition = keyboardKeys[5].top + "px";
       } else if (startPoint === keyboardKeys[6].left + "px") {
         staffPosition = keyboardKeys[6].top + "px";
-      }*/
+      }
       
       gameNotes.push(randomNote)
       return randomNote;
