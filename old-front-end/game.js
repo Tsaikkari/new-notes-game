@@ -1,7 +1,7 @@
 let keysAvailable = [65, 83, 68, 70, 71, 72, 74];
 let staffPositions = [550, 537, 524, 510, 497, 483, 470];
 let notes = [];
-let gameNotes = [];
+let randomNotes = [];
 let userChosenKeys = [];
 let userChosenButtons = [];
 let level = 0;
@@ -33,14 +33,14 @@ $("button").click(function() {
     var b = $('#klavier' + $('#b').val());
       swapElement(a, b);
   });
-
+  
 // Random note starts dropping down when user starts the game
 $(document).keydown(function() {
   if (!started) {
     createRandomNote();
     started = true; 
-    //for (let i = 0; i < notes.length; i++) {
-    var elem = document.getElementById("note");
+    //for (let i = 0; i < randomNotes.length; i++) {
+    var elem = document.getElementById("random-note");
     var pos = 0;
     var id = setInterval(frame, 1);
 
@@ -64,68 +64,68 @@ function nextNote() {
       let keycode = event.which || event.keyCode;
       let userChosenKey = keysAvailable[keycode];
       userChosenKeys.push(userChosenKey);
-      playSound(userChosenKey);
+      console.log(userChosenKey);
       check(userChosenKey);
-      gameNotes = [];
-    }
+      randomNotes = [];
+    }  
   })
+}
+
+function staffPositionOfRandomNote() {
+  // Define note's stopping point
+  for (let i = 0; i < keyboardKeys.length; ++i) {
+    let startPoint = keyboardKeys[i].left + "px";
+    if (startPoint === keyboardKeys[0].left + "px") {
+      staffPosition = staffPositions[0];
+    } else if (startPoint === keyboardKeys[1].left + "px") {
+      staffPosition = staffPositions[1];
+    } else if (startPoint === keyboardKeys[2].left + "px") {
+      staffPosition = staffPositions[2];
+    } else if (startPoint === keyboardKeys[3].left + "px") {
+      staffPosition = staffPositions[3];
+    } else if (startPoint === keyboardKeys[4].left + "px") {
+      staffPosition = staffPositions[4];
+    } else if (startPoint === keyboardKeys[5].left + "px") {
+      staffPosition = staffPositions[5];
+    } else if (startPoint === keyboardKeys[6].left + "px") {
+      staffPosition = staffPositions[6];
+    } else { 
+      staffPosition = 0;
+    }
+  }
 }
 
 function createRandomNote() {
   for (let i = 0; i < keyboardKeys.length; ++i) {
     let elem = document.getElementById(keyboardKeys[i].id);
- 
     function createNoteAboveKey(elem, html) {
-      // Put a note above a key
-      let note = document.createElement('h6');
-      note.setAttribute("id", "note");
-      note.style.cssText = "position:absolute; font-size: 3em; font-family: 'Raleway', sans-serif;";
-      
-      let coords = elem.getBoundingClientRect();
-      note.style.left = keyboardKeys[i].left + "px";
-      note.style.top = 5 + "px";
-      note.innerHTML = html;
-      notes.push(note);
-      let startPoint = note.style.left;
-      
-      // Define note's stopping point
-      if (startPoint === keyboardKeys[0].left + "px") {
-        //note.setAttribute("id", "1");
-        staffPosition = staffPositions[0];
-      } else if (startPoint === keyboardKeys[1].left + "px") {
-        //note.setAttribute("id", "2")
-        staffPosition = staffPositions[1];
-      } else if (startPoint === keyboardKeys[2].left + "px") {
-        //note.setAttribute("id", "3")
-        staffPosition = staffPositions[2];
-      } else if (startPoint === keyboardKeys[3].left + "px") {
-        //note.setAttribute("id", "4")
-        staffPosition = staffPositions[3];
-      } else if (startPoint === keyboardKeys[4].left + "px") {
-        //note.setAttribute("id", "5")
-        staffPosition = staffPositions[4];
-      } else if (startPoint === keyboardKeys[5].left + "px") {
-        //note.setAttribute("id", "6")
-        staffPosition = staffPositions[5];
-      } else if (startPoint === keyboardKeys[6].left + "px") {
-        //note.setAttribute("id", "7")
-        staffPosition = staffPositions[6];
-      } else {
-        staffPosition = 0;
-      }
-      randomNote = notes[Math.floor(Math.random() * 7)]
-      gameNotes.push(randomNote)
-      return randomNote;
-      
+    // Put a note above a key
+    let note = document.createElement('h6');
+    note.setAttribute("id", "note");
+    note.style.cssText = "position:absolute; font-size: 3em; font-family: 'Raleway', sans-serif;";
+    
+    let coords = elem.getBoundingClientRect();
+    note.style.left = keyboardKeys[i].left + "px";
+    note.style.top = 5 + "px";
+    note.innerHTML = html;
+    notes.push(note);
+    
+    let randomNote = notes[Math.floor(Math.random() * 7)]
+    if (randomNote)
+    note.setAttribute("id", "random-note");
+    staffPositionOfRandomNote(randomNote);
+    console.log(randomNote)
+    
+    return randomNote;
     }
     randomNote = createNoteAboveKey(elem, 'o');
     document.body.append(randomNote);
-    console.log(randomNote)
     nextNote();   
   }
 }
 
 function check() {
+  let randomNote = this.randomNote;
   let userChosenKey = this.userChosenKey;
   if (randomNote == userChosenKey) {
     playSound(userChosenKey);
