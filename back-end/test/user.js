@@ -52,14 +52,14 @@ test('Delete a user', async t => {
   t.is(deleteRes.status, 200)
   t.is(deleteRes.ok, true)
 
-  // trying to render the detail page for the deleted user
+  //trying to render the detail page for the deleted user
   //const fetch = await request(app).get(`/user/${kirsiUserCreated._id}`)
   //t.is(fetch.status, 404)
 
   const fetchJson = await request(app).get(`/user/${kirsiUserCreated._id}/json`)
   t.is(fetchJson.status, 404)
 })
-//this
+
 test('Get list of users', async t => {
   t.plan(1)
   const userToCreate = { name: 'Maria', games: [] }
