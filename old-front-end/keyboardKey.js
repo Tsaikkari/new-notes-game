@@ -2,37 +2,37 @@
 let keyboardKeys = [  
     { 
       id: "c", 
-      left: 349,
-      top: 550 
+      left: 27,
+      top: 128
     },
     {
       id: "d", 
-      left: 440,
-      top: 537 
+      left: 35,
+      top: 125
     },
     {
       id: "e", 
-      left: 525,
-      top: 524 
+      left: 42,
+      top: 122
     }, 
     {
       id: "f", 
-      left: 615,
-      top: 510
+      left: 49,
+      top: 119
     },
     {
       id: "g", 
-      left: 707,
-      top: 497 
+      left: 56,
+      top: 116
     },
     {
       id: "a", 
-      left: 794,
-      top: 483 
+      left: 63,
+      top: 113
     },
     {
       id: "b", 
-      left: 880,
-      top: 470     
+      left: 70,
+      top: 110
     }
 ]

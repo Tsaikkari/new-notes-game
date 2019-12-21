@@ -17,7 +17,7 @@
   </head>
   <body>
 
-    <section>
+    <section id="wrap">
       <div class="container-fluid" id="intro">
         <h3 class="intro-header"><i class="fas fa-music"></i>Learn names of the keyboard keys<br> & their corresponding notes on the staff<br>
           <button type="button" class="btn btn-success level">Level1</button>
@@ -30,24 +30,30 @@
           <p class="test-instructions"><strong>Tests:</strong> Click the keyboard key on the screen corresponding to the note on the staff.</p>
           <p class="starting">Choose a level and press any key to start</p>
       </div>
-      <div id="mini-piano">
-        <div id="piano-kb">
-          <div id="kbk"> 
-            <div class="k c wk">C</div>
-            <div class="k c_sharp bk"></div>
-            <div class="k d wk">D</div>
-            <div class="k d_sharp bk"></div>
-            <div class="k e wk">E</div>
-            <div class="k f wk">F</div>
-            <div class="k f_sharp bk"></div>
-            <div class="k g wk">G</div>
-            <div class="k g_sharp bk"></div>
-            <div class="k a wk">A</div>
-            <div class="k a_sharp bk"></div>
-            <div class="k b wk">B</div>
-          </div>
+      <section id="min-keyboard">
+        <div class="keys">
+          <div data-key="67" class="min-key" data-note="C">C</div>
+          <div data-key="87" class="min-key sharp" data-note="C#"></div>
+          <div data-key="68" class="min-key" data-note="D">D</div>
+          <div data-key="81" class="min-key sharp" data-note="D#"></div>
+          <div data-key="69" class="min-key" data-note="E">E</div>
+          <div data-key="70" class="min-key" data-note="F">F</div>
+          <div data-key="84" class="min-key sharp" data-note="F#"></div>
+          <div data-key="71" class="min-key" data-note="G">G</div>
+          <div data-key="89" class="min-key sharp" data-note="G#"></div>
+          <div data-key="65" class="min-key" data-note="A">A</div>
+          <div data-key="85" class="min-key sharp" data-note="A#"></div>
+          <div data-key="66" class="min-key" data-note="B">B</div>
         </div>
-      </div>
+  
+        <audio data-key="67" src="sounds/c.mp3"></audio>
+        <audio data-key="68" src="sounds/d.mp3"></audio>
+        <audio data-key="69" src="sounds/e.mp3"></audio>
+        <audio data-key="70" src="sounds/f.mp3"></audio>
+        <audio data-key="71" src="sounds/g.mp3"></audio>
+        <audio data-key="65" src="sounds/a.mp3"></audio>
+        <audio data-key="66" src="sounds/b.mp3"></audio>
+      </section>
     </section>
         
     <div class="container-content" id="notes-route">
@@ -66,16 +72,16 @@
     <div class="container-content" id="klavier">
       <div id="keyboard">
         <button type="button" class="btn btn-light c key" id="c"></button>
-        <button type="button" class="btn btn-dark black"></button>
+        <button type="button" class="btn btn-dark cis black key"></button>
         <button type="button" class="btn btn-light d key" id="d"></button>
-        <button type="button" class="btn btn-dark black"></button>
+        <button type="button" class="btn btn-dark dis black key"></button>
         <button type="button" class="btn btn-light e key" id="e"></button>
         <button type="button" class="btn btn-light f key" id="f"></button>
-        <button type="button" class="btn btn-dark black"></button>
+        <button type="button" class="btn btn-dark fis black key"></button>
         <button type="button" class="btn btn-light g key" id="g"></button>
-        <button type="button" class="btn btn-dark black"></button>
+        <button type="button" class="btn btn-dark gis black key"></button>
         <button type="button" class="btn btn-light a key" id="a"></button>
-        <button type="button" class="btn btn-dark black"></button>
+        <button type="button" class="btn btn-dark ais black key"></button>
         <button type="button" class="btn btn-light b key" id="b"></button>
       </div>
     </div>

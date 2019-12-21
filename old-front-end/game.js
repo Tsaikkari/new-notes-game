@@ -1,5 +1,5 @@
-let keysAvailable = [65, 83, 68, 70, 71, 72, 74];
-let staffPositions = [550, 537, 524, 510, 497, 483, 470];
+let keysAvailable = [67, 68, 69, 70, 71, 65, 66];
+//let staffPositions = [550, 537, 524, 510, 497, 483, 470];
 let notes = [];
 let randomNotes = [];
 let userChosenKeys = [];
@@ -39,10 +39,9 @@ $(document).keydown(function() {
   if (!started) {
     createRandomNote();
     started = true; 
-    //for (let i = 0; i < randomNotes.length; i++) {
     var elem = document.getElementById("random-note");
     var pos = 0;
-    var id = setInterval(frame, 1);
+    var id = setInterval(frame, 25);
 
     function frame() {
       let staffPosition = this.staffPosition;
@@ -50,24 +49,20 @@ $(document).keydown(function() {
         clearInterval(id);
       } else {
         pos++;
-        elem.style.top = pos + 'px';
+        elem.style.top = pos + '%';
       }
-      nextNote();
     }
   }
-//}
 })
     
 function nextNote() {
   document.addEventListener("keydown", function(event) {
-    for (let i = 0; i < keysAvailable.length; i++) {
-      let keycode = event.which || event.keyCode;
-      let userChosenKey = keysAvailable[keycode];
-      userChosenKeys.push(userChosenKey);
-      console.log(userChosenKey);
-      check(userChosenKey);
-      randomNotes = [];
-    }  
+    let keycode = event.which || event.keyCode;
+    let userChosenKey = keysAvailable[keycode];
+    userChosenKeys.push(userChosenKey);
+    console.log(userChosenKey);
+    check(userChosenKey);
+    randomNotes = []; 
   })
 }
 
@@ -76,19 +71,19 @@ function staffPositionOfRandomNote() {
   for (let i = 0; i < keyboardKeys.length; ++i) {
     let startPoint = keyboardKeys[i].left + "px";
     if (startPoint === keyboardKeys[0].left + "px") {
-      staffPosition = staffPositions[0];
+      staffPosition = keyboardKeys[0].top;
     } else if (startPoint === keyboardKeys[1].left + "px") {
-      staffPosition = staffPositions[1];
+      staffPosition = keyboardKeys[1].top;
     } else if (startPoint === keyboardKeys[2].left + "px") {
-      staffPosition = staffPositions[2];
+      staffPosition = keyboardKeys[2].top;
     } else if (startPoint === keyboardKeys[3].left + "px") {
-      staffPosition = staffPositions[3];
+      staffPosition = keyboardKeys[3].top;
     } else if (startPoint === keyboardKeys[4].left + "px") {
-      staffPosition = staffPositions[4];
+      staffPosition = keyboardKeys[4].top;
     } else if (startPoint === keyboardKeys[5].left + "px") {
-      staffPosition = staffPositions[5];
+      staffPosition = keyboardKeys[5].top;
     } else if (startPoint === keyboardKeys[6].left + "px") {
-      staffPosition = staffPositions[6];
+      staffPosition = keyboardKeys[6].top;
     } else { 
       staffPosition = 0;
     }
@@ -105,8 +100,8 @@ function createRandomNote() {
     note.style.cssText = "position:absolute; font-size: 3em; font-family: 'Raleway', sans-serif;";
     
     let coords = elem.getBoundingClientRect();
-    note.style.left = keyboardKeys[i].left + "px";
-    note.style.top = 5 + "px";
+    note.style.left = keyboardKeys[i].left + "%";
+    note.style.top = 1 + "%";
     note.innerHTML = html;
     notes.push(note);
     
@@ -127,7 +122,7 @@ function createRandomNote() {
 function check() {
   let randomNote = this.randomNote;
   let userChosenKey = this.userChosenKey;
-  if (randomNote == userChosenKey) {
+  if (randomNote === userChosenKey) {
     playSound(userChosenKey);
     createRandomNote();
   } else {
@@ -147,7 +142,12 @@ for (let i = 0; i < numberOfKeys; i++) {
 
 document.addEventListener("keydown", function(event) {
   playSound(event.key);
-})
+});
+
+/*function playSound(name) {
+  var audio = new Audio("sounds/" + name + ".mp3");
+  audio.play();
+}*/
 
 function playSound(key) {
   switch(key) {
@@ -179,10 +179,10 @@ function playSound(key) {
       let b = new Audio("sounds/b.mp3");
       b.play();
     break;
-    case "":
+    /*case "":
       let wrong = new Audio("sounds/wrong.mp3")
       wrong.play();
-    break;
+    break;*/
     default: console.log(key)
   }
 }
