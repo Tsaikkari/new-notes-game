@@ -24,27 +24,21 @@ function staffPositionLevel() {
 
 function StaffPositionTest() {
   for (let i = 0; i < keyboardKeys.length; ++i) {
-    let randomNote = note.style.left;
-    if (randomNote === keyboardKeys[0].left + "%") {
-        randomNote = keyboardKeys[3].left + "%";
-        staffPosition = keyboardKeys[0].top2;
-    } else if (randomNote === keyboardKeys[1].left + "%") {
-        randomNote = keyboardKeys[3].left + "%";
+    startPoint = keyboardKeys[3].left + "%";
+    let randomNote = keyboardKeys[i].id;
+    if (randomNote === keyboardKeys[0].id) {
+      staffPosition = keyboardKeys[0].top2;
+    } else if (randomNote === keyboardKeys[1].id) {
         staffPosition = keyboardKeys[1].top2;
-    } else if (randomNote === keyboardKeys[2].left + "%") {
-        randomNote = keyboardKeys[3].left + "%";
+    } else if (randomNote === keyboardKeys[2].id) {
         staffPosition = keyboardKeys[2].top2;
-    } else if (randomNote === keyboardKeys[3].left + "%") {
-        randomNote = keyboardKeys[3].left + "%";
+    } else if (randomNote === keyboardKeys[3].id) {
         staffPosition = keyboardKeys[3].top2;
-    } else if (randomNote === keyboardKeys[4].left + "%") {
-        randomNote = keyboardKeys[3].left + "%";
+    } else if (randomNote === keyboardKeys[4].id) {
         staffPosition = keyboardKeys[4].top2;
-    } else if (randomNote === keyboardKeys[5].left + "%") {
-        randomNote = keyboardKeys[3].left + "%";
+    } else if (randomNote === keyboardKeys[5].id) {
         staffPosition = keyboardKeys[5].top2;
-    } else if (randomNote === keyboardKeys[6].left + "%") {
-        randomNote = keyboardKeys[3].left + "%";
+    } else if (randomNote === keyboardKeys[6].id) {
         staffPosition = keyboardKeys[6].top2;
     } else { 
         staffPosition = 0;
