@@ -39,7 +39,7 @@ $('.level').on('click', function() {
 
 
 // Random note starts dropping down when user starts the game
-$(document).keydown(function() {
+$(document).keydown(function(event) {
   if (!started) {
     createRandomNote();
     started = true; 
@@ -57,9 +57,26 @@ $(document).keydown(function() {
       }
     }
   }
+  let keycode = event.keyCode;
+  let userChosenKey = keysAvailable[keycode];
+  userChosenKeys.push(userChosenKey);
+  console.log(userChosenKey);
+  playSound(userChosenKey);
+  checkUserChoise(userChosenKey);
 })
+
+function checkUserChoise() {
+  let randomNote = this.randomNote;
+  let userChosenKey = this.userChosenKey;
+  if (randomNote === userChosenKey) {
+    createRandomNote();
+  } else {
+    //playSound('wrong')
+    startOver();
+  }
+}
    
-function nextNote() {
+/*function nextNote() {
   document.addEventListener("keydown", function(event) {
     let keycode = event.keyCode;
     let userChosenKey = keysAvailable[keycode];
@@ -68,7 +85,7 @@ function nextNote() {
     checkUserChoise(userChosenKey);
     randomNotes = []; 
   })
-}
+}*/
 
 function createRandomNote() {
   for (let i = 0; i < keyboardKeys.length; ++i) {
@@ -99,20 +116,7 @@ function createRandomNote() {
       staffPositionLevel(randomNote);
     } else {
     staffPositionTest(randomNote);
-    }    
-    nextNote();   
-  }
-}
-
-function checkUserChoise() {
-  let randomNote = this.randomNote;
-  let userChosenKey = this.userChosenKey;
-  if (randomNote === userChosenKey) {
-    playSound(userChosenKey);
-    createRandomNote();
-  } else {
-    //playSound('wrong')
-    startOver();
+    }     
   }
 }
 
@@ -131,44 +135,6 @@ function playSound(name) {
   var audio = new Audio("sounds/" + name + ".mp3");
   audio.play();
 }
-
-/*function playSound(key) {
-  switch(key) {
-    case "c":
-      let c = new Audio("sounds/c.mp3");
-      c.play();
-    break;
-    case "d":
-      let d = new Audio("sounds/d.mp3");
-      d.play();
-    break;
-    case "e":
-      let e = new Audio("sounds/e.mp3");
-      e.play();
-    break;
-    case "f":
-      let f = new Audio("sounds/f.mp3");
-      f.play();
-    break;
-    case "g":
-      let g = new Audio("sounds/g.mp3");
-      g.play();
-    break;
-    case "a":
-      let a = new Audio("sounds/a.mp3");
-      a.play();
-    break;
-    case "b":
-      let b = new Audio("sounds/b.mp3");
-      b.play();
-    break;
-    case "":
-      let wrong = new Audio("sounds/wrong.mp3")
-      wrong.play();
-    break;
-    default: console.log(key)
-  }
-}*/
 
 function startOver() {
   level = 0
