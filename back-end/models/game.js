@@ -8,10 +8,7 @@ const GameSchema = new mongoose.Schema({
     },
     staffs: [{
         type: mongoose.SchemaTypes.ObjectId,
-        ref: 'Staff',
-        autopopulate: {
-            maxDepth: 1
-        }
+        ref: 'Staff'
     }],
     users: [{
         type: mongoose.SchemaTypes.ObjectId,

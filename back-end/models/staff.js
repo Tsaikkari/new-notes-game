@@ -11,10 +11,7 @@ const StaffSchema = new mongoose.Schema({
   },
   notes: [{
     type: mongoose.SchemaTypes.ObjectId,
-    ref: 'Note',
-    autopopulate: {
-        maxDepth: 1
-    }
+    ref: 'Note'
   }],
   games: [{
     type: mongoose.SchemaTypes.ObjectId,
@@ -25,24 +22,15 @@ const StaffSchema = new mongoose.Schema({
   }],
   startPoints: [{
     type: mongoose.SchemaTypes.ObjectId,
-    ref: 'Note',
-    autopopulate: {
-        maxDepth: 1
-    }
+    ref: 'Note'
   }],
   staffPositions: [{
     type: mongoose.SchemaTypes.ObjectId,
-    ref: 'Note',
-    autopopulate: {
-        maxDepth: 1
-    }
+    ref: 'Note'
   }],
   testStaffPositions: [{
     type: mongoose.SchemaTypes.ObjectId,
-    ref: 'Note',
-    autopopulate: {
-        maxDepth: 1
-    }
+    ref: 'Note'
   }]
 })
 

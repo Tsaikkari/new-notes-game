@@ -3,36 +3,43 @@ let keyboardKeys = [
     { 
       id: "c", 
       left: 27,
-      top: 93
+      top1: 93,
+      top2: 10  
     },
     {
       id: "d", 
       left: 35,
-      top: 91
+      top1: 91,
+      top2: 10
     },
     {
       id: "e", 
       left: 42,
-      top: 88
+      top1: 88,
+      top2: 10
     }, 
     {
       id: "f", 
       left: 49,
-      top: 86
+      top1: 86,
+      tops2: 10
     },
     {
       id: "g", 
       left: 56,
-      top: 84
+      top1: 84,
+      top2: 10
     },
     {
       id: "a", 
       left: 63,
-      top: 81
+      top1: 81,
+      top2: 10
     },
     {
       id: "b", 
       left: 70,
-      top: 79
+      top1: 79,
+      top2: 10
     }
 ]

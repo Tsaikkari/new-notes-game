@@ -37,8 +37,9 @@ $('.level').on('click', function() {
     swapElement(a, b);
 });
 
+
 // Random note starts dropping down when user starts the game
-$(document).keydown(function(e) {
+$(document).keydown(function() {
   if (!started) {
     createRandomNote();
     started = true; 
@@ -64,33 +65,9 @@ function nextNote() {
     let userChosenKey = keysAvailable[keycode];
     userChosenKeys.push(userChosenKey);
     console.log(userChosenKey);
-    check(userChosenKey);
+    checkRandomNote(userChosenKey);
     randomNotes = []; 
   })
-}
-
-function staffPositionOfRandomNote() {
-  // Define note's stopping point
-  for (let i = 0; i < keyboardKeys.length; ++i) {
-    let startPoint = keyboardKeys[i].left + "px";
-    if (startPoint === keyboardKeys[0].left + "px") {
-      staffPosition = keyboardKeys[0].top;
-    } else if (startPoint === keyboardKeys[1].left + "px") {
-      staffPosition = keyboardKeys[1].top;
-    } else if (startPoint === keyboardKeys[2].left + "px") {
-      staffPosition = keyboardKeys[2].top;
-    } else if (startPoint === keyboardKeys[3].left + "px") {
-      staffPosition = keyboardKeys[3].top;
-    } else if (startPoint === keyboardKeys[4].left + "px") {
-      staffPosition = keyboardKeys[4].top;
-    } else if (startPoint === keyboardKeys[5].left + "px") {
-      staffPosition = keyboardKeys[5].top;
-    } else if (startPoint === keyboardKeys[6].left + "px") {
-      staffPosition = keyboardKeys[6].top;
-    } else { 
-      staffPosition = 0;
-    }
-  }
 }
 
 function createRandomNote() {
@@ -111,17 +88,23 @@ function createRandomNote() {
     let randomNote = notes[Math.floor(Math.random() * 7)]
     if (randomNote)
     note.setAttribute("id", "random-note");
-    staffPositionOfRandomNote(randomNote);
     console.log(randomNote)
     return randomNote;
     }
     randomNote = createNoteAboveKey(elem, 'o');
     document.body.append(randomNote);
+
+    let level = $('.level');
+    if (level) {
+      staffPositionLevel(randomNote);
+    } else {
+    staffPositionTest(randomNote);
+    }    
     nextNote();   
   }
 }
 
-function check() {
+function checkRandomNote() {
   let randomNote = this.randomNote;
   let userChosenKey = this.userChosenKey;
   if (randomNote === userChosenKey) {

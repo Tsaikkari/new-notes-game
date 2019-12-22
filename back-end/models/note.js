@@ -22,10 +22,7 @@ const NoteSchema = new mongoose.Schema({
   },
   staffs: [{
     type: mongoose.SchemaTypes.ObjectId,
-    ref: 'Staff',
-    autopopulate: {
-        maxDepth: 1
-    }
+    ref: 'Staff'
   }]
 })
 
