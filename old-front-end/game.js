@@ -65,7 +65,7 @@ function nextNote() {
     let userChosenKey = keysAvailable[keycode];
     userChosenKeys.push(userChosenKey);
     console.log(userChosenKey);
-    checkRandomNote(userChosenKey);
+    checkUserChoise(userChosenKey);
     randomNotes = []; 
   })
 }
@@ -104,7 +104,7 @@ function createRandomNote() {
   }
 }
 
-function checkRandomNote() {
+function checkUserChoise() {
   let randomNote = this.randomNote;
   let userChosenKey = this.userChosenKey;
   if (randomNote === userChosenKey) {
