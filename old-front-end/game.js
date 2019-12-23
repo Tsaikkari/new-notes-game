@@ -75,17 +75,6 @@ function checkUserChoise() {
     startOver();
   }
 }
-   
-/*function nextNote() {
-  document.addEventListener("keydown", function(event) {
-    let keycode = event.keyCode;
-    let userChosenKey = keysAvailable[keycode];
-    userChosenKeys.push(userChosenKey);
-    console.log(userChosenKey);
-    checkUserChoise(userChosenKey);
-    randomNotes = []; 
-  })
-}*/
 
 function createRandomNote() {
   for (let i = 0; i < keyboardKeys.length; ++i) {
@@ -105,6 +94,7 @@ function createRandomNote() {
     let randomNote = notes[Math.floor(Math.random() * 7)]
     if (randomNote)
     note.setAttribute("id", "random-note");
+    note.setAttribute("class", "_note")
     console.log(randomNote)
     return randomNote;
     }
