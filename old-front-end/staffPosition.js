@@ -1,3 +1,5 @@
+// TODO: Define randomNote's startPoint
+
 function staffPositionLevel() {
 // Define note's stopping point
   for (let i = 0; i < keyboardKeys.length; ++i) {
@@ -24,7 +26,8 @@ function staffPositionLevel() {
 
 function staffPositionTest() {
   for (let i = 0; i < keyboardKeys.length; ++i) {
-    startPoint = keyboardKeys[3].left + "%";
+    note.style.left = keyboardKeys[3].left + "%";
+    startPoint = note.style.left;
     let randomNote = keyboardKeys[i].class;
     if (randomNote === keyboardKeys[0].class) {
         staffPosition = keyboardKeys[0].top2;
