@@ -45,12 +45,6 @@ $(document).keydown(function(event) {
     started = true; 
     let elem = document.getElementById("random-note");
     let pos = 0
-    if (document.querySelectorAll(".test").clicked == true) {
-      randomNote = document.getElementById("random-note").css("padding-left", "45%")
-      staffPositionTest(randomNote);
-    } else {
-      staffPositionLevel();
-    }
     let id = setInterval(frame, 5);
 
     function frame() {
@@ -93,7 +87,11 @@ function createRandomNote() {
     note.style.cssText = "position:absolute; font-size: 3em; font-family: 'Raleway', sans-serif;";
     
     let coords = elem.getBoundingClientRect();
+    if (document.querySelectorAll(".test").clicked == true) {
+      note.style.left = 45 + "%";
+    } else {
     note.style.left = keyboardKeys[i].left + "%";
+    }
     //note.style.top = 0 + "px";
     note.innerHTML = html;
     notes.push(note);
@@ -113,7 +111,7 @@ function createRandomNote() {
     } else if (note.style.left === keyboardKeys[6].left + "%") {
         note.setAttribute("class", "b-note");
     } 
-    
+
     let randomNote = notes[Math.floor(Math.random() * 7)]
     if (randomNote)
     note.setAttribute("id", "random-note");
@@ -124,12 +122,12 @@ function createRandomNote() {
     let randomNote = createNoteAboveKey(elem, 'o');
     document.body.append(randomNote);
 
-    /*let level = $('.level');
+    let level = $('.level');
     if (level) {
       staffPositionLevel(randomNote);
     } else {
       staffPositionTest(randomNote);
-    }  */ 
+    }  
   }
 }
 

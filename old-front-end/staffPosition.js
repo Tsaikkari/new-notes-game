@@ -21,18 +21,7 @@ function staffPositionLevel() {
   }
 };
 
-// TODO: Create element above in the middle of the keyboard.
 function staffPositionTest() {
-  if (document.querySelectorAll(".test").clicked == true) {
-
-
-
-    
-    randomNote = document.getElementById("random-note").css("padding-left", "45%")
-    staffPositionTest(randomNote);
-  } else {
-    staffPositionLevel();
-  }
   for (let i = 0; i < keyboardKeys.length; ++i) {
     if (document.getElementById("random-note") == document.querySelector(".f-note")) {        
       staffPosition = keyboardKeys[i].bottom;
