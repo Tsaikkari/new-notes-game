@@ -2,51 +2,51 @@
 let keyboardKeys = [  
     { 
       id: "c", 
-      class: "c_note",
+      class: "c-note",
       left: 27,
-      top1: 93,
-      top2: 10  
+      top: 550
+      //bottom:  
     },
     {
       id: "d", 
-      class: "d_note",
+      class: "d-note",
       left: 35,
-      top1: 91,
-      top2: 10
+      top: 537
+      //bottom: 
     },
     {
       id: "e", 
-      class: "e_note",
+      class: "e-note",
       left: 42,
-      top1: 88,
-      top2: 10
+      top: 524
+      //bottom: 
     }, 
     {
       id: "f", 
-      class: "f_note",
+      class: "f-note",
       left: 49,
-      top1: 86,
-      tops2: 10
+      top: 510
+      //bottom: 
     },
     {
       id: "g", 
-      class: "g_note",
+      class: "g-note",
       left: 56,
-      top1: 84,
-      top2: 10
+      top: 497
+      //bottom: 
     },
     {
       id: "a", 
-      class: "a_note",
+      class: "a-note",
       left: 63,
-      top1: 81,
-      top2: 10
+      top: 483
+      //bottom: 
     },
     {
       id: "b", 
-      class: "b_note",
+      class: "b-note",
       left: 70,
-      top1: 79,
-      top2: 10
+      top: 470
+      //bottom: 
     }
 ]

@@ -43,20 +43,31 @@ $(document).keydown(function(event) {
   if (!started) {
     createRandomNote();
     started = true; 
-    var elem = document.getElementById("random-note");
-    var pos = 0;
-    var id = setInterval(frame, 25);
+    let elem = document.getElementById("random-note");
+    let pos = 0
+    for (let i = 0; i < keyboardKeys.length; i++) {
+      let startPoint = this.startPoint;
+      if (document.querySelectorAll(".test").clicked == true) {
+        startPoint == keyboardKeys[3].left + "%"
+        staffPositionTest();
+      } else {
+          startPoint == keyboardKeys[i].left + "%"
+          staffPositionLevel();
+      }
+    }
+    let id = setInterval(frame, 5);
 
     function frame() {
-      let staffPosition = this.staffPosition;
-      if (pos === staffPosition) { 
+    let staffPosition = this.staffPosition;
+      if (pos == staffPosition) { 
         clearInterval(id);
       } else {
         pos++;
-        elem.style.top = pos + '%';
+        elem.style.top = pos + "px";
       }
     }
   }
+  
   let keycode = event.keyCode;
   let userChosenKey = keysAvailable[keycode];
   userChosenKeys.push(userChosenKey);
@@ -66,9 +77,9 @@ $(document).keydown(function(event) {
 })
 
 function checkUserChoise() {
-  let randomNote = this.randomNote;
+  let note = this.note;
   let userChosenKey = this.userChosenKey;
-  if (randomNote === userChosenKey) {
+  if (note === userChosenKey) {
     createRandomNote();
   } else {
     //playSound('wrong')
@@ -87,26 +98,49 @@ function createRandomNote() {
     
     let coords = elem.getBoundingClientRect();
     note.style.left = keyboardKeys[i].left + "%";
-    note.style.top = 1 + "%";
+    note.style.top = 0 + "px";
     note.innerHTML = html;
     notes.push(note);
+    
+    if (note.style.left === keyboardKeys[0].left + "%") {
+      note.setAttribute("class", "c-note");
+      note.style.top = keyboardKeys[0].top;
+    } else if (note.style.left === keyboardKeys[1].left + "%") {
+       note.setAttribute("class", "d-note");
+       note.style.top = keyboardKeys[1].top;
+    } else if (note.style.left === keyboardKeys[2].left + "%") {
+        note.setAttribute("class", "e-note");
+        note.style.top = keyboardKeys[2].top;
+    } else if (note.style.left === keyboardKeys[3].left + "%") {
+        note.setAttribute("class", "f-note");
+        note.style.top = keyboardKeys[3].top;
+    } else if (note.style.left === keyboardKeys[4].left + "%") {
+        note.setAttribute("class", "g-note");
+        note.style.top = keyboardKeys[4].top;
+    } else if (note.style.left === keyboardKeys[5].left + "%") {
+        note.setAttribute("class", "a-note");
+        note.style.top = keyboardKeys[5].top;
+    } else if (note.style.left === keyboardKeys[6].left + "%") {
+        note.setAttribute("class", "b-note");
+        note.style.top = keyboardKeys[6].top;
+    } 
     
     let randomNote = notes[Math.floor(Math.random() * 7)]
     if (randomNote)
     note.setAttribute("id", "random-note");
-    note.setAttribute("class", "_note")
+
     console.log(randomNote)
     return randomNote;
     }
-    randomNote = createNoteAboveKey(elem, 'o');
+    let randomNote = createNoteAboveKey(elem, 'o');
     document.body.append(randomNote);
 
     let level = $('.level');
     if (level) {
       staffPositionLevel(randomNote);
     } else {
-    staffPositionTest(randomNote);
-    }     
+      staffPositionTest(randomNote);
+    }   
   }
 }
 
@@ -127,7 +161,7 @@ function playSound(name) {
 }
 
 function startOver() {
-  level = 0
-  randomNotes = []
-  started = false
+  level = 0;
+  randomNotes = [];
+  started = false;
 }
