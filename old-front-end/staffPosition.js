@@ -21,12 +21,9 @@ function staffPositionLevel() {
   }
 };
 
+// TODO: Connect with randomNote
 function staffPositionTest() {
   for (let i = 0; i < keyboardKeys.length; ++i) {
-    if (document.getElementById("random-note") == document.querySelector(".f-note")) {        
-      staffPosition = keyboardKeys[i].bottom;
-    } else { 
-        staffPosition = 0;
-    }
+    staffPosition = keyboardKeys[i].bottom;
   }
 };
