@@ -45,6 +45,12 @@ $(document).keydown(function(event) {
     started = true; 
     let elem = document.getElementById("random-note");
     let pos = 0
+    if (document.querySelectorAll(".test").clicked == true) {
+      randomNote = document.getElementById("random-note").css("padding-left", "45%")
+      staffPositionTest(randomNote);
+    } else {
+      staffPositionLevel();
+    }
     let id = setInterval(frame, 5);
 
     function frame() {
