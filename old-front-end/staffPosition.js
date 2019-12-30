@@ -1,5 +1,5 @@
-function staffPositionLevel() {
 // Define note's stopping point
+function staffPositionLevel() {
   for (let i = 0; i < keyboardKeys.length; ++i) {
     if (document.getElementById("random-note") == document.querySelector(".c-note")) {        
       staffPosition = keyboardKeys[0].top;
@@ -21,41 +21,23 @@ function staffPositionLevel() {
   }
 };
 
-/*function staffPositionTest() {
-  for (let i = 0; i < keyboardKeys.length; ++i) {
-    let startPoint = keyboardKeys[i].left + "%";
-    randomNote = this.randomNote;
-    //randomNote = document.getElementById("random-note");
-    if (startPoint == keyboardKeys[0].left + "%") {
-      randomNote = document.querySelector(".c-note");
-      startPoint = keyboardKeys[3].left + "%";
-      staffPosition = keyboardKeys[0].bottom;
-    } else if (startPoint == keyboardKeys[1].left + "%") {
-        randomNote = document.querySelector(".d-note");
-        startPoint = keyboardKeys[3].left + "%";
-        staffPosition = keyboardKeys[1].bottom;
-    } else if (startPoint == keyboardKeys[2].left + "%") {
-        randomNote = document.querySelector(".e-note");
-        startPoint = keyboardKeys[3].left + "%";
-        staffPosition = keyboardKeys[2].bottom;
-    } else if (startPoint == keyboardKeys[3].left + "%") {
-        randomNote = document.querySelector(".f-note");
-        startPoint = keyboardKeys[3].left + "%";
-        staffPosition = keyboardKeys[2].bottom;
-    } else if (startPoint == keyboardKeys[4].left + "%") {
-        randomNote = document.querySelector(".g-note");
-        startPoint = keyboardKeys[3].left + "%";
-        staffPosition = keyboardKeys[4].bottom;
-    } else if (startPoint == keyboardKeys[5].left + "%") {
-        randomNote = document.querySelector(".a-note");
-        startPoint = keyboardKeys[3].left + "%";
-        staffPosition = keyboardKeys[5].bottom;
-    } else if (startPoint == keyboardKeys[6].left + "%") {
-        randomNote = document.querySelector(".b-note");
-        startPoint = keyboardKeys[3].left + "%";
-        staffPosition = keyboardKeys[6].bottom;
-    } 
+// TODO: Create element above in the middle of the keyboard.
+function staffPositionTest() {
+  if (document.querySelectorAll(".test").clicked == true) {
+
+
+
+    
+    randomNote = document.getElementById("random-note").css("padding-left", "45%")
+    staffPositionTest(randomNote);
+  } else {
+    staffPositionLevel();
   }
-};*/
-    
-    
+  for (let i = 0; i < keyboardKeys.length; ++i) {
+    if (document.getElementById("random-note") == document.querySelector(".f-note")) {        
+      staffPosition = keyboardKeys[i].bottom;
+    } else { 
+        staffPosition = 0;
+    }
+  }
+};

@@ -45,16 +45,6 @@ $(document).keydown(function(event) {
     started = true; 
     let elem = document.getElementById("random-note");
     let pos = 0
-    for (let i = 0; i < keyboardKeys.length; i++) {
-      let startPoint = this.startPoint;
-      if (document.querySelectorAll(".test").clicked == true) {
-        startPoint == keyboardKeys[3].left + "%"
-        staffPositionTest();
-      } else {
-          startPoint == keyboardKeys[i].left + "%"
-          staffPositionLevel();
-      }
-    }
     let id = setInterval(frame, 5);
 
     function frame() {
@@ -128,12 +118,12 @@ function createRandomNote() {
     let randomNote = createNoteAboveKey(elem, 'o');
     document.body.append(randomNote);
 
-    let level = $('.level');
+    /*let level = $('.level');
     if (level) {
       staffPositionLevel(randomNote);
     } else {
       staffPositionTest(randomNote);
-    }   
+    }  */ 
   }
 }
 
