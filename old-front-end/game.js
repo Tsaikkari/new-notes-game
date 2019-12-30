@@ -98,31 +98,24 @@ function createRandomNote() {
     
     let coords = elem.getBoundingClientRect();
     note.style.left = keyboardKeys[i].left + "%";
-    note.style.top = 0 + "px";
+    //note.style.top = 0 + "px";
     note.innerHTML = html;
     notes.push(note);
     
     if (note.style.left === keyboardKeys[0].left + "%") {
       note.setAttribute("class", "c-note");
-      note.style.top = keyboardKeys[0].top;
     } else if (note.style.left === keyboardKeys[1].left + "%") {
        note.setAttribute("class", "d-note");
-       note.style.top = keyboardKeys[1].top;
     } else if (note.style.left === keyboardKeys[2].left + "%") {
         note.setAttribute("class", "e-note");
-        note.style.top = keyboardKeys[2].top;
     } else if (note.style.left === keyboardKeys[3].left + "%") {
         note.setAttribute("class", "f-note");
-        note.style.top = keyboardKeys[3].top;
     } else if (note.style.left === keyboardKeys[4].left + "%") {
         note.setAttribute("class", "g-note");
-        note.style.top = keyboardKeys[4].top;
     } else if (note.style.left === keyboardKeys[5].left + "%") {
         note.setAttribute("class", "a-note");
-        note.style.top = keyboardKeys[5].top;
     } else if (note.style.left === keyboardKeys[6].left + "%") {
         note.setAttribute("class", "b-note");
-        note.style.top = keyboardKeys[6].top;
     } 
     
     let randomNote = notes[Math.floor(Math.random() * 7)]
