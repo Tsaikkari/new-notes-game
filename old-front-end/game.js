@@ -46,6 +46,7 @@ $(document).keydown(function(event) {
     userChosenKeys.push(userChosenKey);
     console.log(userChosenKey);
     playSound(userChosenKey);
+    checkUserChoise(userChosenKey);
     // Random note starts dropping down when user starts the game
     let elem = document.getElementById("random-note");
     let pos = 0
@@ -60,7 +61,6 @@ $(document).keydown(function(event) {
         elem.style.top = pos + "px";
       }
     }
-    checkUserChoise(userChosenKey);
   }
 })
 
@@ -121,7 +121,8 @@ function createRandomNote() {
 function checkUserChoise() {
   let note = this.note;
   let userChosenKey = this.userChosenKey;
-  if (note === userChosenKey) {
+  let userChosenButton = this.userChosenButton;
+  if (userChosenKey === note || userChosenButton === note) {
     createRandomNote();
   } else {
     //playSound('wrong')
@@ -131,8 +132,10 @@ function checkUserChoise() {
 
 // Add event listener to piano keyboard keys
 $('button').click(function() {
-  let buttonInnerHTML = this.innerHTML;
-  playSound(buttonInnerHTML)
+  var userChosenButton = $(this).attr("id");
+  userChosenButtons.push(userChosenButton);
+  playSound(userChosenButton);
+  checkUserChoise(userChosenButton);
 })
 
 //Add event listener to detect key press
