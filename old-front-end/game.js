@@ -37,45 +37,32 @@ $('.level').on('click', function() {
     swapElement(a, b);
 });
 
-
-// Random note starts dropping down when user starts the game
 $(document).keydown(function(event) {
   if (!started) {
     createRandomNote();
     started = true; 
+    let keycode = event.keyCode;
+    let userChosenKey = keysAvailable[keycode];
+    userChosenKeys.push(userChosenKey);
+    console.log(userChosenKey);
+    playSound(userChosenKey);
+    // Random note starts dropping down when user starts the game
     let elem = document.getElementById("random-note");
     let pos = 0
     let id = setInterval(frame, 5);
 
     function frame() {
     let staffPosition = this.staffPosition;
-      if (pos == staffPosition) { 
+      if (pos === staffPosition) { 
         clearInterval(id);
       } else {
         pos++;
         elem.style.top = pos + "px";
       }
     }
+    checkUserChoise(userChosenKey);
   }
-  
-  let keycode = event.keyCode;
-  let userChosenKey = keysAvailable[keycode];
-  userChosenKeys.push(userChosenKey);
-  console.log(userChosenKey);
-  playSound(userChosenKey);
-  checkUserChoise(userChosenKey);
 })
-
-function checkUserChoise() {
-  let note = this.note;
-  let userChosenKey = this.userChosenKey;
-  if (note === userChosenKey) {
-    createRandomNote();
-  } else {
-    //playSound('wrong')
-    startOver();
-  }
-}
 
 function createRandomNote() {
   for (let i = 0; i < keyboardKeys.length; ++i) {
@@ -92,10 +79,6 @@ function createRandomNote() {
     } else {
     note.style.left = keyboardKeys[i].left + "%";
     }
-    //note.style.top = 0 + "px";
-    note.innerHTML = html;
-    notes.push(note);
-    
     if (note.style.left === keyboardKeys[0].left + "%") {
       note.setAttribute("class", "c-note");
     } else if (note.style.left === keyboardKeys[1].left + "%") {
@@ -111,11 +94,14 @@ function createRandomNote() {
     } else if (note.style.left === keyboardKeys[6].left + "%") {
         note.setAttribute("class", "b-note");
     } 
+    note.innerHTML = html;
+    notes.push(note);
 
+    // Make random-note
     let randomNote = notes[Math.floor(Math.random() * 7)]
-    if (randomNote)
+    if (randomNote) 
     note.setAttribute("id", "random-note");
-
+    randomNote = randomNote || "Carry on! ;) "
     console.log(randomNote)
     return randomNote;
     }
@@ -123,11 +109,23 @@ function createRandomNote() {
     document.body.append(randomNote);
 
     let level = $('.level');
+    let test = $('.test');
     if (level) {
       staffPositionLevel(randomNote);
-    } else {
+    } else if (test) {
       staffPositionTest(randomNote);
-    }  
+    }
+  }
+}
+
+function checkUserChoise() {
+  let note = this.note;
+  let userChosenKey = this.userChosenKey;
+  if (note === userChosenKey) {
+    createRandomNote();
+  } else {
+    //playSound('wrong')
+    startOver();
   }
 }
 
@@ -143,7 +141,7 @@ document.addEventListener("keydown", function(event) {
 });
 
 function playSound(name) {
-  var audio = new Audio("sounds/" + name + ".mp3");
+  let audio = new Audio("sounds/" + name + ".mp3");
   audio.play();
 }
 
