@@ -6,21 +6,12 @@ export default {
   components: {
     UserCard
   },
-  /*data() {
-    return {
-      name: ''
-    }
-
-  },*/
   computed: { // to use the mapState and mapActions functions
     ...mapState([ 'users' /*,'user'*/])
   },
   methods: {
       ...mapActions([ 'fetchUsers' ]) // to map the action to the fetchUsers and addUser value
   },
-  /*addUser() {
-    this.users.push(user)
-  },*/
   created() {
       this.fetchUsers() // calling the function the moment the component is created
       //this.addUser()
