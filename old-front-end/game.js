@@ -1,12 +1,10 @@
-let keysAvailable = [{67: c}, {68: d}, {69: e}, {70: f}, {71: g}, {65: a}, {66: b}];
+let keysAvailable = [{key: 67, keyCode: c}, {key: 68, keyCode: d}, {key: 69, keyCode: e}, {key: 70, keyCode: f}, {key: 71, keyCode: g}, {key: 65, keyCode: a}, {key: 66, keyCode: b}];
 let notes = [];
 let randomNotes = [];
 let userChosenKeys = [];
 let userChosenButtons = [];
 let level = 0;
 let started = false;
-
-
 
 $(".levels-tests").click(function() {
   $("section").hide();
@@ -69,7 +67,7 @@ $(document).keydown(function(event) {
   for (let i = 0; i < keysAvailable.length; i++) { 
     let userChosenKey = keysAvailable[i];
     if (key === "c" || key === 67) {
-      userChosenKey = keysAvailable[0]
+      userChosenKey = keysAvailable[0] 
     } else if (key === "d" || key === 68) {
       userChosenKey = keysAvailable[1]
     } else if (key === "e" || key === 69) {
@@ -151,19 +149,21 @@ function createRandomNote() {
 }
 
 function checkUserChoise() {
-  note = this.note;
-  userChosenKey = this.userChosenKey;
-  userChosenButton = this.userChosenButton;
-  if (userChosenKey === note || userChosenButton === note) {
-    createRandomNote();
-  } else {
-    playSound('wrong')
-    $("body").addClass("game-over");
-    setTimeout(function() {
-      $("body").removeClass("game-over");
-    }, 200);
-    $("#keyboard").text("Game Over, refresh the page and start over");
-    startOver();
+  for (let i = 0; i < keysAvailable.length; i++) {
+    userChosenKey = keysAvailable[i][0];
+    note = $(this).attr("class");
+    userChosenButton = $(this).attr("id");
+    if (userChosenKey + " -note" === note || userChosenButton + " -note" === note) {
+      createRandomNote();
+    } else {
+      playSound('wrong')
+      $("body").addClass("game-over");
+      setTimeout(function() {
+        $("body").removeClass("game-over");
+      }, 200);
+      $("#keyboard").text("Game Over, refresh the page and start over");
+      startOver();
+    }
   }
 }
 
