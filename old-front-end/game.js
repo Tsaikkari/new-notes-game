@@ -60,26 +60,26 @@ $(document).keydown(function() {
 })
 
 $(document).keydown(function(event) {
-  let key = event.key || event.keyCode;
+  let key = event.keyCode;
   if (event.defaultPrevented) {
     return;
   }
   for (let i = 0; i < keysAvailable.length; i++) { 
     let userChosenKey = keysAvailable[i];
-    if (key === "c" || key === 67) {
-      userChosenKey = keysAvailable[0] 
-    } else if (key === "d" || key === 68) {
-      userChosenKey = keysAvailable[1]
-    } else if (key === "e" || key === 69) {
-      userChosenKey = keysAvailable[2]
-    } else if (key === "f" || key === 70) {
-      userChosenKey = keysAvailable[3]
-    } else if (key === "g" || key === 71) {
-      userChosenKey = keysAvailable[4]
-    } else if (key === "a" || key === 65) {
-      userChosenKey = keysAvailable[5]
-    } else if (key === "b" || key === 66) {
-      userChosenKey = keysAvailable[6]
+    if (key === 67) {
+      userChosenKey = keysAvailable[0][0]
+    } else if (key === 68) {
+      userChosenKey = keysAvailable[1][0]
+    } else if (key === 69) {
+      userChosenKey = keysAvailable[2][0]
+    } else if (key === 70) {
+      userChosenKey = keysAvailable[3][0]
+    } else if (key === 71) {
+      userChosenKey = keysAvailable[4][0]
+    } else if (key === 65) {
+      userChosenKey = keysAvailable[5][0]
+    } else if (key === 66) {
+      userChosenKey = keysAvailable[6][0]
     }
     userChosenKeys.push(userChosenKey);
     console.log(userChosenKey);
@@ -126,7 +126,7 @@ function createRandomNote() {
     note.innerHTML = html;
     notes.push(note);
 
-    // Make random-note
+    // Make a random-note
     let randomNote = notes[Math.floor(Math.random() * 7)]
     if (randomNote) 
     note.setAttribute("id", "random-note");
@@ -149,21 +149,19 @@ function createRandomNote() {
 }
 
 function checkUserChoise() {
-  for (let i = 0; i < keysAvailable.length; i++) {
-    let userChosenKey = keysAvailable[i][0];
-    let note = $(this).attr("class");
-    let userChosenButton = $(this).attr("id");
-    if (userChosenKey + "-note" === note || userChosenButton + "-note" === note) {
-      createRandomNote();
-    } else {
-      playSound('wrong')
-      $("body").addClass("game-over");
-      setTimeout(function() {
-        $("body").removeClass("game-over");
-      }, 200);
-      $("#keyboard").text("Game Over, refresh the page and start over");
-      startOver();
-    }
+  userChosenKey = this.userChosenKey
+  let note = $(this).attr("class");
+  let userChosenButton = $(this).attr("id");
+  if (userChosenKey + "-note" === note || userChosenButton + "-note" === note) {
+    createRandomNote();
+  } else {
+    playSound('wrong')
+    $("body").addClass("game-over");
+    setTimeout(function() {
+      $("body").removeClass("game-over");
+    }, 200);
+    $("#keyboard").text("Game Over, refresh the page and start over");
+    startOver();
   }
 }
 
