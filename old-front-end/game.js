@@ -1,4 +1,4 @@
-let keysAvailable = [{key: 67, keyCode: c}, {key: 68, keyCode: d}, {key: 69, keyCode: e}, {key: 70, keyCode: f}, {key: 71, keyCode: g}, {key: 65, keyCode: a}, {key: 66, keyCode: b}];
+let keysAvailable = [{key: c, keyCode: 67}, {key: d, keyCode: 68}, {key: e, keyCode: 69}, {key: f, keyCode: 70}, {key: g, keyCode: 71}, {key: a, keyCode: 65}, {key: b, keyCode: 66}];
 let notes = [];
 let randomNotes = [];
 let userChosenKeys = [];
@@ -150,10 +150,10 @@ function createRandomNote() {
 
 function checkUserChoise() {
   for (let i = 0; i < keysAvailable.length; i++) {
-    userChosenKey = keysAvailable[i][0];
-    note = $(this).attr("class");
-    userChosenButton = $(this).attr("id");
-    if (userChosenKey + " -note" === note || userChosenButton + " -note" === note) {
+    let userChosenKey = keysAvailable[i][0];
+    let note = $(this).attr("class");
+    let userChosenButton = $(this).attr("id");
+    if (userChosenKey + "-note" === note || userChosenButton + "-note" === note) {
       createRandomNote();
     } else {
       playSound('wrong')
