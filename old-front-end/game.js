@@ -149,8 +149,10 @@ function createRandomNote() {
 
 function checkUserChoise() {
   let userChosenKey = this.userChosenKey;
-  let note = $(this).attr("class");
-  let userChosenButton = $(this).attr("id");
+  console.log(this)
+  let note = $("#note").attr("class");
+  console.log(this)
+  let userChosenButton = $(".button").attr("id");
   if (userChosenKey + "-note" === note || userChosenButton + "-note" === note) {
     createRandomNote();
   } else {
