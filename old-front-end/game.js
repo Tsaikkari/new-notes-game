@@ -1,4 +1,4 @@
-let keysAvailable = [{key: "c", keyCode: 67}, {key: "d", keyCode: 68}, {key: "e", keyCode: 69}, {key: "f", keyCode: 70}, {key: "g", keyCode: 71}, {key: "a", keyCode: 65}, {key: "b", keyCode: 66}];
+let keysAvailable = [{67: c}, {68: d}, {69: e}, {70: f}, {71: g}, {65: a}, {66: b}];
 let notes = [];
 let randomNotes = [];
 let userChosenKeys = [];
@@ -59,34 +59,31 @@ $(document).keydown(function() {
   }
 })
 
-// TODO: A click should return only one object value
 let userClickedKey = function() {
   $(document).keydown(function(event) {
-    let key = event.key || event.keyCode;
-    if (event.defaultPrevented) {
-      return;
-    }
+    let key = event.key;
     for (let i = 0; i < keysAvailable.length; i++) { 
       let userChosenKey = keysAvailable[i];
       if (key === 67) {
-        userChosenKey = keysAvailable[0][0]
+        userChosenKey = keysAvailable[0]
       } else if (key === 68) {
-        userChosenKey = keysAvailable[1][0]
+        userChosenKey = keysAvailable[1]
       } else if (key === 69) {
-        userChosenKey = keysAvailable[2][0]
+        userChosenKey = keysAvailable[2]
       } else if (key === 70) {
-        userChosenKey = keysAvailable[3][0]
+        userChosenKey = keysAvailable[3]
       } else if (key === 71) {
-        userChosenKey = keysAvailable[4][0]
+        userChosenKey = keysAvailable[4]
       } else if (key === 65) {
-        userChosenKey = keysAvailable[5][0]
+        userChosenKey = keysAvailable[5]
       } else if (key === 66) {
-        userChosenKey = keysAvailable[6][0]
+        userChosenKey = keysAvailable[6]
       }
       userChosenKeys.push(userChosenKey);
       console.log(userChosenKey);
-      checkUserChoise(userChosenKey);
       playSound(userChosenKey);
+      checkUserChoise(userChosenKey);
+      return userChosenKey;
     }
   })
 }
@@ -150,7 +147,7 @@ function createRandomNote() {
 }
 
 function checkUserChoise() {
-  let userChosenKey = this.userChosenKey;
+  let userChosenKey = document.getElementById("klavier");
   let note = $(this).attr("class");
   let userChosenButton = $(this).attr("id");
   if (userChosenKey + "-note" === note || userChosenButton + "-note" === note) {
@@ -165,7 +162,6 @@ function checkUserChoise() {
     startOver();
   }
 }
-
 
 // Add event listener to piano keyboard keys
 $('button').click(function() {
