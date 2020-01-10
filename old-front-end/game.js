@@ -62,7 +62,7 @@ $(document).keydown(function() {
 // TODO: Change the function expression
 let userClickedKey = function() {
   $(document).keydown(function(event) {
-    let key = event.keyCode || event.key && $("button").attr("id");
+    let key = event.keyCode || event.key;
     for (let i = 0; i < keysAvailable.length; i++) { 
       let userChosenKey = keysAvailable[i];
       if (key === 67) {
@@ -147,14 +147,15 @@ function createRandomNote() {
   }
 }
 
-function checkUserChoise() {
-  let userChosenKey = this.userChosenKey;
-  console.log(this)
-  let note = $("#note").attr("class");
-  console.log(this)
-  let userChosenButton = $(".button").attr("id");
-  if (userChosenKey + "-note" === note || userChosenButton + "-note" === note) {
-    createRandomNote();
+function checkUserChoise(current) {
+  if (userChosenKeys[current] === notes[current]) {
+    console.log("yes");
+    let userChosenKey = $("button").attr("id");
+    let note = $("#note").attr("class");
+    let userChosenButton = $("button").attr("id");
+    if (userChosenKey + "-note" === note || userChosenButton + "-note" === note) {
+      createRandomNote();
+    }
   } else {
     playSound('wrong')
     $("body").addClass("game-over");
