@@ -76,12 +76,12 @@ body {
   text-decoration: none;
 }
 
-.level {
+#level {
   background-color: yellow;
   color: #000
 }
 
-.level:hover {
+#level:hover {
   color: red;
 }
 
@@ -183,7 +183,7 @@ body {
   left: 25%;
 }
 
-.key {
+.taste {
   position: relative;
   border: solid black 1px;
   border-radius: .3rem;

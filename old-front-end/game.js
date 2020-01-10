@@ -1,4 +1,4 @@
-let keysAvailable = [{key: c, keyCode: 67}, {key: d, keyCode: 68}, {key: e, keyCode: 69}, {key: f, keyCode: 70}, {key: g, keyCode: 71}, {key: a, keyCode: 65}, {key: b, keyCode: 66}];
+let keysAvailable = [{key: "c", keyCode: 67}, {key: "d", keyCode: 68}, {key: "e", keyCode: 69}, {key: "f", keyCode: 70}, {key: "g", keyCode: 71}, {key: "a", keyCode: 65}, {key: "b", keyCode: 66}];
 let notes = [];
 let randomNotes = [];
 let userChosenKeys = [];
@@ -25,13 +25,13 @@ function swapElement(a, b) {
 }
 
 // TODO: Clicking level links only swaps elements when there's a test-view on the screen and vice versa with test links.
-$('.test').on('click', function() {
+$('#test').on('click', function() {
   var a = $('#staff' + $('#a').val());
   var b = $('#klavier' + $('#b').val());
   swapElement(a, b);
 });
 
-$('.level').on('click', function() {
+$('#level').on('click', function() {
   var a = $('#klavier' + $('#a').val());
   var b = $('#staff' + $('#b').val());
     swapElement(a, b);
@@ -42,7 +42,7 @@ $(document).keydown(function() {
     createRandomNote();
     started = true; 
     
-    // Random note starts dropping down when user starts the game
+    // Random note starts dropping down when a user starts the game
     let elem = document.getElementById("random-note");
     let pos = 0
     let id = setInterval(frame, 5);
@@ -59,34 +59,36 @@ $(document).keydown(function() {
   }
 })
 
-$(document).keydown(function(event) {
-  let key = event.keyCode;
-  if (event.defaultPrevented) {
-    return;
-  }
-  for (let i = 0; i < keysAvailable.length; i++) { 
-    let userChosenKey = keysAvailable[i];
-    if (key === 67) {
-      userChosenKey = keysAvailable[0][0]
-    } else if (key === 68) {
-      userChosenKey = keysAvailable[1][0]
-    } else if (key === 69) {
-      userChosenKey = keysAvailable[2][0]
-    } else if (key === 70) {
-      userChosenKey = keysAvailable[3][0]
-    } else if (key === 71) {
-      userChosenKey = keysAvailable[4][0]
-    } else if (key === 65) {
-      userChosenKey = keysAvailable[5][0]
-    } else if (key === 66) {
-      userChosenKey = keysAvailable[6][0]
+let userClickedKey = function() {
+  $(document).keydown(function(event) {
+    let key = event.key || event.keyCode;
+    if (event.defaultPrevented) {
+      return;
     }
-    userChosenKeys.push(userChosenKey);
-    console.log(userChosenKey);
-    checkUserChoise(userChosenKey);
-    playSound(userChosenKey);
-  }
-})
+    for (let i = 0; i < keysAvailable.length; i++) { 
+      let userChosenKey = keysAvailable[i];
+      if (key === 67) {
+        userChosenKey = keysAvailable[0][0]
+      } else if (key === 68) {
+        userChosenKey = keysAvailable[1][0]
+      } else if (key === 69) {
+        userChosenKey = keysAvailable[2][0]
+      } else if (key === 70) {
+        userChosenKey = keysAvailable[3][0]
+      } else if (key === 71) {
+        userChosenKey = keysAvailable[4][0]
+      } else if (key === 65) {
+        userChosenKey = keysAvailable[5][0]
+      } else if (key === 66) {
+        userChosenKey = keysAvailable[6][0]
+      }
+      userChosenKeys.push(userChosenKey);
+      console.log(userChosenKey);
+      checkUserChoise(userChosenKey);
+      playSound(userChosenKey);
+    }
+  })
+}
 
 function createRandomNote() {
   for (let i = 0; i < keyboardKeys.length; ++i) {
@@ -98,7 +100,7 @@ function createRandomNote() {
     note.style.cssText = "position:absolute; font-size: 3em; font-family: 'Raleway', sans-serif;";
     
     let coords = elem.getBoundingClientRect();
-    if (document.querySelectorAll(".test").clicked == true) {
+    if (document.querySelectorAll("#test").clicked == true) {
       note.style.left = 45 + "%";
     } else {
     note.style.left = keyboardKeys[i].left + "%";
@@ -138,8 +140,8 @@ function createRandomNote() {
     document.body.append(randomNote);
     randomNotes.push(randomNote)
 
-    let level = $('.level');
-    let test = $('.test');
+    let level = $('#level');
+    let test = $('#test');
     if (level) {
       staffPositionLevel(randomNote);
     } else if (test) {
@@ -148,8 +150,9 @@ function createRandomNote() {
   }
 }
 
+//TODO: set a click function 
 function checkUserChoise() {
-  userChosenKey = this.userChosenKey
+  let userChosenKey = this.userChosenKey;
   let note = $(this).attr("class");
   let userChosenButton = $(this).attr("id");
   if (userChosenKey + "-note" === note || userChosenButton + "-note" === note) {
@@ -187,6 +190,7 @@ function startOver() {
   level = 0;
   randomNotes = [];
   started = false;
+  userClickedKey();
 }
 
 
