@@ -59,9 +59,10 @@ $(document).keydown(function() {
   }
 })
 
+// TODO: Change the function expression
 let userClickedKey = function() {
   $(document).keydown(function(event) {
-    let key = event.key;
+    let key = event.keyCode || event.key && $("button").attr("id");
     for (let i = 0; i < keysAvailable.length; i++) { 
       let userChosenKey = keysAvailable[i];
       if (key === 67) {
@@ -147,7 +148,7 @@ function createRandomNote() {
 }
 
 function checkUserChoise() {
-  let userChosenKey = document.getElementById("klavier");
+  let userChosenKey = this.userChosenKey;
   let note = $(this).attr("class");
   let userChosenButton = $(this).attr("id");
   if (userChosenKey + "-note" === note || userChosenButton + "-note" === note) {
@@ -158,7 +159,7 @@ function checkUserChoise() {
     setTimeout(function() {
       $("body").removeClass("game-over");
     }, 200);
-    $("#keyboard").text("Game Over, refresh the page and start over");
+    $("#line").text("Game Over, refresh the page and start over");
     startOver();
   }
 }
