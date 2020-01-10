@@ -59,6 +59,7 @@ $(document).keydown(function() {
   }
 })
 
+// TODO: A click should return only one object value
 let userClickedKey = function() {
   $(document).keydown(function(event) {
     let key = event.key || event.keyCode;
@@ -91,6 +92,7 @@ let userClickedKey = function() {
 }
 
 function createRandomNote() {
+  userClickedKey();
   for (let i = 0; i < keyboardKeys.length; ++i) {
     let elem = document.getElementById(keyboardKeys[i].id);
     function createNoteAboveKey(elem, html) {
@@ -119,10 +121,7 @@ function createRandomNote() {
         note.setAttribute("class", "a-note");
     } else if (note.style.left === keyboardKeys[6].left + "%") {
         note.setAttribute("class", "b-note");
-    } else if (elem != null) {
-      note = elem.value;
-    }
-    else {
+    } else {
         note = null;
     }
     note.innerHTML = html;
@@ -150,7 +149,6 @@ function createRandomNote() {
   }
 }
 
-//TODO: set a click function 
 function checkUserChoise() {
   let userChosenKey = this.userChosenKey;
   let note = $(this).attr("class");
@@ -167,6 +165,7 @@ function checkUserChoise() {
     startOver();
   }
 }
+
 
 // Add event listener to piano keyboard keys
 $('button').click(function() {
@@ -190,7 +189,6 @@ function startOver() {
   level = 0;
   randomNotes = [];
   started = false;
-  userClickedKey();
 }
 
 
