@@ -1,4 +1,4 @@
-let keysAvailable = [{keyCode: 67, tone: "c"}, {keyCode: 68, tone: "d"}, {keyCode: 69, tone: e}, {keyCode: 70, tone: f}, {keyCode: 71, tone: g}, {keyCode: 65, tone: a}, {keyCode: 66, tone: b}];
+let keysAvailable = ["c", "d", "e", "f", "g", "a", "b"];
 let notes = [];
 let randomNotes = [];
 let userChosenKeys = [];
@@ -65,22 +65,22 @@ let userClickedKey = function() {
     for (let i = 0; i < keysAvailable.length; i++) { 
       let userChosenKey = keysAvailable[i];
       if (key === 67) {
-        userChosenKey = keysAvailable[0].tone;
+        userChosenKey = keysAvailable[0];
       } else if (key === 68) {
-        userChosenKey = keysAvailable[1].tone;
+        userChosenKey = keysAvailable[1];
       } else if (key === 69) {
-        userChosenKey = keysAvailable[2].tone;
+        userChosenKey = keysAvailable[2];
       } else if (key === 70) {
-        userChosenKey = keysAvailable[3].tone;
+        userChosenKey = keysAvailable[3];
       } else if (key === 71) {
-        userChosenKey = keysAvailable[4].tone;
+        userChosenKey = keysAvailable[4];
       } else if (key === 65) {
-        userChosenKey = keysAvailable[5].tone;
+        userChosenKey = keysAvailable[5];
       } else if (key === 66) {
-        userChosenKey = keysAvailable[6].tone;
+        userChosenKey = keysAvailable[6];
       }
-      userChosenKeys.push(userChosenKey);
       console.log(userChosenKey);
+      userChosenKeys.push(userChosenKey);
       playSound(userChosenKey);
       checkUserChoise(userChosenKey);
       return userChosenKey;
@@ -146,15 +146,18 @@ function createRandomNote() {
   }
 }
 
-// TODO: Make it work
+// TODO: note must be the current dropping note
 function checkUserChoise() {
-  let userChosenKey = this.userChosenKey;
   let note = $("#note").attr("class");
-  let userChosenButton = $("button").attr("id");
-  if (userChosenKey + "-note" === note || userChosenButton + "-note" === note) {
+  let userChosenKey = this.userChosenKey;
+  let userChosenButton = this.userChosenButton;
+  if (note === userChosenKey || note === userChosenButton) {
+    console.log(userChosenKey)
     createRandomNote();
   } else {
     playSound('wrong')
+    console.log(userChosenKey)
+    console.log(note)
     $("body").addClass("game-over");
     setTimeout(function() {
       $("body").removeClass("game-over");
