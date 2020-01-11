@@ -148,22 +148,24 @@ function createRandomNote() {
 
 // TODO: note must be the current dropping note
 function checkUserChoise() {
-  let note = $("#note").attr("class");
-  let userChosenKey = this.userChosenKey;
-  let userChosenButton = this.userChosenButton;
-  if (note === userChosenKey || note === userChosenButton) {
-    console.log(userChosenKey)
-    createRandomNote();
-  } else {
-    playSound('wrong')
-    console.log(userChosenKey)
-    console.log(note)
-    $("body").addClass("game-over");
-    setTimeout(function() {
-      $("body").removeClass("game-over");
-    }, 200);
-    $("#line").text("Game Over, refresh the page and start over");
-    startOver();
+  for (let i = 0; i < keysAvailable.length; i++) {
+    let note = $("#random-note").attr("class");
+    let userChosenKey = keysAvailable[i];
+    let userChosenButton = $("button").attr("id");
+    if (note === userChosenKey + "-note" || note === userChosenButton + "-note") {
+      console.log(userChosenKey)
+      createRandomNote();
+    } else {
+      playSound('wrong')
+      console.log(userChosenKey)
+      console.log(note)
+      $("body").addClass("game-over");
+      setTimeout(function() {
+        $("body").removeClass("game-over");
+      }, 200);
+      $("#line").text("Game Over, refresh the page and start over");
+      startOver();
+    }
   }
 }
 
