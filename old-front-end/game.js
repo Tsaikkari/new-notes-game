@@ -1,4 +1,4 @@
-let keysAvailable = [{67: c}, {68: d}, {69: e}, {70: f}, {71: g}, {65: a}, {66: b}];
+let keysAvailable = [{keyCode: 67, tone: "c"}, {keyCode: 68, tone: "d"}, {keyCode: 69, tone: e}, {keyCode: 70, tone: f}, {keyCode: 71, tone: g}, {keyCode: 65, tone: a}, {keyCode: 66, tone: b}];
 let notes = [];
 let randomNotes = [];
 let userChosenKeys = [];
@@ -59,26 +59,25 @@ $(document).keydown(function() {
   }
 })
 
-// TODO: Change the function expression
 let userClickedKey = function() {
   $(document).keydown(function(event) {
     let key = event.keyCode || event.key;
     for (let i = 0; i < keysAvailable.length; i++) { 
       let userChosenKey = keysAvailable[i];
       if (key === 67) {
-        userChosenKey = keysAvailable[0]
+        userChosenKey = keysAvailable[0].tone;
       } else if (key === 68) {
-        userChosenKey = keysAvailable[1]
+        userChosenKey = keysAvailable[1].tone;
       } else if (key === 69) {
-        userChosenKey = keysAvailable[2]
+        userChosenKey = keysAvailable[2].tone;
       } else if (key === 70) {
-        userChosenKey = keysAvailable[3]
+        userChosenKey = keysAvailable[3].tone;
       } else if (key === 71) {
-        userChosenKey = keysAvailable[4]
+        userChosenKey = keysAvailable[4].tone;
       } else if (key === 65) {
-        userChosenKey = keysAvailable[5]
+        userChosenKey = keysAvailable[5].tone;
       } else if (key === 66) {
-        userChosenKey = keysAvailable[6]
+        userChosenKey = keysAvailable[6].tone;
       }
       userChosenKeys.push(userChosenKey);
       console.log(userChosenKey);
@@ -140,22 +139,20 @@ function createRandomNote() {
     let level = $('#level');
     let test = $('#test');
     if (level) {
-      staffPositionLevel(randomNote);
+      staffPositionLevel();
     } else if (test) {
-      staffPositionTest(randomNote);
+      staffPositionTest();
     }
   }
 }
 
-function checkUserChoise(current) {
-  if (userChosenKeys[current] === notes[current]) {
-    console.log("yes");
-    let userChosenKey = $("button").attr("id");
-    let note = $("#note").attr("class");
-    let userChosenButton = $("button").attr("id");
-    if (userChosenKey + "-note" === note || userChosenButton + "-note" === note) {
-      createRandomNote();
-    }
+// TODO: Make it work
+function checkUserChoise() {
+  let userChosenKey = this.userChosenKey;
+  let note = $("#note").attr("class");
+  let userChosenButton = $("button").attr("id");
+  if (userChosenKey + "-note" === note || userChosenButton + "-note" === note) {
+    createRandomNote();
   } else {
     playSound('wrong')
     $("body").addClass("game-over");
