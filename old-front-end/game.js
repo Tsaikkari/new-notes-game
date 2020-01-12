@@ -37,6 +37,7 @@ $('#level').on('click', function() {
     swapElement(a, b);
 });
 
+// Starting the game
 $(document).keydown(function() {
   if (!started) {
     createNote();
@@ -65,6 +66,7 @@ let dropNote = function() {
 }
 dropNote();
 
+// Add event listener to detect which key is pressed out of the 7 keys
 $(document).keydown(function(event) {
   let key = event.keyCode || event.key;
   for (let i = 0; i < keysAvailable.length; i++) { 
@@ -92,7 +94,7 @@ $(document).keydown(function(event) {
   }
 })
 
-// TODO: must play "wrong" when hitting a wrong key
+// Check if the user played right or wrong
 function checkUserChoise(userChosenKey) {
   for (let i = 0; i < keysAvailable.length; i++) {
     this.randomNote = $("#random-note").attr("class");
@@ -100,11 +102,10 @@ function checkUserChoise(userChosenKey) {
     this.userChosenButton = $("button").attr("id");
     if (randomNotes[userChosenKey] === userChosenKeys[userChosenKey]) {
       if (randomNote === userChosenKey + "-note" || randomNote === userChosenButton + "-note") {
-        dropNote();
         console.log(userChosenKey)
       }
     } else {
-      playSound('wrong')
+      playSound('wrong') // TODO: must play "wrong" when hitting a wrong key
       console.log(userChosenKey)
       console.log(randomNote)
       $("body").addClass("game-over");
@@ -117,6 +118,7 @@ function checkUserChoise(userChosenKey) {
   }
 }
 
+// Create a note on the fly
 function createNote() {
   for (let i = 0; i < keyboardKeys.length; ++i) {
     let elem = document.getElementById(keyboardKeys[i].id);
@@ -156,6 +158,7 @@ function createNote() {
   }
 }
 
+// Transform the note into a random note
 function createRandomNote() {
   let randomNote = notes[Math.floor(Math.random() * 7)]
   if (randomNote) 
@@ -180,11 +183,6 @@ $('button').click(function() {
   playSound(userChosenButton);
   checkUserChoise(userChosenButton);
 })
-
-//Add event listener to detect key press
-document.addEventListener("keydown", function(event) {
-  playSound(event.key);
-});
 
 function playSound(name) {
   let audio = new Audio("sounds/" + name + ".mp3");
