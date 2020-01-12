@@ -39,23 +39,8 @@ $('#level').on('click', function() {
 
 $(document).keydown(function() {
   if (!started) {
-    createRandomNote();
+    createNote();
     started = true; 
-    
-    // Random note starts dropping down when a user starts the game
-    let elem = document.getElementById("random-note");
-    let pos = 0
-    let id = setInterval(frame, 5);
-    
-    function frame() {
-      let staffPosition = this.staffPosition;
-      if (pos === staffPosition) { 
-        clearInterval(id);
-      } else {
-        pos++;
-        elem.style.top = pos + "px";
-      }
-    } 
   }
 })
 
@@ -79,23 +64,67 @@ let userClickedKey = function() {
       } else if (key === 66) {
         userChosenKey = keysAvailable[6];
       }
-      console.log(userChosenKey);
       userChosenKeys.push(userChosenKey);
       playSound(userChosenKey);
+      console.log(userChosenKey);
       checkUserChoise(userChosenKey);
       return userChosenKey;
     }
   })
 }
 
-function createRandomNote() {
-  userClickedKey();
+// Random note starts dropping down when a user starts the game
+let dropNote = function() {
+  $(document).keydown(function() {
+    createRandomNote();
+    let elem = document.getElementById("random-note");
+    let pos = 0
+    let id = setInterval(frame, 5);
+    
+    function frame() {
+      let staffPosition = this.staffPosition;
+      if (pos === staffPosition) { 
+        clearInterval(id);
+      } else {
+        pos++;
+        elem.style.top = pos + "px";
+      }
+    } 
+  })
+}
+dropNote();
+
+// TODO: note must be the current dropping note
+function checkUserChoise() {
+  //if (randomNotes[currentNote] === userChosenKeys[currentNote]) {
+  for (let i = 0; i < keysAvailable.length; i++) {
+    let note = $("#random-note").attr("class");
+    let userChosenKey = keysAvailable[i];
+    let userChosenButton = $("button").attr("id");
+    if (note === userChosenKey + "-note" || note === userChosenButton + "-note") {
+      console.log(userChosenKey)
+      dropNote();
+    } else {
+      playSound('wrong')
+      console.log(userChosenKey)
+      console.log(note)
+      $("body").addClass("game-over");
+      setTimeout(function() {
+        $("body").removeClass("game-over");
+      }, 200);
+      $("#line").text("Game Over, refresh the page and start over");
+      startOver();
+    }
+  }
+}
+
+function createNote() {
   for (let i = 0; i < keyboardKeys.length; ++i) {
     let elem = document.getElementById(keyboardKeys[i].id);
     function createNoteAboveKey(elem, html) {
     // Put a note above a key
     let note = document.createElement('h6');
-    note.setAttribute("id", "note");
+    //note.setAttribute("id", "note");
     note.style.cssText = "position:absolute; font-size: 3em; font-family: 'Raleway', sans-serif;";
     
     let coords = elem.getBoundingClientRect();
@@ -122,50 +151,28 @@ function createRandomNote() {
         note = null;
     }
     note.innerHTML = html;
+    return note;
+    }
+    let note = createNoteAboveKey(elem, "o");
+    document.body.append(note);
     notes.push(note);
-
-    // Make a random-note
-    let randomNote = notes[Math.floor(Math.random() * 7)]
-    if (randomNote) 
-    note.setAttribute("id", "random-note");
-    randomNote = randomNote || "" 
-    console.log(randomNote)
-    return randomNote;
-    }
-    let randomNote = createNoteAboveKey(elem, 'o');
-    document.body.append(randomNote);
-    randomNotes.push(randomNote)
-
-    let level = $('#level');
-    let test = $('#test');
-    if (level) {
-      staffPositionLevel();
-    } else if (test) {
-      staffPositionTest();
-    }
   }
 }
 
-// TODO: note must be the current dropping note
-function checkUserChoise() {
-  for (let i = 0; i < keysAvailable.length; i++) {
-    let note = $("#random-note").attr("class");
-    let userChosenKey = keysAvailable[i];
-    let userChosenButton = $("button").attr("id");
-    if (note === userChosenKey + "-note" || note === userChosenButton + "-note") {
-      console.log(userChosenKey)
-      createRandomNote();
-    } else {
-      playSound('wrong')
-      console.log(userChosenKey)
-      console.log(note)
-      $("body").addClass("game-over");
-      setTimeout(function() {
-        $("body").removeClass("game-over");
-      }, 200);
-      $("#line").text("Game Over, refresh the page and start over");
-      startOver();
-    }
+function createRandomNote() {
+  let randomNote = notes[Math.floor(Math.random() * 7)]
+  if (randomNote) 
+  randomNote.setAttribute("id", "random-note");
+  randomNotes.push(randomNote)
+  randomNote = randomNote || "" 
+  console.log(randomNote)
+
+  let level = $('#level');
+  let test = $('#test');
+  if (level) {
+    staffPositionLevel();
+  } else if (test) {
+    staffPositionTest();
   }
 }
 
@@ -192,6 +199,8 @@ function startOver() {
   randomNotes = [];
   started = false;
 }
+
+
 
 
 
