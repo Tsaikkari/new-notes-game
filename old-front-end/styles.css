@@ -150,10 +150,10 @@ body {
   min-height: 98px;
 }
 
-span {
+/*span {
   font-size: 3em;
   font-family: 'Raleway', sans-serif;
-  /*display: inline-block;*/
+  display: inline-block;
 }
 
 #c-note {
@@ -189,7 +189,7 @@ span {
 #b-note {
   padding-left: 5%;
   margin: 0;
-}
+}*/
 
 .menu {
   text-decoration: none;

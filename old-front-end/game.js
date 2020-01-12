@@ -44,35 +44,6 @@ $(document).keydown(function() {
   }
 })
 
-let userClickedKey = function() {
-  $(document).keydown(function(event) {
-    let key = event.keyCode || event.key;
-    for (let i = 0; i < keysAvailable.length; i++) { 
-      let userChosenKey = keysAvailable[i];
-      if (key === 67) {
-        userChosenKey = keysAvailable[0];
-      } else if (key === 68) {
-        userChosenKey = keysAvailable[1];
-      } else if (key === 69) {
-        userChosenKey = keysAvailable[2];
-      } else if (key === 70) {
-        userChosenKey = keysAvailable[3];
-      } else if (key === 71) {
-        userChosenKey = keysAvailable[4];
-      } else if (key === 65) {
-        userChosenKey = keysAvailable[5];
-      } else if (key === 66) {
-        userChosenKey = keysAvailable[6];
-      }
-      userChosenKeys.push(userChosenKey);
-      playSound(userChosenKey);
-      console.log(userChosenKey);
-      checkUserChoise(userChosenKey);
-      return userChosenKey;
-    }
-  })
-}
-
 // Random note starts dropping down when a user starts the game
 let dropNote = function() {
   $(document).keydown(function() {
@@ -94,20 +65,48 @@ let dropNote = function() {
 }
 dropNote();
 
-// TODO: note must be the current dropping note
-function checkUserChoise() {
-  //if (randomNotes[currentNote] === userChosenKeys[currentNote]) {
-  for (let i = 0; i < keysAvailable.length; i++) {
-    let note = $("#random-note").attr("class");
+$(document).keydown(function(event) {
+  let key = event.keyCode || event.key;
+  for (let i = 0; i < keysAvailable.length; i++) { 
     let userChosenKey = keysAvailable[i];
-    let userChosenButton = $("button").attr("id");
-    if (note === userChosenKey + "-note" || note === userChosenButton + "-note") {
-      console.log(userChosenKey)
-      dropNote();
+    if (key === 67) {
+      userChosenKey = keysAvailable[0];
+    } else if (key === 68) {
+      userChosenKey = keysAvailable[1];
+    } else if (key === 69) {
+      userChosenKey = keysAvailable[2];
+    } else if (key === 70) {
+      userChosenKey = keysAvailable[3];
+    } else if (key === 71) {
+      userChosenKey = keysAvailable[4];
+    } else if (key === 65) {
+      userChosenKey = keysAvailable[5];
+    } else if (key === 66) {
+      userChosenKey = keysAvailable[6];
+    }
+    userChosenKeys.push(userChosenKey);
+    playSound(userChosenKey);
+    checkUserChoise(userChosenKey);
+    console.log(userChosenKey)
+    return userChosenKey;
+  }
+})
+
+// TODO: must play "wrong" when hitting a wrong key
+function checkUserChoise(userChosenKey) {
+  for (let i = 0; i < keysAvailable.length; i++) {
+    this.randomNote = $("#random-note").attr("class");
+    this.userChosenKey = keysAvailable[i];
+    this.userChosenButton = $("button").attr("id");
+    if (randomNotes[userChosenKey] === userChosenKeys[userChosenKey]) {
+      if (randomNote === userChosenKey + "-note" || randomNote === userChosenButton + "-note") {
+        dropNote();
+        console.log(userChosenKey)
+      }
     } else {
       playSound('wrong')
       console.log(userChosenKey)
-      console.log(note)
+      console.log(randomNote)
       $("body").addClass("game-over");
       setTimeout(function() {
         $("body").removeClass("game-over");
@@ -122,9 +121,7 @@ function createNote() {
   for (let i = 0; i < keyboardKeys.length; ++i) {
     let elem = document.getElementById(keyboardKeys[i].id);
     function createNoteAboveKey(elem, html) {
-    // Put a note above a key
     let note = document.createElement('h6');
-    //note.setAttribute("id", "note");
     note.style.cssText = "position:absolute; font-size: 3em; font-family: 'Raleway', sans-serif;";
     
     let coords = elem.getBoundingClientRect();
@@ -198,6 +195,7 @@ function startOver() {
   level = 0;
   randomNotes = [];
   started = false;
+  createNote();
 }
 
 
