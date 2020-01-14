@@ -70,7 +70,7 @@ dropNote();
 $(document).keydown(function(event) {
   let key = event.keyCode || event.key;
   for (let i = 0; i < keysAvailable.length; i++) { 
-    let userChosenKey = keysAvailable[i];
+    let userChosenKey;
     if (key === 67) {
       userChosenKey = keysAvailable[0];
     } else if (key === 68) {
@@ -86,11 +86,28 @@ $(document).keydown(function(event) {
     } else if (key === 66) {
       userChosenKey = keysAvailable[6];
     }
-    userChosenKeys.push(userChosenKey);
-    playSound(userChosenKey);
-    checkUserChoise(userChosenKey);
-    console.log(userChosenKey)
-    return userChosenKey;
+    
+    if (userChosenKey){
+        userChosenKeys.push(userChosenKey);
+        // hide the existing nodes
+        $('.note-list > h6').each(function () {
+          $(this).css('display', 'none');
+        })
+
+        $('#keyboard > button').each(function () {
+          $(this).css('background-color', '');
+        })
+
+        let chosenElemtn = $('.' + userChosenKey + '-note');
+        let chosenKeyBoard = $('#' + userChosenKey);
+        if (chosenKeyBoard) chosenKeyBoard.css('background-color', 'grey');
+        if (chosenElemtn) chosenElemtn.css('display', 'block')
+        playSound(userChosenKey);
+        checkUserChoise(userChosenKey);
+        console.log(userChosenKey)
+      }else {
+      gameover()
+      }
   }
 })
 
@@ -105,26 +122,30 @@ function checkUserChoise(userChosenKey) {
         console.log(userChosenKey)
       }
     } else {
-      playSound('wrong') // TODO: must play "wrong" when hitting a wrong key
-      console.log(userChosenKey)
-      console.log(randomNote)
-      $("body").addClass("game-over");
-      setTimeout(function() {
-        $("body").removeClass("game-over");
-      }, 200);
-      $("#line").text("Game Over, refresh the page and start over");
-      startOver();
+      gameover()
     }
   }
 }
 
+// game over
+
+function gameover(){
+  playSound('wrong') // TODO: must play "wrong" when hitting a wrong key
+      $("body").addClass("game-over");
+  setTimeout(function () {
+    $("body").removeClass("game-over");
+  }, 200);
+  $("#line").text("Game Over, refresh the page and start over");
+  startOver();
+}
 // Create a note on the fly
 function createNote() {
   for (let i = 0; i < keyboardKeys.length; ++i) {
     let elem = document.getElementById(keyboardKeys[i].id);
     function createNoteAboveKey(elem, html) {
+  
     let note = document.createElement('h6');
-    note.style.cssText = "position:absolute; font-size: 3em; font-family: 'Raleway', sans-serif;";
+    note.style.cssText = "position:absolute; font-size: 3em; font-family: 'Raleway', sans-serif; display:none;";
     
     let coords = elem.getBoundingClientRect();
     if (document.querySelectorAll("#test").clicked == true) {
@@ -153,7 +174,8 @@ function createNote() {
     return note;
     }
     let note = createNoteAboveKey(elem, "o");
-    document.body.append(note);
+    // adding new notes to the list
+    $('.note-list').append(note);
     notes.push(note);
   }
 }
