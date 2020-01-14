@@ -17,7 +17,7 @@ $(".menu").click(function() {
 // Switches the position of the keyboard with the position of the staff depending on user clicking either level or test link.
 function swapElement(a, b) {
   // create a temporary marker div
-  var aNext = $('<div>').insertAfter(a);
+  let aNext = $('<div>').insertAfter(a);
   a.insertAfter(b);
   b.insertBefore(aNext);
   // remove marker div
@@ -25,15 +25,16 @@ function swapElement(a, b) {
 }
 
 // TODO: Clicking level links only swaps elements when there's a test-view on the screen and vice versa with test links.
-$('#test').on('click', function() {
-  var a = $('#staff' + $('#a').val());
-  var b = $('#klavier' + $('#b').val());
+
+$('#level').on('click', function() {
+  let a = $('#staff' + $('#a').val());
+  let b = $('#klavier' + $('#b').val());
   swapElement(a, b);
 });
 
-$('#level').on('click', function() {
-  var a = $('#klavier' + $('#a').val());
-  var b = $('#staff' + $('#b').val());
+$('#test').on('click', function() {
+  let a = $('#klavier' + $('#a').val());
+  let b = $('#staff' + $('#b').val());
     swapElement(a, b);
 });
 
@@ -63,8 +64,7 @@ let dropNote = function() {
       }
     } 
   })
-}
-dropNote();
+}();
 
 // Add event listener to detect which key is pressed out of the 7 keys
 $(document).keydown(function(event) {
@@ -90,13 +90,17 @@ $(document).keydown(function(event) {
     playSound(userChosenKey);
     checkUserChoise(userChosenKey);
     console.log(userChosenKey)
-    return userChosenKey;
+    //return userChosenKey;
   }
 })
 
 // Check if the user played right or wrong
 function checkUserChoise(userChosenKey) {
+  // f
+
   for (let i = 0; i < keysAvailable.length; i++) {
+
+
     this.randomNote = $("#random-note").attr("class");
     this.userChosenKey = keysAvailable[i];
     this.userChosenButton = $("button").attr("id");
@@ -127,7 +131,7 @@ function createNote() {
     note.style.cssText = "position:absolute; font-size: 3em; font-family: 'Raleway', sans-serif;";
     
     let coords = elem.getBoundingClientRect();
-    if (document.querySelectorAll("#test").clicked == true) {
+    if (document.querySelector("#test").clicked == true) {
       note.style.left = 45 + "%";
     } else {
     note.style.left = keyboardKeys[i].left + "%";
