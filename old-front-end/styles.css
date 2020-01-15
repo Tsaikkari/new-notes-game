@@ -48,9 +48,14 @@ body {
 }
 
 .starting {
-  font-size: 1.5em;
+  font-size: 1.4em;
   color: #d8412f;
-  /*text-align: center;*/
+  padding-left: 1%
+}
+
+.instructions {
+  /*float: left;*/
+  padding-right: 5%;
 }
 
 /*icons*/
@@ -238,6 +243,7 @@ body {
   width: 10%;
   height: 100%;
   background-color: white;
+  box-shadow: 0 6px 4px 0 black;
 }
 
 .btn-light:hover {
@@ -271,6 +277,22 @@ body {
 
 .ais {
   left: 57%;
+}
+
+.clicked-key {
+  font-size: 4em;
+  text-transform: uppercase;
+  font-family: fantasy;
+  color: blue;
+}
+
+.game-over {
+  font-size: 3em;
+  text-transform: uppercase;
+  font-family: 'Lora' serif;
+  color: red;
+  opacity: 8;
+  font-style: oblique;
 }
 
 hr {

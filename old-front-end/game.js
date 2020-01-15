@@ -47,7 +47,7 @@ let displayNote = function() {
 }
 
 // Random note starts dropping down when a user tests their skills
-if (document.querySelector("#test").clicked == true) {
+if (document.querySelector("#test").click == true) {
   $(document).keydown(function() {
     createRandomNote();
     let elem = document.getElementById("random-note");
@@ -63,6 +63,27 @@ if (document.querySelector("#test").clicked == true) {
         elem.style.top = pos + "px";
       }
     } 
+  })
+} else {
+  displayNote();
+}
+
+if (document.querySelector("#test").click == true) {
+  $(document).keydown(function() {
+    createRandomNote();
+    let elem = document.getElementById("random-note");
+    let pos = 0
+    let id = setInterval(frame, 5);
+
+    function frame() {
+      let staffPosition = this.staffPosition;
+      if (pos === staffPosition) { 
+        clearInterval(id);
+      } else {
+        pos++;
+        elem.style.top = pos + "px";
+      }
+    }
   })
 } else {
   displayNote();
@@ -101,8 +122,9 @@ $(document).keydown(function(event) {
 
       let chosenElem = $('.' + userChosenKey + '-note');
       let chosenKeyboardKey = $('#' + userChosenKey);
-      if (chosenKeyboardKey) chosenKeyboardKey.css('background-color', '#fe7a47');
-      if (chosenElem) chosenElem.css('display', 'block')
+      if (chosenKeyboardKey) 
+      chosenKeyboardKey.css({'background-color': '#fe7a47', 'box-shadow': '0 3px 3px 0 black'}).text(event.key).addClass("clicked-key");
+      if (chosenElem) chosenElem.css('display', 'block');
       playSound(userChosenKey);
       checkUserChoise(userChosenKey);
       console.log(userChosenKey)
@@ -135,7 +157,7 @@ function gameover(){
   setTimeout(function () {
     $("body").removeClass("game-over");
   }, 200);
-  $("#line").text("Game Over");
+  $("#line").text("Game Over").addClass("game-over");
   startOver();
 }
 
@@ -187,16 +209,7 @@ function createRandomNote() {
   randomNotes.push(randomNote)
   randomNote = randomNote || "" 
   console.log(randomNote)
-
-  let level = $('#level');
-  let test = $('#test');
-  if (level) {
-    staffPositionLevel();
-  } else if (test) {
-    staffPositionTest();
-  }
 }
-
 
 // Add event listener to piano keyboard keys
 $('button').click(function() {
@@ -217,6 +230,7 @@ function startOver() {
   started = false;
   createNote();
 }
+
 
 
 
