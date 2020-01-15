@@ -25,7 +25,6 @@ function swapElement(a, b) {
 }
 
 // TODO: Clicking level links only swaps elements when there's a test-view on the screen and vice versa with test links.
-
 $('#level').on('click', function() {
   let a = $('#staff' + $('#a').val());
   let b = $('#klavier' + $('#b').val());
@@ -39,15 +38,16 @@ $('#test').on('click', function() {
 });
 
 // Starting the game
-$(document).keydown(function() {
-  if (!started) {
+let displayNote = function() {
+  $(document).keydown(function() {
+    if (!started)
     createNote();
-    started = true; 
-  }
-})
+    started = true;
+  })
+}
 
-// Random note starts dropping down when a user starts the game
-let dropNote = function() {
+// Random note starts dropping down when a user tests their skills
+if (document.querySelector("#test").clicked == true) {
   $(document).keydown(function() {
     createRandomNote();
     let elem = document.getElementById("random-note");
@@ -64,7 +64,9 @@ let dropNote = function() {
       }
     } 
   })
-}();
+} else {
+  displayNote();
+}
 
 // Add event listener to detect which key is pressed out of the 7 keys
 $(document).keydown(function(event) {
@@ -86,46 +88,33 @@ $(document).keydown(function(event) {
     } else if (key === 66) {
       userChosenKey = keysAvailable[6];
     }
-<<<<<<< HEAD
-    userChosenKeys.push(userChosenKey);
-    playSound(userChosenKey);
-    checkUserChoise(userChosenKey);
-    console.log(userChosenKey)
-    //return userChosenKey;
-=======
-    
     if (userChosenKey){
-        userChosenKeys.push(userChosenKey);
-        // hide the existing nodes
-        $('.note-list > h6').each(function () {
-          $(this).css('display', 'none');
-        })
+      userChosenKeys.push(userChosenKey);
+      // hide the existing nodes
+      $('.note-list > h6').each(function () {
+        $(this).css('display', 'none');
+      })
 
-        $('#keyboard > button').each(function () {
-          $(this).css('background-color', '');
-        })
+      $('#keyboard > button').each(function () {
+        $(this).css('background-color', '');
+      })
 
-        let chosenElemtn = $('.' + userChosenKey + '-note');
-        let chosenKeyBoard = $('#' + userChosenKey);
-        if (chosenKeyBoard) chosenKeyBoard.css('background-color', 'grey');
-        if (chosenElemtn) chosenElemtn.css('display', 'block')
-        playSound(userChosenKey);
-        checkUserChoise(userChosenKey);
-        console.log(userChosenKey)
-      }else {
-      gameover()
-      }
->>>>>>> b2e8d2bfc1947aa7b735e7cf9139b05c9c1e84f4
+      let chosenElem = $('.' + userChosenKey + '-note');
+      let chosenKeyboardKey = $('#' + userChosenKey);
+      if (chosenKeyboardKey) chosenKeyboardKey.css('background-color', '#fe7a47');
+      if (chosenElem) chosenElem.css('display', 'block')
+      playSound(userChosenKey);
+      checkUserChoise(userChosenKey);
+      console.log(userChosenKey)
+    } else {
+    gameover()
+    }
   }
 })
 
 // Check if the user played right or wrong
 function checkUserChoise(userChosenKey) {
-  // f
-
   for (let i = 0; i < keysAvailable.length; i++) {
-
-
     this.randomNote = $("#random-note").attr("class");
     this.userChosenKey = keysAvailable[i];
     this.userChosenButton = $("button").attr("id");
@@ -140,16 +129,16 @@ function checkUserChoise(userChosenKey) {
 }
 
 // game over
-
 function gameover(){
   playSound('wrong') // TODO: must play "wrong" when hitting a wrong key
-      $("body").addClass("game-over");
+    $("body").addClass("game-over");
   setTimeout(function () {
     $("body").removeClass("game-over");
   }, 200);
-  $("#line").text("Game Over, refresh the page and start over");
+  $("#line").text("Game Over");
   startOver();
 }
+
 // Create a note on the fly
 function createNote() {
   for (let i = 0; i < keyboardKeys.length; ++i) {
@@ -157,27 +146,25 @@ function createNote() {
     function createNoteAboveKey(elem, html) {
   
     let note = document.createElement('h6');
+    note.setAttribute("id", "note");
     note.style.cssText = "position:absolute; font-size: 3em; font-family: 'Raleway', sans-serif; display:none;";
     
     let coords = elem.getBoundingClientRect();
-    if (document.querySelector("#test").clicked == true) {
-      note.style.left = 45 + "%";
-    } else {
     note.style.left = keyboardKeys[i].left + "%";
-    }
-    if (note.style.left === keyboardKeys[0].left + "%") {
+    note.style.top = keyboardKeys[i].top + "px";
+    if (note.style.left === keyboardKeys[0].left + "%" && note.style.top === keyboardKeys[0].top + "px") {
       note.setAttribute("class", "c-note");
-    } else if (note.style.left === keyboardKeys[1].left + "%") {
+    } else if (note.style.left === keyboardKeys[1].left + "%" && note.style.top === keyboardKeys[1].top + "px") {
       note.setAttribute("class", "d-note");
-    } else if (note.style.left === keyboardKeys[2].left + "%") {
+    } else if (note.style.left === keyboardKeys[2].left + "%" && note.style.top === keyboardKeys[2].top + "px") {
         note.setAttribute("class", "e-note");
-    } else if (note.style.left === keyboardKeys[3].left + "%") {
+    } else if (note.style.left === keyboardKeys[3].left + "%" && note.style.top === keyboardKeys[3].top + "px") {
         note.setAttribute("class", "f-note");
-    } else if (note.style.left === keyboardKeys[4].left + "%") {
+    } else if (note.style.left === keyboardKeys[4].left + "%" && note.style.top === keyboardKeys[4].top + "px") {
         note.setAttribute("class", "g-note");
-    } else if (note.style.left === keyboardKeys[5].left + "%") {
+    } else if (note.style.left === keyboardKeys[5].left + "%" && note.style.top === keyboardKeys[5].top + "px") {
         note.setAttribute("class", "a-note");
-    } else if (note.style.left === keyboardKeys[6].left + "%") {
+    } else if (note.style.left === keyboardKeys[6].left + "%" && note.style.top === keyboardKeys[6].top + "px") {
         note.setAttribute("class", "b-note");
     } else {
         note = null;
@@ -209,6 +196,7 @@ function createRandomNote() {
     staffPositionTest();
   }
 }
+
 
 // Add event listener to piano keyboard keys
 $('button').click(function() {
