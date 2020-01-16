@@ -41,9 +41,5 @@ let keyboardKeys = [
       class: "b-note",
       left: 70,
       top: 470
-    }/*,
-    function calcNewTop() {
-      let top = keyboardKeys[i].top.val - 400;
-      return top
-    }*/
+    }
   ]

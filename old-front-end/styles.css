@@ -3,18 +3,6 @@
 
 html, body {width: auto!important; overflow-x: hidden!important}
 
-/* Media Queries: Tablet Landscape */
-@media screen and (max-width: 1060px) {
-    #primary { width:67%; }
-    #secondary { width:30%; margin-left:3%;}
-}
-
-/* Media Queries: Tabled Portrait */
-@media screen and (max-width: 768px) {
-    #primary { width:100%; }
-    #secondary { width:100%; margin:0; border:none; }
-}
-
 h1, h2, h3, h4, h5, p {
   font-family: 'Lora', serif;
 }
@@ -23,9 +11,7 @@ h2 {
   color: #fe7a47;
 }
 
-body {
-  background-color: #f5ca99;
-}
+p { text-align: center; }
 
 /* instructions*/
 #intro {
@@ -38,24 +24,34 @@ body {
   text-align: center;
   padding-bottom: 2%;
   padding-top: 2%;
-  border-bottom: double;
+  /*border-bottom: double;
   border-top: double;
-  background-color: #fe7a47;
+  background-color: #fe7a47;*/
 }
 
 .how {
   color: #fcfdfe;
+  text-align: center;
+}
+
+.links {
+  text-align: center;
+  padding-bottom: 2%;
 }
 
 .starting {
   font-size: 1.4em;
   color: #d8412f;
-  padding-left: 1%
+  text-align: center;
+  padding-right: 1%;
+}
+
+.test-instructions {
+  padding-right: 1%;
 }
 
 .instructions {
-  /*float: left;*/
-  padding-right: 5%;
+  padding-right: 1%;
 }
 
 /*icons*/
@@ -72,7 +68,7 @@ body {
   font-size: large;
   color: #f5ca99;
   border: 2px solid black;
-  border-radius: .4rem;
+  border-radius: .3rem;
   background-color: red;
 }
 
@@ -82,7 +78,7 @@ body {
 }
 
 #level {
-  background-color: yellow;
+  background-color: #fe7a47;
   color: #000
 }
 
@@ -154,47 +150,6 @@ body {
 #notes-route {
   min-height: 98px;
 }
-
-/*span {
-  font-size: 3em;
-  font-family: 'Raleway', sans-serif;
-  display: inline-block;
-}
-
-#c-note {
-  padding-left: 28%;
-  margin: 0;
-}
-
-#d-note {
-  padding-left: 5%;
-  margin: 0;
-}
-
-#e-note {
-  padding-left: 5%;
-  margin: 0;
-}
-
-#f-note {
-  padding-left: 5%;
-  margin: 0;
-}
-
-#g-note {
-  padding-left: 4%;
-  margin: 0;
-}
-
-#a-note {
-  padding-left: 5%;
-  margin: 0;
-}
-
-#b-note {
-  padding-left: 5%;
-  margin: 0;
-}*/
 
 .menu {
   text-decoration: none;
@@ -284,7 +239,7 @@ body {
   text-transform: uppercase;
   font-family: fantasy;
   color: grey;
-  box-shadow: 0 3px 3px 0 black
+  box-shadow: 0 3px 3px 0 #000;
 }
 
 .game-over {
