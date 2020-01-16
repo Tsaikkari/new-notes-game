@@ -283,7 +283,8 @@ body {
   font-size: 4em;
   text-transform: uppercase;
   font-family: fantasy;
-  color: blue;
+  color: grey;
+  box-shadow: 0 3px 3px 0 black
 }
 
 .game-over {
