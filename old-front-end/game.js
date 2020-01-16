@@ -40,11 +40,13 @@ $('#level').on('click', function() {
   $('#klavier').show();
   $('#staff').show();
   $('.menu').show();
+  b.css('background-color', '#f5ca99');
 });
 
 $('#test').on('click', function() {
   let a = $('#klavier' + $('#a').val());
   let b = $('#staff' + $('#b').val());
+  a.css('background-color', 'red');
   swapElement(a, b);
   $('#staff').show();
   $('#klavier').show();
