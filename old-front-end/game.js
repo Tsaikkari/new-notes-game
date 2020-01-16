@@ -36,17 +36,17 @@ function swapElement(a, b) {
 $('#level').on('click', function() {
   let a = $('#staff' + $('#a').val());
   let b = $('#klavier' + $('#b').val());
+  b.css('background-color', '#f5ca99');
   swapElement(a, b);
   $('#klavier').show();
   $('#staff').show();
   $('.menu').show();
-  b.css('background-color', '#f5ca99');
 });
 
 $('#test').on('click', function() {
   let a = $('#klavier' + $('#a').val());
   let b = $('#staff' + $('#b').val());
-  a.css('background-color', 'red');
+  a.css('background-color', 'grey');
   swapElement(a, b);
   $('#staff').show();
   $('#klavier').show();
@@ -64,7 +64,10 @@ $(document).keydown(function() {
 function dropRandomNote() {
   $("button").on('click', function() {
     createRandomNote();
+    if (randomNote)
+    console.log(randomNote)
     let elem = document.getElementById("random-note");
+    console.log(randomNote)
     let pos = 0
     let id = setInterval(frame, 5);
     
@@ -78,8 +81,8 @@ function dropRandomNote() {
       }
     } 
   })
-} 
-
+}  
+    
 // Add event listener to detect which key is pressed out of the 7 keys
 $(document).keydown(function(event) {
   let key = event.keyCode || event.key;
@@ -198,13 +201,17 @@ function createNote() {
 
 // Transform the note into a random note
 function createRandomNote() {
-  let randomNote = notes[Math.floor(Math.random() * 7)] 
+  let randomNumber = Math.floor(Math.random() * 7)
+  let randomNote = notes[randomNumber];
   randomNote.setAttribute("id", "random-note");
+  randomNote.setAttribute("class", "." + randomNote);
   for (let i = 0; i < keyboardKeys.length; i++) {
-    //randomNote.style.top = (keyboardKeys[i].top - keyboardKeys[6].top) + "px";
     randomNote.style.left = keyboardKeys[0].left + "%";
   }
-  if (randomNote)
+  if (randomNote) notes = $('.note-list > h6').each(function () {
+    $(this).css('display', 'block');
+  })
+  
   randomNotes.push(randomNote)
   console.log(randomNote)
 }
