@@ -11,11 +11,11 @@ $('#klavier').hide();
 $('.menu').hide();
 
 $(".levels-tests").click(function() {
-  $("section").hide();
+  $("#wrap").hide();
 })
 
 $(".menu").click(function() {
-  $("section").show();
+  $("#wrap").show();
   $('#staff').hide();
   $('#klavier').hide();
   $('.menu').hide();
