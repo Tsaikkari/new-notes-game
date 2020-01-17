@@ -82,26 +82,6 @@ function dropRandomNote() {
     }
   })
 } 
-
-/*if (staffPositionTest) {
-  for (let i = 0; i < keyboardKeys.length; i++) {
-    if (keyboardKeys[0].top) {
-      keyboardKeys.top = 50
-    } else if (keyboardKeys[1].top) {
-      keyboardKeys.top = 50
-    } else if (keyboardKeys[2].top) {
-      keyboardKeys.top = 50
-    } else if (keyboardKeys[3].top) {
-      keyboardKeys.top = 50
-    } else if (keyboardKeys[4].top) {
-      keyboardKeys.top = 50
-    } else if (keyboardKeys[5].top) {
-      keyboardKeys.top = 50
-    } else if (keyboardKeys[6].top) {
-      keyboardKeys.top = 50
-    }
-  }
-}*/
     
 // Add event listener to detect which key is pressed out of the 7 keys
 $(document).keydown(function(event) {
@@ -199,9 +179,6 @@ function createNote() {
       note.setAttribute("class", keyboardKeys[i].class);
     }
     
-    note.style.left = keyboardKeys.forEach(calcLeft);
-    note.style.top = keyboardKeys.forEach(calcTop);
-    
     note.innerHTML = html;
     return note;
     }
@@ -209,18 +186,6 @@ function createNote() {
     // adding new notes to the list
     $('.note-list').append(note);
     notes.push(note);
-  }
-  function calcTop(top) {
-    i = 13;
-    if (top = 550) {
-      i--;
-    }
-  }
-  function calcLeft(left) {
-    i = 7;
-    if (left >= 27) {
-      i++;
-    }
   }
 }
 
@@ -233,17 +198,21 @@ function createRandomNote() {
     randomNote.setAttribute("class", $('button').attr('id') + '-note');
   })
   randomNote.style.left = 18 + "%";
-  for (let i = 0; i < keyboardKeys.length; i++) {
-    randomNote.style.top = keyboardKeys.forEach(calcTop);
-    function calcTop(top) {
-      if (keyboardKeys[i].top <= 550) {
-        j = 450;
-        top -= j;
-      }
-    }
-  }
+  /*for (let i = 0; i < keyboardKeys.length; i++) {
+    randomNote.style.top = keyboardKeys[i].top + "px";
+    if (randomNote.style.top === keyboardKeys[i].top + "px" && randomNote.style.left === ) 
+      randomNote.setAttribute("class", keyboardKeys[i].class);
+  }*/
+  randomNote.style.top = keyboardKeys.forEach(calcRandomTop);
   randomNotes.push(randomNote)
   console.log(randomNote)
+
+  function calcRandomTop(top) {
+    if (top <= 550) {
+      i = 450;
+      top -= i;
+    }
+  }
 }
 
 // Add event listener to piano keyboard keys
