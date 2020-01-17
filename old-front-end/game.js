@@ -65,9 +65,9 @@ function dropRandomNote() {
   $("button").on('click', function() {
     createRandomNote();
     if (randomNote)
-    console.log(randomNote)
-    let elem = document.getElementById("random-note");
-    console.log(randomNote)
+    console.log(randomNote) 
+    let elem = document.getElementById("note"); 
+    console.log(randomNote) 
     let pos = 0
     let id = setInterval(frame, 5);
     
@@ -79,7 +79,7 @@ function dropRandomNote() {
         pos++;
         elem.style.top = pos + "px";
       }
-    } 
+    }
   })
 }  
     
@@ -132,13 +132,14 @@ $(document).keydown(function(event) {
   }
 })
 
+// TODO: must play "wrong" when hitting a wrong button
 // Check if the user played right or wrong
-function checkUserChoise(userChosenKey) {
+function checkUserChoise(currentTone) {
   for (let i = 0; i < keysAvailable.length; i++) {
     this.randomNote = $("#random-note").attr("class");
     this.userChosenKey = keysAvailable[i];
     this.userChosenButton = $("button").attr("id");
-    if (randomNotes[userChosenKey] === userChosenKeys[userChosenKey]) {
+    if (randomNotes[currentTone] === userChosenKeys[currentTone]) {
       if (randomNote === userChosenKey + "-note" && randomNote === userChosenButton + "-note") {
         console.log(userChosenKey)
       }
@@ -150,7 +151,7 @@ function checkUserChoise(userChosenKey) {
 
 // game over
 function gameover(){
-  playSound('wrong') // TODO: must play "wrong" when hitting a wrong key
+  playSound('wrong') 
     $("body").addClass("game-over");
   setTimeout(function () {
     $("body").removeClass("game-over");
@@ -203,14 +204,14 @@ function createNote() {
 function createRandomNote() {
   let randomNumber = Math.floor(Math.random() * 7)
   let randomNote = notes[randomNumber];
-  randomNote.setAttribute("id", "random-note");
-  randomNote.setAttribute("class", "." + randomNote);
+  if (randomNote) notes = $('.note-list > h6').each(function () {
+    $(this).css('display', 'block');
+    randomNote.setAttribute("id", "random-note");
+    randomNote.setAttribute("class", $('button').attr('id') + '-note');
+  })
   for (let i = 0; i < keyboardKeys.length; i++) {
     randomNote.style.left = keyboardKeys[0].left + "%";
   }
-  if (randomNote) notes = $('.note-list > h6').each(function () {
-    $(this).css('display', 'block');
-  })
   
   randomNotes.push(randomNote)
   console.log(randomNote)
@@ -233,7 +234,7 @@ function startOver() {
   level = 0;
   randomNotes = [];
   started = false;
-  //displayNote();
+  
 }
 
 
