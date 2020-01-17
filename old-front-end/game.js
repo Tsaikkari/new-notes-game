@@ -51,7 +51,6 @@ $('#test').on('click', function() {
   $('#staff').show();
   $('#klavier').show();
   $('.menu').show();
-  dropRandomNote();
 });
 
 // Starting the game
@@ -61,27 +60,45 @@ $(document).keydown(function() {
   started = true;
 })
 
-function dropRandomNote() {
-  $("button").on('click', function() {
-    createRandomNote();
-    if (randomNote)
-    console.log(randomNote) 
-    let elem = document.getElementById("note"); 
-    console.log(randomNote) 
-    let pos = 0
-    let id = setInterval(frame, 5);
-    
-    function frame() {
-      let staffPosition = this.staffPosition;
-      if (pos === staffPosition) { 
-        clearInterval(id);
-      } else {
-        pos++;
-        elem.style.top = pos + "px";
-      }
+$("button").on('click', function() {
+  createRandomNote();
+  if (randomNote)
+  console.log(randomNote) 
+  let elem = document.getElementById("random-note"); 
+  console.log(randomNote) 
+  let pos = 0
+  let id = setInterval(frame, 5);
+  
+  function frame() {
+    let staffPosition = this.staffPosition;
+    if (pos === staffPosition) { 
+      clearInterval(id);
+    } else {
+      pos++;
+      elem.style.top = pos + "px";
     }
-  })
-}  
+  }
+}) 
+
+if (staffPositionTest()) {
+  for (let i = 0; i < keyboardKeys.length; i++) {
+    if (keyboardKeys[0].top) {
+      keyboardKeys.top = 50
+    } else if (keyboardKeys[1].top) {
+      keyboardKeys.top = 50
+    } else if (keyboardKeys[2].top) {
+      keyboardKeys.top = 50
+    } else if (keyboardKeys[3].top) {
+      keyboardKeys.top = 50
+    } else if (keyboardKeys[4].top) {
+      keyboardKeys.top = 50
+    } else if (keyboardKeys[5].top) {
+      keyboardKeys.top = 50
+    } else if (keyboardKeys[6].top) {
+      keyboardKeys.top = 50
+    }
+  }
+}
     
 // Add event listener to detect which key is pressed out of the 7 keys
 $(document).keydown(function(event) {
@@ -118,7 +135,8 @@ $(document).keydown(function(event) {
       let chosenElem = $('.' + userChosenKey + '-note');
       let chosenKeyboardKey = $('#' + userChosenKey);
       if (chosenKeyboardKey) 
-      chosenKeyboardKey.css('background-color', '#fe7a47').text(event.key);
+      chosenKeyboardKey.css('background-color', '#fe7a47');
+      chosenKeyboardKey.text(event.key);
       setTimeout(function() {
         chosenKeyboardKey.removeClass("clicked-key");
       }, 2500); // TODO: duration of sound needs to match
@@ -202,17 +220,16 @@ function createNote() {
 
 // Transform the note into a random note
 function createRandomNote() {
-  let randomNumber = Math.floor(Math.random() * 7)
-  let randomNote = notes[randomNumber];
+  let randomNote = notes[Math.floor(Math.random() * 7)];
   if (randomNote) notes = $('.note-list > h6').each(function () {
     $(this).css('display', 'block');
     randomNote.setAttribute("id", "random-note");
     randomNote.setAttribute("class", $('button').attr('id') + '-note');
   })
   for (let i = 0; i < keyboardKeys.length; i++) {
-    randomNote.style.left = keyboardKeys[0].left + "%";
+    randomNote.style.left = 20 + "%";
+    randomNote.style.top = keyboardKeys[i].top + "px";
   }
-  
   randomNotes.push(randomNote)
   console.log(randomNote)
 }

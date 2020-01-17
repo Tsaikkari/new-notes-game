@@ -24,9 +24,6 @@ p { text-align: center; }
   text-align: center;
   padding-bottom: 2%;
   padding-top: 2%;
-  /*border-bottom: double;
-  border-top: double;
-  background-color: #fe7a47;*/
 }
 
 .how {
@@ -51,7 +48,7 @@ p { text-align: center; }
 }
 
 .instructions {
-  padding-right: 1%;
+  padding-right: 2%;
 }
 
 /*icons*/
@@ -67,9 +64,9 @@ p { text-align: center; }
   padding: 5px;
   font-size: large;
   color: #f5ca99;
-  border: 2px solid black;
   border-radius: .3rem;
   background-color: red;
+  box-shadow: 0 2px 6px 0 #000;
 }
 
 .levels-tests:hover {
@@ -80,7 +77,7 @@ p { text-align: center; }
 #level {
   /*background-color: #fe7a47;*/
   background-color: #fff;
-  color: #000
+  color: #000;
 }
 
 #level:hover {
