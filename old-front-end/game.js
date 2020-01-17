@@ -51,6 +51,7 @@ $('#test').on('click', function() {
   $('#staff').show();
   $('#klavier').show();
   $('.menu').show();
+  dropRandomNote();
 });
 
 // Starting the game
@@ -60,27 +61,29 @@ $(document).keydown(function() {
   started = true;
 })
 
-$("button").on('click', function() {
-  createRandomNote();
-  if (randomNote)
-  console.log(randomNote) 
-  let elem = document.getElementById("random-note"); 
-  console.log(randomNote) 
-  let pos = 0
-  let id = setInterval(frame, 5);
-  
-  function frame() {
-    let staffPosition = this.staffPosition;
-    if (pos === staffPosition) { 
-      clearInterval(id);
-    } else {
-      pos++;
-      elem.style.top = pos + "px";
+function dropRandomNote() {
+  $("button").on('click', function() {
+    createRandomNote();
+    if (randomNote)
+    console.log(randomNote) 
+    let elem = document.getElementById("random-note"); 
+    console.log(randomNote) 
+    let pos = 0
+    let id = setInterval(frame, 5);
+    
+    function frame() {
+      let staffPosition = this.staffPosition;
+      if (pos === staffPosition) { 
+        clearInterval(id);
+      } else {
+        pos++;
+        elem.style.top = pos + "px";
+      }
     }
-  }
-}) 
+  })
+} 
 
-if (staffPositionTest()) {
+/*if (staffPositionTest) {
   for (let i = 0; i < keyboardKeys.length; i++) {
     if (keyboardKeys[0].top) {
       keyboardKeys.top = 50
@@ -98,7 +101,7 @@ if (staffPositionTest()) {
       keyboardKeys.top = 50
     }
   }
-}
+}*/
     
 // Add event listener to detect which key is pressed out of the 7 keys
 $(document).keydown(function(event) {
@@ -181,6 +184,7 @@ function gameover(){
 // Create a note on the fly
 function createNote() {
   for (let i = 0; i < keyboardKeys.length; ++i) {
+
     let elem = document.getElementById(keyboardKeys[i].id);
     function createNoteAboveKey(elem, html) {
   
@@ -191,23 +195,13 @@ function createNote() {
     let coords = elem.getBoundingClientRect();
     note.style.left = keyboardKeys[i].left + "%";
     note.style.top = keyboardKeys[i].top + "px";
-    if (note.style.left === keyboardKeys[0].left + "%" && note.style.top === keyboardKeys[0].top + "px") {
-      note.setAttribute("class", "c-note");
-    } else if (note.style.left === keyboardKeys[1].left + "%" && note.style.top === keyboardKeys[1].top + "px") {
-      note.setAttribute("class", "d-note");
-    } else if (note.style.left === keyboardKeys[2].left + "%" && note.style.top === keyboardKeys[2].top + "px") {
-        note.setAttribute("class", "e-note");
-    } else if (note.style.left === keyboardKeys[3].left + "%" && note.style.top === keyboardKeys[3].top + "px") {
-        note.setAttribute("class", "f-note");
-    } else if (note.style.left === keyboardKeys[4].left + "%" && note.style.top === keyboardKeys[4].top + "px") {
-        note.setAttribute("class", "g-note");
-    } else if (note.style.left === keyboardKeys[5].left + "%" && note.style.top === keyboardKeys[5].top + "px") {
-        note.setAttribute("class", "a-note");
-    } else if (note.style.left === keyboardKeys[6].left + "%" && note.style.top === keyboardKeys[6].top + "px") {
-        note.setAttribute("class", "b-note");
-    } else {
-        note = null;
+    if (note.style.left === keyboardKeys[i].left + "%" && note.style.top === keyboardKeys[i].top + "px") {
+      note.setAttribute("class", keyboardKeys[i].class);
     }
+    
+    note.style.left = keyboardKeys.forEach(calcLeft);
+    note.style.top = keyboardKeys.forEach(calcTop);
+    
     note.innerHTML = html;
     return note;
     }
@@ -215,6 +209,18 @@ function createNote() {
     // adding new notes to the list
     $('.note-list').append(note);
     notes.push(note);
+  }
+  function calcTop(top) {
+    i = 13;
+    if (top = 550) {
+      i--;
+    }
+  }
+  function calcLeft(left) {
+    i = 7;
+    if (left >= 27) {
+      i++;
+    }
   }
 }
 
@@ -226,9 +232,15 @@ function createRandomNote() {
     randomNote.setAttribute("id", "random-note");
     randomNote.setAttribute("class", $('button').attr('id') + '-note');
   })
+  randomNote.style.left = 18 + "%";
   for (let i = 0; i < keyboardKeys.length; i++) {
-    randomNote.style.left = 20 + "%";
-    randomNote.style.top = keyboardKeys[i].top + "px";
+    randomNote.style.top = keyboardKeys.forEach(calcTop);
+    function calcTop(top) {
+      if (keyboardKeys[i].top <= 550) {
+        j = 450;
+        top -= j;
+      }
+    }
   }
   randomNotes.push(randomNote)
   console.log(randomNote)
