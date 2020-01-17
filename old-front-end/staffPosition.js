@@ -1,25 +1,14 @@
-// TODO: Fix this
-function staffPositionTest() {
-  for (let i = 0; i < keyboardKeys.length; i++) {
-    if (document.getElementById("random-note") === document.querySelector(".c-note")) {
-        staffPosition = keyboardKeys[0].top;
-    } else if (document.getElementById("random-note") === document.querySelector(".d-note")) {
-        staffPosition = keyboardKeys[1].top;
-    } else if (document.getElementById("random-note") === document.querySelector(".e-note")) {
-        staffPosition = keyboardKeys[2].top;
-    } else if (document.getElementById("random-note") === document.querySelector(".f-note")) {
-        staffPosition = keyboardKeys[3].top;      
-    } else if (document.getElementById("random-note") === document.querySelector(".g-note")) {
-        staffPosition = keyboardKeys[4].top;    
-    }  else if (document.getElementById("random-note") === document.querySelector(".a-note")) {
-        staffPosition = keyboardKeys[5].top;     
-    } else if (document.getElementById("random-note") === document.querySelector(".b-note")) {
-        staffPosition = keyboardKeys[6].top;     
-    } else { 
-        staffPosition = 0;
-    }
+// TODO: fix this
+let staffPositions = keyboardKeys.map(element => {
+ return { top: element.top - 297 }
+});
+console.log(staffPositions)
+
+staffPositions.forEach((element) => {
+  let staffPosition = element.top;
+  let randomNote = this.randomNote;
+  if ($('#random-note') === $('.' + randomNote)) {
+    console.log(element.top);
   }
-}
-staffPositionTest();
-
-
+    console.log(staffPosition);
+});

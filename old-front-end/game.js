@@ -72,8 +72,8 @@ function dropRandomNote() {
     let id = setInterval(frame, 5);
     
     function frame() {
-      let staffPosition = this.staffPosition;
-      if (pos === staffPosition) { 
+      staffPosition = this.staffPosition;
+      if (pos === staffPosition) {
         clearInterval(id);
       } else {
         pos++;
@@ -83,7 +83,7 @@ function dropRandomNote() {
   })
 } 
     
-// Add event listener to detect which key is pressed out of the 7 keys
+// Add event listener to detect which key is pressed
 $(document).keydown(function(event) {
   let key = event.keyCode || event.key;
   for (let i = 0; i < keysAvailable.length; i++) { 
@@ -164,7 +164,7 @@ function gameover(){
 // Create a note on the fly
 function createNote() {
   for (let i = 0; i < keyboardKeys.length; ++i) {
-
+    
     let elem = document.getElementById(keyboardKeys[i].id);
     function createNoteAboveKey(elem, html) {
   
@@ -175,7 +175,7 @@ function createNote() {
     let coords = elem.getBoundingClientRect();
     note.style.left = keyboardKeys[i].left + "%";
     note.style.top = keyboardKeys[i].top + "px";
-    if (note.style.left === keyboardKeys[i].left + "%" && note.style.top === keyboardKeys[i].top + "px") {
+    if (keyboardKeys[i].left + "%" && keyboardKeys[i].top + "px") {
       note.setAttribute("class", keyboardKeys[i].class);
     }
     
@@ -192,27 +192,18 @@ function createNote() {
 // Transform the note into a random note
 function createRandomNote() {
   let randomNote = notes[Math.floor(Math.random() * 7)];
-  if (randomNote) notes = $('.note-list > h6').each(function () {
-    $(this).css('display', 'block');
-    randomNote.setAttribute("id", "random-note");
-    randomNote.setAttribute("class", $('button').attr('id') + '-note');
-  })
-  randomNote.style.left = 18 + "%";
-  /*for (let i = 0; i < keyboardKeys.length; i++) {
-    randomNote.style.top = keyboardKeys[i].top + "px";
-    if (randomNote.style.top === keyboardKeys[i].top + "px" && randomNote.style.left === ) 
-      randomNote.setAttribute("class", keyboardKeys[i].class);
-  }*/
-  randomNote.style.top = keyboardKeys.forEach(calcRandomTop);
+  if (randomNote) {
+    $('.note-list > h6').each(function () {
+      $(this).css('display', 'block');
+      randomNote.setAttribute("id", "random-note");
+      randomNote.style.left = 18 + "%";
+    }) 
+  }
+  for (let i = 0; i < staffPositions.length; i++) {
+    randomNote.style.top = staffPositions[i].top + "px";
+  }
   randomNotes.push(randomNote)
   console.log(randomNote)
-
-  function calcRandomTop(top) {
-    if (top <= 550) {
-      i = 450;
-      top -= i;
-    }
-  }
 }
 
 // Add event listener to piano keyboard keys
@@ -232,7 +223,6 @@ function startOver() {
   level = 0;
   randomNotes = [];
   started = false;
-  
 }
 
 

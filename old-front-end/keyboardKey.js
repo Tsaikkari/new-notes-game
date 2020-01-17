@@ -43,3 +43,5 @@ let keyboardKeys = [
       top: 470
     }
   ]
+
+  console.log(keyboardKeys)
