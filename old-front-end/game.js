@@ -199,17 +199,15 @@ function createRandomNote() {
       randomNote.style.left = 18 + "%";
     }) 
   }
-  
+  // TODO: fix this
   let staffPositions = keyboardKeys.map(element => {
     return { top: element.top - 297 }
   });
   console.log(staffPositions)
-  // TODO: fix this
   staffPositions.forEach((element) => {
     let staffPosition = element.top;
-    let randomNote = this.randomNote;
     if ($('#random-note') === $('.' + randomNote)) {
-      randomNote.style.top = staffPositions[this.top] + "px";
+      randomNote.style.top = this.staffPosition.top + "px";
     }
       console.log(staffPosition);
   });
