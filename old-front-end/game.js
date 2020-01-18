@@ -36,7 +36,7 @@ function swapElement(a, b) {
 $('#level').on('click', function() {
   let a = $('#staff' + $('#a').val());
   let b = $('#klavier' + $('#b').val());
-  b.css('background-color', '#f5ca99');
+  b.css('background-color', '#f8a055');
   swapElement(a, b);
   $('#klavier').show();
   $('#staff').show();
@@ -46,7 +46,7 @@ $('#level').on('click', function() {
 $('#test').on('click', function() {
   let a = $('#klavier' + $('#a').val());
   let b = $('#staff' + $('#b').val());
-  a.css('background-color', 'grey');
+  a.css('background-color', '#bcbabe');
   swapElement(a, b);
   $('#staff').show();
   $('#klavier').show();
@@ -118,7 +118,7 @@ $(document).keydown(function(event) {
       let chosenElem = $('.' + userChosenKey + '-note');
       let chosenKeyboardKey = $('#' + userChosenKey);
       if (chosenKeyboardKey) 
-      chosenKeyboardKey.css('background-color', '#fe7a47');
+      chosenKeyboardKey.css('background-color', '#4897d8');
       chosenKeyboardKey.text(event.key);
       setTimeout(function() {
         chosenKeyboardKey.removeClass("clicked-key");
@@ -140,9 +140,9 @@ function checkUserChoise(currentTone) {
     this.randomNote = $("#random-note").attr("class");
     this.userChosenKey = keysAvailable[i];
     this.userChosenButton = $("button").attr("id");
-    if (randomNotes[currentTone] === userChosenKeys[currentTone]) {
-      if (randomNote === userChosenKey + "-note" && randomNote === userChosenButton + "-note") {
-        console.log(userChosenKey)
+    if (randomNotes[currentTone] === userChosenButtons[currentTone]) {
+      if (randomNote === userChosenButton + "-note") {
+        console.log("Good")
       }
     } else {
       gameover()
@@ -199,9 +199,21 @@ function createRandomNote() {
       randomNote.style.left = 18 + "%";
     }) 
   }
-  for (let i = 0; i < staffPositions.length; i++) {
-    randomNote.style.top = staffPositions[i].top + "px";
-  }
+  
+  let staffPositions = keyboardKeys.map(element => {
+    return { top: element.top - 297 }
+  });
+  console.log(staffPositions)
+  // TODO: fix this
+  staffPositions.forEach((element) => {
+    let staffPosition = element.top;
+    let randomNote = this.randomNote;
+    if ($('#random-note') === $('.' + randomNote)) {
+      randomNote.style.top = staffPositions[this.top] + "px";
+    }
+      console.log(staffPosition);
+  });
+  
   randomNotes.push(randomNote)
   console.log(randomNote)
 }
@@ -222,6 +234,9 @@ function playSound(name) {
 function startOver() {
   level = 0;
   randomNotes = [];
+  notes = [];
+  userChosenKeys = [];
+  userChosenButtons = [];
   started = false;
 }
 

@@ -19,29 +19,7 @@
   <body>
     <!--Game instructions-->
     <section id="wrap">
-      <section id="min-keyboard">
-        <div class="keys">
-          <div data-key="67" class="min-key" data-note="C">C</div>
-          <div data-key="87" class="min-key sharp" data-note="C#"></div>
-          <div data-key="68" class="min-key" data-note="D">D</div>
-          <div data-key="81" class="min-key sharp" data-note="D#"></div>
-          <div data-key="69" class="min-key" data-note="E">E</div>
-          <div data-key="70" class="min-key" data-note="F">F</div>
-          <div data-key="84" class="min-key sharp" data-note="F#"></div>
-          <div data-key="71" class="min-key" data-note="G">G</div>
-          <div data-key="89" class="min-key sharp" data-note="G#"></div>
-          <div data-key="65" class="min-key" data-note="A">A</div>
-          <div data-key="85" class="min-key sharp" data-note="A#"></div>
-          <div data-key="66" class="min-key" data-note="B">B</div>
-        </div>
-        <!--<audio data-key="67" class="c" src="sounds/c.mp3"></audio>
-        <audio data-key="68" class="d" src="sounds/d.mp3"></audio>
-        <audio data-key="69" class="e" src="sounds/e.mp3"></audio>
-        <audio data-key="70" class="f" src="sounds/f.mp3"></audio>
-        <audio data-key="71" class="g" src="sounds/g.mp3"></audio>
-        <audio data-key="65" class="a" src="sounds/a.mp3"></audio>
-        <audio data-key="66" class="b" src="sounds/b.mp3"></audio>-->
-      </section><!--Mini-keyboard ends-->
+      <h1 class="header">NOTES GAME</h1>
       <div class="container-fluid" id="intro">
         <h3 class="intro-header"><i class="fas fa-music"></i>Learn the names of the keyboard keys<br> & their corresponding notes on the staff<br>
         </h3> 
@@ -53,10 +31,10 @@
           <p class="instructions"><strong>Levels:</strong> Click on <strong>your</strong> keyboard key to display a corresponding note.<br>
             Memorize its place on the staff. 
             Put the sound on!<i class="fas fa-volume-up"></i></p>
-          <p class="test-instructions"><strong>Tests:</strong> Test your skills. Click any keyboard key
+          <p class="test-instructions"><span class="level-color"><strong>Tests:</strong></span> Test your skills. Click any keyboard key
             on the screen to start.</p>
       </div>
-      <p class="starting">Choose a level and press a key to start.<br>(C, D, E, F, G, A, or B)</p>
+      <p class="starting">Choose a level and press a key to start.<br><span class="change-color">(C, D, E, F, G, A, or B)</span></p>
     </section><!--wrap ends-->
     <!--Notes' route-->  
     <div class="container-content" id="notes-route">
@@ -91,7 +69,6 @@
     <ul class="note-list"></ul>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="keyboardKey.js"></script>
-    <script src="staffPosition.js"></script>
     <script src="game.js"></script>
   </body>
   <footer><p>Copyright &copy; Kirsi Trospe 2020</p></footer>
