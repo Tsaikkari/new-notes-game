@@ -18,7 +18,7 @@ let keyboardKeys = [
       left: 42,
       top: 524
     }, 
-    {
+    {                                    
       id: "f", 
       class: "f-note",
       left: 49,

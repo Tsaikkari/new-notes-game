@@ -198,20 +198,19 @@ function createRandomNote() {
       randomNote.setAttribute("id", "random-note");
       randomNote.style.left = 18 + "%";
     }) 
-  }
-  // TODO: fix this
-  let staffPositions = keyboardKeys.map(element => {
-    return { top: element.top - 297 }
-  });
-  console.log(staffPositions)
-  staffPositions.forEach((element) => {
-    let staffPosition = element.top;
+   
+    let staffPositions = keyboardKeys.map(element => {
+      return { top: element.top - 297 }
+    });
+    console.log(staffPositions);
+    staffPositions.forEach((element1, index) => {
+      let element2 = keysAvailable[index];
+      let staffPosition = console.log(element1, element2);
+    }) // TODO: Fix this
     if ($('#random-note') === $('.' + randomNote)) {
-      randomNote.style.top = this.staffPosition.top + "px";
+      randomNote.style.top = staffPosition;
     }
-      console.log(staffPosition);
-  });
-  
+  } 
   randomNotes.push(randomNote)
   console.log(randomNote)
 }
