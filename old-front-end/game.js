@@ -41,6 +41,7 @@ $('#level').on('click', function () {
   $('#klavier').show();
   $('#staff').show();
   $('.menu').show();
+  $('#cheering').text("Let's play! Press the C, D, E, F, G, A, or B key on your keyboard.")
 });
 
 $('#test').on('click', function () {
@@ -48,9 +49,11 @@ $('#test').on('click', function () {
   let b = $('#staff' + $('#b').val());
   a.css('background-color', '#bcbabe');
   swapElement(a, b);
+  $('#ledger-line').hide();
   $('#staff').show();
   $('#klavier').show();
   $('.menu').show();
+  $('#cheering').text('Press any keaboard key on the screen to start.')
   dropRandomNote();
 });
 
@@ -125,7 +128,6 @@ $(document).keydown(function (event) {
       }, 2500); // TODO: duration of sound needs to match
       if (chosenElem) chosenElem.css('display', 'block');
       playSound(userChosenKey);
-      checkUserChoise(userChosenKey);
       console.log(userChosenKey)
     } else {
     gameover()
@@ -136,17 +138,14 @@ $(document).keydown(function (event) {
 // TODO: must play "wrong" when hitting a wrong button
 // Check if the user played right or wrong
 function checkUserChoise(currentTone) {
-  for (let i = 0; i < keysAvailable.length; i++) {
-    this.randomNote = $("#random-note").attr("class");
-    this.userChosenKey = keysAvailable[i];
-    this.userChosenButton = $("button").attr("id");
-    if (randomNotes[currentTone] === userChosenButtons[currentTone]) {
-      if (randomNote === userChosenButton + "-note") {
-        console.log("Good")
-      }
-    } else {
-      gameover()
+  let randomNote = this.randomNote;
+  let userChosenButton = this.userChosenButton;
+  if (randomNotes[currentTone] === userChosenButtons[currentTone]) {
+    if (randomNote === userChosenButton + "-note") {
+      console.log("Good")
     }
+  } else {
+  gameover()
   }
 }
 
@@ -164,7 +163,6 @@ function gameover() {
 // Create a note on the fly
 function createNote() {
   for (let i = 0; i < keyboardKeys.length; ++i) {
-    
     let elem = document.getElementById(keyboardKeys[i].id);
     function createNoteAboveKey(elem, html) {
   
@@ -178,7 +176,6 @@ function createNote() {
     if (keyboardKeys[i].left + "%" && keyboardKeys[i].top + "px") {
       note.setAttribute("class", keyboardKeys[i].class);
     }
-    
     note.innerHTML = html;
     return note;
     }
@@ -214,15 +211,12 @@ function createRandomNote() {
       }
     }
   }
-    
+}
    /* staffPositions.forEach((element1, index) => {
       let element2 = keysAvailable[index];
     }) 
-    console.log(element1, element2);
-    if ($('.' + element2 + '-note') === randomNote && element1 === randomNote.style.top){
-      console.log(staffPosition);
-    }*/
-} 
+  */
+ 
   
 // Add event listener to piano keyboard keys
 $('button').click(function () {
