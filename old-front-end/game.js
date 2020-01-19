@@ -198,18 +198,30 @@ function createRandomNote() {
       randomNote.setAttribute("id", "random-note");
       randomNote.style.left = 18 + "%";
     }) 
+
+    keyboardKeys.forEach(function (elem){ 
+      elem.top = elem.top - 297;
+    });
+    console.log(keyboardKeys);
+
+    for (let i = 0; i < keyboardKeys.length; i++) {
+      randomNote.style.top = keyboardKeys[i].top;
+      if ($('#random-note') === $('.' + keyboardKeys[i].class)) {
+        staffPosition = randomNote.style.top;
+      }
+    }
    
-    let staffPositions = keyboardKeys.map(element => {
+    /*let staffPositions = keyboardKeys.map(element => {
       return { top: element.top - 297 }
     });
     console.log(staffPositions);
     staffPositions.forEach((element1, index) => {
       let element2 = keysAvailable[index];
-      let staffPosition = console.log(element1, element2);
-    }) // TODO: Fix this
-    if ($('#random-note') === $('.' + randomNote)) {
-      randomNote.style.top = staffPosition;
-    }
+    }) 
+    console.log(element1, element2);
+    if ($('.' + element2 + '-note') === randomNote && element1 === randomNote.style.top) {
+      console.log(staffPosition);
+    }*/
   } 
   randomNotes.push(randomNote)
   console.log(randomNote)
