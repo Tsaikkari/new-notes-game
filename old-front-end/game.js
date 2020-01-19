@@ -197,27 +197,23 @@ function createRandomNote() {
       $(this).css('display', 'block');
       randomNote.setAttribute("id", "random-note");
       randomNote.style.left = 18 + "%";
-    }) 
+      for (let i = 0; i < keyboardKeys.length; i++) {
+      randomNote.style.top = keyboardKeys[i].top + "px";
+      }
+    })
+    randomNotes.push(randomNote)
+    console.log(randomNote)
 
     keyboardKeys.forEach(function (elem) { 
       elem.top = elem.top - 297;
     });
     console.log(keyboardKeys);
-
-    let staffPositions = keyboardKeys.map(element => {
-      return { top: element.top - 297 }
-    });
-    console.log(staffPositions);
-
     for (let i = 0; i < keyboardKeys.length; i++) {
-      randomNote.style.top = keyboardKeys[i].top + "px";
-      //if ($('#random-note') === $('.' + keyboardKeys[i].class)) {
-      
-      if (keyboardKeys[i].class === $('.' + randomNote) && keyboardKeys[i].id === randomNote) {
-        staffPosition = randomNote.style.top;
+      if (randomNotes[randomNote] === keyboardKeys[i].class) {
+        staffPosition = this.elem.top;
       }
     }
-   
+  }
     
    /* staffPositions.forEach((element1, index) => {
       let element2 = keysAvailable[index];
@@ -226,11 +222,8 @@ function createRandomNote() {
     if ($('.' + element2 + '-note') === randomNote && element1 === randomNote.style.top){
       console.log(staffPosition);
     }*/
-  } 
-  randomNotes.push(randomNote)
-  console.log(randomNote)
-}
-
+} 
+  
 // Add event listener to piano keyboard keys
 $('button').click(function () {
   let userChosenButton = $(this).attr("id");
