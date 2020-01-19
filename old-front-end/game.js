@@ -10,11 +10,11 @@ $('#staff').hide();
 $('#klavier').hide();
 $('.menu').hide();
 
-$(".levels-tests").click(function() {
+$(".levels-tests").click(function () {
   $("#wrap").hide();
 })
 
-$(".menu").click(function() {
+$(".menu").click(function () {
   $("#wrap").show();
   $('#staff').hide();
   $('#klavier').hide();
@@ -33,7 +33,7 @@ function swapElement(a, b) {
 }
 
 // TODO: Clicking level links only swaps elements when there's a test-view on the screen and vice versa with test links.
-$('#level').on('click', function() {
+$('#level').on('click', function () {
   let a = $('#staff' + $('#a').val());
   let b = $('#klavier' + $('#b').val());
   b.css('background-color', '#f8a055');
@@ -43,7 +43,7 @@ $('#level').on('click', function() {
   $('.menu').show();
 });
 
-$('#test').on('click', function() {
+$('#test').on('click', function () {
   let a = $('#klavier' + $('#a').val());
   let b = $('#staff' + $('#b').val());
   a.css('background-color', '#bcbabe');
@@ -55,14 +55,14 @@ $('#test').on('click', function() {
 });
 
 // Starting the game
-$(document).keydown(function() {
+$(document).keydown(function () {
   if (!started)
   createNote();
   started = true;
 })
 
 function dropRandomNote() {
-  $("button").on('click', function() {
+  $("button").on('click', function () {
     createRandomNote();
     if (randomNote)
     console.log(randomNote) 
@@ -71,9 +71,9 @@ function dropRandomNote() {
     let pos = 0
     let id = setInterval(frame, 5);
     
-    function frame() {
+    function frame(){
       staffPosition = this.staffPosition;
-      if (pos === staffPosition) {
+      if (pos === staffPosition){
         clearInterval(id);
       } else {
         pos++;
@@ -84,11 +84,11 @@ function dropRandomNote() {
 } 
     
 // Add event listener to detect which key is pressed
-$(document).keydown(function(event) {
+$(document).keydown(function (event) {
   let key = event.keyCode || event.key;
   for (let i = 0; i < keysAvailable.length; i++) { 
     let userChosenKey;
-    if (key === 67) {
+    if (key === 67){
       userChosenKey = keysAvailable[0];
     } else if (key === 68) {
       userChosenKey = keysAvailable[1];
@@ -120,7 +120,7 @@ $(document).keydown(function(event) {
       if (chosenKeyboardKey) 
       chosenKeyboardKey.css('background-color', '#4897d8');
       chosenKeyboardKey.text(event.key);
-      setTimeout(function() {
+      setTimeout(function () {
         chosenKeyboardKey.removeClass("clicked-key");
       }, 2500); // TODO: duration of sound needs to match
       if (chosenElem) chosenElem.css('display', 'block');
@@ -151,7 +151,7 @@ function checkUserChoise(currentTone) {
 }
 
 // game over
-function gameover(){
+function gameover() {
   playSound('wrong') 
     $("body").addClass("game-over");
   setTimeout(function () {
@@ -199,27 +199,31 @@ function createRandomNote() {
       randomNote.style.left = 18 + "%";
     }) 
 
-    keyboardKeys.forEach(function (elem){ 
+    keyboardKeys.forEach(function (elem) { 
       elem.top = elem.top - 297;
     });
     console.log(keyboardKeys);
 
+    let staffPositions = keyboardKeys.map(element => {
+      return { top: element.top - 297 }
+    });
+    console.log(staffPositions);
+
     for (let i = 0; i < keyboardKeys.length; i++) {
-      randomNote.style.top = keyboardKeys[i].top;
-      if ($('#random-note') === $('.' + keyboardKeys[i].class)) {
+      randomNote.style.top = keyboardKeys[i].top + "px";
+      //if ($('#random-note') === $('.' + keyboardKeys[i].class)) {
+      
+      if (keyboardKeys[i].class === $('.' + randomNote) && keyboardKeys[i].id === randomNote) {
         staffPosition = randomNote.style.top;
       }
     }
    
-    /*let staffPositions = keyboardKeys.map(element => {
-      return { top: element.top - 297 }
-    });
-    console.log(staffPositions);
-    staffPositions.forEach((element1, index) => {
+    
+   /* staffPositions.forEach((element1, index) => {
       let element2 = keysAvailable[index];
     }) 
     console.log(element1, element2);
-    if ($('.' + element2 + '-note') === randomNote && element1 === randomNote.style.top) {
+    if ($('.' + element2 + '-note') === randomNote && element1 === randomNote.style.top){
       console.log(staffPosition);
     }*/
   } 
@@ -228,7 +232,7 @@ function createRandomNote() {
 }
 
 // Add event listener to piano keyboard keys
-$('button').click(function() {
+$('button').click(function () {
   let userChosenButton = $(this).attr("id");
   userChosenButtons.push(userChosenButton);
   playSound(userChosenButton);
