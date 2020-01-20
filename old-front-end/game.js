@@ -188,22 +188,22 @@ function createNote() {
 
 // Transform the note into a random note
 function createRandomNote() {
+  keyboardKeys.forEach(function (elem) { 
+    elem.top = elem.top - 299;
+  });
   createNote();
+  let userClickedButton = $('.' + $('button').attr('id') + '-note')
+  if (userClickedButton) userClickedButton.css('display', 'block');
   let randomNote = notes[Math.floor(Math.random() * 7)];
   if (randomNote) {
     randomNote.setAttribute("id", "random-note");
     randomNote.style.left = 18 + "%";
     for (let i = 0; i < keyboardKeys.length; i++) {
       randomNote.style.top = keyboardKeys[i].top + "px";
-      let userClickedButton = $('.' + $('button').attr('id') + '-note')
-      if (userClickedButton) userClickedButton.css('display', 'block');
       if (randomNotes[randomNote] === keyboardKeys[i].class) {
         staffPosition = this.elem.top;
       }
     }
-    keyboardKeys.forEach(function (elem) { 
-      elem.top = elem.top - 299;
-    });
     randomNotes.push(randomNote)
     console.log(randomNote)
     console.log(keyboardKeys);
