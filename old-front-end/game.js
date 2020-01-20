@@ -49,7 +49,7 @@ $('#test').on('click', function () {
   let b = $('#staff' + $('#b').val());
   a.css('background-color', '#bcbabe');
   swapElement(a, b);
-  $('#ledger-line').hide();
+  //$('#ledger-line').hide();
   $('#staff').show();
   $('#klavier').show();
   $('.menu').show();
@@ -64,7 +64,7 @@ $(document).keydown(function () {
   started = true;
 })
 
-function dropRandomNote() {
+function dropRandomNote(randomNote) {
   $("button").on('click', function () {
     createRandomNote();
     if (randomNote)
@@ -185,25 +185,26 @@ function createNote() {
     notes.push(note);
   }
 }
-let staffPosition = keyboardKeys.forEach(function (elem) { 
-  elem.top = elem.top - 299;
-});
-staffPosition();
+
 // Transform the note into a random note
 function createRandomNote() {
   createNote();
   let userClickedButton = $('.' + $('button').attr('id') + '-note')
   if (userClickedButton) userClickedButton.css('display', 'block');
   let randomNote = notes[Math.floor(Math.random() * 7)];
+  keyboardKeys.forEach(function (elem) { 
+    elem.top = elem.top - 299;
+    let staffPosition = elem.top;
+    randomNote.style.top = staffPosition;
+  });
   if (randomNote) {
     randomNote.setAttribute("id", "random-note");
     randomNote.style.left = 18 + "%";
-    randomNotes.push(randomNote)
-    console.log(randomNote)
-    console.log(keyboardKeys);
   }
-  if (randomNote === keysAvailable[0])
-  $('#ledger-line').show();
+  randomNotes.push(randomNote)
+  console.log(randomNote)
+  //if (randomNote === keysAvailable[0])
+  //$('#ledger-line').show();
 }
   
 // Add event listener to piano keyboard keys
