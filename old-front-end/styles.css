@@ -111,6 +111,11 @@ p {
   color: red;
 }
 
+#cheering {
+  margin-left: 5%;
+  margin-top: 1%;
+}
+
 #notes-route {
   min-height: 98px;
 }
@@ -120,6 +125,7 @@ p {
   color: white;
   background-color: #fa6e59;
   border: solid #f8a055 3px;
+  box-shadow: 0 2px 6px 0 #000;
   border-radius: .2rem;
   font-size: large;
   font-weight: 400;
@@ -214,6 +220,10 @@ p {
   color: red;
   opacity: 8;
   font-style: oblique;
+}
+
+#staff {
+  padding-top: 1%;
 }
 
 hr {

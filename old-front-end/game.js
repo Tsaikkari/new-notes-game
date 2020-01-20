@@ -53,7 +53,7 @@ $('#test').on('click', function () {
   $('#staff').show();
   $('#klavier').show();
   $('.menu').show();
-  $('#cheering').text('Press any keaboard key on the screen to start.')
+  $('#cheering').text('Press any keaboard key on the screen to start.');
   dropRandomNote();
 });
 
@@ -188,6 +188,7 @@ function createNote() {
 
 // Transform the note into a random note
 function createRandomNote() {
+  createNote();
   let randomNote = notes[Math.floor(Math.random() * 7)];
   if (randomNote) {
     $('.note-list > h6').each(function () {
@@ -198,12 +199,11 @@ function createRandomNote() {
       randomNote.style.top = keyboardKeys[i].top + "px";
       }
     })
+    keyboardKeys.forEach(function (elem) { 
+      elem.top = elem.top - 299;
+    });
     randomNotes.push(randomNote)
     console.log(randomNote)
-
-    keyboardKeys.forEach(function (elem) { 
-      elem.top = elem.top - 297;
-    });
     console.log(keyboardKeys);
     for (let i = 0; i < keyboardKeys.length; i++) {
       if (randomNotes[randomNote] === keyboardKeys[i].class) {
