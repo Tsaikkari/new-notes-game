@@ -185,12 +185,12 @@ function createNote() {
     notes.push(note);
   }
 }
-
+let staffPosition = keyboardKeys.forEach(function (elem) { 
+  elem.top = elem.top - 299;
+});
+staffPosition();
 // Transform the note into a random note
 function createRandomNote() {
-  keyboardKeys.forEach(function (elem) { 
-    elem.top = elem.top - 299;
-  });
   createNote();
   let userClickedButton = $('.' + $('button').attr('id') + '-note')
   if (userClickedButton) userClickedButton.css('display', 'block');
@@ -198,22 +198,13 @@ function createRandomNote() {
   if (randomNote) {
     randomNote.setAttribute("id", "random-note");
     randomNote.style.left = 18 + "%";
-    for (let i = 0; i < keyboardKeys.length; i++) {
-      randomNote.style.top = keyboardKeys[i].top + "px";
-      if (randomNotes[randomNote] === keyboardKeys[i].class) {
-        staffPosition = this.elem.top;
-      }
-    }
     randomNotes.push(randomNote)
     console.log(randomNote)
     console.log(keyboardKeys);
   }
+  if (randomNote === keysAvailable[0])
+  $('#ledger-line').show();
 }
-   /* staffPositions.forEach((element1, index) => {
-      let element2 = keysAvailable[index];
-    }) 
-  */
- 
   
 // Add event listener to piano keyboard keys
 $('button').click(function () {
