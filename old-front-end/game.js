@@ -64,9 +64,9 @@ $(document).keydown(function () {
   started = true;
 })
 
-function dropRandomNote(randomNote) {
+function dropRandomNote() {
+  createRandomNote();
   $("button").on('click', function () {
-    createRandomNote();
     if (randomNote)
     console.log(randomNote) 
     let elem = document.getElementById("random-note"); 
@@ -74,7 +74,7 @@ function dropRandomNote(randomNote) {
     let pos = 0
     let id = setInterval(frame, 5);
     
-    function frame(){
+    function frame() {
       staffPosition = this.staffPosition;
       if (pos === staffPosition){
         clearInterval(id);
@@ -85,13 +85,13 @@ function dropRandomNote(randomNote) {
     }
   })
 } 
-    
+
 // Add event listener to detect which key is pressed
 $(document).keydown(function (event) {
   let key = event.keyCode || event.key;
   for (let i = 0; i < keysAvailable.length; i++) { 
     let userChosenKey;
-    if (key === 67){
+    if (key === 67) {
       userChosenKey = keysAvailable[0];
     } else if (key === 68) {
       userChosenKey = keysAvailable[1];
@@ -106,7 +106,7 @@ $(document).keydown(function (event) {
     } else if (key === 66) {
       userChosenKey = keysAvailable[6];
     }
-    if (userChosenKey){
+    if (userChosenKey) {
       userChosenKeys.push(userChosenKey);
       // hide the existing nodes
       $('.note-list > h6').each(function () {
@@ -165,7 +165,6 @@ function createNote() {
   for (let i = 0; i < keyboardKeys.length; ++i) {
     let elem = document.getElementById(keyboardKeys[i].id);
     function createNoteAboveKey(elem, html) {
-  
     let note = document.createElement('h6');
     note.setAttribute("id", "note");
     note.style.cssText = "position:absolute; font-size: 3em; font-family: 'Raleway', sans-serif; display:none;";
@@ -173,9 +172,7 @@ function createNote() {
     let coords = elem.getBoundingClientRect();
     note.style.left = keyboardKeys[i].left + "%";
     note.style.top = keyboardKeys[i].top + "px";
-    if (keyboardKeys[i].left + "%" && keyboardKeys[i].top + "px") {
-      note.setAttribute("class", keyboardKeys[i].class);
-    }
+    note.setAttribute("class", keyboardKeys[i].class);
     note.innerHTML = html;
     return note;
     }
@@ -186,20 +183,29 @@ function createNote() {
   }
 }
 
+function defStaffPositions() {
+  keyboardKeys.forEach(function (elem) { 
+    elem.top = elem.top - 299;
+    let staffPositions = [];
+    staffPositions.push(elem.top);
+    let staffPosition;
+    staffPositions.forEach( function (elem) {
+      console.log(elem)
+      staffPositions[staffPosition] = elem;
+    })
+  });
+}
 // Transform the note into a random note
 function createRandomNote() {
   createNote();
-  let userClickedButton = $('.' + $('button').attr('id') + '-note')
-  if (userClickedButton) userClickedButton.css('display', 'block');
   let randomNote = notes[Math.floor(Math.random() * 7)];
-  keyboardKeys.forEach(function (elem) { 
-    elem.top = elem.top - 299;
-    let staffPosition = elem.top;
-    randomNote.style.top = staffPosition;
-  });
   if (randomNote) {
+    let userClickedButton = $('.' + $('button').attr('id') + '-note')
+    if (userClickedButton) userClickedButton.css('display', 'block');
+    defStaffPositions();
     randomNote.setAttribute("id", "random-note");
     randomNote.style.left = 18 + "%";
+    randomNote.style.top = this.staffPosition;
   }
   randomNotes.push(randomNote)
   console.log(randomNote)
