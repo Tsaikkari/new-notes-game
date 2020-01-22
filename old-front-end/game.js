@@ -65,8 +65,10 @@ $(document).keydown(function () {
 })
 
 function dropRandomNote() {
-  createRandomNote();
   $("button").on('click', function () {
+    createRandomNote();
+    let userClickedButton = $('.' + $('button').attr('id') + '-note')
+    if (userClickedButton) userClickedButton.css('display', 'block');
     if (randomNote)
     console.log(randomNote) 
     let elem = document.getElementById("random-note"); 
@@ -182,7 +184,7 @@ function createNote() {
     notes.push(note);
   }
 }
-
+// TODO: Combine with note
 function defStaffPositions() {
   keyboardKeys.forEach(function (elem) { 
     elem.top = elem.top - 299;
@@ -200,12 +202,11 @@ function createRandomNote() {
   createNote();
   let randomNote = notes[Math.floor(Math.random() * 7)];
   if (randomNote) {
-    let userClickedButton = $('.' + $('button').attr('id') + '-note')
-    if (userClickedButton) userClickedButton.css('display', 'block');
-    defStaffPositions();
     randomNote.setAttribute("id", "random-note");
     randomNote.style.left = 18 + "%";
-    randomNote.style.top = this.staffPosition;
+    let staffPosition = this.staffPosition;
+    defStaffPositions();
+    randomNote.style.top = staffPosition + "px";
   }
   randomNotes.push(randomNote)
   console.log(randomNote)
