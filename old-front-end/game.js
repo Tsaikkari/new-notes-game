@@ -66,9 +66,9 @@ $(document).keydown(function () {
 
 function dropRandomNote() {
   $("button").on('click', function () {
-    createRandomNote();
     let userClickedButton = $('.' + $('button').attr('id') + '-note')
     if (userClickedButton) userClickedButton.css('display', 'block');
+    createRandomNote();
     if (randomNote)
     console.log(randomNote) 
     let elem = document.getElementById("random-note"); 
@@ -114,7 +114,6 @@ $(document).keydown(function (event) {
       $('.note-list > h6').each(function () {
         $(this).css('display', 'none');
       })
-
       $('#keyboard > button').each(function () {
         $(this).css('background-color', '');
         $(this).addClass("clicked-key");
@@ -122,9 +121,10 @@ $(document).keydown(function (event) {
 
       let chosenElem = $('.' + userChosenKey + '-note');
       let chosenKeyboardKey = $('#' + userChosenKey);
-      if (chosenKeyboardKey) 
-      chosenKeyboardKey.css('background-color', '#4897d8');
-      chosenKeyboardKey.text(event.key);
+      if (chosenKeyboardKey) {
+        chosenKeyboardKey.css('background-color', '#4897d8');
+        chosenKeyboardKey.text(event.key);
+      }
       setTimeout(function () {
         chosenKeyboardKey.removeClass("clicked-key");
       }, 2500); // TODO: duration of sound needs to match
@@ -184,19 +184,20 @@ function createNote() {
     notes.push(note);
   }
 }
-// TODO: Combine with note
-function defStaffPositions() {
+
+function calcNewTopCoord() {
   keyboardKeys.forEach(function (elem) { 
     elem.top = elem.top - 299;
-    let staffPositions = [];
-    staffPositions.push(elem.top);
-    let staffPosition;
-    staffPositions.forEach( function (elem) {
-      console.log(elem)
-      staffPositions[staffPosition] = elem;
-    })
+    staffPosition = elem.top;
   });
 }
+
+// TODO: Combine with randomNote
+function createStaffPositions() {
+  let staffPositions = [];
+  staffPositions.push(staffPosition);
+}
+
 // Transform the note into a random note
 function createRandomNote() {
   createNote();
@@ -205,13 +206,11 @@ function createRandomNote() {
     randomNote.setAttribute("id", "random-note");
     randomNote.style.left = 18 + "%";
     let staffPosition = this.staffPosition;
-    defStaffPositions();
+    createStaffPositions(staffPosition);
     randomNote.style.top = staffPosition + "px";
   }
   randomNotes.push(randomNote)
   console.log(randomNote)
-  //if (randomNote === keysAvailable[0])
-  //$('#ledger-line').show();
 }
   
 // Add event listener to piano keyboard keys
@@ -231,8 +230,6 @@ function startOver() {
   level = 0;
   randomNotes = [];
   notes = [];
-  userChosenKeys = [];
-  userChosenButtons = [];
   started = false;
 }
 
