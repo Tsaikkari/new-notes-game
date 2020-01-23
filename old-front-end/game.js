@@ -68,6 +68,7 @@ function dropRandomNote() {
   $("button").on('click', function () {
     let userClickedButton = $('.' + $(this).attr('id') + '-note')
     if (userClickedButton) userClickedButton.css('display', 'block');
+    let randomNote;
     if (randomNote)
     console.log(randomNote) 
     let elem = document.getElementById("random-note"); 
@@ -186,24 +187,18 @@ function createNote() {
 }
 
 function calcNewTopCoord() {
+  let staffPositions = [];
   keyboardKeys.forEach(function (elem) { 
     elem.top = elem.top - 299;
-    staffPosition = elem.top;
+    staffPositions.push(elem.top);
+    console.log(staffPositions)
   });
-}
-  
-// TODO: Combine with randomNote
-function createStaffPositions() {
-  let staffPositions = [];
-  staffPositions.push(staffPosition);
-  console.log(staffPositions)
 }
 
 // Transform the note into a random note
 function createRandomNote() {
   createNote();
   calcNewTopCoord();
-  createStaffPositions();
   let randomNote = notes[Math.floor(Math.random() * 7)];
   if (randomNote) {
     randomNote.setAttribute("id", "random-note");
