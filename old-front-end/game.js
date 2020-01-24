@@ -187,11 +187,11 @@ function createNote() {
 }
 
 function calcNewTopCoord() {
-  let staffPositions = [];
   keyboardKeys.forEach(function (elem) { 
     elem.top = elem.top - 299;
-    staffPositions.push(elem.top);
-    console.log(staffPositions)
+    staffPosition = elem.top;
+    console.log(staffPosition)
+    console.log(keyboardKeys);
   });
 }
 
