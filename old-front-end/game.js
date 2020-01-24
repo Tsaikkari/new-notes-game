@@ -3,6 +3,7 @@ let notes = [];
 let randomNotes = [];
 let userChosenKeys = [];
 let userChosenButtons = [];
+let userClickedButtons = [];
 let level = 0;
 let started = false;
 
@@ -54,7 +55,10 @@ $('#test').on('click', function () {
   $('#klavier').show();
   $('.menu').show();
   $('#cheering').text('Press any keaboard key on the screen to start.');
+  dropRandomNote();
+  createNote();
   createRandomNote();
+  
 });
 
 // Starting the game
@@ -65,12 +69,10 @@ $(document).keydown(function () {
 })
 
 function dropRandomNote() {
-  $("button").on('click', function () {
-    let userClickedButton = $('.' + $(this).attr('id') + '-note')
+  $('button').click(function () {
+    let userClickedButton = $('.' + $(this).attr('id') + '-note');
     if (userClickedButton) userClickedButton.css('display', 'block');
     let randomNote;
-    if (randomNote)
-    console.log(randomNote) 
     let elem = document.getElementById("random-note"); 
     console.log(randomNote) 
     let pos = 0
@@ -85,7 +87,6 @@ function dropRandomNote() {
         elem.style.top = pos + "px";
       }
     }
-    checkUserChoise(userClickedButton);
   })
 } 
 
@@ -197,7 +198,6 @@ function calcNewTopCoord() {
 
 // Transform the note into a random note
 function createRandomNote() {
-  createNote();
   calcNewTopCoord();
   let randomNote = notes[Math.floor(Math.random() * 7)];
   if (randomNote) {
@@ -207,9 +207,8 @@ function createRandomNote() {
     randomNote.style.top = staffPosition + "px";
     console.log(randomNote.style.top)
   }
-  randomNotes.push(randomNote)
+  randomNotes.push(randomNote);
   console.log(randomNote)
-  dropRandomNote();
 }
   
 // Add event listener to piano keyboard keys
@@ -217,6 +216,7 @@ $('button').click(function () {
   let userChosenButton = $(this).attr("id");
   userChosenButtons.push(userChosenButton);
   playSound(userChosenButton);
+  checkUserChoise(userChosenButton);
 })
 
 function playSound(name) {
