@@ -80,7 +80,7 @@ function dropRandomNote() {
     
     function frame() {
       staffPosition = this.staffPosition;
-      if (pos === staffPosition){
+      if (pos === staffPosition) {
         clearInterval(id);
       } else {
         pos++;
@@ -170,7 +170,7 @@ function createNote() {
     let elem = document.getElementById(keyboardKeys[i].id);
     function createNoteAboveKey(elem, html) {
     let note = document.createElement('h6');
-    note.setAttribute("id", "note");
+    //note.setAttribute("id", "note");
     note.style.cssText = "position:absolute; font-size: 3em; font-family: 'Raleway', sans-serif; display:none;";
     
     let coords = elem.getBoundingClientRect();
@@ -190,20 +190,21 @@ function createNote() {
 function calcNewTopCoord() {
   keyboardKeys.forEach(function (elem) { 
     elem.top = elem.top - 299;
-    staffPosition = elem.top;
+    staffPosition = elem.top; // by value
     console.log(staffPosition)
     console.log(keyboardKeys);
-  });
+  })
 }
 
 // Transform the note into a random note
 function createRandomNote() {
-  calcNewTopCoord();
-  let randomNote = notes[Math.floor(Math.random() * 7)];
+  randomNote = notes[Math.floor(Math.random() * 7)];
   if (randomNote) {
     randomNote.setAttribute("id", "random-note");
     randomNote.style.left = 18 + "%";
-    let staffPosition = this.staffPosition;
+    //let staffPosition = this.staffPosition;
+    calcNewTopCoord();
+    let staffPosition;
     randomNote.style.top = staffPosition + "px";
     console.log(randomNote.style.top)
   }
@@ -230,8 +231,6 @@ function startOver() {
   notes = [];
   started = false;
 }
-
-
 
 
 

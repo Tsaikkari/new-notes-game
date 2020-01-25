@@ -52,11 +52,6 @@ p {
   text-align: center;
 }
 
-.links {
-  text-align: center;
-  padding-bottom: 2%;
-}
-
 .starting {
   font-size: 1.5em;
   font-weight: bolder;
@@ -64,6 +59,7 @@ p {
   text-align: center;
 }
 
+/* notes on the start page*/
 .change-color {
   color: #00f6ff;
 }
@@ -83,6 +79,12 @@ p {
 
 .fa-volume-up {
   padding-left: 1%;
+}
+
+/*links*/
+.links {
+  text-align: center;
+  padding-bottom: 2%;
 }
 
 .levels-tests {
