@@ -4,6 +4,7 @@ let randomNotes = [];
 let userChosenKeys = [];
 let userChosenButtons = [];
 let userClickedButtons = [];
+let staffPositions = [];
 let level = 0;
 let started = false;
 
@@ -191,10 +192,21 @@ function calcNewTopCoord() {
   keyboardKeys.forEach(function (elem) { 
     elem.top = elem.top - 299;
     staffPosition = elem.top; // by value
-    console.log(staffPosition)
-    console.log(keyboardKeys);
+    staffPositions.push(staffPosition)
+    console.log(staffPositions)
   })
 }
+calcNewTopCoord();
+
+(function () {
+  let together = staffPositions.reduce(function(together, field, index) {
+    together[keyboardKeys[index].class] = field;
+    return together;
+  }, {})
+    console.log(together);
+})();
+/*let tops = calcNewTopCoord();
+tops[1]();*/
 
 // Transform the note into a random note
 function createRandomNote() {
@@ -202,9 +214,7 @@ function createRandomNote() {
   if (randomNote) {
     randomNote.setAttribute("id", "random-note");
     randomNote.style.left = 18 + "%";
-    //let staffPosition = this.staffPosition;
-    calcNewTopCoord();
-    let staffPosition;
+    let staffPosition = this.staffPosition;
     randomNote.style.top = staffPosition + "px";
     console.log(randomNote.style.top)
   }
