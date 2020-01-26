@@ -72,7 +72,7 @@ function dropRandomNote() {
     if (userClickedButton) userClickedButton.css('display', 'block');
     let elem = document.getElementById("random-note"); 
     let pos = 0
-    let id = setInterval(frame, 50);
+    let id = setInterval(frame, 5);
     
     function frame() {
       staffPosition = this.staffPosition;
@@ -190,11 +190,10 @@ function calcRandomnoteTop() {
     if (randomNote) {
       randomNote.setAttribute("id", "random-note");
       randomNote.style.left = 18 + "%";
-      randomNote.style.top = elem.top + "px";
-      i = 0;
+      i = 0; //TODO: make a two-dimensional loop
       while (i < 7) {
         i++;
-        elem.top + "px" === randomNote.style.top;
+        randomNote.style.top = elem.top + "px";
         return staffPosition;
       }
     }
