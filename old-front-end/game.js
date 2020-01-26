@@ -3,8 +3,6 @@ let notes = [];
 let randomNotes = [];
 let userChosenKeys = [];
 let userChosenButtons = [];
-let userClickedButtons = [];
-let staffPositions = [];
 let level = 0;
 let started = false;
 
@@ -51,7 +49,7 @@ $('#test').on('click', function () {
   let b = $('#staff' + $('#b').val());
   a.css('background-color', '#bcbabe');
   swapElement(a, b);
-  //$('#ledger-line').hide();
+  $('#ledger-line').hide();
   $('#staff').show();
   $('#klavier').show();
   $('.menu').show();
@@ -59,7 +57,6 @@ $('#test').on('click', function () {
   dropRandomNote();
   createNote();
   createRandomNote();
-  
 });
 
 // Starting the game
@@ -73,9 +70,7 @@ function dropRandomNote() {
   $('button').click(function () {
     let userClickedButton = $('.' + $(this).attr('id') + '-note');
     if (userClickedButton) userClickedButton.css('display', 'block');
-    let randomNote;
     let elem = document.getElementById("random-note"); 
-    console.log(randomNote) 
     let pos = 0
     let id = setInterval(frame, 5);
     
@@ -189,32 +184,38 @@ function createNote() {
 }
 
 function calcNewTopCoord() {
-  keyboardKeys.forEach(function (elem) { 
+  keyboardKeys.forEach(function (elem, i) { 
     elem.top = elem.top - 299;
-    staffPosition = elem.top; // by value
-    staffPositions.push(staffPosition)
-    console.log(staffPositions)
+    //staffPosition = elem.top; // by value
+    if (i === 0 && $('h6').attr('class') === $('.c-note')) {
+      staffPosition = keyboardKeys[0].top;
+    } else if (i === 1 && $('h6').attr('class') === $('.d-note')) {
+      staffPosition = keyboardKeys[1].top;
+    } else if (i === 2 && $('h6').attr('class') === $('.e-note')) {
+      staffPosition = keyboardKeys[2].top;
+    } else if (i === 3 && $('h6').attr('class') === $('.f-note')) {
+      staffPosition = keyboardKeys[3].top;
+    } else if (i === 4 && $('h6').attr('class') === $('.g-note')) {
+      staffPosition = keyboardKeys[4].top;
+    } else if (i === 5 && $('h6').attr('class') === $('.a-note')) {
+      staffPosition = keyboardKeys[5].top;
+    } else if (i === 6 && $('h6').attr('class') === $('.b-note')) {
+      staffPosition = keyboardKeys[6].top;
+    }
+    console.log(staffPosition)
   })
 }
-calcNewTopCoord();
-
-(function () {
-  let together = staffPositions.reduce(function(together, field, index) {
-    together[keyboardKeys[index].class] = field;
-    return together;
-  }, {})
-    console.log(together);
-})();
 /*let tops = calcNewTopCoord();
 tops[1]();*/
 
 // Transform the note into a random note
 function createRandomNote() {
-  randomNote = notes[Math.floor(Math.random() * 7)];
+  calcNewTopCoord();
+  let randomNote = notes[Math.floor(Math.random() * 7)];
   if (randomNote) {
     randomNote.setAttribute("id", "random-note");
     randomNote.style.left = 18 + "%";
-    let staffPosition = this.staffPosition;
+    staffPosition = this.staffPosition;
     randomNote.style.top = staffPosition + "px";
     console.log(randomNote.style.top)
   }
