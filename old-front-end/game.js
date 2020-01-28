@@ -54,9 +54,10 @@ $('#test').on('click', function () {
   $('#klavier').show();
   $('.menu').show();
   $('#cheering').text('Press any keaboard key on the screen to start.');
+  calcNewTopCoords();
   dropRandomNote();
   createNote();
-  calcRandomnoteTop();
+  createRandomNote();
 });
 
 // Starting the game
@@ -72,7 +73,7 @@ function dropRandomNote() {
     if (userClickedButton) userClickedButton.css('display', 'block');
     let elem = document.getElementById("random-note"); 
     let pos = 0
-    let id = setInterval(frame, 5);
+    let id = setInterval(frame, 5000);
     
     function frame() {
       staffPosition = this.staffPosition;
@@ -166,7 +167,7 @@ function createNote() {
     let elem = document.getElementById(keyboardKeys[i].id);
     function createNoteAboveKey(elem, html) {
     let note = document.createElement('h6');
-    //note.setAttribute("id", "note");
+    note.setAttribute("id", "note");
     note.style.cssText = "position:absolute; font-size: 3em; font-family: 'Raleway', sans-serif; display:none;";
     
     note.style.left = keyboardKeys[i].left + "%";
@@ -182,25 +183,58 @@ function createNote() {
   }
 }
 
-function calcRandomnoteTop() {
-  keyboardKeys.forEach(function (elem, i) { 
-  elem.top = elem.top - 299;
-  staffPosition = elem.top;
+function calcNewTopCoords() {
+  for (let i = 0; i < keyboardKeys.length; i++) {
+    keyboardKeys[i].top = keyboardKeys[i].top - 299;
+   // staffPosition = keyboardKeys[i].top;
+    console.log(keyboardKeys);
+    //console.log(staffPosition);
+    //break;
+  }
+}
+
+
+/*function defStaffPosition() {
+  for (let i = 0; i < keyboardKeys.length; i++) {
+    if (document.getElementById("random-note") == document.querySelector(".c-note")) {        
+      staffPosition = keyboardKeys[0].top;
+    } else if (document.getElementById("random-note") == document.querySelector(".d-note")) {
+      staffPosition = keyboardKeys[1].top;
+    } else if (document.getElementById("random-note") == document.querySelector(".e-note")) {
+      staffPosition = keyboardKeys[2].top;
+    } else if (document.getElementById("random-note") == document.querySelector(".f-note")) {
+      staffPosition = keyboardKeys[3].top;
+    } else if (document.getElementById("random-note") == document.querySelector(".g-note")) {
+      staffPosition = keyboardKeys[4].top;
+    } else if (document.getElementById("random-note") == document.querySelector(".a-note")) {
+      staffPosition = keyboardKeys[5].top;
+    } else if (document.getElementById("random-note") == document.querySelector(".b-note")) {
+      staffPosition = keyboardKeys[6].top;
+    } else { 
+        staffPosition = 0;
+    }
+  }
+}*/
+
+function createRandomNote() {
+  //defStaffPosition();
   let randomNote = notes[Math.floor(Math.random() * 7)];
-    if (randomNote) {
-      randomNote.setAttribute("id", "random-note");
-      randomNote.style.left = 18 + "%";
-      i = 0; //TODO: make a two-dimensional loop
-      while (i < 7) {
-        i++;
-        randomNote.style.top = elem.top + "px";
-        return staffPosition;
+  if (randomNote) {
+    randomNote.setAttribute("id", "random-note");
+    randomNote.style.left = 18 + "%";
+    let staffPosition;
+    for (let i = 0; i < keyboardKeys.length; i++) {
+      randomNote.style.top = keyboardKeys[i].top + "px";
+      if ($('h6').attr('class') === document.querySelectorAll('.' + keyboardKeys[i].class) && $('#random-note')) {
+        staffPosition = randomNote.style.top;
+        console.log(staffPosition)
       }
     }
-    randomNotes.push(randomNote);
-    console.log(randomNote);
-  })
+  }
+  randomNotes.push(randomNote);
+  console.log(randomNote)
 }
+
   
 // Add event listener to piano keyboard keys
 $('button').click(function () {
