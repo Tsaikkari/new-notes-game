@@ -34,6 +34,7 @@ function swapElement(a, b) {
 
 // TODO: Clicking level links only swaps elements when there's a test-view on the screen and vice versa with test links.
 $('#level').on('click', function () {
+  localStorage.setItem('learn', true)
   let a = $('#staff' + $('#a').val());
   let b = $('#klavier' + $('#b').val());
   b.css('background-color', '#f8a055');
@@ -45,6 +46,7 @@ $('#level').on('click', function () {
 });
 
 $('#test').on('click', function () {
+  localStorage.removeItem('learn')
   let a = $('#klavier' + $('#a').val());
   let b = $('#staff' + $('#b').val());
   a.css('background-color', '#bcbabe');
@@ -68,12 +70,23 @@ $(document).keydown(function () {
 })
 
 function dropRandomNote() {
-  $('button').click(function () {
-    let userClickedButton = $('.' + $(this).attr('id') + '-note');
-    if (userClickedButton) userClickedButton.css('display', 'block');
+  $('button').click(function (e) {
+    // e.preventdefault();
+    // check if its learn or exam 
+    // let isLearn = localStorage.getItem('learn') ==="true";
+    // if(isLearn) return ;
+          let notes = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+          let getRandomNote = notes[Math.floor(Math.random() * notes.length)];
+
+    let userClickedButton = $('.' + getRandomNote+ '-test-note');
+    if (userClickedButton){
+      // let note = createNoteAboveKey(userClickedButton, "o");
+      // adding new notes to the list
+      $(userClickedButton).find('span').removeClass('hidden');
+    }
     let elem = document.getElementById("random-note"); 
     let pos = 0
-    let id = setInterval(frame, 5000);
+    let id = setInterval(frame, 50);
     
     function frame() {
       staffPosition = this.staffPosition;
@@ -238,6 +251,11 @@ function createRandomNote() {
   
 // Add event listener to piano keyboard keys
 $('button').click(function () {
+  let isLearn = localStorage.getItem('learn') === "true";
+  if (isLearn) return;
+
+  // user should be able to see random notes
+  dropRandomNote()
   let userChosenButton = $(this).attr("id");
   userChosenButtons.push(userChosenButton);
   playSound(userChosenButton);

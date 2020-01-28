@@ -11,6 +11,20 @@
     <link href="https://fonts.googleapis.com/css?family=Lora&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <style>
+    .note-line{
+      height: 0.5px;
+      margin: 20px;
+      border: 1px solid black;
+    }
+    .note-circle{
+      position: absolute;
+      margin-top: -8px;
+    }
+    .hidden{
+      display: none;
+    }
+    </style>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <![endif]-->
@@ -43,12 +57,25 @@
     <a href='#top' class="menu">Menu</a>
     <!--Staff-->
     <div class="container-content" id="staff">
-      <hr>
-      <hr>
-      <hr id="line">
-      <hr>
-      <hr>
-      <hr id="ledger-line">
+      
+      <div class="f-test-note note-line">
+        <span class="far fa-circle note-circle hidden"></span> 
+      </div>
+      <div class="d-test-note note-line">
+        <span class="far fa-circle note-circle hidden"></span>
+      </div>
+      <div class="b-test-note note-line" id="line">
+        <span class="far fa-circle note-circle hidden"></span>
+      </div>
+      <div class="g-test-note note-line">
+        <span class="far fa-circle note-circle hidden"></span>
+      </div>
+      <div class="e-test-note note-line">
+        <span class="far fa-circle note-circle hidden"></span>
+      </div>
+      <div class="c-test-note note-line" id="ledger-line">
+        <span class="far fa-circle note-circle hidden"></span>
+      </div>
     </div>
     <!--Keyboard-->
     <div class="container-content" id="klavier">
