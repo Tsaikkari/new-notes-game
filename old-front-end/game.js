@@ -73,7 +73,7 @@ function dropRandomNote() {
     if (userClickedButton) userClickedButton.css('display', 'block');
     let elem = document.getElementById("random-note"); 
     let pos = 0
-    let id = setInterval(frame, 5000);
+    let id = setInterval(frame, 5);
     
     function frame() {
       staffPosition = this.staffPosition;
