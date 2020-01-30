@@ -14,13 +14,20 @@
     <style>
     .note-line{
       height: 0.5px;
-      margin: 20px;
+      margin: 25px;
       border: 1px solid black;
     }
     .note-circle{
       position: absolute;
+      font-size: 1.6rem;
+      padding-left: 15%;
+    }
+
+    .note-circle-on-line{
+      position: absolute;
       margin-top: -8px;
     }
+
     .hidden{
       display: none;
     }
@@ -53,28 +60,47 @@
     <!--Notes' route-->  
     <div class="container-content" id="notes-route">
       <h2 id="cheering"></h1>
+        <span class="far fa-circle note-circle hidden" id="random-note"></span>
     </div>
     <a href='#top' class="menu">Menu</a>
     <!--Staff-->
-    <div class="container-content" id="staff">
-      
+    <!--<div class="container-content" id="staff">
+      <hr>
+      <hr>
+      <hr id="line">
+      <hr>
+      <hr>
+      <hr id="ledger-line">
+    </div>-->
+   <div class="container-content" id="staff">
       <div class="f-test-note note-line">
-        <span class="far fa-circle note-circle hidden"></span> 
+      </div>
+      <div class="e-test-note note-space">
       </div>
       <div class="d-test-note note-line">
-        <span class="far fa-circle note-circle hidden"></span>
+      </div>
+      <div class="c-test-note note-space">
       </div>
       <div class="b-test-note note-line" id="line">
-        <span class="far fa-circle note-circle hidden"></span>
+        <span class="far fa-circle note-circle-on-line hidden"></span>
+      </div>
+      <div class="a-test-note note-space">
+        <span class="far fa-circle note-circle hidden"></span> 
       </div>
       <div class="g-test-note note-line">
-        <span class="far fa-circle note-circle hidden"></span>
+        <span class="far fa-circle note-circle-on-line hidden"></span>
+      </div>
+      <div class="f-test-note note-space">
+        <span class="far fa-circle note-circle hidden"></span> 
       </div>
       <div class="e-test-note note-line">
-        <span class="far fa-circle note-circle hidden"></span>
+        <span class="far fa-circle note-circle-on-line hidden"></span>
+      </div>
+      <div class="d-test-note note-space">
+        <span class="far fa-circle note-circle hidden"></span> 
       </div>
       <div class="c-test-note note-line" id="ledger-line">
-        <span class="far fa-circle note-circle hidden"></span>
+        <span class="far fa-circle note-circle-on-line hidden"></span>
       </div>
     </div>
     <!--Keyboard-->
