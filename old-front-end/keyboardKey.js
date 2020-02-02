@@ -3,44 +3,44 @@ let keyboardKeys = [
     {
       id: "c", 
       class: "c-note",
-      left: 27, 
-      top: 92
+      left: 47, 
+      top: 37.5
     },
     {
       id: "d", 
       class: "d-note",
-      left: 35,
-      top: 90
+      left: 52,
+      top: 35.5
     },
     {
       id: "e", 
       class: "e-note",
-      left: 42,
-      top: 88
+      left: 57,
+      top: 33.5
     }, 
     {                                    
       id: "f", 
       class: "f-note",
-      left: 49,
-      top: 86
+      left: 62,
+      top: 31.1
     },
     {
       id: "g", 
       class: "g-note",
-      left: 56,
-      top: 84
+      left: 67,
+      top: 29
     },
     { 
       id: "a", 
       class: "a-note",
-      left: 63,
-      top: 82
+      left: 72,
+      top: 27
     },
     {
       id: "b", 
       class: "b-note",
-      left: 70,
-      top: 80
+      left: 77,
+      top: 25
     }
   ]
 

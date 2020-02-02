@@ -12,20 +12,26 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
-    .note-line{
+    .note-line {
       height: 0.5px;
       margin: 25px;
       border: 1px solid black;
     }
-    .note-circle{
+    .note-circle {
       position: absolute;
       font-size: 1.6rem;
       padding-left: 15%;
     }
 
-    .note-circle-on-line{
+    .note-circle-on-line {
       position: absolute;
       margin-top: -8px;
+      font-size: 1.6rem;
+      padding-left: 15%;
+    }
+
+    #ledger-line {
+      padding-left: 0%;
     }
 
     .hidden{
@@ -36,7 +42,6 @@
     <!--[if lt IE 9]>
     <![endif]-->
   </head>
-  <a name="top"></a>
   <body>
     <!--Game instructions-->
     <section id="wrap">
@@ -44,35 +49,23 @@
       <div class="container-fluid" id="intro">
         <h3 class="intro-header"><i class="fas fa-music"></i>Learn the names of the keyboard keys<br> & their corresponding notes on the staff<br>
         </h3> 
-        <div class="links">
-          <a href="#" class="levels-tests" id="level">Level1</a>
-          <a href="#" class="levels-tests" id="test">Test1</a>
-        </div>
         <h5 class="how">How to play</h5>
-          <p class="instructions"><strong>Levels:</strong> Click on <strong>your</strong> keyboard key to display a corresponding note.<br>
+          <p class="instructions">Click on <strong>your</strong> keyboard key to display a corresponding note.<br>
             Memorize its place on the staff. 
             Put the sound on!<i class="fas fa-volume-up"></i></p>
-          <p class="test-instructions"><span class="level-color"><strong>Tests:</strong></span> Test your skills. Click any keyboard key
+          <p class="test-instructions"><span class="test-color"><strong>Test </strong></span>your skills. Click any keyboard key
             on the screen to start.</p>
       </div>
-      <p class="starting">Choose a level and press a key to start.<br><span class="change-color">(C, D, E, F, G, A, or B)</span></p>
+      <p class="starting">Press a key and start playing!<br><span class="change-color">(C, D, E, F, G, A, or B)</span></p>
     </section><!--wrap ends-->
     <!--Notes' route-->  
     <div class="container-content" id="notes-route">
       <h2 id="cheering"></h1>
-        <span class="far fa-circle note-circle hidden" id="random-note"></span>
+        <!--<span class="far fa-circle note-circle hidden" id="random-note"></span>-->
     </div>
-    <a href='#top' class="menu">Menu</a>
+    <section class="game">
     <!--Staff-->
-    <!--<div class="container-content" id="staff">
-      <hr>
-      <hr>
-      <hr id="line">
-      <hr>
-      <hr>
-      <hr id="ledger-line">
-    </div>-->
-   <div class="container-content" id="staff">
+    <div class="container-content treble" id="staff">
       <div class="f-test-note note-line">
       </div>
       <div class="e-test-note note-space">
@@ -99,9 +92,9 @@
       <div class="d-test-note note-space">
         <span class="far fa-circle note-circle hidden"></span> 
       </div>
-      <div class="c-test-note note-line" id="ledger-line">
+      <hr class="c-test-note note-line" id="ledger-line">
         <span class="far fa-circle note-circle-on-line hidden"></span>
-      </div>
+      </hr>
     </div>
     <!--Keyboard-->
     <div class="container-content" id="klavier">
@@ -121,9 +114,10 @@
       </div>
     </div>
     <ul class="note-list"></ul>
+    </section>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="keyboardKey.js"></script>
     <script src="game.js"></script>
+    <footer>Copyright &copy; Kirsi Trospe 2020</footer>
   </body>
-  <footer><p>Copyright &copy; Kirsi Trospe 2020</p></footer>
 </html>

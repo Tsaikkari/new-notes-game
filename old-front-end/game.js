@@ -1,69 +1,11 @@
 let keysAvailable = ["c", "d", "e", "f", "g", "a", "b"];
+let keybind = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
 let notes = [];
 let randomNotes = [];
 let userChosenKeys = [];
 let userChosenButtons = [];
 let level = 0;
 let started = false;
-
-$('#staff').hide();
-$('#klavier').hide();
-$('.menu').hide();
-$('#notes-route').hide();
-
-$(".levels-tests").click(function () {
-  $("#wrap").hide();
-  $('#notes-route').show();
-  $('.menu').show();
-})
-
-$(".menu").click(function () {
-  $("#wrap").show();
-  $('#staff').hide();
-  $('#klavier').hide();
-  $('.menu').hide();
-  $('h6').hide();
-})
-
-// Switches the position of the keyboard with the position of the staff depending on user clicking either level or test link.
-function swapElement(a, b) {
-  // create a temporary marker div
-  let aNext = $('<div>').insertAfter(a);
-  a.insertAfter(b);
-  b.insertBefore(aNext);
-  // remove marker div
-  aNext.remove();
-}
-
-// TODO: Clicking level links only swaps elements when there's a test-view on the screen and vice versa with test links.
-$('#level').on('click', function () {
-  localStorage.setItem('learn', true);
-  let a = $('#staff' + $('#a').val());
-  let b = $('#klavier' + $('#b').val());
-  b.css('background-color', '#f8a055');
-  swapElement(a, b);
-  $('#klavier').show();
-  $('#staff').show();
-  $('.menu').show();
-  $('#cheering').text("Let's play! Press the C, D, E, F, G, A, or B key on your keyboard.")
-});
-
-$('#test').on('click', function () {
-  localStorage.removeItem('learn');
-  let a = $('#klavier' + $('#a').val());
-  let b = $('#staff' + $('#b').val());
-  a.css('background-color', '#bcbabe');
-  swapElement(a, b);
-  $('#ledger-line').hide();
-  $('#staff').show();
-  $('#klavier').show();
-  $('.menu').show();
-  $('#cheering').text('Press any keaboard key on the screen to start.');
-  calcNewTopCoords();
-  dropRandomNote();
-  createNote();
-  //createRandomNote();
-});
 
 // Starting the game
 $(document).keydown(function () {
@@ -72,79 +14,27 @@ $(document).keydown(function () {
   started = true;
 })
 
-function dropRandomNote() {
-  $('button').click(function (e) {
+function popRandomNote() {
+  //localStorage.removeItem('learn');
+  $('button').click(function () {
     // e.preventdefault();
     // check if its learn or exam 
     // let isLearn = localStorage.getItem('learn') ==="true";
     // if(isLearn) return ;
-          let notes = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
-          let getRandomNote = notes[Math.floor(Math.random() * notes.length)];
-
-    let userClickedButton = $('.' + getRandomNote+ '-test-note');
+    let notes = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+    let randomNote = notes[Math.floor(Math.random() * notes.length)];
+    randomNotes.push(randomnote);
+    let userClickedButton = $('.' + randomNote + '-test-note');
     if (userClickedButton){
-      // let note = createNoteAboveKey(userClickedButton, "o");
-      // adding new notes to the list
       $(userClickedButton).find('span').removeClass('hidden');
     }
+    return [randomNote];
   })
 }
-  /*$('button').click(function () {
-     //e.preventdefault();
-    // check if its learn or exam 
-     //let isLearn = localStorage.getItem('learn') ==="true";
-     //if(isLearn) return ;
-    
-    for (let i = 0; i < notes.length; i++) {
-    let notes = ['a', 'b', 'c', 'd', 'e', 'f', 'g'];
-    let randomNote = notes[Math.floor(Math.random() * notes.length)];
-    randomNotes.push(randomNote);
-    let staffPosition;
-    notes.forEach(function (elem) {
-      elem = document.createElement('span');
-      elem.setAttribute("id", "random-note");
-      elem.setAttribute("class", "far fa-circle note-circle hidden" )
-    })
-      if (notes[0].style.top = 60 + "%") {
-        staffPosition = notes[0].style.top;
-        console.log(staffPosition);
-      } else if (notes[1].style.top = 58 + "%") {
-        staffPosition = notes[1].style.top;
-      } else if (notes[2].style.top = 58 + "%") {
-        staffPosition = notes[2].style.top;
-      } else if (notes[3].style.top = 58 + "%") {
-        staffPosition = notes[3].style.top;
-      } else if (notes[4].style.top = 58 + "%") {
-        staffPosition = notes[4].style.top;
-      } else if (notes[5].style.top = 58 + "%") {
-        staffPosition = notes[5].style.top;
-      } else if (notes[6].style.top = 58 + "%") {
-        staffPosition = notes[6].style.top;
-      }
-    }
-
-    let userClickedButton = $('.' + randomNote + '-note');
-    if (userClickedButton) {
-      $(userClickedButton).find('span').removeClass('hidden');
-    }
-    let elem = document.getElementById("random-note"); 
-    let pos = 0
-    let id = setInterval(frame, 5);
-    
-    function frame() {
-      staffPosition = this.staffPosition;
-      if (pos === staffPosition) {
-        clearInterval(id);
-      } else {
-        pos++;
-        elem.style.top = pos + "px";
-      }
-    }
-  })
-} */
 
 // Add event listener to detect which key is pressed
 $(document).keydown(function (event) {
+  //localStorage.setItem('learn', true);
   let key = event.keyCode || event.key;
   for (let i = 0; i < keysAvailable.length; i++) { 
     let userChosenKey;
@@ -176,14 +66,12 @@ $(document).keydown(function (event) {
 
       let chosenElem = $('.' + userChosenKey + '-note');
       let chosenKeyboardKey = $('#' + userChosenKey);
-      if (chosenKeyboardKey) {
-        chosenKeyboardKey.css('background-color', '#4897d8');
-        chosenKeyboardKey.text(event.key);
-      }
+      chosenKeyboardKey.text(event.key);
+      chosenKeyboardKey.css('background-color', '#4897d8');
+      if (chosenElem) chosenElem.css('display', 'block');
       setTimeout(function () {
         chosenKeyboardKey.removeClass("clicked-key");
       }, 2500); // TODO: duration of sound needs to match
-      if (chosenElem) chosenElem.css('display', 'block');
       playSound(userChosenKey);
       console.log(userChosenKey)
     } else {
@@ -192,18 +80,29 @@ $(document).keydown(function (event) {
   }
 })
 
+function ambigNote(taskNote) {
+  return taskNote;
+}
+
 // TODO: must play "wrong" when hitting a wrong button
 // Check if the user played right or wrong
-function checkUserChoise(currentTone) {
-  let randomNote = this.randomNote;
-  let userChosenButton = this.userChosenButton;
-  if (randomNotes[currentTone] === userChosenButtons[currentTone]) {
+let randomNoteInfo = popRandomNote();
+let randomNote = ambigNote(randomNoteInfo[0])
+
+function checkUserChoise(randomNote, userChosenButton) {
+  let buttonClicked = userChosenButton;
+  if (buttonClicked == randomNote) {
+    console.log("Good")
+  } else {
+    gameover();
+  }
+  /*if (randomNotes[currentTone] === userChosenButtons[currentTone]) {
     if (randomNote === userChosenButton + "-note") {
       console.log("Good")
     }
   } else {
   gameover()
-  }
+  }*/
 }
 
 // game over
@@ -239,64 +138,13 @@ function createNote() {
   }
 }
 
-function calcNewTopCoords() {
-  for (let i = 0; i < keyboardKeys.length; i++) {
-    keyboardKeys[i].top = keyboardKeys[i].top - 10;
-    staffPosition = keyboardKeys[i].top;
-    console.log(keyboardKeys);
-    console.log(staffPosition);
-    //break;
-  }
-}
-
-/*function defStaffPosition() {
-  for (let i = 0; i < keyboardKeys.length; i++) {
-    if (document.getElementById("random-note") == document.querySelector(".c-note")) {        
-      staffPosition = keyboardKeys[0].top;
-    } else if (document.getElementById("random-note") == document.querySelector(".d-note")) {
-      staffPosition = keyboardKeys[1].top;
-    } else if (document.getElementById("random-note") == document.querySelector(".e-note")) {
-      staffPosition = keyboardKeys[2].top;
-    } else if (document.getElementById("random-note") == document.querySelector(".f-note")) {
-      staffPosition = keyboardKeys[3].top;
-    } else if (document.getElementById("random-note") == document.querySelector(".g-note")) {
-      staffPosition = keyboardKeys[4].top;
-    } else if (document.getElementById("random-note") == document.querySelector(".a-note")) {
-      staffPosition = keyboardKeys[5].top;
-    } else if (document.getElementById("random-note") == document.querySelector(".b-note")) {
-      staffPosition = keyboardKeys[6].top;
-    } else { 
-        staffPosition = 0;
-    }
-  }
-}*/
-
-/*function createRandomNote() {
-  //defStaffPosition();
-  let randomNote = notes[Math.floor(Math.random() * 7)];
-  if (randomNote) {
-    randomNote.setAttribute("id", "random-note");
-    randomNote.style.left = 18 + "%";
-    let staffPosition;
-    for (let i = 0; i < keyboardKeys.length; i++) {
-      randomNote.style.top = keyboardKeys[i].top + "px";
-      if ($('h6').attr('class') === document.querySelectorAll('.' + keyboardKeys[i].class) && $('#random-note')) {
-        staffPosition = randomNote.style.top;
-        console.log(staffPosition)
-      }
-    }
-  }
-  randomNotes.push(randomNote);
-  console.log(randomNote)
-}*/
-
 // Add event listener to piano keyboard keys
 $('button').click(function () {
-  let isLearn = localStorage.getItem('learn') === "true";
-  if (isLearn) return;
+  //let isLearn = localStorage.getItem('learn') === "true";
+  //if (isLearn) return;
 
   // user should be able to see random notes
-  dropRandomNote()
+  popRandomNote();
   let userChosenButton = $(this).attr("id");
   userChosenButtons.push(userChosenButton);
   playSound(userChosenButton);
