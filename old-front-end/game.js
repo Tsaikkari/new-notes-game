@@ -1,5 +1,4 @@
 let keysAvailable = ["c", "d", "e", "f", "g", "a", "b"];
-let keybind = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
 let notes = [];
 let randomNotes = [];
 let userChosenKeys = [];
@@ -23,7 +22,7 @@ function popRandomNote() {
     // if(isLearn) return ;
     let notes = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
     let randomNote = notes[Math.floor(Math.random() * notes.length)];
-    randomNotes.push(randomnote);
+    randomNotes.push(randomNote);
     let userClickedButton = $('.' + randomNote + '-test-note');
     if (userClickedButton){
       $(userClickedButton).find('span').removeClass('hidden');
@@ -67,11 +66,11 @@ $(document).keydown(function (event) {
       let chosenElem = $('.' + userChosenKey + '-note');
       let chosenKeyboardKey = $('#' + userChosenKey);
       chosenKeyboardKey.text(event.key);
-      chosenKeyboardKey.css('background-color', '#4897d8');
-      if (chosenElem) chosenElem.css('display', 'block');
       setTimeout(function () {
         chosenKeyboardKey.removeClass("clicked-key");
       }, 2500); // TODO: duration of sound needs to match
+      if (chosenKeyboardKey) chosenKeyboardKey.css('background-color', '#4897d8');
+      if (chosenElem) chosenElem.css('display', 'block');
       playSound(userChosenKey);
       console.log(userChosenKey)
     } else {
@@ -87,21 +86,19 @@ function ambigNote(taskNote) {
 // TODO: must play "wrong" when hitting a wrong button
 // Check if the user played right or wrong
 let randomNoteInfo = popRandomNote();
-let randomNote = ambigNote(randomNoteInfo[0])
+let randomNote = ambigNote(randomNoteInfo[0]);
 
-function checkUserChoise(randomNote, userChosenButton) {
-  let buttonClicked = userChosenButton;
+function checkUserChoise(randomNote, userClickedButton, userChosenButton) {
+  let buttonClicked = userClickedButton;
   if (buttonClicked == randomNote) {
-    console.log("Good")
-  } else {
-    gameover();
-  }
-  /*if (randomNotes[currentTone] === userChosenButtons[currentTone]) {
     if (randomNote === userChosenButton + "-note") {
       console.log("Good")
     }
   } else {
-  gameover()
+    gameover();
+  }
+  /*if (randomNotes[currentTone] === userChosenButtons[currentTone]) {
+    
   }*/
 }
 
