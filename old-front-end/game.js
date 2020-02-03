@@ -1,8 +1,4 @@
 let keysAvailable = ["c", "d", "e", "f", "g", "a", "b"];
-let notes = [];
-let randomNotes = [];
-let userChosenKeys = [];
-let userChosenButtons = [];
 let level = 0;
 let started = false;
 
@@ -20,7 +16,8 @@ function popRandomNote() {
     // check if its learn or exam 
     // let isLearn = localStorage.getItem('learn') ==="true";
     // if(isLearn) return ;
-    let notes = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+    let notes = ['a', 'b', 'c', 'd', 'e', 'f', 'g'];
+    let randomNotes = [];
     let randomNote = notes[Math.floor(Math.random() * notes.length)];
     randomNotes.push(randomNote);
     let userClickedButton = $('.' + randomNote + '-test-note');
@@ -34,6 +31,7 @@ function popRandomNote() {
 // Add event listener to detect which key is pressed
 $(document).keydown(function (event) {
   //localStorage.setItem('learn', true);
+  let userChosenKeys = [];
   let key = event.keyCode || event.key;
   for (let i = 0; i < keysAvailable.length; i++) { 
     let userChosenKey;
@@ -68,7 +66,7 @@ $(document).keydown(function (event) {
       chosenKeyboardKey.text(event.key);
       setTimeout(function () {
         chosenKeyboardKey.removeClass("clicked-key");
-      }, 2500); // TODO: duration of sound needs to match
+      }, 1500); // TODO: duration of sound needs to match
       if (chosenKeyboardKey) chosenKeyboardKey.css('background-color', '#4897d8');
       if (chosenElem) chosenElem.css('display', 'block');
       playSound(userChosenKey);
@@ -83,11 +81,9 @@ function ambigNote(taskNote) {
   return taskNote;
 }
 
-// TODO: must play "wrong" when hitting a wrong button
 // Check if the user played right or wrong
 let randomNoteInfo = popRandomNote();
-let randomNote = ambigNote(randomNoteInfo[0]);
-
+//let randomNote = ambigNote(randomNoteInfo[0]);
 function checkUserChoise(randomNote, userClickedButton, userChosenButton) {
   let buttonClicked = userClickedButton;
   if (buttonClicked == randomNote) {
@@ -98,7 +94,6 @@ function checkUserChoise(randomNote, userClickedButton, userChosenButton) {
     gameover();
   }
   /*if (randomNotes[currentTone] === userChosenButtons[currentTone]) {
-    
   }*/
 }
 
@@ -115,13 +110,13 @@ function gameover() {
 
 // Create a note on the fly
 function createNote() {
+  let notes = [];
   for (let i = 0; i < keyboardKeys.length; ++i) {
     let elem = document.getElementById(keyboardKeys[i].id);
     function createNoteAboveKey(elem, html) {
     let note = document.createElement('h6');
     note.setAttribute("id", "note");
     note.style.cssText = "position:absolute; font-size: 3em; font-family: 'Raleway', sans-serif; display:none;";
-    
     note.style.left = keyboardKeys[i].left + "%";
     note.style.top = keyboardKeys[i].top + "%";
     note.setAttribute("class", keyboardKeys[i].class);
@@ -142,6 +137,7 @@ $('button').click(function () {
 
   // user should be able to see random notes
   popRandomNote();
+  let userChosenButtons = [];
   let userChosenButton = $(this).attr("id");
   userChosenButtons.push(userChosenButton);
   playSound(userChosenButton);
@@ -158,6 +154,7 @@ function startOver() {
   notes = [];
   started = false;
 }
+
 
 
 
