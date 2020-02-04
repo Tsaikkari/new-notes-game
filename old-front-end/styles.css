@@ -11,6 +11,7 @@ html, body { width: auto!important; overflow-x: hidden!important }
 body {
   animation: bg 30s linear infinite;
   padding: 0.25rem 4rem;
+  list-style: none;
 }
 
 @keyframes bg {
@@ -86,6 +87,40 @@ p {
   padding-left: 1%;
 }
 
+menu {
+  margin-bottom: 4rem;
+  text-align: center;
+}
+
+
+menu label {
+  display: inline-block;
+  font-size: 1.3rem;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 240, .3);
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+menu label:first-of-type {
+  border-radius: 5px 0 0 5px;
+}
+
+menu label:last-of-type {
+  border-radius: 0 5px 5px 0;
+}
+
+
+menu input {
+  display: none;
+}
+
+menu input:checked+label {
+  background: rgba(255, 255, 240, .9);
+  transition: 0;
+}
+
+
 .game-over {
   background-color: red;
   opacity: 0.8;
@@ -148,6 +183,10 @@ p {
   z-index: 2;
 }
 
+.key.active {
+  animation: blacks 300ms;
+}
+
 .btn-light {
   float: left;
   width: 10%;
@@ -196,11 +235,6 @@ p {
   font-family: fantasy;
   color: #ffdb5c;
   box-shadow: 0 3px 3px 0 #000;
-}
-
-.pressed {
-  /*box-shadow: 0 0 20px white;*/
-  background-color: #4897d8;
 }
 
 footer {
