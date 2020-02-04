@@ -54,62 +54,62 @@
       </div>
       <p class="starting">Press a key and let's play!<br><span class="change-color">(C, D, E, F, G, A, or B)</span></p>
     </section><!--wrap ends-->
-    <!--Notes' route-->  
+      <!--Notes' route-->  
     <div class="container-content" id="notes-route">
       <h2 id="cheering"></h1>
         <!--<span class="far fa-circle note-circle hidden" id="random-note"></span>-->
     </div>
     <section class="game">
-    <!--Staff-->
-    <div class="container-content treble" id="staff">
-      <div class="f-test-note note-line">
+      <!--Staff-->
+      <div class="container-content treble" id="staff">
+        <div class="f-test-note note-line">
+        </div>
+        <div class="e-test-note note-space">
+        </div>
+        <div class="d-test-note note-line">
+        </div>
+        <div class="c-test-note note-space">
+        </div>
+        <div class="b-test-note note-line" id="line">
+          <span class="far fa-circle note-circle-on-line hidden"></span>
+        </div>
+        <div class="a-test-note note-space">
+          <span class="far fa-circle note-circle hidden"></span> 
+        </div>
+        <div class="g-test-note note-line">
+          <span class="far fa-circle note-circle-on-line hidden"></span>
+        </div>
+        <div class="f-test-note note-space">
+          <span class="far fa-circle note-circle hidden"></span> 
+        </div>
+        <div class="e-test-note note-line">
+          <span class="far fa-circle note-circle-on-line hidden"></span>
+        </div>
+        <div class="d-test-note note-space">
+          <span class="far fa-circle note-circle hidden"></span> 
+        </div>
+        <hr class="c-test-note note-line" id="ledger-line">
+          <span class="far fa-circle note-circle-on-line-middle-c hidden"></span>
+        </hr>
       </div>
-      <div class="e-test-note note-space">
+      <!--Keyboard-->
+      <div class="keyboard-container" id="klavier">
+        <div class="note" id="keyboard">
+          <button type="button" data-key="67" data-note="c" data-bind ="C" class="btn btn-light c key" id="c"></button>
+          <button type="button" class="btn btn-dark cis black key"></button>
+          <button type="button" data-key="68" data-note="d" data-bind ="D" class="btn btn-light d key" id="d"></button>
+          <button type="button" class="btn btn-dark dis black key"></button>
+          <button type="button" data-key="69" data-note="e" data-bind ="E" class="btn btn-light e key" id="e"></button>
+          <button type="button" data-key="70" data-note="f" data-bind ="F"class="btn btn-light f key" id="f"></button>
+          <button type="button" class="btn btn-dark fis black key"></button>
+          <button type="button" data-key="71" data-note="g" data-bind ="G" class="btn btn-light g key" id="g"></button>
+          <button type="button" class="btn btn-dark gis black key"></button>
+          <button type="button" data-key="65" data-note="a" data-bind ="A" class="btn btn-light a key" id="a"></button>
+          <button type="button" class="btn btn-dark ais black key"></button>
+          <button type="button" data-key="66" data-note="b" data-bind ="B" class="btn btn-light b key" id="b"></button>
+        </div>
       </div>
-      <div class="d-test-note note-line">
-      </div>
-      <div class="c-test-note note-space">
-      </div>
-      <div class="b-test-note note-line" id="line">
-        <span class="far fa-circle note-circle-on-line hidden"></span>
-      </div>
-      <div class="a-test-note note-space">
-        <span class="far fa-circle note-circle hidden"></span> 
-      </div>
-      <div class="g-test-note note-line">
-        <span class="far fa-circle note-circle-on-line hidden"></span>
-      </div>
-      <div class="f-test-note note-space">
-        <span class="far fa-circle note-circle hidden"></span> 
-      </div>
-      <div class="e-test-note note-line">
-        <span class="far fa-circle note-circle-on-line hidden"></span>
-      </div>
-      <div class="d-test-note note-space">
-        <span class="far fa-circle note-circle hidden"></span> 
-      </div>
-      <hr class="c-test-note note-line" id="ledger-line">
-        <span class="far fa-circle note-circle-on-line-middle-c hidden"></span>
-      </hr>
-    </div>
-    <!--Keyboard-->
-    <div class="container-content" id="klavier">
-      <div id="keyboard">
-        <button type="button" data-key="67" data-note="C" class="btn btn-light c key" id="c"></button>
-        <button type="button" class="btn btn-dark cis black key"></button>
-        <button type="button" data-key="68" data-note="D" class="btn btn-light d key" id="d"></button>
-        <button type="button" class="btn btn-dark dis black key"></button>
-        <button type="button" data-key="69" data-note="E" class="btn btn-light e key" id="e"></button>
-        <button type="button" data-key="70" data-note="F"class="btn btn-light f key" id="f"></button>
-        <button type="button" class="btn btn-dark fis black key"></button>
-        <button type="button" data-key="71" data-note="G" class="btn btn-light g key" id="g"></button>
-        <button type="button" class="btn btn-dark gis black key"></button>
-        <button type="button" data-key="65" data-note="C" class="btn btn-light a key" id="a"></button>
-        <button type="button" class="btn btn-dark ais black key"></button>
-        <button type="button" data-key="66" data-note="C" class="btn btn-light b key" id="b"></button>
-      </div>
-    </div>
-    <ul class="note-list"></ul>
+      <ul class="note-list"></ul>
     </section>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="keyboardKey.js"></script>
