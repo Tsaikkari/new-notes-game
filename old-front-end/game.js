@@ -1,12 +1,7 @@
 let keybind = ["C", "D", "E", "F", "G", "A", "B"];
 let notes = ["c", "d", "e", "f", "g", "a", "b"];
-let level = 0;
-let started = false;
 
 $(document).keydown(function (e) {
-  if (!started)
-  getNote();
-  started = true;
   let pressed = String.fromCharCode(e.which);
   let index = keybind.indexOf(pressed);
   $('.key[data-note="' + notes[index] + '"]').mousedown();
@@ -18,20 +13,19 @@ $(document).keydown(function (e) {
 let note_element = $(".keyboard-container .note")
 function getNote() {
   let note = "";
+  let created = false;
   note = notes[note];
-  note_element.addClass(note + '-note');
+  if (!created) {
+    note_element.addClass(note + '-note');
+  }
   return [note];
 }
 
-function getRandomNote() {
-  let note = "";
-  let created = false;
+function getRandomNote(note) {
   let randomKey = Math.round(Math.random() * 6);
   let randomNote = notes[randomKey];
-  note = randomNote;
-  if (!created) {
-    note_element.addClass(randomNote + '-note');
-  }
+  this.note = randomNote;
+  note_element.addClass(randomNote + '-note');
   return [note];
 }
 
@@ -43,10 +37,9 @@ function ambigNote(taskNote) {
   return taskNote;
 }
 
-// Check if the user played right or wrong
 let randomNoteInfo = getRandomNote();
 let randomNote = ambigNote(randomNoteInfo[0]);
-
+// Check if the user played right or wrong
 function checkUserChoise(randomNote, clickedNote) {
   let noteClicked = clickedNote;
   if (noteClicked == randomNote) {
@@ -60,6 +53,7 @@ $(".key").mousedown(function () {
   let $this = $(this);
   let clickedNote = $(this).attr("data-note");
   playSound($this, clickedNote);
+  animateButton(clickedNote);
   //checkUserChoise(note, clickedNote);
   //removeNote(note);
   noteInfo = getNote();
@@ -76,6 +70,15 @@ $(".key").mousedown(function () {
       $(".key").unbind("mouseover");
   });
 });
+
+function animateButton(clickedNote) {
+  $('#keyboard > button').each(function () {
+    $(this).css('background-color', '');
+    $(this).addClass("clicked-key");
+  })
+  let clickedButton = $('#' + clickedNote);
+  clickedButton.css('background-color', '#4897d8')
+}
 
 // game over
 function gameover() {
@@ -97,7 +100,6 @@ function playSound($this, name) {
 
 
 // This code is inspired by a React-guy in Berlin
-
 
 
 

@@ -1,3 +1,4 @@
+
 * { 
   box-sizing: border-box;
   margin: 0;
@@ -197,7 +198,11 @@ p {
   box-shadow: 0 3px 3px 0 #000;
 }
 
+.pressed {
+  /*box-shadow: 0 0 20px white;*/
+  background-color: #4897d8;
+}
+
 footer {
   float: right;
 }
-
