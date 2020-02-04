@@ -2,6 +2,7 @@ let keybind = ["C", "D", "E", "F", "G", "A", "B"];
 let notes = ["c", "d", "e", "f", "g", "a", "b"];
 
 $(document).keydown(function (e) {
+  getNote();
   let pressed = String.fromCharCode(e.which);
   let index = keybind.indexOf(pressed);
   $('.key[data-note="' + notes[index] + '"]').mousedown();
@@ -24,7 +25,7 @@ function getNote() {
 function getRandomNote(note) {
   let randomKey = Math.round(Math.random() * 6);
   let randomNote = notes[randomKey];
-  this.note = randomNote;
+  note = randomNote;
   note_element.addClass(randomNote + '-note');
   return [note];
 }
