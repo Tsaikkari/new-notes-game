@@ -2,16 +2,17 @@ let keybind = ["C", "D", "E", "F", "G", "A", "B"];
 let notes = ["c", "d", "e", "f", "g", "a", "b"];
 
 $(document).keydown(function (e) {
-  getNote();
   let pressed = String.fromCharCode(e.which);
   let index = keybind.indexOf(pressed);
   $('.key[data-note="' + notes[index] + '"]').mousedown();
   setTimeout(function () {
     $(".key").removeClass("active").unbind("mouseover");
   }, 200);
+  getNote(); // TODO: add note and coords in css
+  showNote();
 });
 
-let note_element = $(".keyboard-container .note")
+let note_element = $(".keyboard-container .note .key");
 function getNote() {
   let note = "";
   let created = false;
@@ -22,12 +23,10 @@ function getNote() {
   return [note];
 }
 
-function getRandomNote(note) {
+function getRandomNote() {
   let randomKey = Math.round(Math.random() * 6);
   let randomNote = notes[randomKey];
-  note = randomNote;
-  note_element.addClass(randomNote + '-note');
-  return [note];
+  return randomNote;
 }
 
 function removeNote(guessedNote) {
@@ -50,11 +49,31 @@ function checkUserChoise(randomNote, clickedNote) {
   }
 }
 
+function showNote(index) {
+  $('.key[data-note="' + notes[index] + '-note' + '"]').each(function () {
+    $(this).css({'left': '', 'top': ''});
+    let note = notes[note];
+  });
+  return note;
+}
+
+function showRandomNote(clickedNote, randomNote) {
+  $('#keyboard > span').each(function () {
+    clickedNote = $('.' + randomNote + 'test-note');
+    if (clickedNote) {
+      $(randomNote).find('span').removeClass('hidden');
+    }
+  })
+  return randomNote;
+}
+
 $(".key").mousedown(function () {
   let $this = $(this);
   let clickedNote = $(this).attr("data-note");
   playSound($this, clickedNote);
   animateButton(clickedNote);
+  getRandomNote();
+  showRandomNote();
   //checkUserChoise(note, clickedNote);
   //removeNote(note);
   noteInfo = getNote();
@@ -74,11 +93,15 @@ $(".key").mousedown(function () {
 
 function animateButton(clickedNote) {
   $('#keyboard > button').each(function () {
-    $(this).css('background-color', '');
+    $(this).css({'background-color': '', 'box-shadow': ''});
     $(this).addClass("clicked-key");
   })
   let clickedButton = $('#' + clickedNote);
-  clickedButton.css('background-color', '#4897d8')
+  clickedButton.css({'background-color': '#4897d8', 'box-shadow': '0 0 20px white'});
+  setTimeout(function () {
+    $('#' + clickedNote).removeClass("clicked-key");
+    $(clickedButton).css({'background-color': 'none', 'box-shadow': 'none'})
+  }, 1500);
 }
 
 // game over
@@ -101,6 +124,11 @@ function playSound($this, name) {
 
 
 // This code is inspired by a React-guy in Berlin
+
+
+
+
+
 
 
 

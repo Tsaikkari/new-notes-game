@@ -189,6 +189,11 @@ menu input:checked+label {
   animation: blacks 300ms;
 }
 
+.clicked-key {
+  box-shadow: 0 3px 3px 0 #000;
+}
+
+
 .btn-light {
   float: left;
   width: 10%;
@@ -229,14 +234,6 @@ menu input:checked+label {
 
 .ais {
   left: 57%;
-}
-
-.clicked-key {
-  font-size: 4em;
-  text-transform: uppercase;
-  font-family: fantasy;
-  color: #ffdb5c;
-  box-shadow: 0 3px 3px 0 #000;
 }
 
 footer {
