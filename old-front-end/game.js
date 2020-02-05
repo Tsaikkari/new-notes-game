@@ -8,60 +8,47 @@ $(document).keydown(function (e) {
   setTimeout(function () {
     $(".key").removeClass("active").unbind("mouseover");
   }, 200);
-  getNote(); // TODO: add note and coords in css
-  showNote();
 });
 
 let note_element = $(".keyboard-container .note .key");
 function getNote() {
   let note = "";
   let created = false;
-  note = notes[note];
+  let randomKey = Math.round(Math.random() * 6);
+  randomNote = notes[randomKey];
+  note = randomNote;
   if (!created) {
-    note_element.addClass(note + '-note');
+    note_element.addClass(note + 'test-note');
   }
+  console.log(note)
   return [note];
 }
 
-function getRandomNote() {
-  let randomKey = Math.round(Math.random() * 6);
-  let randomNote = notes[randomKey];
-  return randomNote;
-}
-
 function removeNote(guessedNote) {
-  note_element.removeClass(guessedNote[0] + "-note");
+  note_element.removeClass(guessedNote[0] + "-test-note");
 }
 
 function ambigNote(taskNote) {
   return taskNote;
 }
 
-let randomNoteInfo = getRandomNote();
-let randomNote = ambigNote(randomNoteInfo[0]);
+let noteInfo = getNote();
+let note = ambigNote(noteInfo[0]);
 // Check if the user played right or wrong
-function checkUserChoise(randomNote, clickedNote) {
+function checkUserChoise(note, clickedNote) {
   let noteClicked = clickedNote;
-  if (noteClicked == randomNote) {
+  if (noteClicked == note) {
    console.log("Good");
   } else {
     gameover();
   }
 }
 
-function showNote(index) {
-  $('.key[data-note="' + notes[index] + '-note' + '"]').each(function () {
-    $(this).css({'left': '', 'top': ''});
-    let note = notes[note];
-  });
-  return note;
-}
-
-function showRandomNote(clickedNote, randomNote) {
+function showNote(clickedNote, note) {
   $('#keyboard > span').each(function () {
-    clickedNote = $('.' + randomNote + 'test-note');
+    clickedNote = $('.' + note + 'test-note');
     if (clickedNote) {
-      $(randomNote).find('span').removeClass('hidden');
+      $(note).find('span').removeClass('hidden');
     }
   })
   return randomNote;
@@ -72,8 +59,8 @@ $(".key").mousedown(function () {
   let clickedNote = $(this).attr("data-note");
   playSound($this, clickedNote);
   animateButton(clickedNote);
-  getRandomNote();
-  showRandomNote();
+  getNote();
+  showNote();
   //checkUserChoise(note, clickedNote);
   //removeNote(note);
   noteInfo = getNote();
