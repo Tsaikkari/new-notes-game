@@ -1,125 +1,48 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<!DOCTYPE html>
+<html lang="en" >
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="HandheldFriendly" content="true">
-    <title>Notes Game</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Lora&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <style>
-    .note-line {
-      height: 0.5px;
-      margin: 25px;
-      border: 1px solid black;
-    }
-    .note-circle {
-      position: absolute;
-      font-size: 1.6rem;
-      padding-left: 9.5%;
-    }
-
-    .note-circle-on-line {
-      position: absolute;
-      margin-top: -8px;
-      font-size: 1.6rem;
-      padding-left: 9.5%;
-    }
-
-    .hidden{
-      display: none;
-    }
-    </style>
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <![endif]-->
+    <meta charset="UTF-8">
+    <title>Notes Game 🎹</title>
+    <link rel="stylesheet" href="./styles.css">
   </head>
   <body>
-    <!--Game instructions-->
-    <section id="wrap">
-      <h1 class="header">NOTES GAME</h1>
-      <div class="container-fluid" id="intro">
-        <h3 class="intro-header"><i class="fas fa-music"></i>Learn the names of the keyboard keys<br> & their corresponding notes on the staff<br>
-        </h3> 
-        <h5 class="how">How to play</h5>
-          <p class="instructions">Click on <strong>your</strong> keyboard key to display a note on the staff.<br>
-            Memorize its home like you would take a picture of it in your head. 
-            Put the sound on!<i class="fas fa-volume-up"></i></p>
-          <p class="test-instructions"><span class="test-color"><strong>Test </strong></span>your skills. Click any keyboard key
-            on the screen to start.</p>
+    <div class="game-container">
+      <div class="label-container">
+        <menu>
+          <input checked id="shownote" type="radio" name="i">
+          <label for="shownote">Learn notes</label>
+          <input id="showkeys" type="radio" name="i">
+          <label for="showkeys">Test your skills</label>
+          <button id="startgame" type="radio" name="i">
+          <label for="startgame"><a href="#" class="btn animated-button thar-three">Start Game 🎹</a></label>
+        </menu>
+      </div> 
+      <div class="clear"></div> 
+      <div class="grid">
+        <div class="col-left">
+        <!-- Treble Clef -->
+          <div class="note_sheet treble">
+            <div class="note">
+              <span><span class="accidental"></span></span>
+            </div> 
+            <ul>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <p class="ledger-line">_____</p>
+            </ul> 
+          </div>
+        </div>
       </div>
-      <p class="starting">Press a key and let's play!<br><span class="change-color">(C, D, E, F, G, A, or B)</span></p>
-    </section><!--wrap ends-->
-      <!--Notes' route-->  
-    <div class="container-content" id="notes-route">
-      <h2 id="cheering"></h1>
-        <!--<span class="far fa-circle note-circle hidden" id="random-note"></span>-->
+      <div class="clear"></div>
+      <div class="keyboard"></div>
+      <div class="clear"></div>
     </div>
-    <section class="game">
-      <menu>
-        <input checked id="shownote" type="radio" name="i">
-        <label for="shownote">Learn notes</label>
-        <input id="showkeys" type="radio" name="i">
-        <label for="showkeys">Test your skills</label>
-        <input id="startgame" type="radio" name="i">
-        <label for="startgame">Start game</label>
-      </menu>
-      <!--Staff-->
-      <div class="container-content treble" id="staff">
-        <div class="f-test-note note-line">
-        </div>
-        <div class="e-test-note note-space">
-        </div>
-        <div class="d-test-note note-line">
-        </div>
-        <div class="c-test-note note-space">
-        </div>
-        <div class="b-test-note note-line" id="line">
-          <span class="far fa-circle note-circle-on-line hidden"></span>
-        </div>
-        <div class="a-test-note note-space">
-          <span class="far fa-circle note-circle hidden"></span> 
-        </div>
-        <div class="g-test-note note-line">
-          <span class="far fa-circle note-circle-on-line hidden"></span>
-        </div>
-        <div class="f-test-note note-space">
-          <span class="far fa-circle note-circle hidden"></span> 
-        </div>
-        <div class="e-test-note note-line">
-          <span class="far fa-circle note-circle-on-line hidden"></span>
-        </div>
-        <div class="d-test-note note-space">
-          <span class="far fa-circle note-circle hidden"></span> 
-        </div>
-        <hr class="c-test-note note-line" id="ledger-line">
-          <span class="far fa-circle note-circle-on-line-middle-c hidden"></span>
-        </hr>
-      </div>
-      <!--Keyboard-->
-      <div class="keyboard-container" id="klavier">
-        <div class="note" id="keyboard">
-          <button type="button" data-key="67" data-note="c" data-bind ="C" class="btn btn-light c key" id="c"></button>
-          <button type="button" class="btn btn-dark cis black key"></button>
-          <button type="button" data-key="68" data-note="d" data-bind ="D" class="btn btn-light d key" id="d"></button>
-          <button type="button" class="btn btn-dark dis black key"></button>
-          <button type="button" data-key="69" data-note="e" data-bind ="E" class="btn btn-light e key" id="e"></button>
-          <button type="button" data-key="70" data-note="f" data-bind ="F"class="btn btn-light f key" id="f"></button>
-          <button type="button" class="btn btn-dark fis black key"></button>
-          <button type="button" data-key="71" data-note="g" data-bind ="G" class="btn btn-light g key" id="g"></button>
-          <button type="button" class="btn btn-dark gis black key"></button>
-          <button type="button" data-key="65" data-note="a" data-bind ="A" class="btn btn-light a key" id="a"></button>
-          <button type="button" class="btn btn-dark ais black key"></button>
-          <button type="button" data-key="66" data-note="b" data-bind ="B" class="btn btn-light b key" id="b"></button>
-        </div>
-      </div>
-      <ul class="note-list"></ul>
-    </section>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="game.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="./game.js"></script>
   </body>
 </html>
