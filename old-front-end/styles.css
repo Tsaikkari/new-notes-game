@@ -98,8 +98,6 @@ menu input:checked+label {
 }
 
 .grid {
-  /*margin-left: 15%;*/
-  /*margin-bottom: 10%;*/
   padding-top: 2%;
 }
 
@@ -268,16 +266,16 @@ menu input:checked+label {
 
 .key.sharp {
   position: absolute;
-  width: 10.5%;
+  width: 10.3%;
   height: 61%;
-  background: #211a23;
+  background: #2e242c;
   border-radius: 0 0 8px 8px;
   top: 0;
   z-index: 3;
 }
 
 .key.cis {
-  left: 7.8%;
+  left: 8.5%;
 }
 
 .key.dis {
@@ -285,11 +283,11 @@ menu input:checked+label {
 }
 
 .key.fis  {
-  left: 50%;
+  left: 50.5%;
 }
 
 .key.gis{
-  left: 64%;
+  left: 64.5%;
 }
 
 .key.ais {
