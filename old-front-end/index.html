@@ -12,8 +12,8 @@
         <menu>
           <input checked id="shownote" type="radio" name="i">
           <label for="shownote">Learn notes</label>
-          <input id="showkeys" type="radio" name="i">
-          <label for="showkeys">Test your skills</label>
+          <input id="dontshow" type="radio" name="i">
+          <label for="dontshow">Test your skills</label>
           <button id="startgame" type="radio" name="i">
           <label for="startgame"><a href="#" class="btn animated-button thar-three">Start Game 🎹</a></label>
         </menu>
@@ -24,7 +24,7 @@
         <!-- Treble Clef -->
           <div class="note_sheet treble">
             <div class="note">
-              <span><span class="accidental" id="accidental"></span></span>
+              <span><span class="notes"></span></span>
             </div> 
             <ul>
               <li></li>
@@ -41,18 +41,32 @@
       <div class="clear"></div>
         <div class="keyboard"></div>
           <div class="keys">
-            <button type="button" data-key="65" class="key" data-note="c"></button>
-            <button type="button" data-key="87" class="key sharp cis" data-note="c#"></button>
-            <button type="button" class="key" data-note="d"></button>
+            <button type="button" class="c key" data-note="c">
+              <span class="key-name">C</span>
+            </button>
+            <button type="button" class="key sharp cis" data-note="c#"></button>
+            <button type="button" class="d key" data-note="d">
+              <span class="key-name">D</span>
+            </button>
             <button type="button" class="key sharp dis" data-note="d#"></button>
-            <button type="button" class="key" data-note="e"></button>
-            <button type="button" class="key" data-note="f"></button>
+            <button type="button" class="e key" data-note="e">
+              <span class="key-name">E</span>
+            </button>
+            <button type="button" class="f key" data-note="f">
+              <span class="key-name">F</span>
+            </button>
             <button type="button" class="key sharp fis" data-note="f#"></button>
-            <button type="button" class="key" data-note="g"></button>
+            <button type="button" class="g key" data-note="g">
+              <span class="key-name">G</span>
+            </button>
             <button type="button" class="key sharp gis" data-note="g#"></button>
-            <button type="button" class="key" data-note="a"></button>
+            <button type="button" class="a key" data-note="a">
+              <span class="key-name">A</span>
+            </button>
             <button type="button" class="key sharp ais" data-note="a#"></button>
-            <button type="button" class="key" data-note="b"></button>
+            <button type="button" class="b key" data-note="b">
+              <span class="key-name">B</span>
+            </button>
           </div>
         </div>
      <div class="clear"></div>

@@ -5,9 +5,9 @@ $(function () {
   $('input[type="radio"]').change(function () {
     let checked = $('input[type="radio"]:checked').attr("id");
     if (checked == "shownote") {
-      $("html").addClass("keybind");
+      $("button > span").attr("key-name");
     } else {
-      $("html").removeClass("keybind");
+      $("button > span").removeClass("key-name");
     }
   });
 
@@ -51,14 +51,19 @@ $(function () {
     console.log("Good");
     } else {
       console.log("wrong");
+      $('.key').addClass("clicked-button");
+      setTimeout(function() {
+        $('.key').removeClass("clicked-button");
+      }, 1000);
     }
   }
-    
+
   // Clicks
   $(".key").mousedown(function () {
     let $this = $(this);
     let clickedNote = $(this).attr("data-note");
     play($this, clickedNote);
+    animateButton(clickedNote);
     checkUserChoise(note, clickedNote);
     noteInfo = getNote();
     note = noteInfo[0];
@@ -77,16 +82,11 @@ $(function () {
   });
 });
 
-function animateButton(clickedNote) {
-  $('.keyboard > button').each(function () {
-    $(this).css({'background-color': '', 'box-shadow': ''});
-    $(this).addClass("clicked-key");
-  })
-  let clickedButton = $('#' + clickedNote);
-  clickedButton.css({'background-color': '#4897d8', 'box-shadow': '0 0 20px white'});
+function animateButton() {
+  let colored_button = $('.key');
   setTimeout(function () {
-    $('#' + clickedNote).removeClass("clicked-key");
-    $(clickedButton).css({'background-color': 'none', 'box-shadow': 'none'})
+    $('.key').removeClass("active");
+    $(colored_button).css({'background-color': 'none', 'box-shadow': 'none'})
   }, 1500);
 }
 

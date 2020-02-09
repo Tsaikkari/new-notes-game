@@ -213,29 +213,38 @@ menu input:checked+label {
 }
 
 .note-e {
-  top: 52px;
+  top: 53px;
   left: 160px;
 }
 
 .note-f {
-  top: 43px;
+  top: 45px;
   left: 160px;  
 }
 
 .note-g {
-  top: 33px;
+  top: 36px;
   left: 200px;  
 }
 
 .note-a {
-  top: 24px;
+  top: 26px;
   left: 170px;
 }
 
 .note-b {
-  top: 17px;
+  top: 18px;
   left: 160px;  
 }
+
+/**
+ * Pure CSS3 Piano by Taufik Nurrohman
+ * On: 1 December 2011
+ * URL: https://hompimpaalaihumgambreng.blogspot.com/
+ * Note: This experiment is under the God Almighty License.
+ * Please do not replace or remove the attribution above if you want to save/modify this project legally.
+ * Good luck!
+ */
 
 .keys {
   display: block;
@@ -253,8 +262,9 @@ menu input:checked+label {
   transition: all .07s ease;
   display: block;
   box-sizing: border-box;
-  box-shadow: 0 3px 3px 0 #000;
+  box-shadow: 0 4px 4px 0 #000;
   z-index: 2;
+  color: white;
 }
 
 .key:not(.sharp) {
@@ -294,17 +304,23 @@ menu input:checked+label {
   left: 79%;    
 }
 
+.key-name {
+  font-size: 2.3rem;
+  color: #000;
+}
+
 a {
     text-decoration: none;
 }
 
-.clicked-key {
-  box-shadow: 0 3px 3px 0 #000;
+.key.active {
+  animation: secrets 300ms;
+  background-color: #4897d8;
+  box-shadow: 0 0 20px white;
 }
 
-.key:first-child.active,
-.key:last-child.active {
-  animation: secrets 300ms;
+.key.clicked-button {
+  background-color: red;
 }
 
 @keyframes secrets {
