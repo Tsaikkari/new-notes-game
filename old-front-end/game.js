@@ -1,8 +1,7 @@
-let notes = ['B', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'a#', 'b', 'C'];
-let keybind = ['S', 'C', 'K', 'D', 'L', 'E', 'F', 'M', 'G', 'N', 'A','O', 'B', 'Z'];
+let notes = ['c', 'd', 'e', 'f', 'g', 'a', 'b'];
+let keybind = ['C', 'D', 'E', 'F', 'G', 'A', 'B']
 
 $(function () {
-  setup();
   $('input[type="radio"]').change(function () {
     let checked = $('input[type="radio"]:checked').attr("id");
     if (checked == "shownote") {
@@ -23,7 +22,6 @@ $(function () {
     }
   });
 
-  notes.splice(0, 8);
   let note_element = $(".note_sheet.treble .note").children("span");
 
   function getNote() {
@@ -36,16 +34,8 @@ $(function () {
     if (!created) {
       note_element.addClass('note-' + onlyNote);
     }
-    removeBlackKeyNote(note);
     console.log(note)
     return [note];
-  }
-  // TODO: Fix
-  function removeBlackKeyNote() {
-    let black_key_note = $(note_element).attr("note-" + "data-note" + "#");
-    if (black_key_note) {
-      note_element.removeClass('note');
-    }
   }
 
   function ambigNote(taskNote) {
@@ -87,15 +77,8 @@ $(function () {
   });
 });
 
-function setup() {
-  $.each(notes, function (i, note) {
-    let $key = $('<button class="key" data-bind="' + keybind[i] + '" data-note=' + note + '></button>');
-    $(".keyboard").append($key);
-  });
-}
-
 function animateButton(clickedNote) {
-  $('.keyboard > .key').each(function () {
+  $('.keyboard > button').each(function () {
     $(this).css({'background-color': '', 'box-shadow': ''});
     $(this).addClass("clicked-key");
   })
