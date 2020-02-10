@@ -1,5 +1,6 @@
 let notes = ['c', 'd', 'e', 'f', 'g', 'a', 'b'];
 let keybind = ['C', 'D', 'E', 'F', 'G', 'A', 'B']
+let score = 0;
 
 $(function () {
   $('input[type="radio"]').change(function () {
@@ -18,7 +19,7 @@ $(function () {
       $('.key[data-note="' + notes[index] + '"]').mousedown();
       setTimeout(function () {
         $(".key").removeClass("active").unbind("mouseover");
-      }, 200);
+      }, 20);
     }
   });
 
@@ -44,12 +45,18 @@ $(function () {
 
   let noteInfo = getNote();
   note = ambigNote(noteInfo[0]);
+  let notes_score = $('#notes_score');
+  notes_score.innerHTML = score;
+  
   // Check if the user played right or wrong
   function checkUserChoise(note, clickedNote) {
     let noteClicked = clickedNote;
     if (noteClicked == note) {
-    console.log("Good");
+      score+=1;
+      console.log(score);
+      console.log("Good");
     } else {
+      score-=1;
       console.log("wrong");
       $('.key').addClass("clicked-button");
       setTimeout(function() {
@@ -71,9 +78,8 @@ $(function () {
     $(".key").mouseover(function () {
       let $this = $(this);
       let clickedNote = $(this).attr("data-note");
-
-    play($this, clickedNote);
-    checkUserChoise(note, clickedNote);
+      play($this, clickedNote);
+      checkUserChoise(note, clickedNote);
     });
 
     $(document).mouseup(function () {
@@ -106,6 +112,7 @@ $this.addClass("active");
 console.log(name)
 audio.play();
 }
+
 
 
 

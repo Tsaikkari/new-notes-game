@@ -48,6 +48,10 @@ button {
   }
 }
 
+.clear {
+  padding: 5px;
+}
+
 menu {
   text-align: center;
   padding-top: 8%;
@@ -98,7 +102,7 @@ menu input:checked+label {
 }
 
 .grid {
-  padding-top: 2%;
+  padding-top: 5%;
 }
 
 .col-left,
