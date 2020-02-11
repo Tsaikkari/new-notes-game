@@ -10,6 +10,12 @@ $(function () {
     } else {
       $("button > span").removeClass("key-name");
     }
+    if (checked == "test") {
+      let notes_score = $('#notes_score');
+      notes_score.innerHTML = score;
+    } else {
+      $('#notes_score').style.display = "none";
+    }
   });
 
   $(document).keydown(function (e) {
@@ -45,8 +51,6 @@ $(function () {
 
   let noteInfo = getNote();
   note = ambigNote(noteInfo[0]);
-  let notes_score = $('#notes_score');
-  notes_score.innerHTML = score;
   
   // Check if the user played right or wrong
   function checkUserChoise(note, clickedNote) {
