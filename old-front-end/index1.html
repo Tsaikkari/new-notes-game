@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<style>
+    body{
+        background-color: #fcfcfc;
+    }
+    .game-screen,.learn-screen,.test-screen{
+        position: absolute;
+        margin: auto;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 800px;
+        height: 700px;
+        text-align: center;
+        padding-top: 70px;
+        background-color: #ccc;
+        border-radius: 3px;
+        display: none;
+    }
+    /** back arrow**/
+    .back-button {
+        /*display: inline-block;*/
+        float: left;
+        background: lightgrey;
+        margin: 0 auto;
+        padding: 37px 28px;
+        border-radius: 50%;
+    }
+    .arrow {
+        position: relative;
+        display: block;
+        width: 20px;
+        height: 2px;
+        background-color: #41C2B1;
+    }
+    .arrow:before,
+    .arrow:after {
+        content: '';
+        position: absolute;
+    }
+    .arrow:before {
+        top: -5px;
+        left: -8px;
+        width: 0;
+        height: 0;
+        border-top: 6px solid transparent;
+        border-bottom: 6px solid transparent;
+        border-right:8px solid #41C2B1;
+    }
+    .arrow:after {
+        width: 2px;
+        height: 10px;
+        background-color: #41C2B1;
+        right: -2px;
+        top: -4px;
+    }
+    /** staff **/
+    .dropping-note {
+    width: 28px;
+    height: 28px;
+    background: red;
+    position: relative;
+    animation: mymove 1s;
+    animation-fill-mode: forwards;
+    border-radius: 50%;
+    }
+
+    hr {
+    height: 9px;
+    width: 90%;
+    border-top: solid black 1px;
+    }
+
+    .first-line {
+        margin-bottom: 0;
+    }
+
+    .ledger-line {
+        margin-left: -55%;
+    }
+
+    @keyframes mymove {
+    from {top: 0px; left:310px}
+    to {top: 170px;  left: 310px;background-color: blue;}
+    }
+
+    /** treble clef (g-key) **/
+    .treble {
+        background:
+    url('data:image/png;base64,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') no-repeat;
+    margin-top: 50px;
+    padding-bottom: 10px;
+    }
+
+    /** keyboard **/
+    .keyboard {
+        width: 65%; 
+        margin: 0 auto;
+    }
+    .keys {
+    display: block;
+    width: 100%;
+    height: 270px;
+    max-width: 600px;
+    position: relative;
+    margin: 20px auto 0;
+    }
+
+    .key {
+    position: relative;
+    border: solid #000 1px;
+    border-radius: .4rem;
+    transition: all .07s ease;
+    display: block;
+    box-sizing: border-box;
+    box-shadow: 0 4px 4px 0 #000;
+    z-index: 2;
+    color: white;
+    }
+
+    .key:not(.sharp) {
+    float: left;
+    width: 14%;
+    height: 100%;
+    background: ivory;
+    }
+
+    .key.sharp {
+    position: absolute;
+    width: 10.3%;
+    height: 61%;
+    background: #2e242c;
+    border-radius: 0 0 8px 8px;
+    top: 0;
+    z-index: 3;
+    }
+
+    .key.cis {
+    left: 8.5%;
+    }
+
+    .key.dis {
+    left: 23%;
+    }
+
+    .key.fis  {
+    left: 50.5%;
+    }
+
+    .key.gis{
+    left: 64.5%;
+    }
+
+    .key.ais {
+    left: 79%;    
+    }
+
+    .key.active {
+    animation: secrets 300ms;
+    background-color: #4897d8;
+    box-shadow: 0 0 20px white;
+    }
+
+    .key.clicked-button {
+    background-color: red;
+    }
+
+    /** responsive piano **/
+    @media screen and (max-width: 600px) {
+        .learn-screen {
+            display: block;
+            padding-top: unset;
+        }
+    }
+
+</style>
+</head>
+    <body>
+        <div class="container-fluid">
+            <section  class="game-screen">
+                <h1>Game Screen</h1>
+                <button type="button" class="btn btn-primary" id="learn-game">Learn</button>
+                <button type="button" class="btn btn-secondary" id="test-game">Test</button>
+            </section>
+            <section class="learn-screen">
+                <h1>Learn Screen</h1>
+                <div class="back-button" id="learn-screen-back-arrow">
+                    <span class="arrow"></span>
+                </div>
+                
+                <div class="dropping-note"></div>
+                <div class="staff">
+                    <div class="treble">
+                        <hr>
+                        <hr>
+                        <hr>
+                        <hr>
+                        <hr class="first-line">
+                        <p class="ledger-line">___</p>
+                    </div>
+                </div>
+            
+                <div class="keyboard">
+                <div class="keys">
+                    <button type="button" class="c key" data-note="c">
+                    <span class="key-name">C</span>
+                    </button>
+                    <button type="button" class="key sharp cis" data-note="c#"></button>
+                    <button type="button" class="d key" data-note="d">
+                    <span class="key-name">D</span>
+                    </button>
+                    <button type="button" class="key sharp dis" data-note="d#"></button>
+                    <button type="button" class="e key" data-note="e">
+                    <span class="key-name">E</span>
+                    </button>
+                    <button type="button" class="f key" data-note="f">
+                    <span class="key-name">F</span>
+                    </button>
+                    <button type="button" class="key sharp fis" data-note="f#"></button>
+                    <button type="button" class="g key" data-note="g">
+                    <span class="key-name">G</span>
+                    </button>
+                    <button type="button" class="key sharp gis" data-note="g#"></button>
+                    <button type="button" class="a key" data-note="a">
+                    <span class="key-name">A</span>
+                    </button>
+                    <button type="button" class="key sharp ais" data-note="a#"></button>
+                    <button type="button" class="b key" data-note="b">
+                    <span class="key-name">B</span>
+                    </button>
+                </div>
+                </div>
+            </section>
+            <section class="test-screen">
+                <h1> Play Screen</h1>
+                <div class="back-button" id="test-screen-back-arrow">
+                    <span class="arrow"></span>
+                </div>
+            </section>
+        </div>
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script>
+        // show game screen 
+        $('.game-screen').css('display','block')
+
+        // user clicks learn game
+        $('#learn-game').off('click')
+        $('#learn-game').on('click', function(){
+            $('.game-screen').css('display','none')
+            $('.learn-screen').css('display','block')
+        })
+        // user clicks test game
+        $('#test-game').off('click')
+        $('#test-game').on('click', function(){
+            $('.game-screen').css('display','none')
+            $('.test-screen').css('display','block')
+        })
+
+        // user clicks learn screen backarrow
+        $('#learn-screen-back-arrow').off('click')
+        $('#learn-screen-back-arrow').on('click', function(){
+            $('.game-screen').css('display','block')
+            $('.learn-screen').css('display','none')
+        })
+        // user clicks test screen backarrow
+        $('#test-screen-back-arrow').off('click')
+        $('#test-screen-back-arrow').on('click', function(){
+            $('.game-screen').css('display','block')
+            $('.test-screen').css('display','none')
+        })
+    </script>
+    </body>
+</html>
+
+
+
+<!--Resources-->
+<!-- https://github.com/goldfire/howler.js#documentation -->
